@@ -47,10 +47,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -139,6 +147,51 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Admin.cs">
+      <DependentUpon>DataSelling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cart.cs">
+      <DependentUpon>DataSelling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Category.cs">
+      <DependentUpon>DataSelling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Comment.cs">
+      <DependentUpon>DataSelling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataSelling.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSelling.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataSelling.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSelling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataSelling.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSelling.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>DataSelling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Repli.cs">
+      <DependentUpon>DataSelling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SubCategory.cs">
+      <DependentUpon>DataSelling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sub_Product.cs">
+      <DependentUpon>DataSelling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>DataSelling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>DataSelling.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -148,37 +201,32 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Layout\css\style-starter.css" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Layout\css\bootstrap.css" />
+    <Content Include="Content\Layout\css\font-awesome.min.css" />
+    <Content Include="Content\Layout\css\style.css" />
     <Content Include="Content\Layout\fonts\fontawesome-webfont.svg" />
-    <Content Include="Content\Layout\images\about1.jpg" />
-    <Content Include="Content\Layout\images\about2.jpg" />
-    <Content Include="Content\Layout\images\about3.jpg" />
-    <Content Include="Content\Layout\images\g2.jpg" />
-    <Content Include="Content\Layout\images\g3.jpg" />
-    <Content Include="Content\Layout\images\g5.jpg" />
-    <Content Include="Content\Layout\images\g6.jpg" />
-    <Content Include="Content\Layout\images\g7.jpg" />
-    <Content Include="Content\Layout\images\g9.jpg" />
-    <Content Include="Content\Layout\images\logo1.jpg" />
-    <Content Include="Content\Layout\images\logo2.jpg" />
-    <Content Include="Content\Layout\images\logo3.jpg" />
-    <Content Include="Content\Layout\images\logo4.jpg" />
-    <Content Include="Content\Layout\images\main.jpg" />
-    <Content Include="Content\Layout\images\team.jpg" />
-    <Content Include="Content\Layout\images\team1.jpg" />
-    <Content Include="Content\Layout\images\team2.jpg" />
-    <Content Include="Content\Layout\images\team3.jpg" />
-    <Content Include="Content\Layout\images\team4.jpg" />
-    <Content Include="Content\Layout\images\team5.jpg" />
-    <Content Include="Content\Layout\images\teams1iconleft.png" />
-    <Content Include="Content\Layout\images\teams1iconright.png" />
-    <Content Include="Content\Layout\images\video.jpg" />
-    <Content Include="Content\Layout\js\bootstrap.min.js" />
-    <Content Include="Content\Layout\js\canvas-video-player.js" />
-    <Content Include="Content\Layout\js\jquery-3.4.1.slim.min.js" />
-    <Content Include="Content\Layout\js\jquery.magnific-popup.min.js" />
-    <Content Include="Content\Layout\js\owl.carousel.js" />
-    <Content Include="Content\Layout\videos\meeting.mp4" />
+    <Content Include="Content\Layout\images\about.png" />
+    <Content Include="Content\Layout\images\b1.png" />
+    <Content Include="Content\Layout\images\b2.png" />
+    <Content Include="Content\Layout\images\banner.png" />
+    <Content Include="Content\Layout\images\error.png" />
+    <Content Include="Content\Layout\images\faq.png" />
+    <Content Include="Content\Layout\images\img1.png" />
+    <Content Include="Content\Layout\images\img2.png" />
+    <Content Include="Content\Layout\images\img3.png" />
+    <Content Include="Content\Layout\images\inner.jpg" />
+    <Content Include="Content\Layout\images\inner.png" />
+    <Content Include="Content\Layout\images\shape1.png" />
+    <Content Include="Content\Layout\images\shape2.png" />
+    <Content Include="Content\Layout\images\shape3.png" />
+    <Content Include="Content\Layout\images\shape4.png" />
+    <Content Include="Content\Layout\images\shape5.png" />
+    <Content Include="Content\Layout\images\shape6.png" />
+    <Content Include="Content\Layout\images\t1.jpg" />
+    <Content Include="Content\Layout\images\t2.jpg" />
+    <Content Include="Content\Layout\images\t3.jpg" />
     <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="Content\UI\assets\css\argon-design-system.css" />
     <Content Include="Content\UI\assets\css\argon-design-system.min.css" />
@@ -335,8 +383,19 @@
     <Content Include="Content\UI\assets\js\plugins\nouislider.min.js" />
     <Content Include="Content\UI\assets\js\plugins\perfect-scrollbar.jquery.min.js" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\DataSelling.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DataSelling.Context.cs</LastGenOutput>
+      <DependentUpon>DataSelling.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\DataSelling.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DataSelling.edmx</DependentUpon>
+      <LastGenOutput>DataSelling.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
@@ -368,11 +427,6 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="Content\Layout\fonts\fontawesome-webfont.eot" />
-    <Content Include="Content\Layout\fonts\fontawesome-webfont.ttf" />
-    <Content Include="Content\Layout\fonts\fontawesome-webfont.woff" />
-    <Content Include="Content\Layout\fonts\fontawesome-webfont.woff2" />
-    <Content Include="Content\Layout\fonts\FontAwesome.otf" />
     <Content Include="Content\UI\assets\css\argon-design-system.css.map" />
     <Content Include="Content\UI\assets\fonts\fontawesome-webfont.eot" />
     <Content Include="Content\UI\assets\fonts\fontawesome-webfont.ttf" />
@@ -451,6 +505,23 @@
     <Content Include="Content\UI\assets\scss\argon-design-system\vendor\nouislider.scss" />
     <Content Include="Content\UI\assets\scss\argon-design-system\vendor\scrollbar.scss" />
     <Content Include="Content\UI\assets\scss\argon-design-system\vendor\_bootstrap-datepicker.scss" />
+    <Content Include="Content\Layout\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Layout\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Layout\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Layout\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Layout\fonts\FontAwesome.otf" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <EntityDeploy Include="Models\DataSelling.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DataSelling.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DataSelling.edmx.diagram">
+      <DependentUpon>DataSelling.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -560,7 +631,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -572,6 +642,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

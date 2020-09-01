@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0fe4004fed044d3290f06616c0ef4c80" Name="Diagram1">
+        <EntityTypeShape EntityType="SellingWebModel.Admin" Width="1.5" PointX="7.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SellingWebModel.Cart" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SellingWebModel.Category" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SellingWebModel.Comment" Width="1.5" PointX="6" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SellingWebModel.Product" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SellingWebModel.Repli" Width="1.5" PointX="8.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SellingWebModel.Sub_Product" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SellingWebModel.SubCategory" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SellingWebModel.sysdiagram" Width="1.5" PointX="9.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SellingWebModel.User" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <AssociationConnector Association="SellingWebModel.FK_Cart_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="SellingWebModel.FK_Cart_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SellingWebModel.FK_Category_SubCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="SellingWebModel.FK_Sub_Product_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="SellingWebModel.FK_Comment_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="SellingWebModel.FK_Comment_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SellingWebModel.FK_Repli_Comment" ManuallyRouted="false" />
+        <AssociationConnector Association="SellingWebModel.FK_Product_SubCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="SellingWebModel.FK_Product_User" ManuallyRouted="false" />
+        <AssociationConnector Association="SellingWebModel.FK_Sub_Product_Product" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
