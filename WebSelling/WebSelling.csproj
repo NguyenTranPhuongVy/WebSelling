@@ -1,0 +1,617 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3537524B-2052-43DD-8677-A1FFAA4B6B11}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebSelling</RootNamespace>
+    <AssemblyName>WebSelling</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44390</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.9</TypeScriptToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Layout\css\style-starter.css" />
+    <Content Include="Content\Layout\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Layout\images\about1.jpg" />
+    <Content Include="Content\Layout\images\about2.jpg" />
+    <Content Include="Content\Layout\images\about3.jpg" />
+    <Content Include="Content\Layout\images\g2.jpg" />
+    <Content Include="Content\Layout\images\g3.jpg" />
+    <Content Include="Content\Layout\images\g5.jpg" />
+    <Content Include="Content\Layout\images\g6.jpg" />
+    <Content Include="Content\Layout\images\g7.jpg" />
+    <Content Include="Content\Layout\images\g9.jpg" />
+    <Content Include="Content\Layout\images\logo1.jpg" />
+    <Content Include="Content\Layout\images\logo2.jpg" />
+    <Content Include="Content\Layout\images\logo3.jpg" />
+    <Content Include="Content\Layout\images\logo4.jpg" />
+    <Content Include="Content\Layout\images\main.jpg" />
+    <Content Include="Content\Layout\images\team.jpg" />
+    <Content Include="Content\Layout\images\team1.jpg" />
+    <Content Include="Content\Layout\images\team2.jpg" />
+    <Content Include="Content\Layout\images\team3.jpg" />
+    <Content Include="Content\Layout\images\team4.jpg" />
+    <Content Include="Content\Layout\images\team5.jpg" />
+    <Content Include="Content\Layout\images\teams1iconleft.png" />
+    <Content Include="Content\Layout\images\teams1iconright.png" />
+    <Content Include="Content\Layout\images\video.jpg" />
+    <Content Include="Content\Layout\js\bootstrap.min.js" />
+    <Content Include="Content\Layout\js\canvas-video-player.js" />
+    <Content Include="Content\Layout\js\jquery-3.4.1.slim.min.js" />
+    <Content Include="Content\Layout\js\jquery.magnific-popup.min.js" />
+    <Content Include="Content\Layout\js\owl.carousel.js" />
+    <Content Include="Content\Layout\videos\meeting.mp4" />
+    <Content Include="Content\ui-bootstrap-csp.css" />
+    <Content Include="Content\UI\assets\css\argon-design-system.css" />
+    <Content Include="Content\UI\assets\css\argon-design-system.min.css" />
+    <Content Include="Content\UI\assets\css\font-awesome.css" />
+    <Content Include="Content\UI\assets\css\nucleo-icons.css" />
+    <Content Include="Content\UI\assets\css\nucleo-svg.css" />
+    <Content Include="Content\UI\assets\demo\demo.css" />
+    <Content Include="Content\UI\assets\demo\demo.js" />
+    <Content Include="Content\UI\assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\UI\assets\fonts\nucleo-icons.svg" />
+    <Content Include="Content\UI\assets\img\apple-icon.png" />
+    <Content Include="Content\UI\assets\img\brand\blue.png" />
+    <Content Include="Content\UI\assets\img\brand\creativetim-black-slim.png" />
+    <Content Include="Content\UI\assets\img\brand\creativetim-white-slim.png" />
+    <Content Include="Content\UI\assets\img\brand\white.png" />
+    <Content Include="Content\UI\assets\img\docs\computer-docs.jpg" />
+    <Content Include="Content\UI\assets\img\faces\alejandro-escamilla.jpg" />
+    <Content Include="Content\UI\assets\img\faces\ali-pazani.jpg" />
+    <Content Include="Content\UI\assets\img\faces\atikh.jpg" />
+    <Content Include="Content\UI\assets\img\faces\brooke-cagle.jpg" />
+    <Content Include="Content\UI\assets\img\faces\christian.jpg" />
+    <Content Include="Content\UI\assets\img\faces\fezbot.jpg" />
+    <Content Include="Content\UI\assets\img\faces\michael.jpg" />
+    <Content Include="Content\UI\assets\img\faces\team-1.jpg" />
+    <Content Include="Content\UI\assets\img\faces\team-2.jpg" />
+    <Content Include="Content\UI\assets\img\faces\team-3.jpg" />
+    <Content Include="Content\UI\assets\img\faces\team-4.jpg" />
+    <Content Include="Content\UI\assets\img\faces\team-5.jpg" />
+    <Content Include="Content\UI\assets\img\favicon.png" />
+    <Content Include="Content\UI\assets\img\github.svg" />
+    <Content Include="Content\UI\assets\img\google.svg" />
+    <Content Include="Content\UI\assets\img\icons\common\github.svg" />
+    <Content Include="Content\UI\assets\img\icons\common\google.svg" />
+    <Content Include="Content\UI\assets\img\icons\flags\AD.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\AE.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\AG.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\AM.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\AR.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\AT.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\AU.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\BE.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\BF.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\BG.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\BO.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\BR.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\CA.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\CD.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\CG.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\CH.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\CL.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\CM.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\CN.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\CO.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\CZ.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\DE.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\DJ.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\DK.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\DZ.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\EE.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\EG.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\ES.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\FI.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\FR.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\GA.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\GB.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\GM.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\GT.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\HN.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\HT.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\HU.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\ID.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\IE.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\IL.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\IN.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\IQ.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\IR.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\IT.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\JM.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\JO.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\JP.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\KG.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\KN.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\KP.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\KR.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\KW.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\KZ.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\LA.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\LB.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\LC.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\LS.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\LU.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\LV.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\MG.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\MK.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\ML.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\MM.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\MT.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\MX.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\NA.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\NE.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\NG.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\NI.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\NL.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\NO.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\OM.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\PA.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\PE.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\PG.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\PK.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\PL.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\PT.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\PY.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\QA.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\RO.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\RU.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\RW.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\SA.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\SE.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\SG.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\SL.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\SN.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\SO.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\SV.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\TD.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\TJ.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\TL.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\TR.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\TZ.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\UA.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\US.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\VE.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\VN.png" />
+    <Content Include="Content\UI\assets\img\icons\flags\YE.png" />
+    <Content Include="Content\UI\assets\img\ill\1.svg" />
+    <Content Include="Content\UI\assets\img\ill\ill.png" />
+    <Content Include="Content\UI\assets\img\logo.png" />
+    <Content Include="Content\UI\assets\img\nucleo-logo.svg" />
+    <Content Include="Content\UI\assets\img\pages\mohamed.jpg" />
+    <Content Include="Content\UI\assets\img\theme\img-1-1200x1000.jpg" />
+    <Content Include="Content\UI\assets\img\theme\img-2-1200x1000.jpg" />
+    <Content Include="Content\UI\assets\img\theme\landing.jpg" />
+    <Content Include="Content\UI\assets\img\theme\profile.jpg" />
+    <Content Include="Content\UI\assets\js\argon-design-system.js" />
+    <Content Include="Content\UI\assets\js\argon-design-system.min.js" />
+    <Content Include="Content\UI\assets\js\core\bootstrap.min.js" />
+    <Content Include="Content\UI\assets\js\core\jquery.min.js" />
+    <Content Include="Content\UI\assets\js\core\popper.min.js" />
+    <Content Include="Content\UI\assets\js\plugins\bootstrap-datepicker.min.js" />
+    <Content Include="Content\UI\assets\js\plugins\bootstrap-switch.js" />
+    <Content Include="Content\UI\assets\js\plugins\chartjs.min.js" />
+    <Content Include="Content\UI\assets\js\plugins\datetimepicker.js" />
+    <Content Include="Content\UI\assets\js\plugins\jquery.sharrre.min.js" />
+    <Content Include="Content\UI\assets\js\plugins\moment.min.js" />
+    <Content Include="Content\UI\assets\js\plugins\nouislider.min.js" />
+    <Content Include="Content\UI\assets\js\plugins\perfect-scrollbar.jquery.min.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\angular-mocks.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\angular.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\index.js.flow" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Content\Layout\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Layout\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Layout\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Layout\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Layout\fonts\FontAwesome.otf" />
+    <Content Include="Content\UI\assets\css\argon-design-system.css.map" />
+    <Content Include="Content\UI\assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\UI\assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\UI\assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\UI\assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\UI\assets\fonts\FontAwesome.otf" />
+    <Content Include="Content\UI\assets\fonts\nucleo-icons.eot" />
+    <Content Include="Content\UI\assets\fonts\nucleo-icons.ttf" />
+    <Content Include="Content\UI\assets\fonts\nucleo-icons.woff" />
+    <Content Include="Content\UI\assets\fonts\nucleo-icons.woff2" />
+    <Content Include="Content\UI\assets\js\argon-design-system.js.map" />
+    <Content Include="Content\UI\assets\scss\argon-design-system.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\accordion.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\alert.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\avatar.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\badge.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\buttons.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\card.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\carousel.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\close.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\content.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\custom-forms.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\docs.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\docs\clipboard-js.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\docs\component-examples.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\docs\content.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\docs\footer.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\docs\nav.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\docs\prism.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\docs\sidebar.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\docs\variables.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\dropdown.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\footer.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\forms.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\functions.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\global.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\grid.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\icons.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\input-group.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\kit-free.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\list-group.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\mixins.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\mixins\alert.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\mixins\background-variant.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\mixins\badge.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\mixins\buttons.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\mixins\forms.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\mixins\icon.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\mixins\modals.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\mixins\popover.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\modal.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\nav.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\navbar.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\pagination.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\popover.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\progress.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\reboot.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\section.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\separator.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\theme.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\type.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\utilities.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\utilities\backgrounds.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\utilities\floating.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\utilities\helper.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\utilities\position.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\utilities\shadows.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\utilities\sizing.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\utilities\spacing.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\utilities\text.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\utilities\transform.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\variables.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\vendors.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\vendor\datetimepicker.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\vendor\headroom.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\vendor\nouislider.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\vendor\scrollbar.scss" />
+    <Content Include="Content\UI\assets\scss\argon-design-system\vendor\_bootstrap-datepicker.scss" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
+    <Content Include="Scripts\src\index.js" />
+    <Content Include="Scripts\src\methods\defaults.js" />
+    <Content Include="Scripts\src\methods\destroy.js" />
+    <Content Include="Scripts\src\methods\disableEventListeners.js" />
+    <Content Include="Scripts\src\methods\enableEventListeners.js" />
+    <Content Include="Scripts\src\methods\placements.js" />
+    <Content Include="Scripts\src\methods\update.js" />
+    <Content Include="Scripts\src\modifiers\applyStyle.js" />
+    <Content Include="Scripts\src\modifiers\arrow.js" />
+    <Content Include="Scripts\src\modifiers\computeStyle.js" />
+    <Content Include="Scripts\src\modifiers\flip.js" />
+    <Content Include="Scripts\src\modifiers\hide.js" />
+    <Content Include="Scripts\src\modifiers\index.js" />
+    <Content Include="Scripts\src\modifiers\inner.js" />
+    <Content Include="Scripts\src\modifiers\keepTogether.js" />
+    <Content Include="Scripts\src\modifiers\offset.js" />
+    <Content Include="Scripts\src\modifiers\preventOverflow.js" />
+    <Content Include="Scripts\src\modifiers\shift.js" />
+    <Content Include="Scripts\src\utils\clockwise.js" />
+    <Content Include="Scripts\src\utils\computeAutoPlacement.js" />
+    <Content Include="Scripts\src\utils\debounce.js" />
+    <Content Include="Scripts\src\utils\find.js" />
+    <Content Include="Scripts\src\utils\findCommonOffsetParent.js" />
+    <Content Include="Scripts\src\utils\findIndex.js" />
+    <Content Include="Scripts\src\utils\getBordersSize.js" />
+    <Content Include="Scripts\src\utils\getBoundaries.js" />
+    <Content Include="Scripts\src\utils\getBoundingClientRect.js" />
+    <Content Include="Scripts\src\utils\getClientRect.js" />
+    <Content Include="Scripts\src\utils\getFixedPositionOffsetParent.js" />
+    <Content Include="Scripts\src\utils\getOffsetParent.js" />
+    <Content Include="Scripts\src\utils\getOffsetRect.js" />
+    <Content Include="Scripts\src\utils\getOffsetRectRelativeToArbitraryNode.js" />
+    <Content Include="Scripts\src\utils\getOppositePlacement.js" />
+    <Content Include="Scripts\src\utils\getOppositeVariation.js" />
+    <Content Include="Scripts\src\utils\getOuterSizes.js" />
+    <Content Include="Scripts\src\utils\getParentNode.js" />
+    <Content Include="Scripts\src\utils\getPopperOffsets.js" />
+    <Content Include="Scripts\src\utils\getReferenceNode.js" />
+    <Content Include="Scripts\src\utils\getReferenceOffsets.js" />
+    <Content Include="Scripts\src\utils\getRoot.js" />
+    <Content Include="Scripts\src\utils\getRoundedOffsets.js" />
+    <Content Include="Scripts\src\utils\getScroll.js" />
+    <Content Include="Scripts\src\utils\getScrollParent.js" />
+    <Content Include="Scripts\src\utils\getStyleComputedProperty.js" />
+    <Content Include="Scripts\src\utils\getSupportedPropertyName.js" />
+    <Content Include="Scripts\src\utils\getViewportOffsetRectRelativeToArtbitraryNode.js" />
+    <Content Include="Scripts\src\utils\getWindow.js" />
+    <Content Include="Scripts\src\utils\getWindowSizes.js" />
+    <Content Include="Scripts\src\utils\includeScroll.js" />
+    <Content Include="Scripts\src\utils\index.js" />
+    <Content Include="Scripts\src\utils\isBrowser.js" />
+    <Content Include="Scripts\src\utils\isFixed.js" />
+    <Content Include="Scripts\src\utils\isFunction.js" />
+    <Content Include="Scripts\src\utils\isIE.js" />
+    <Content Include="Scripts\src\utils\isModifierEnabled.js" />
+    <Content Include="Scripts\src\utils\isModifierRequired.js" />
+    <Content Include="Scripts\src\utils\isNumeric.js" />
+    <Content Include="Scripts\src\utils\isOffsetContainer.js" />
+    <Content Include="Scripts\src\utils\removeEventListeners.js" />
+    <Content Include="Scripts\src\utils\runModifiers.js" />
+    <Content Include="Scripts\src\utils\setAttributes.js" />
+    <Content Include="Scripts\src\utils\setStyles.js" />
+    <Content Include="Scripts\src\utils\setupEventListeners.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper.js.flow" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>64386</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44390/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>
