@@ -3,28 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebSelling.Models;
+using System.Net;
+using PagedList;
+using PagedList.Mvc;
+
 
 namespace WebSelling.Controllers
 {
     public class HomeController : Controller
     {
+        SellingWebEntities db = new SellingWebEntities();
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult About()
+        public PartialViewResult Category()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return PartialView();
         }
     }
 }

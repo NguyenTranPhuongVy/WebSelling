@@ -1,0 +1,69 @@
+﻿@using WebSelling.Models
+@{ 
+    User user = (User)Session["user"];
+}
+<header>
+    <div class="container-fluid">
+        <div class="header d-lg-flex justify-content-between align-items-center py-3 px-sm-3">
+            <!-- logo -->
+            <div id="logo">
+                <h1><a href="index.html"><span class="fa fa-linode mr-2"></span>SellingClub</a></h1>
+            </div>
+            <!-- //logo -->
+            <!-- nav -->
+            <div class="nav_w3ls">
+                <nav>
+                    <label for="drop" class="toggle">Menu</label>
+                    <input type="checkbox" id="drop" />
+                    <ul class="menu">
+                        <li><a href="index.html" class="active"><i class="fa fa-home"></i> Trang Chủ</a></li>
+                        <li><a href="about.html"><i class="fa fa-product-hunt"></i> Sản Phẩm Của Tôi</a></li>
+                        <li><a href="pricing.html"><i class="fa fa-comments"></i> Tin Nhắn</a></li>
+                        <li><a href="contact.html"><i class="fa fa-bell"></i> Thông Báo</a></li>
+                        <li>
+                            <!-- First Tier Drop Down -->
+                            <label for="drop-2" class="toggle toogle-2">
+                                Tài Khoản <span class="fa fa-angle-down" aria-hidden="true"></span>
+                            </label>
+                            @if (user == null)
+                            {
+                                <a href="#"><i class="fa fa-user-circle"></i> Tài Khoản <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                                <input type="checkbox" id="drop-2" />
+                                <ul>
+                                    <li><a href="@Url.Action("PageLogin", "Account")" class="drop-text"><i class="fa fa-user"></i> Đăng Ký / Đăng Nhập</a></li>
+                                    <li><a href="faq.html" class="drop-text"><i class="fa fa-heartbeat"></i> Yêu Thích</a></li>
+                                    <li><a href="404.html" class="drop-text"><i class="fa fa-gift"></i> Ưu Đãi</a></li>
+                                    <li><a href="#stats" class="drop-text"><i class="fa fa-star"></i> Voucher</a></li>
+                                    <li><a href="about.html" class="drop-text"><i class="fa fa-life-saver"></i> Trợ Giúp</a></li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <a href="#"><i class="fa fa-user-circle"></i> @user.User_Name <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                                <input type="checkbox" id="drop-2" />
+                                <ul>
+                                    <li><a href="@Url.Action("Logout", "Account")" class="drop-text"><i class="fa fa-user"></i> Đăng Xuất</a></li>
+                                    <li><a href="faq.html" class="drop-text"><i class="fa fa-heartbeat"></i> Yêu Thích</a></li>
+                                    <li><a href="404.html" class="drop-text"><i class="fa fa-gift"></i> Ưu Đãi</a></li>
+                                    <li><a href="#stats" class="drop-text"><i class="fa fa-star"></i> Voucher</a></li>
+                                    <li><a href="about.html" class="drop-text"><i class="fa fa-life-saver"></i> Trợ Giúp</a></li>
+                                </ul>
+                            }
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- //nav -->
+            <div class="d-flex mt-lg-1 mt-sm-2 mt-3 justify-content-center">
+                <!-- search -->
+                <div class="search-w3layouts mr-3">
+                    <form action="#" method="post" class="search-bottom-wthree d-flex">
+                        <input class="search" type="search" placeholder="Tìm Kiếm..." required="" style="border-radius: 50px"> &ensp;
+                        <button class="form-control btn" type="submit" style="border-radius: 100%"><span class="fa fa-search"></span></button>
+                        <button class="form-control btn" type="submit" style="border-radius: 100%"><span class="fa fa-cart-arrow-down"></span></button>
+                    </form>
+                </div>
+                <!-- //search -->
+            </div>
+        </div>
+</header>
