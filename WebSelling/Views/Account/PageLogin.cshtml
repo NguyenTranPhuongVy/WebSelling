@@ -52,21 +52,21 @@
                                         <script>
                                             function valiSignUp() {
                                                 // Bước 1: Lấy giá trị của username và password
-                                                var user_email = document.getElementById('user_email').value;
-                                                var user_pass = document.getElementById('user_pass').value;
+                                                var user_email = document.getElementById('user_emailres').value;
+                                                var user_pass = document.getElementById('user_passres').value;
                                                 var user_pass2 = document.getElementById('user_pass2').value;
                                                 // Bước 2: Kiểm tra dữ liệu hợp lệ hay không
                                                 if (user_email == '' && user_pass == '') {
-                                                    document.getElementById("testsignup").innerHTML = "<div class='alert alert-danger'><b class='text-danger'><i class='fa fa-times-circle' style='color: red'>&nbsp;</i> Bạn chưa nhập email và mật khẩu.</b></div>"
+                                                    document.getElementById("Testsignup").innerHTML = "<div class='alert alert-default alert-dismissible fade show' role='alert'><strong>Lưu ý!</strong> Bạn chưa nhập email và mật khẩu.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
                                                 }
                                                 else if (user_pass == '') {
-                                                    document.getElementById("testsignup").innerHTML = "<div class='alert alert-danger'><b class='text-danger'><i class='fa fa-times-circle' style='color: red'>&nbsp;</i > Bạn chưa nhập mật khẩu.</b></div>"
+                                                    document.getElementById("Testsignup").innerHTML = "<div class='alert alert-default alert-dismissible fade show' role='alert'><strong>Lưu ý!</strong> Bạn chưa nhập mật khẩu.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
                                                 }
                                                 else if (user_email == '') {
-                                                    document.getElementById("testsignup").innerHTML = "<div class='alert alert-danger'><b class='text-danger'><i class='fa fa-times-circle' style='color: red'>&nbsp;</i> Bạn chưa nhập email.</b></div>"
+                                                    document.getElementById("Testsignup").innerHTML = "<div class='alert alert-default alert-dismissible fade show' role='alert'><strong>Lưu ý!</strong> Bạn chưa nhập vào email.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
                                                 }
                                                 else if (user_pass != user_pass2) {
-                                                    document.getElementById("testsignup").innerHTML = "<div class='alert alert-danger'><b class='text-danger'><i class='fa fa-times-circle' style='color: red'>&nbsp;</i> Mật khẩu nhập lại chưa đúng.</b></div>"
+                                                    document.getElementById("Testsignup").innerHTML = "<div class='alert alert-default alert-dismissible fade show' role='alert'><strong>Lưu ý!</strong> Nhập sai mật hẩu.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
                                                 }
                                                 else {
                                                     return true;
@@ -74,21 +74,13 @@
                                                 return false;
                                             }
                                         </script>
-                                        <form role="form" action="@Url.Action("Registration","Account")" method="post" onsubmit=" return valiSignUp">
-                                            <div class="form-group">
-                                                <div class="input-group input-group-alternative mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="ni ni-hat-3"></i></span>
-                                                    </div>
-                                                    <input class="form-control" placeholder="Name" type="text">
-                                                </div>
-                                            </div>
+                                        <form role="form" action="@Url.Action("Registration","Account")" method="post" onsubmit=" return valiSignUp()">
                                             <div class="form-group">
                                                 <div class="input-group input-group-alternative mb-3">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                                     </div>
-                                                    <input class="form-control" placeholder="Email" type="email" name="user_email">
+                                                    <input class="form-control" placeholder="Email" type="email" id="user_emailres" name="User_Email">
                                                 </div>
                                             </div>
                                             <div class="form-group focused">
@@ -96,7 +88,15 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                                     </div>
-                                                    <input class="form-control" placeholder="Password" type="password" name="user_pass">
+                                                    <input class="form-control" placeholder="Mật khẩu" type="password" id="user_passres" name="User_Pass">
+                                                </div>
+                                            </div>
+                                            <div class="form-group focused">
+                                                <div class="input-group input-group-alternative">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fa fa-key"></i></span>
+                                                    </div>
+                                                    <input class="form-control" placeholder="Nhập lại mật khẩu" type="password" id="user_pass2" name="user_pass2">
                                                 </div>
                                             </div>
                                             <div class="row my-4">
@@ -107,7 +107,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div id="testsignup"></div>
+                                            <div id="Testsignup"></div>
+                                            @Html.Raw(Session["TestRegistration"])
                                             <div class="text-center">
                                                 <button type="submit" class="btn btn-primary mt-4">Đăng Ký</button>
                                             </div>
@@ -158,13 +159,13 @@
                                                      var user_pass = document.getElementById('user_pass').value;
                                                      //Kiểm tra dữ liệu hợp lệ hay không
                                                                 if (user_email == '' && user_pass == '') {
-                                                                    document.getElementById("Notlogin").innerHTML = "<div class='alert alert-danger'><b class='text-danger'><i class='fas fa-times-circle' style='color: red'>&nbsp;</i>Bạn chưa nhập email và mật khẩu.</b></div>"
+                                                                    document.getElementById("Notlogin").innerHTML = "<div class='alert alert-default alert-dismissible fade show' role='alert'><strong>Lưu ý!</strong> Bạn chưa nhập email và mật khẩu.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
                                                                 }
                                                                 else if (user_pass == '') {
-                                                                    document.getElementById("Notlogin").innerHTML = "<div class='alert alert-danger'><b class='text-danger'><i class='fas fa-times-circle' style='color: red'>&nbsp;</i>Bạn chưa nhập mật khẩu.</b></div>"
+                                                                    document.getElementById("Notlogin").innerHTML = "<div class='alert alert-default alert-dismissible fade show' role='alert'><strong>Lưu ý!</strong> Bạn chưa nhập mật khẩu.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
                                                                 }
                                                                 else if (user_email == '') {
-                                                                    document.getElementById("Notlogin").innerHTML = "<div class='alert alert-danger'><b class='text-danger'><i class='fas fa-times-circle' style='color: red'>&nbsp;</i>Bạn chưa nhập email.</b></div>"
+                                                                    document.getElementById("Notlogin").innerHTML = "<div class='alert alert-default alert-dismissible fade show' role='alert'><strong>Lưu ý!</strong> Bạn chưa nhập email.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
                                                                 }
                                                                 else {
                                                                     return true;
@@ -196,7 +197,7 @@
                                                 <div class="custom-control custom-control-alternative custom-checkbox">
                                                     <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
                                                     <label class="custom-control-label" for=" customCheckLogin">
-                                                        <span>Remember me</span>
+                                                        <span>Nhớ Mật Khẩu</span>
                                                     </label>
                                                 </div>
                                                 @Html.Raw(Session["Notlogin"])

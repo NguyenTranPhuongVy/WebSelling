@@ -286,6 +286,27 @@
     <Content Include="Content\fontawesome-all.min.css" />
     <Content Include="Content\fontawesome.css" />
     <Content Include="Content\fontawesome.min.css" />
+    <Content Include="Content\FormReg\assets\css\bootstrap.min.css" />
+    <Content Include="Content\FormReg\assets\css\demo.css" />
+    <Content Include="Content\FormReg\assets\css\gsdk-bootstrap-wizard.css" />
+    <Content Include="Content\FormReg\assets\img\apple-icon.png" />
+    <Content Include="Content\FormReg\assets\img\default-avatar.png" />
+    <Content Include="Content\FormReg\assets\img\favicon.ico" />
+    <Content Include="Content\FormReg\assets\img\favicon.png" />
+    <Content Include="Content\FormReg\assets\img\new_logo.png" />
+    <Content Include="Content\FormReg\assets\img\thumb_list_boat.png" />
+    <Content Include="Content\FormReg\assets\img\thumb_list_place.png" />
+    <Content Include="Content\FormReg\assets\img\thumb_register.png" />
+    <Content Include="Content\FormReg\assets\img\tim_80x80.png" />
+    <Content Include="Content\FormReg\assets\img\wizard-boat.jpg" />
+    <Content Include="Content\FormReg\assets\img\wizard-city.jpg" />
+    <Content Include="Content\FormReg\assets\img\wizard.jpg" />
+    <Content Include="Content\FormReg\assets\js\bootstrap.min.js" />
+    <Content Include="Content\FormReg\assets\js\gsdk-bootstrap-wizard.js" />
+    <Content Include="Content\FormReg\assets\js\jquery-1.10.2.js" />
+    <Content Include="Content\FormReg\assets\js\jquery-2.2.4.min.js" />
+    <Content Include="Content\FormReg\assets\js\jquery.bootstrap.wizard.js" />
+    <Content Include="Content\FormReg\assets\js\jquery.validate.min.js" />
     <Content Include="Content\Layout\css\bootstrap.css" />
     <Content Include="Content\Layout\css\font-awesome.min.css" />
     <Content Include="Content\Layout\css\Style.css" />
@@ -628,6 +649,21 @@
     <Content Include="Models\DataSelling.edmx.diagram">
       <DependentUpon>DataSelling.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard.scss" />
+    <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\mixins\_vendor-prefixes.scss" />
+    <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_buttons.scss" />
+    <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_card.scss" />
+    <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_footers.scss" />
+    <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_inputs.scss" />
+    <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_labels.scss" />
+    <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_misc.scss" />
+    <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_mixins.scss" />
+    <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_navs-pagination.scss" />
+    <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_responsive.scss" />
+    <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_tooltips.scss" />
+    <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_typography.scss" />
+    <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_variables.scss" />
+    <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_wizard-card.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -752,6 +788,7 @@
     <Content Include="Views\Home\Category.cshtml" />
     <Content Include="Views\Account\PageLogin.cshtml" />
     <Content Include="Views\Menu\Menu.cshtml" />
+    <Content Include="Views\Account\FormReg.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
