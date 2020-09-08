@@ -243,7 +243,7 @@
                         <p class="card-description">Thông Tin Cá Nhân</p>
                         <ul class="about">
                             <li class="about-items"><i class="mdi mdi-account icon-sm "></i><span class="about-item-name">Họ Và Tên:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@user.User_LastName @user.User_Name</span></li>
-                            <li class="about-items"><i class="mdi mdi-gmail icon-sm "></i><span class="about-item-name">Tên Tài Khoản:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@user.User_Name</span></li>
+                            <li class="about-items"><i class="mdi mdi-at icon-sm "></i><span class="about-item-name">Tên Tài Khoản:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@user.User_Name</span></li>
                             <li class="about-items"><i class="mdi mdi-facebook-box icon-sm "></i><span class="about-item-name">Link Facebook:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;<a href="@user.User_LinkF">@user.User_LinkF</a></span></li>
                             <li class="about-items"><i class="mdi mdi-lock-outline icon-sm "></i><span class="about-item-name">Vai Trò:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;Người Dùng</span></li>
                         </ul>
@@ -258,7 +258,18 @@
                         <p class="card-description">Thông Tin Cơ Bản</p>
                         <ul class="about">
                             <li class="about-items"><i class="mdi mdi-cake-variant icon-sm "></i><span class="about-item-name">Ngày Sinh:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@user.User_DateBirth.Value.ToShortDateString()</span></li>
-                            <li class="about-items"><i class="mdi mdi-gender-transgender icon-sm"></i><span class="about-item-name">Giới Tính:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@user.User_Sex</span></li>
+                            @if (user.User_Sex.Value == 1)
+                            {
+                                <li class="about-items"><i class="mdi mdi-gender-transgender icon-sm"></i><span class="about-item-name">Giới Tính:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;Nam</span></li>
+                            }
+                            else if (user.User_Sex.Value == 0)
+                            {
+                                <li class="about-items"><i class="mdi mdi-gender-transgender icon-sm"></i><span class="about-item-name">Giới Tính:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;Nữ</span></li>
+                            }
+                            else
+                            {
+                                <li class="about-items"><i class="mdi mdi-gender-transgender icon-sm"></i><span class="about-item-name">Giới Tính:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;Không Rõ</span></li>
+                            }
                         </ul>
 
 

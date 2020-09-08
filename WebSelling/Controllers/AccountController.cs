@@ -14,9 +14,9 @@ namespace WebSelling.Controllers
     {
         WebSellingEntities db = new WebSellingEntities();
         String ViewHome = "/";
-        String srtHome = "/Home/Index";
+        String strHome = "/Home/Index";
         String ViewAcc = "/";
-        String srtAcc = "/Account/Login";
+        String strAcc = "/Account/Login";
         // GET: Account
         public ActionResult Login()
         {
@@ -96,6 +96,7 @@ namespace WebSelling.Controllers
             String sImg = f["User_Img"].ToString();
             String sProvince = f["User_Province"].ToString();
             String sCity = f["User_City"].ToString();
+            String sSex = f["User_Sex"].ToString();
             db.Users.Find(user.User_ID).User_Name = sName;
             db.Users.Find(user.User_ID).User_LastName = sLName;
             db.Users.Find(user.User_ID).User_Phone = sPhone;
@@ -106,6 +107,7 @@ namespace WebSelling.Controllers
             db.Users.Find(user.User_ID).User_Img = sImg;
             db.Users.Find(user.User_ID).User_City = sCity;
             db.Users.Find(user.User_ID).User_Province = sProvince;
+            db.Users.Find(user.User_ID).User_Sex = Int32.Parse(sSex.ToString());
             Session["user"] = usernew;
             db.SaveChanges();
             return Redirect(ViewHome);
