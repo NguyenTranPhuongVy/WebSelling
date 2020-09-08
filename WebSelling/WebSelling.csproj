@@ -158,6 +158,9 @@
     <Compile Include="Models\Admin.cs">
       <DependentUpon>DataSelling.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminWeb.cs">
+      <DependentUpon>DataSelling.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Cart.cs">
       <DependentUpon>DataSelling.tt</DependentUpon>
     </Compile>
@@ -191,7 +194,7 @@
     <Compile Include="Models\SubCategory.cs">
       <DependentUpon>DataSelling.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Sub_Product.cs">
+    <Compile Include="Models\SubProduct.cs">
       <DependentUpon>DataSelling.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
@@ -501,8 +504,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\DataSelling.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>DataSelling.Context.cs</LastGenOutput>
       <DependentUpon>DataSelling.edmx</DependentUpon>
+      <LastGenOutput>DataSelling.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\DataSelling.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -642,13 +645,6 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
-    <EntityDeploy Include="Models\DataSelling.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataSelling.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\DataSelling.edmx.diagram">
-      <DependentUpon>DataSelling.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard.scss" />
     <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\mixins\_vendor-prefixes.scss" />
     <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_buttons.scss" />
@@ -664,6 +660,13 @@
     <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_typography.scss" />
     <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_variables.scss" />
     <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_wizard-card.scss" />
+    <EntityDeploy Include="Models\DataSelling.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DataSelling.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\DataSelling.edmx.diagram">
+      <DependentUpon>DataSelling.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -786,9 +789,10 @@
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\Home\Category.cshtml" />
-    <Content Include="Views\Account\PageLogin.cshtml" />
     <Content Include="Views\Menu\Menu.cshtml" />
     <Content Include="Views\Account\FormReg.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Info.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

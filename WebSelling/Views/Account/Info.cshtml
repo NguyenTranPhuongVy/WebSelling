@@ -1,0 +1,274 @@
+﻿@using WebSelling.Models
+@model User
+@{
+    ViewBag.Title = "Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    User user = (User)Session["user"];
+}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/4.4.95/css/materialdesignicons.css">
+<style>
+    body {
+        background-color: #f3f3f3;
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #000;
+    }
+
+    p {
+        font-size: 0.875rem;
+        margin-bottom: .5rem;
+        line-height: 1.3rem;
+    }
+
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid #e7eaed;
+        border-radius: 0;
+    }
+
+        .card .card-description {
+            margin-bottom: .875rem;
+            font-weight: 400;
+            color: #76838f;
+        }
+
+    .profile-header {
+        height: 150px;
+        width: 100%;
+        position: relative;
+    }
+
+    .cover-image {
+        height: 150px;
+        width: 100%;
+        overflow: hidden;
+    }
+
+
+
+    .user-image {
+        position: absolute;
+        height: 80px;
+        width: 80px;
+        border-radius: 50%;
+        bottom: -50%;
+        left: 50%;
+        /* top: 50%; */
+        transform: translate(-50%, -50%);
+        z-index: 5;
+    }
+
+        .user-image img {
+            height: 80px;
+            width: 80px;
+            border-radius: 50%;
+            top: -40px;
+            border: 5px solid #777;
+        }
+
+    .profile-card .profile-content {
+        padding: 50px 20px 30px 20px;
+    }
+
+
+
+    .profile-card .profile-name {
+        font-size: 1.2rem;
+        color: #3249b9;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .profile-card .profile-designation {
+        font-size: 13px;
+        color: #777;
+        text-align: center;
+    }
+
+    .profile-card .profile-description {
+        padding: 10px;
+        font-size: 13px;
+        color: #777;
+        margin: 5px 0px;
+        background-color: #F1F2F3;
+        border-radius: 5px;
+    }
+
+    .profile-card ul.profile-info-list {
+        padding: 0;
+        margin: 10px 0;
+        list-style: none;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #777;
+    }
+
+
+
+
+        .profile-card ul.profile-info-list a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+
+    .profile-card a.profile-info-list-item {
+        margin: 10px 0;
+        padding: 15px;
+        background-color: #F1F2F3;
+        display: block;
+        -webkit-transition: all .5s ease-in-out;
+        -o-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+    }
+
+        .profile-card a.profile-info-list-item:hover {
+            background-color: #9E9E9E;
+            color: white;
+            -webkit-transition: all .5s ease-in-out;
+            -o-transition: all .5s ease-in-out;
+            transition: all .5s ease-in-out;
+        }
+
+
+        .profile-card a.profile-info-list-item i {
+            padding: 10px;
+        }
+
+    ul.about {
+        list-style: none;
+        color: black;
+        padding: 0;
+    }
+
+    li.about-items {
+        margin: 10px;
+        font-size: 0.9rem;
+        /* font-family: sans-serif; */
+        /* font-weight: 400; */
+    }
+
+
+
+        li.about-items i {
+            color: #607d8b;
+        }
+
+    span.about-item-name {
+        width: 100px;
+        display: inline-flex;
+        margin-left: 10px;
+    }
+
+
+    span.about-item-detail {
+        display: inline-flex;
+        width: calc(100% - 160px);
+    }
+
+        span.about-item-detail > button {
+            margin-right: 10px;
+        }
+
+    .btn.btn-icon {
+        width: 40px;
+        height: 40px;
+        padding: 0;
+    }
+
+    .btn.btn-rounded {
+        border-radius: 50px;
+    }
+
+    a.about-item-edit {
+        float: right;
+    }
+</style>
+<!-- partial -->
+@Html.Action("Menu", "Menu")
+<div class="main-panel" style="margin-top: 25px">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                    <div class="profile-card">
+
+                        <div class="profile-header">
+
+                            <div class="cover-image">
+                                <img src="https://cdn.pixabay.com/photo/2019/10/19/14/16/away-4561518_960_720.jpg" class="img img-fluid">
+                            </div>
+                            <div class="user-image">
+                                <img src="@user.User_Img"class="img ">
+                            </div>
+                        </div>
+
+                        <div class="profile-content">
+                            <div class="profile-name">@user.User_LastName @user.User_Name</div>
+                            <div class="profile-designation">Thành Viên</div>
+                            <ul class="profile-info-list">
+                                <a href="" class="profile-info-list-item"><i class="mdi mdi-pencil"></i>Sửa Đổi Thông Tin</a>
+                                <a href="" class="profile-info-list-item"><i class="mdi mdi-account-key"></i>Đổi Mật Khẩu</a>
+                                <a href="" class="profile-info-list-item"><i class="mdi mdi-barcode"></i>Đăng Bán</a>
+                                <a href="" class="profile-info-list-item"><i class="mdi mdi-paper-cut-vertical"></i>Tình Trạng Sản Phẩm</a>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-8 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-title font-weight-bold">Thông Tin</p>
+                        <hr>
+                        <p class="card-description">Thông Tin Cá Nhân</p>
+                        <ul class="about">
+                            <li class="about-items"><i class="mdi mdi-account icon-sm "></i><span class="about-item-name">Họ Và Tên:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@user.User_LastName @user.User_Name</span></li>
+                            <li class="about-items"><i class="mdi mdi-gmail icon-sm "></i><span class="about-item-name">Tên Tài Khoản:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@user.User_Name</span></li>
+                            <li class="about-items"><i class="mdi mdi-facebook-box icon-sm "></i><span class="about-item-name">Link Facebook:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;<a href="@user.User_LinkF">@user.User_LinkF</a></span></li>
+                            <li class="about-items"><i class="mdi mdi-lock-outline icon-sm "></i><span class="about-item-name">Vai Trò:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;Người Dùng</span></li>
+                        </ul>
+                        <p class="card-description">Thông Tin Liên Hệ</p>
+                        <ul class="about">
+                            <li class="about-items"><i class="mdi mdi-phone icon-sm "></i><span class="about-item-name">Số Điện Thoại:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@user.User_Phone</span></li>
+                            <li class="about-items"><i class="mdi mdi-map-marker icon-sm "></i><span class="about-item-name">Địa Chỉ:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@user.User_Address</span></li>
+                            <li class="about-items"><i class="mdi mdi-city icon-sm "></i><span class="about-item-name">Thành Phố:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@user.User_City</span></li>
+                            <li class="about-items"><i class="mdi mdi-map-marker icon-sm "></i><span class="about-item-name">Tỉnh Thành:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@user.User_Province</span></li>
+                            <li class="about-items"><i class="mdi mdi-gmail icon-sm "></i><span class="about-item-name">Email:</span><span class="about-item-detail"><a href="">&nbsp;&nbsp;&nbsp;&nbsp;@user.User_Email</a></span></li>
+                        </ul>
+                        <p class="card-description">Thông Tin Cơ Bản</p>
+                        <ul class="about">
+                            <li class="about-items"><i class="mdi mdi-cake-variant icon-sm "></i><span class="about-item-name">Ngày Sinh:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@user.User_DateBirth.Value.ToShortDateString()</span></li>
+                            <li class="about-items"><i class="mdi mdi-gender-transgender icon-sm"></i><span class="about-item-name">Giới Tính:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@user.User_Sex</span></li>
+                        </ul>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content-wrapper ends -->
+    <!-- partial:partials/_footer.html -->
+    <!-- partial -->
+</div>
+<!-- main-panel ends -->

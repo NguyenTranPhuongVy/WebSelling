@@ -18,7 +18,10 @@ namespace WebSelling.Models
         public Nullable<System.DateTime> Repli_DateCreate { get; set; }
         public string Repli_Content { get; set; }
         public Nullable<int> Comment_ID { get; set; }
+        public Nullable<int> User_ID { get; set; }
     
         public virtual Comment Comment { get; set; }
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
     }
 }

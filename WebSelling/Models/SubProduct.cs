@@ -12,7 +12,7 @@ namespace WebSelling.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Sub_Product
+    public partial class SubProduct
     {
         public int SubProduct_ID { get; set; }
         public Nullable<int> Product_ID { get; set; }

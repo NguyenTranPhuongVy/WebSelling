@@ -13,7 +13,7 @@ namespace WebSelling.Controllers
 {
     public class HomeController : Controller
     {
-        SellingWebEntities db = new SellingWebEntities();
+        WebSellingEntities db = new WebSellingEntities();
         public ActionResult Index()
         {
             return View();

@@ -20,6 +20,8 @@ namespace WebSelling.Models
             this.Carts = new HashSet<Cart>();
             this.Comments = new HashSet<Comment>();
             this.Products = new HashSet<Product>();
+            this.Replis = new HashSet<Repli>();
+            this.Replis1 = new HashSet<Repli>();
         }
     
         public int User_ID { get; set; }
@@ -38,6 +40,8 @@ namespace WebSelling.Models
         public Nullable<System.DateTime> User_DateBirth { get; set; }
         public Nullable<int> User_Sex { get; set; }
         public string User_Address { get; set; }
+        public string User_Province { get; set; }
+        public string User_City { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Carts { get; set; }
@@ -45,5 +49,9 @@ namespace WebSelling.Models
         public virtual ICollection<Comment> Comments { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Repli> Replis { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Repli> Replis1 { get; set; }
     }
 }

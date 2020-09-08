@@ -17,7 +17,7 @@ namespace WebSelling.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Category()
         {
-            this.Sub_Product = new HashSet<Sub_Product>();
+            this.SubProducts = new HashSet<SubProduct>();
         }
     
         public int Category_ID { get; set; }
@@ -30,6 +30,6 @@ namespace WebSelling.Models
     
         public virtual SubCategory SubCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sub_Product> Sub_Product { get; set; }
+        public virtual ICollection<SubProduct> SubProducts { get; set; }
     }
 }
