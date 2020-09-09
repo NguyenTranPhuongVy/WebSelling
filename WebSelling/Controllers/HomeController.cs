@@ -23,5 +23,10 @@ namespace WebSelling.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult Product()
+        {
+            return View();
+        }
     }
 }
