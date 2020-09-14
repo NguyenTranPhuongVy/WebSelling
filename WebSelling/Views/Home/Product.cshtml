@@ -4,24 +4,19 @@
     ViewBag.Title = "Product";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    a {
+        color: black;
+    }
+    .chuyen:hover {
+        color: #05b993;
+    }
+</style>
 @Html.Action("Menu", "Menu")
-<div class="row" style="margin-left: 33%">
-    <div class="col-md-12">
-        <div class="tab">
-            <div class="tab-top">
-                <div class="tab-top1">
-                    <ul class="top-tab">
-                        <li class="current"><a href="#">Cats</a></li>
-                        <li><a href="#"> Dogs</a></li>
-                        <li><a href="#">Birds</a></li>
-                        <li><a href="#">Xem Tất Cả</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+<div style="margin-top: 2%; margin-left: 2%">
+    <a class="chuyen" href="#">Xem Tất Cả</a> | <a class="chuyen" href="#">aaaa</a> | <a class="chuyen" href="#">bbbb</a> | <a class="chuyen" href="#">ccccc</a> | <a class="chuyen" href="#">dddd</a> |
 </div>
-<div class="product-box" >
+<div class="product-box">
     <div class="product-box-top w-100" style="margin-left: 4%; margin-top: -6%">
         @for (int i = 0; i < 15; i++)
         {
@@ -38,12 +33,157 @@
                             <li><a href="#"><i class="fa fa-star-o"></i></a></li>
                             <li><a href="#"><i class="fa fa-star-o"></i></a></li>
                         </ul>
-                        <a class="box-more" href="#">MORE</a>
+                        <a class="box-more" href="#">Xem</a>
                         <div class="clearfix"> </div>
                     </div>
                 </div>
             </div>
         }
         <div class="clearfix"> </div>
+    </div>
+</div>
+<section class="midd-w3 py-5" id="faq" style="margin-top: -5%">
+    @Html.Action("KeyWork", "Home")
+</section>
+<!-- //middle -->
+<!-- services -->
+<section class="banner-bottom-w3layouts bg-li py-5" id="services">
+    <div class="container py-xl-5 py-lg-3">
+        <h3 class="tittle text-center font-weight-bold">Our Services</h3>
+        <p class="sub-tittle text-center mt-3 mb-sm-5 mb-4">
+            Sed do eiusmod tempor incididunt ut labore et dolore magna
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+        </p>
+        <div class="row pt-lg-4">
+            <div class="col-lg-4 about-in text-center">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="bg-clr-w3l">
+                            <span class="fa fa-line-chart"></span>
+                        </div>
+                        <h5 class="card-title mt-4 mb-3">Business Growth</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur elit,Adipisicing elit tempor.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 about-in text-center my-lg-0 my-3">
+                <div class="card active">
+                    <div class="card-body">
+                        <div class="bg-clr-w3l">
+                            <span class="fa fa-usd"></span>
+                        </div>
+                        <h5 class="card-title mt-4 mb-3">Financial Planning</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur elit,Adipisicing elit tempor.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 about-in text-center">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="bg-clr-w3l">
+                            <span class="fa fa-lightbulb-o"></span>
+                        </div>
+                        <h5 class="card-title mt-4 mb-3">Business Services</h5>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur elit,Adipisicing elit tempor.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //services -->
+<!-- partners -->
+<section class="partners py-5" id="partners">
+    <div class="container py-xl-5 py-lg-3">
+        <h3 class="tittle text-center font-weight-bold">Our Partners</h3>
+        <p class="sub-tittle text-center mt-3 mb-sm-5 mb-4">
+            Sed do eiusmod tempor incididunt ut labore et dolore magna
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+        </p>
+        <div class="row grid-part text-center pt-4">
+            <div class="col-md-2 col-4">
+                <div class="parts-w3ls">
+                    <a href="#"><span class="fa fa-angellist"></span></a>
+                    <h4>Angellist</h4>
+                </div>
+            </div>
+            <div class="col-md-2 col-4">
+                <div class="parts-w3ls">
+                    <a href="#"><span class="fa fa-opencart"></span></a>
+                    <h4>opencart</h4>
+                </div>
+            </div>
+            <div class="col-md-2 col-4">
+                <div class="parts-w3ls">
+                    <a href="#"><span class="fa fa-lastfm"></span></a>
+                    <h4>lastfm</h4>
+                </div>
+            </div>
+            <div class="col-md-2 col-4 mt-md-0 mt-4">
+                <div class="parts-w3ls">
+                    <a href="#"><span class="fa fa-openid"></span></a>
+                    <h4>openid</h4>
+                </div>
+            </div>
+            <div class="col-md-2 col-4 mt-md-0 mt-4">
+                <div class="parts-w3ls">
+                    <a href="#"><span class="fa fa-skyatlas"></span></a>
+                    <h4>skyatlas</h4>
+                </div>
+            </div>
+            <div class="col-md-2 col-4 mt-md-0 mt-4">
+                <div class="parts-w3ls">
+                    <a href="#"><span class="fa fa-ravelry"></span></a>
+                    <h4>ravelry</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- //partners -->
+<!-- copyright bottom -->
+<div class="copy-bottom bg-li py-4 border-top">
+    <div class="container-fluid">
+        <div class="d-md-flex px-md-3 position-relative text-center">
+            <!-- footer social icons -->
+            <div class="social-icons-footer mb-md-0 mb-3">
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-facebook"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-twitter"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-google-plus"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-instagram"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- //footer social icons -->
+            <!-- copyright -->
+            <div class="copy_right mx-md-auto mb-md-0 mb-3">
+                <p class="text-bl let">
+                    © 2019 Startup. All rights reserved | Design by
+                    <a href="http://w3layouts.com/" target="_blank">W3layouts</a>
+                </p>
+            </div>
+            <!-- //copyright -->
+            <!-- move top icon -->
+            <a href="#home" class="move-top text-center">
+                <span class="fa fa-level-up" aria-hidden="true"></span>
+            </a>
+            <!-- //move top icon -->
+        </div>
     </div>
 </div>

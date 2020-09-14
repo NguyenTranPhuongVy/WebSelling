@@ -156,56 +156,56 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Admin.cs">
-      <DependentUpon>DataSelling.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\AdminWeb.cs">
-      <DependentUpon>DataSelling.tt</DependentUpon>
+      <DependentUpon>DataWeb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart.cs">
-      <DependentUpon>DataSelling.tt</DependentUpon>
+      <DependentUpon>DataWeb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Category.cs">
-      <DependentUpon>DataSelling.tt</DependentUpon>
+      <DependentUpon>DataWeb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Comment.cs">
-      <DependentUpon>DataSelling.tt</DependentUpon>
+      <DependentUpon>DataWeb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DataSelling.Context.cs">
+    <Compile Include="Models\DataWeb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataSelling.Context.tt</DependentUpon>
+      <DependentUpon>DataWeb.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DataSelling.cs">
+    <Compile Include="Models\DataWeb.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataSelling.tt</DependentUpon>
+      <DependentUpon>DataWeb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DataSelling.Designer.cs">
+    <Compile Include="Models\DataWeb.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataSelling.edmx</DependentUpon>
+      <DependentUpon>DataWeb.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
-      <DependentUpon>DataSelling.tt</DependentUpon>
+      <DependentUpon>DataWeb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Repli.cs">
-      <DependentUpon>DataSelling.tt</DependentUpon>
+      <DependentUpon>DataWeb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SubCategory.cs">
-      <DependentUpon>DataSelling.tt</DependentUpon>
+      <DependentUpon>DataWeb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SubProduct.cs">
-      <DependentUpon>DataSelling.tt</DependentUpon>
+      <DependentUpon>DataWeb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>DataSelling.tt</DependentUpon>
+      <DependentUpon>DataWeb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>DataSelling.tt</DependentUpon>
+      <DependentUpon>DataWeb.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Banner\banner1.png" />
+    <Content Include="Content\Banner\banner2.jpg" />
+    <Content Include="Content\Banner\banner3.jpg" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -310,6 +310,10 @@
     <Content Include="Content\FormReg\assets\js\jquery-2.2.4.min.js" />
     <Content Include="Content\FormReg\assets\js\jquery.bootstrap.wizard.js" />
     <Content Include="Content\FormReg\assets\js\jquery.validate.min.js" />
+    <Content Include="Content\Image\Docongnghe.jpg" />
+    <Content Include="Content\Image\dogiadung.jpg" />
+    <Content Include="Content\Image\product.jpg" />
+    <Content Include="Content\Image\ThuCung.jpg" />
     <Content Include="Content\Layout\css\bootstrap.css" />
     <Content Include="Content\Layout\css\font-awesome.min.css" />
     <Content Include="Content\Layout\css\Style.css" />
@@ -502,15 +506,15 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\DataSelling.Context.tt">
+    <Content Include="Models\DataWeb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataSelling.edmx</DependentUpon>
-      <LastGenOutput>DataSelling.Context.cs</LastGenOutput>
+      <DependentUpon>DataWeb.edmx</DependentUpon>
+      <LastGenOutput>DataWeb.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DataSelling.tt">
+    <Content Include="Models\DataWeb.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataSelling.edmx</DependentUpon>
-      <LastGenOutput>DataSelling.cs</LastGenOutput>
+      <DependentUpon>DataWeb.edmx</DependentUpon>
+      <LastGenOutput>DataWeb.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
@@ -660,12 +664,12 @@
     <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_typography.scss" />
     <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_variables.scss" />
     <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_wizard-card.scss" />
-    <EntityDeploy Include="Models\DataSelling.edmx">
+    <EntityDeploy Include="Models\DataWeb.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataSelling.Designer.cs</LastGenOutput>
+      <LastGenOutput>DataWeb.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DataSelling.edmx.diagram">
-      <DependentUpon>DataSelling.edmx</DependentUpon>
+    <Content Include="Models\DataWeb.edmx.diagram">
+      <DependentUpon>DataWeb.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -788,12 +792,13 @@
     <Content Include="webfonts\fa-brands-400.woff" />
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
-    <Content Include="Views\Home\Category.cshtml" />
     <Content Include="Views\Menu\Menu.cshtml" />
     <Content Include="Views\Account\FormReg.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Info.cshtml" />
     <Content Include="Views\Home\Product.cshtml" />
+    <Content Include="Views\Home\KeyWork.cshtml" />
+    <Content Include="Views\Home\Category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

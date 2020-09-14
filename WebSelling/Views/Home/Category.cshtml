@@ -1,12 +1,10 @@
-﻿@using WebSelling.Models;
-@using PagedList;
-@using PagedList.Mvc;
-@model PagedList.PagedList<Category>
+﻿@using WebSelling.Models
+@model List<Category>
 @{
-    ViewBag.Title = "TatCaDanhMuc";
+    ViewBag.Title = "Category";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    Category cate = (Category)Session["category"];
 }
-<link href="~/Content/PagedList.css" rel="stylesheet" />
 <style>
 
     .grid figure {
@@ -15,8 +13,8 @@
         background: #3085a3;
         text-align: center;
         cursor: pointer;
-        height: 300px;
-        width: 300px;
+        height: 200px;
+        width: 200px;
         border-radius: 8px;
     }
 
@@ -63,18 +61,16 @@
                     opacity: 0;
                 }
 
-        .grid figure h4 {
+        .grid figure h7 {
             word-spacing: -0.15em;
-            font-weight: 300;
         }
 
-            .grid figure h4 span {
-                font-weight: 600;
+            .grid figure h7 span {
                 font-family: 'Segoe UI';
                 color: snow;
             }
 
-        .grid figure h4,
+        .grid figure h7,
         .grid figure p {
             margin: 0;
         }
@@ -93,11 +89,8 @@
         padding: 2px;
     }
 
-    figure.effect-ravi h4 {
-        font-size: 158.75%;
-    }
 
-    figure.effect-ravi h4,
+    figure.effect-ravi h7,
     figure.effect-ravi p {
         position: absolute;
         top: 50%;
@@ -175,7 +168,7 @@
         transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -45deg) scale3d(1, 1, 1);
     }
 
-    figure.effect-ravi:hover h4 {
+    figure.effect-ravi:hover h7 {
         opacity: 0;
         -webkit-transform: translate3d(-50%, -50%, 0) scale3d(0.8, 0.8, 1);
         transform: translate3d(-50%, -50%, 0) scale3d(0.8, 0.8, 1);
@@ -314,24 +307,27 @@
     }
 </style>
 <br />
-<div class="container" style="margin-left: 17%">
-    <div class="grid">
-        <div class="row">
-            @for(int i = 0; i < 15; i++)
-            {
-                <div class="col-md-4">
-                    <figure class="effect-ravi">
-                        <img src="~/Content/Layout/images/about.png" alt="img25" style="height: 300px; width: 300px" />
-                        <figcaption>
-                            <h4><span>Tên danh muc</span></h4>
-                            <p>
-                                <a href=""><i class="fa fa-search"></i></a>
-                            </p>
-                        </figcaption>
-                    </figure>
-                    <br />
-                </div>
-            }
+<div class="container-fluid py-xl-2 py-lg-3" style="margin-top: -3%; margin-left: 5%">
+    <div class="row about-bottom-w3l mt-6" style="margin-left: 16%">
+        <div class="grid">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4" style="margin-left: -15%">
+                        <figure class="effect-ravi">
+                            <img src="~/Content/Image/@item.Category_Img" alt="img25" style="height: 200px; width: 200px" />
+                            <figcaption>
+                                <h7 style="position: absolute; font-weight: bold"><span>@item.Category_Name</span></h7>
+                                <p>
+                                    <a href="@Url.Action("Product", "Home", new { categoryid = item.Category_ID})"><i class="fa fa-search"></i></a>
+                                </p>
+                            </figcaption>
+                        </figure>
+                        <br />
+                    </div>
+                }
+            </div>
         </div>
     </div>
 </div>
+

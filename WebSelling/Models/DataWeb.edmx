@@ -4,25 +4,8 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WebSellingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+      <Schema Namespace="SellingWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
-          <Key>
-            <PropertyRef Name="Admin_ID" />
-          </Key>
-          <Property Name="Admin_ID" Type="int" Nullable="false" />
-          <Property Name="Admin_Pass" Type="nvarchar" MaxLength="100" />
-          <Property Name="Admin_Pass2" Type="nvarchar" MaxLength="100" />
-          <Property Name="Admin_Email" Type="nvarchar" MaxLength="200" />
-          <Property Name="Admin_Role" Type="int" />
-          <Property Name="Admin_Token" Type="varchar" MaxLength="200" />
-          <Property Name="Admin_Activate" Type="bit" />
-          <Property Name="Admin_DateCreate" Type="datetime" />
-          <Property Name="Admin_DateLogin" Type="datetime" />
-          <Property Name="Admin_Name" Type="nvarchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="AdminWeb">
           <Key>
             <PropertyRef Name="Admin_ID" />
           </Key>
@@ -58,7 +41,6 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
           <Property Name="Category_DateCreate" Type="datetime" />
           <Property Name="Category_DateEdit" Type="datetime" />
           <Property Name="Category_Activate" Type="bit" />
-          <Property Name="SubCategory_ID" Type="int" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -114,6 +96,7 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
           <Property Name="SubCategory_DateCreate" Type="datetime" />
           <Property Name="SubCategory_DateEdit" Type="datetime" />
           <Property Name="SubCategory_Activate" Type="bit" />
+          <Property Name="Category_ID" Type="int" />
         </EntityType>
         <EntityType Name="SubProduct">
           <Key>
@@ -121,7 +104,7 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
           </Key>
           <Property Name="SubProduct_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Product_ID" Type="int" />
-          <Property Name="Category_ID" Type="int" />
+          <Property Name="SubCategory_ID" Type="int" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -180,18 +163,6 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Category_SubCategory">
-          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="0..1" />
-          <End Role="Category" Type="Self.Category" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SubCategory">
-              <PropertyRef Name="SubCategory_ID" />
-            </Principal>
-            <Dependent Role="Category">
-              <PropertyRef Name="SubCategory_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Comment_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
           <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
@@ -248,7 +219,7 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
               <PropertyRef Name="Comment_ID" />
             </Principal>
             <Dependent Role="Repli">
-              <PropertyRef Name="Comment_ID" />
+              <PropertyRef Name="User_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -264,30 +235,6 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Repli_User1">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Repli" Type="Self.Repli" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
-            </Principal>
-            <Dependent Role="Repli">
-              <PropertyRef Name="User_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SubProduct_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
-          <End Role="SubProduct" Type="Self.SubProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="Category_ID" />
-            </Principal>
-            <Dependent Role="SubProduct">
-              <PropertyRef Name="Category_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SubProduct_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
           <End Role="SubProduct" Type="Self.SubProduct" Multiplicity="*" />
@@ -300,8 +247,20 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="WebSellingModelStoreContainer">
-          <EntitySet Name="AdminWeb" EntityType="Self.AdminWeb" Schema="dbo" store:Type="Tables" />
+        <Association Name="FK_SubProduct_SubCategory">
+          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="0..1" />
+          <End Role="SubProduct" Type="Self.SubProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubCategory">
+              <PropertyRef Name="SubCategory_ID" />
+            </Principal>
+            <Dependent Role="SubProduct">
+              <PropertyRef Name="SubCategory_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SellingWebModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
@@ -311,20 +270,6 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
           <EntitySet Name="SubProduct" EntityType="Self.SubProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Admin" EntityType="Self.Admin" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Admin].[Admin_ID] AS [Admin_ID], 
-    [Admin].[Admin_Pass] AS [Admin_Pass], 
-    [Admin].[Admin_Pass2] AS [Admin_Pass2], 
-    [Admin].[Admin_Email] AS [Admin_Email], 
-    [Admin].[Admin_Role] AS [Admin_Role], 
-    [Admin].[Admin_Token] AS [Admin_Token], 
-    [Admin].[Admin_Activate] AS [Admin_Activate], 
-    [Admin].[Admin_DateCreate] AS [Admin_DateCreate], 
-    [Admin].[Admin_DateLogin] AS [Admin_DateLogin], 
-    [Admin].[Admin_Name] AS [Admin_Name]
-    FROM [dbo].[Admin] AS [Admin]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Cart_Product" Association="Self.FK_Cart_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="Cart" EntitySet="Cart" />
@@ -332,10 +277,6 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
           <AssociationSet Name="FK_Cart_User" Association="Self.FK_Cart_User">
             <End Role="User" EntitySet="User" />
             <End Role="Cart" EntitySet="Cart" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Category_SubCategory" Association="Self.FK_Category_SubCategory">
-            <End Role="SubCategory" EntitySet="SubCategory" />
-            <End Role="Category" EntitySet="Category" />
           </AssociationSet>
           <AssociationSet Name="FK_Comment_Product" Association="Self.FK_Comment_Product">
             <End Role="Product" EntitySet="Product" />
@@ -361,16 +302,12 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
             <End Role="User" EntitySet="User" />
             <End Role="Repli" EntitySet="Repli" />
           </AssociationSet>
-          <AssociationSet Name="FK_Repli_User1" Association="Self.FK_Repli_User1">
-            <End Role="User" EntitySet="User" />
-            <End Role="Repli" EntitySet="Repli" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubProduct_Category" Association="Self.FK_SubProduct_Category">
-            <End Role="Category" EntitySet="Category" />
-            <End Role="SubProduct" EntitySet="SubProduct" />
-          </AssociationSet>
           <AssociationSet Name="FK_SubProduct_Product" Association="Self.FK_SubProduct_Product">
             <End Role="Product" EntitySet="Product" />
+            <End Role="SubProduct" EntitySet="SubProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubProduct_SubCategory" Association="Self.FK_SubProduct_SubCategory">
+            <End Role="SubCategory" EntitySet="SubCategory" />
             <End Role="SubProduct" EntitySet="SubProduct" />
           </AssociationSet>
         </EntityContainer>
@@ -378,8 +315,8 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="WebSellingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="AdminWeb">
+      <Schema Namespace="SellingWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Admin_ID" />
           </Key>
@@ -417,9 +354,6 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
           <Property Name="Category_DateCreate" Type="DateTime" Precision="3" />
           <Property Name="Category_DateEdit" Type="DateTime" Precision="3" />
           <Property Name="Category_Activate" Type="Boolean" />
-          <Property Name="SubCategory_ID" Type="Int32" />
-          <NavigationProperty Name="SubCategory" Relationship="Self.FK_Category_SubCategory" FromRole="Category" ToRole="SubCategory" />
-          <NavigationProperty Name="SubProducts" Relationship="Self.FK_SubProduct_Category" FromRole="Category" ToRole="SubProduct" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -474,7 +408,6 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
           <Property Name="User_ID" Type="Int32" />
           <NavigationProperty Name="Comment" Relationship="Self.FK_Repli_Comment" FromRole="Repli" ToRole="Comment" />
           <NavigationProperty Name="User" Relationship="Self.FK_Repli_User" FromRole="Repli" ToRole="User" />
-          <NavigationProperty Name="User1" Relationship="Self.FK_Repli_User1" FromRole="Repli" ToRole="User" />
         </EntityType>
         <EntityType Name="SubCategory">
           <Key>
@@ -486,8 +419,9 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
           <Property Name="SubCategory_DateCreate" Type="DateTime" Precision="3" />
           <Property Name="SubCategory_DateEdit" Type="DateTime" Precision="3" />
           <Property Name="SubCategory_Activate" Type="Boolean" />
-          <NavigationProperty Name="Categories" Relationship="Self.FK_Category_SubCategory" FromRole="SubCategory" ToRole="Category" />
+          <Property Name="Category_ID" Type="Int32" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Product_SubCategory" FromRole="SubCategory" ToRole="Product" />
+          <NavigationProperty Name="SubProducts" Relationship="Self.FK_SubProduct_SubCategory" FromRole="SubCategory" ToRole="SubProduct" />
         </EntityType>
         <EntityType Name="SubProduct">
           <Key>
@@ -495,9 +429,9 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
           </Key>
           <Property Name="SubProduct_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Product_ID" Type="Int32" />
-          <Property Name="Category_ID" Type="Int32" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_SubProduct_Category" FromRole="SubProduct" ToRole="Category" />
+          <Property Name="SubCategory_ID" Type="Int32" />
           <NavigationProperty Name="Product" Relationship="Self.FK_SubProduct_Product" FromRole="SubProduct" ToRole="Product" />
+          <NavigationProperty Name="SubCategory" Relationship="Self.FK_SubProduct_SubCategory" FromRole="SubProduct" ToRole="SubCategory" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -535,22 +469,6 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_User" FromRole="User" ToRole="Comment" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Product_User" FromRole="User" ToRole="Product" />
           <NavigationProperty Name="Replis" Relationship="Self.FK_Repli_User" FromRole="User" ToRole="Repli" />
-          <NavigationProperty Name="Replis1" Relationship="Self.FK_Repli_User1" FromRole="User" ToRole="Repli" />
-        </EntityType>
-        <EntityType Name="Admin">
-          <Key>
-            <PropertyRef Name="Admin_ID" />
-          </Key>
-          <Property Name="Admin_ID" Type="Int32" Nullable="false" />
-          <Property Name="Admin_Pass" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Admin_Pass2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Admin_Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Admin_Role" Type="Int32" />
-          <Property Name="Admin_Token" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Admin_Activate" Type="Boolean" />
-          <Property Name="Admin_DateCreate" Type="DateTime" Precision="3" />
-          <Property Name="Admin_DateLogin" Type="DateTime" Precision="3" />
-          <Property Name="Admin_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Cart_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
@@ -573,30 +491,6 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
             </Principal>
             <Dependent Role="Cart">
               <PropertyRef Name="User_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Category_SubCategory">
-          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="0..1" />
-          <End Role="Category" Type="Self.Category" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SubCategory">
-              <PropertyRef Name="SubCategory_ID" />
-            </Principal>
-            <Dependent Role="Category">
-              <PropertyRef Name="SubCategory_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SubProduct_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
-          <End Role="SubProduct" Type="Self.SubProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="Category_ID" />
-            </Principal>
-            <Dependent Role="SubProduct">
-              <PropertyRef Name="Category_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -632,7 +526,7 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
               <PropertyRef Name="Comment_ID" />
             </Principal>
             <Dependent Role="Repli">
-              <PropertyRef Name="Comment_ID" />
+              <PropertyRef Name="User_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -684,20 +578,20 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Repli_User1">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Repli" Type="Self.Repli" Multiplicity="*" />
+        <Association Name="FK_SubProduct_SubCategory">
+          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="0..1" />
+          <End Role="SubProduct" Type="Self.SubProduct" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
+            <Principal Role="SubCategory">
+              <PropertyRef Name="SubCategory_ID" />
             </Principal>
-            <Dependent Role="Repli">
-              <PropertyRef Name="User_ID" />
+            <Dependent Role="SubProduct">
+              <PropertyRef Name="SubCategory_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="WebSellingEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AdminWebs" EntityType="Self.AdminWeb" />
+        <EntityContainer Name="SellingWebEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="Self.Admin" />
           <EntitySet Name="Carts" EntityType="Self.Cart" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
           <EntitySet Name="Comments" EntityType="Self.Comment" />
@@ -707,7 +601,6 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
           <EntitySet Name="SubProducts" EntityType="Self.SubProduct" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <EntitySet Name="Admins" EntityType="Self.Admin" />
           <AssociationSet Name="FK_Cart_Product" Association="Self.FK_Cart_Product">
             <End Role="Product" EntitySet="Products" />
             <End Role="Cart" EntitySet="Carts" />
@@ -715,14 +608,6 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
           <AssociationSet Name="FK_Cart_User" Association="Self.FK_Cart_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Cart" EntitySet="Carts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Category_SubCategory" Association="Self.FK_Category_SubCategory">
-            <End Role="SubCategory" EntitySet="SubCategories" />
-            <End Role="Category" EntitySet="Categories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubProduct_Category" Association="Self.FK_SubProduct_Category">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="SubProduct" EntitySet="SubProducts" />
           </AssociationSet>
           <AssociationSet Name="FK_Comment_Product" Association="Self.FK_Comment_Product">
             <End Role="Product" EntitySet="Products" />
@@ -752,9 +637,9 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
             <End Role="User" EntitySet="Users" />
             <End Role="Repli" EntitySet="Replis" />
           </AssociationSet>
-          <AssociationSet Name="FK_Repli_User1" Association="Self.FK_Repli_User1">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Repli" EntitySet="Replis" />
+          <AssociationSet Name="FK_SubProduct_SubCategory" Association="Self.FK_SubProduct_SubCategory">
+            <End Role="SubCategory" EntitySet="SubCategories" />
+            <End Role="SubProduct" EntitySet="SubProducts" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -762,10 +647,10 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="WebSellingModelStoreContainer" CdmEntityContainer="WebSellingEntities">
-          <EntitySetMapping Name="AdminWebs">
-            <EntityTypeMapping TypeName="WebSellingModel.AdminWeb">
-              <MappingFragment StoreEntitySet="AdminWeb">
+        <EntityContainerMapping StorageEntityContainer="SellingWebModelStoreContainer" CdmEntityContainer="SellingWebEntities">
+          <EntitySetMapping Name="Admins">
+            <EntityTypeMapping TypeName="SellingWebModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
                 <ScalarProperty Name="Admin_ID" ColumnName="Admin_ID" />
                 <ScalarProperty Name="Admin_Pass" ColumnName="Admin_Pass" />
                 <ScalarProperty Name="Admin_Pass2" ColumnName="Admin_Pass2" />
@@ -780,7 +665,7 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Carts">
-            <EntityTypeMapping TypeName="WebSellingModel.Cart">
+            <EntityTypeMapping TypeName="SellingWebModel.Cart">
               <MappingFragment StoreEntitySet="Cart">
                 <ScalarProperty Name="Cart_ID" ColumnName="Cart_ID" />
                 <ScalarProperty Name="Cart_TotalPament" ColumnName="Cart_TotalPament" />
@@ -792,7 +677,7 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="WebSellingModel.Category">
+            <EntityTypeMapping TypeName="SellingWebModel.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
                 <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
@@ -800,12 +685,11 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
                 <ScalarProperty Name="Category_DateCreate" ColumnName="Category_DateCreate" />
                 <ScalarProperty Name="Category_DateEdit" ColumnName="Category_DateEdit" />
                 <ScalarProperty Name="Category_Activate" ColumnName="Category_Activate" />
-                <ScalarProperty Name="SubCategory_ID" ColumnName="SubCategory_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="WebSellingModel.Comment">
+            <EntityTypeMapping TypeName="SellingWebModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
                 <ScalarProperty Name="Comment_ID" ColumnName="Comment_ID" />
                 <ScalarProperty Name="Comment_DateCreate" ColumnName="Comment_DateCreate" />
@@ -817,7 +701,7 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="WebSellingModel.Product">
+            <EntityTypeMapping TypeName="SellingWebModel.Product">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
                 <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
@@ -841,7 +725,7 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Replis">
-            <EntityTypeMapping TypeName="WebSellingModel.Repli">
+            <EntityTypeMapping TypeName="SellingWebModel.Repli">
               <MappingFragment StoreEntitySet="Repli">
                 <ScalarProperty Name="Repli_ID" ColumnName="Repli_ID" />
                 <ScalarProperty Name="Repli_DateCreate" ColumnName="Repli_DateCreate" />
@@ -852,7 +736,7 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SubCategories">
-            <EntityTypeMapping TypeName="WebSellingModel.SubCategory">
+            <EntityTypeMapping TypeName="SellingWebModel.SubCategory">
               <MappingFragment StoreEntitySet="SubCategory">
                 <ScalarProperty Name="SubCategory_ID" ColumnName="SubCategory_ID" />
                 <ScalarProperty Name="SubCategory_Name" ColumnName="SubCategory_Name" />
@@ -860,20 +744,21 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
                 <ScalarProperty Name="SubCategory_DateCreate" ColumnName="SubCategory_DateCreate" />
                 <ScalarProperty Name="SubCategory_DateEdit" ColumnName="SubCategory_DateEdit" />
                 <ScalarProperty Name="SubCategory_Activate" ColumnName="SubCategory_Activate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SubProducts">
-            <EntityTypeMapping TypeName="WebSellingModel.SubProduct">
-              <MappingFragment StoreEntitySet="SubProduct">
-                <ScalarProperty Name="SubProduct_ID" ColumnName="SubProduct_ID" />
-                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
                 <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SubProducts">
+            <EntityTypeMapping TypeName="SellingWebModel.SubProduct">
+              <MappingFragment StoreEntitySet="SubProduct">
+                <ScalarProperty Name="SubProduct_ID" ColumnName="SubProduct_ID" />
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="SubCategory_ID" ColumnName="SubCategory_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="WebSellingModel.sysdiagram">
+            <EntityTypeMapping TypeName="SellingWebModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -884,7 +769,7 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="WebSellingModel.User">
+            <EntityTypeMapping TypeName="SellingWebModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="User_LastName" ColumnName="User_LastName" />
@@ -904,22 +789,6 @@ warning 6002: The table/view 'WebSelling.dbo.Admin' does not have a primary key 
                 <ScalarProperty Name="User_Address" ColumnName="User_Address" />
                 <ScalarProperty Name="User_Province" ColumnName="User_Province" />
                 <ScalarProperty Name="User_City" ColumnName="User_City" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Admins">
-            <EntityTypeMapping TypeName="WebSellingModel.Admin">
-              <MappingFragment StoreEntitySet="Admin">
-                <ScalarProperty Name="Admin_ID" ColumnName="Admin_ID" />
-                <ScalarProperty Name="Admin_Pass" ColumnName="Admin_Pass" />
-                <ScalarProperty Name="Admin_Pass2" ColumnName="Admin_Pass2" />
-                <ScalarProperty Name="Admin_Email" ColumnName="Admin_Email" />
-                <ScalarProperty Name="Admin_Role" ColumnName="Admin_Role" />
-                <ScalarProperty Name="Admin_Token" ColumnName="Admin_Token" />
-                <ScalarProperty Name="Admin_Activate" ColumnName="Admin_Activate" />
-                <ScalarProperty Name="Admin_DateCreate" ColumnName="Admin_DateCreate" />
-                <ScalarProperty Name="Admin_DateLogin" ColumnName="Admin_DateLogin" />
-                <ScalarProperty Name="Admin_Name" ColumnName="Admin_Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

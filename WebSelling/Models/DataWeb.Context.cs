@@ -13,10 +13,10 @@ namespace WebSelling.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class WebSellingEntities : DbContext
+    public partial class SellingWebEntities : DbContext
     {
-        public WebSellingEntities()
-            : base("name=WebSellingEntities")
+        public SellingWebEntities()
+            : base("name=SellingWebEntities")
         {
         }
     
@@ -25,7 +25,7 @@ namespace WebSelling.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AdminWeb> AdminWebs { get; set; }
+        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Cart> Carts { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Comment> Comments { get; set; }
@@ -35,6 +35,5 @@ namespace WebSelling.Models
         public virtual DbSet<SubProduct> SubProducts { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Admin> Admins { get; set; }
     }
 }

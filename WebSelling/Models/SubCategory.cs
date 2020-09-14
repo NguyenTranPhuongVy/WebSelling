@@ -17,8 +17,8 @@ namespace WebSelling.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SubCategory()
         {
-            this.Categories = new HashSet<Category>();
             this.Products = new HashSet<Product>();
+            this.SubProducts = new HashSet<SubProduct>();
         }
     
         public int SubCategory_ID { get; set; }
@@ -27,10 +27,11 @@ namespace WebSelling.Models
         public Nullable<System.DateTime> SubCategory_DateCreate { get; set; }
         public Nullable<System.DateTime> SubCategory_DateEdit { get; set; }
         public Nullable<bool> SubCategory_Activate { get; set; }
+        public Nullable<int> Category_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Category> Categories { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Products { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SubProduct> SubProducts { get; set; }
     }
 }

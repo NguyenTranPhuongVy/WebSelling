@@ -21,7 +21,6 @@ namespace WebSelling.Models
             this.Comments = new HashSet<Comment>();
             this.Products = new HashSet<Product>();
             this.Replis = new HashSet<Repli>();
-            this.Replis1 = new HashSet<Repli>();
         }
     
         public int User_ID { get; set; }
@@ -51,7 +50,5 @@ namespace WebSelling.Models
         public virtual ICollection<Product> Products { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Repli> Replis { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Repli> Replis1 { get; set; }
     }
 }

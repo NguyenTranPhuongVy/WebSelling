@@ -16,9 +16,9 @@ namespace WebSelling.Models
     {
         public int SubProduct_ID { get; set; }
         public Nullable<int> Product_ID { get; set; }
-        public Nullable<int> Category_ID { get; set; }
+        public Nullable<int> SubCategory_ID { get; set; }
     
-        public virtual Category Category { get; set; }
         public virtual Product Product { get; set; }
+        public virtual SubCategory SubCategory { get; set; }
     }
 }

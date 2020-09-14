@@ -10,7 +10,7 @@ namespace WebSelling.Controllers
     public class MenuController : Controller
     {
         // GET: Menu
-        WebSellingEntities db = new WebSellingEntities();
+        SellingWebEntities db = new SellingWebEntities();
         public PartialViewResult Menu()
         {
             return PartialView();

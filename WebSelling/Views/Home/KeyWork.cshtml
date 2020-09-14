@@ -1,0 +1,39 @@
+﻿@using WebSelling.Models;
+@model List<SubCategory>
+<style>
+    .key ul {
+        list-style-type: none; /* no default bullets */
+    }
+
+    .key li {
+        font-family: Arial;
+        font-size: 18px;
+    }
+
+        .key li:before { /* the custom styled bullets */
+            background-color: #333;
+            border-radius: 50%;
+            content: "";
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 2px;
+            height: 10px;
+            width: 10px;
+        }
+</style>
+<div class="container">
+    <span style="margin-left: 3%; font-size: 25px; font-family: 'Times New Roman' sans-serif; font-weight: bold; margin-left: -12%">Các Từ Khoá Phổ Biến</span>
+    <br /> <br />
+    <table style="margin-left: -8%">
+        <tr>
+            @foreach(var item in Model)
+            {
+                <td>
+                    <div class="alert alert-secondary" role="alert" style="border-radius: 50%">
+                        <a href="#"><span style="color: black">@item.SubCategory_Name</span></a>
+                    </div>
+                </td>
+            }
+        </tr>
+    </table>
+</div>
