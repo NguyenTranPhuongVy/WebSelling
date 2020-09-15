@@ -1,0 +1,43 @@
+﻿@using WebSelling.Models;
+@model List<Product>
+<style>
+    .content {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        display: -webkit-box;
+        font-weight: initial;
+    }
+
+    a:hover {
+        color: #525f7f;
+    }
+</style>
+<section style="color: #525F7F; margin-top: -5%">
+    <div class="product-box">
+        <div class="product-box-top" style="margin-left: 7.5%">
+            @foreach (var item in Model)
+            {
+                <div class="product-box1" style="border: 2px solid #808080; border-radius: 5px; margin-top: 3%; margin-left: -2%">
+                    <div class="product-box-img">
+                        <img src="~/Content/Image/@item.Product_Img" alt="" style="width: 100%">
+                        <span style="font-weight: 800; font-size: 22px">@item.Product_Name</span>
+                        <p class="content">@Html.Raw(item.Product_Description)</p>
+                        <div class="product-box-bottom">
+                            <p style="color: #e50000; font-weight: 500">@item.Product_Price VNĐ</p>
+                            <a class="box-more" href="#" style="border-radius: 30px; background: #05B993; margin-left: 3%"><i class="fa fa-cart-plus"></i></a>
+                            <a class="box-more" href="#" style="border-radius: 30px; background: #05B993">Xem</a>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</section>
+
+
+
+

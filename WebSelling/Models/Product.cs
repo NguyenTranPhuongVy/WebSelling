@@ -40,9 +40,11 @@ namespace WebSelling.Models
         public Nullable<System.DateTime> Product_DateEdit { get; set; }
         public Nullable<int> User_ID { get; set; }
         public Nullable<int> SubCategory_ID { get; set; }
+        public Nullable<int> Category_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Carts { get; set; }
+        public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual SubCategory SubCategory { get; set; }

@@ -14,11 +14,23 @@ namespace WebSelling.Models
     
     public partial class Category
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Category()
+        {
+            this.Products = new HashSet<Product>();
+            this.SubCategories = new HashSet<SubCategory>();
+        }
+    
         public int Category_ID { get; set; }
         public string Category_Name { get; set; }
         public string Category_Img { get; set; }
         public Nullable<System.DateTime> Category_DateCreate { get; set; }
         public Nullable<System.DateTime> Category_DateEdit { get; set; }
         public Nullable<bool> Category_Activate { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Products { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SubCategory> SubCategories { get; set; }
     }
 }

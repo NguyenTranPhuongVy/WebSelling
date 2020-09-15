@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SellingWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="WebSellingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Admin_ID" />
@@ -75,6 +75,7 @@
           <Property Name="Product_DateEdit" Type="datetime" />
           <Property Name="User_ID" Type="int" />
           <Property Name="SubCategory_ID" Type="int" />
+          <Property Name="Category_ID" Type="int" />
         </EntityType>
         <EntityType Name="Repli">
           <Key>
@@ -187,6 +188,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Product_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Category_ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="Category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Product_SubCategory">
           <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="0..1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
@@ -219,7 +232,7 @@
               <PropertyRef Name="Comment_ID" />
             </Principal>
             <Dependent Role="Repli">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="Comment_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -232,6 +245,18 @@
             </Principal>
             <Dependent Role="Repli">
               <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubCategory_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Category_ID" />
+            </Principal>
+            <Dependent Role="SubCategory">
+              <PropertyRef Name="Category_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -259,7 +284,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SellingWebModelStoreContainer">
+        <EntityContainer Name="WebSellingModelStoreContainer">
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
@@ -286,6 +311,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="Comment" EntitySet="Comment" />
           </AssociationSet>
+          <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
           <AssociationSet Name="FK_Product_SubCategory" Association="Self.FK_Product_SubCategory">
             <End Role="SubCategory" EntitySet="SubCategory" />
             <End Role="Product" EntitySet="Product" />
@@ -302,6 +331,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="Repli" EntitySet="Repli" />
           </AssociationSet>
+          <AssociationSet Name="FK_SubCategory_Category" Association="Self.FK_SubCategory_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="SubCategory" EntitySet="SubCategory" />
+          </AssociationSet>
           <AssociationSet Name="FK_SubProduct_Product" Association="Self.FK_SubProduct_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="SubProduct" EntitySet="SubProduct" />
@@ -315,7 +348,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SellingWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="WebSellingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Admin_ID" />
@@ -354,6 +387,8 @@
           <Property Name="Category_DateCreate" Type="DateTime" Precision="3" />
           <Property Name="Category_DateEdit" Type="DateTime" Precision="3" />
           <Property Name="Category_Activate" Type="Boolean" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Product_Category" FromRole="Category" ToRole="Product" />
+          <NavigationProperty Name="SubCategories" Relationship="Self.FK_SubCategory_Category" FromRole="Category" ToRole="SubCategory" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -391,7 +426,9 @@
           <Property Name="Product_DateEdit" Type="DateTime" Precision="3" />
           <Property Name="User_ID" Type="Int32" />
           <Property Name="SubCategory_ID" Type="Int32" />
+          <Property Name="Category_ID" Type="Int32" />
           <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_Product" FromRole="Product" ToRole="Cart" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Product" FromRole="Product" ToRole="Comment" />
           <NavigationProperty Name="SubCategory" Relationship="Self.FK_Product_SubCategory" FromRole="Product" ToRole="SubCategory" />
           <NavigationProperty Name="User" Relationship="Self.FK_Product_User" FromRole="Product" ToRole="User" />
@@ -420,6 +457,7 @@
           <Property Name="SubCategory_DateEdit" Type="DateTime" Precision="3" />
           <Property Name="SubCategory_Activate" Type="Boolean" />
           <Property Name="Category_ID" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_SubCategory_Category" FromRole="SubCategory" ToRole="Category" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Product_SubCategory" FromRole="SubCategory" ToRole="Product" />
           <NavigationProperty Name="SubProducts" Relationship="Self.FK_SubProduct_SubCategory" FromRole="SubCategory" ToRole="SubProduct" />
         </EntityType>
@@ -494,6 +532,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Product_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Category_ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="Category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubCategory_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Category_ID" />
+            </Principal>
+            <Dependent Role="SubCategory">
+              <PropertyRef Name="Category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Comment_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
           <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
@@ -526,7 +588,7 @@
               <PropertyRef Name="Comment_ID" />
             </Principal>
             <Dependent Role="Repli">
-              <PropertyRef Name="User_ID" />
+              <PropertyRef Name="Comment_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -590,7 +652,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SellingWebEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="WebSellingEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admins" EntityType="Self.Admin" />
           <EntitySet Name="Carts" EntityType="Self.Cart" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
@@ -608,6 +670,14 @@
           <AssociationSet Name="FK_Cart_User" Association="Self.FK_Cart_User">
             <End Role="User" EntitySet="Users" />
             <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubCategory_Category" Association="Self.FK_SubCategory_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="SubCategory" EntitySet="SubCategories" />
           </AssociationSet>
           <AssociationSet Name="FK_Comment_Product" Association="Self.FK_Comment_Product">
             <End Role="Product" EntitySet="Products" />
@@ -647,9 +717,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SellingWebModelStoreContainer" CdmEntityContainer="SellingWebEntities">
+        <EntityContainerMapping StorageEntityContainer="WebSellingModelStoreContainer" CdmEntityContainer="WebSellingEntities">
           <EntitySetMapping Name="Admins">
-            <EntityTypeMapping TypeName="SellingWebModel.Admin">
+            <EntityTypeMapping TypeName="WebSellingModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
                 <ScalarProperty Name="Admin_ID" ColumnName="Admin_ID" />
                 <ScalarProperty Name="Admin_Pass" ColumnName="Admin_Pass" />
@@ -665,7 +735,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Carts">
-            <EntityTypeMapping TypeName="SellingWebModel.Cart">
+            <EntityTypeMapping TypeName="WebSellingModel.Cart">
               <MappingFragment StoreEntitySet="Cart">
                 <ScalarProperty Name="Cart_ID" ColumnName="Cart_ID" />
                 <ScalarProperty Name="Cart_TotalPament" ColumnName="Cart_TotalPament" />
@@ -677,7 +747,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="SellingWebModel.Category">
+            <EntityTypeMapping TypeName="WebSellingModel.Category">
               <MappingFragment StoreEntitySet="Category">
                 <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
                 <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
@@ -689,7 +759,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="SellingWebModel.Comment">
+            <EntityTypeMapping TypeName="WebSellingModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
                 <ScalarProperty Name="Comment_ID" ColumnName="Comment_ID" />
                 <ScalarProperty Name="Comment_DateCreate" ColumnName="Comment_DateCreate" />
@@ -701,7 +771,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="SellingWebModel.Product">
+            <EntityTypeMapping TypeName="WebSellingModel.Product">
               <MappingFragment StoreEntitySet="Product">
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
                 <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
@@ -721,11 +791,12 @@
                 <ScalarProperty Name="Product_DateEdit" ColumnName="Product_DateEdit" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="SubCategory_ID" ColumnName="SubCategory_ID" />
+                <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Replis">
-            <EntityTypeMapping TypeName="SellingWebModel.Repli">
+            <EntityTypeMapping TypeName="WebSellingModel.Repli">
               <MappingFragment StoreEntitySet="Repli">
                 <ScalarProperty Name="Repli_ID" ColumnName="Repli_ID" />
                 <ScalarProperty Name="Repli_DateCreate" ColumnName="Repli_DateCreate" />
@@ -736,7 +807,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SubCategories">
-            <EntityTypeMapping TypeName="SellingWebModel.SubCategory">
+            <EntityTypeMapping TypeName="WebSellingModel.SubCategory">
               <MappingFragment StoreEntitySet="SubCategory">
                 <ScalarProperty Name="SubCategory_ID" ColumnName="SubCategory_ID" />
                 <ScalarProperty Name="SubCategory_Name" ColumnName="SubCategory_Name" />
@@ -749,7 +820,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SubProducts">
-            <EntityTypeMapping TypeName="SellingWebModel.SubProduct">
+            <EntityTypeMapping TypeName="WebSellingModel.SubProduct">
               <MappingFragment StoreEntitySet="SubProduct">
                 <ScalarProperty Name="SubProduct_ID" ColumnName="SubProduct_ID" />
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
@@ -758,7 +829,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="SellingWebModel.sysdiagram">
+            <EntityTypeMapping TypeName="WebSellingModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -769,7 +840,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="SellingWebModel.User">
+            <EntityTypeMapping TypeName="WebSellingModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="User_LastName" ColumnName="User_LastName" />

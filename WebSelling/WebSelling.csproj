@@ -156,49 +156,49 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Admin.cs">
-      <DependentUpon>DataWeb.tt</DependentUpon>
+      <DependentUpon>WebSellingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart.cs">
-      <DependentUpon>DataWeb.tt</DependentUpon>
+      <DependentUpon>WebSellingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Category.cs">
-      <DependentUpon>DataWeb.tt</DependentUpon>
+      <DependentUpon>WebSellingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Comment.cs">
-      <DependentUpon>DataWeb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataWeb.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataWeb.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataWeb.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataWeb.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataWeb.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataWeb.edmx</DependentUpon>
+      <DependentUpon>WebSellingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
-      <DependentUpon>DataWeb.tt</DependentUpon>
+      <DependentUpon>WebSellingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Repli.cs">
-      <DependentUpon>DataWeb.tt</DependentUpon>
+      <DependentUpon>WebSellingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SubCategory.cs">
-      <DependentUpon>DataWeb.tt</DependentUpon>
+      <DependentUpon>WebSellingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SubProduct.cs">
-      <DependentUpon>DataWeb.tt</DependentUpon>
+      <DependentUpon>WebSellingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>DataWeb.tt</DependentUpon>
+      <DependentUpon>WebSellingData.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>DataWeb.tt</DependentUpon>
+      <DependentUpon>WebSellingData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebSellingData.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebSellingData.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebSellingData.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebSellingData.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WebSellingData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebSellingData.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -283,6 +283,7 @@
     <Content Include="Content\Category\images\wr1.png" />
     <Content Include="Content\Category\images\wr2.png" />
     <Content Include="Content\Category\images\wr3.png" />
+    <Content Include="Content\Database\DataWeb.sql" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\fontawesome-all.css" />
@@ -506,15 +507,15 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\DataWeb.Context.tt">
+    <Content Include="Models\WebSellingData.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataWeb.edmx</DependentUpon>
-      <LastGenOutput>DataWeb.Context.cs</LastGenOutput>
+      <DependentUpon>WebSellingData.edmx</DependentUpon>
+      <LastGenOutput>WebSellingData.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\DataWeb.tt">
+    <Content Include="Models\WebSellingData.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataWeb.edmx</DependentUpon>
-      <LastGenOutput>DataWeb.cs</LastGenOutput>
+      <DependentUpon>WebSellingData.edmx</DependentUpon>
+      <LastGenOutput>WebSellingData.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
@@ -664,12 +665,12 @@
     <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_typography.scss" />
     <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_variables.scss" />
     <Content Include="Content\FormReg\assets\scss\gsdk-bootstrap-wizard\_wizard-card.scss" />
-    <EntityDeploy Include="Models\DataWeb.edmx">
+    <EntityDeploy Include="Models\WebSellingData.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataWeb.Designer.cs</LastGenOutput>
+      <LastGenOutput>WebSellingData.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\DataWeb.edmx.diagram">
-      <DependentUpon>DataWeb.edmx</DependentUpon>
+    <Content Include="Models\WebSellingData.edmx.diagram">
+      <DependentUpon>WebSellingData.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -799,6 +800,8 @@
     <Content Include="Views\Home\Product.cshtml" />
     <Content Include="Views\Home\KeyWork.cshtml" />
     <Content Include="Views\Home\Category.cshtml" />
+    <Content Include="Views\Home\DetailsCategory.cshtml" />
+    <Content Include="Views\Home\NewProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

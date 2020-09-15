@@ -12,7 +12,7 @@ namespace WebSelling.Controllers
 {
     public class AccountController : Controller
     {
-        SellingWebEntities db = new SellingWebEntities();
+        WebSellingEntities db = new WebSellingEntities();
         String ViewHome = "/";
         String strHome = "/Home/Index";
         String ViewAcc = "/";

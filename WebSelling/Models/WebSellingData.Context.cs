@@ -13,10 +13,10 @@ namespace WebSelling.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SellingWebEntities : DbContext
+    public partial class WebSellingEntities : DbContext
     {
-        public SellingWebEntities()
-            : base("name=SellingWebEntities")
+        public WebSellingEntities()
+            : base("name=WebSellingEntities")
         {
         }
     
