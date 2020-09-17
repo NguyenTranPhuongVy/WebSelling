@@ -16,23 +16,46 @@
         font-weight: initial;
     }
 
+    img.set {
+        border-radius: 100px;
+        width: 40px;
+        height: 40px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
     a:hover {
         color: #525f7f;
     }
 </style>
 @Html.Action("Menu", "Menu")
+<div class="row" style="margin-left: 5%; margin-top: 2%">
+    <div class="col-md-12">
+        @foreach(var itemsub in Model)
+        {
+            <a href="#"><span class="badge badge-pill badge-default text-uppercase">@itemsub.SubCategory.SubCategory_Name</span></a>
+        }
+    </div>
+</div>
 <section style="color: #525F7F; margin-top: -5%">
     <div class="product-box">
         <div class="product-box-top" style="margin-left: 7.5%">
             @foreach (var item in Model)
             {
-                <div class="product-box1" style="border: 2px solid #808080; border-radius: 5px; margin-top: 3%; margin-left: -2%">
+                <div class="product-box1" style="border: 2px solid #2E8B57; border-radius: 5px; margin-top: 3%; margin-left: -2%">
                     <div class="product-box-img">
                         <img src="~/Content/Image/@item.Product_Img" alt="" style="width: 100%">
-                        <h5>@item.Product_Name</h5>
+                        <div class="blog-grid1" style="margin-top: -5%; margin-bottom: -5%">
+                            <ul class="post" style="margin-left: -5%">
+                                <li><i class="par"><img class="set" src="~/Content/Category/images/bl-p.jpg" /></i> Tiago</li>
+                                <label>|</label>
+                                <li><span>Ngày Đăng: <b>@item.Product_DateEdit.Value.ToShortDateString()</b></span></li>
+                            </ul>
+                        </div>
+                        <span style="font-weight: 800; font-size: 22px">@item.Product_Name</span>
                         <p class="content">@Html.Raw(item.Product_Description)</p>
                         <div class="product-box-bottom">
-                            <p style="color: #e50000; font-weight: 500">@item.Product_Price VNĐ</p>
+                            <p style="color: #e50000; font-weight: 500">@{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</p>
                             <a class="box-more" href="#" style="border-radius: 30px; background: #05B993; margin-left: 3%"><i class="fa fa-cart-plus"></i></a>
                             <a class="box-more" href="#" style="border-radius: 30px; background: #05B993">Xem</a>
                             <div class="clearfix"> </div>
@@ -45,104 +68,6 @@
     </div>
 </section>
 <!-- middle -->
-<section class="midd-w3 py-5" id="faq" style="margin-top: -5%">
-    @Html.Action("KeyWork", "Home")
-</section>
-<!-- //middle -->
-<!-- services -->
-<section class="banner-bottom-w3layouts bg-li py-5" id="services">
-    <div class="container py-xl-5 py-lg-3">
-        <h3 class="tittle text-center font-weight-bold">Our Services</h3>
-        <p class="sub-tittle text-center mt-3 mb-sm-5 mb-4">
-            Sed do eiusmod tempor incididunt ut labore et dolore magna
-            aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-        </p>
-        <div class="row pt-lg-4">
-            <div class="col-lg-4 about-in text-center">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="bg-clr-w3l">
-                            <span class="fa fa-line-chart"></span>
-                        </div>
-                        <h5 class="card-title mt-4 mb-3">Business Growth</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur elit,Adipisicing elit tempor.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 about-in text-center my-lg-0 my-3">
-                <div class="card active">
-                    <div class="card-body">
-                        <div class="bg-clr-w3l">
-                            <span class="fa fa-usd"></span>
-                        </div>
-                        <h5 class="card-title mt-4 mb-3">Financial Planning</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur elit,Adipisicing elit tempor.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 about-in text-center">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="bg-clr-w3l">
-                            <span class="fa fa-lightbulb-o"></span>
-                        </div>
-                        <h5 class="card-title mt-4 mb-3">Business Services</h5>
-                        <p class="card-text">Lorem ipsum dolor sit amet consectetur elit,Adipisicing elit tempor.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- //services -->
-<!-- partners -->
-<section class="partners py-5" id="partners">
-    <div class="container py-xl-5 py-lg-3">
-        <h3 class="tittle text-center font-weight-bold">Our Partners</h3>
-        <p class="sub-tittle text-center mt-3 mb-sm-5 mb-4">
-            Sed do eiusmod tempor incididunt ut labore et dolore magna
-            aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-        </p>
-        <div class="row grid-part text-center pt-4">
-            <div class="col-md-2 col-4">
-                <div class="parts-w3ls">
-                    <a href="#"><span class="fa fa-angellist"></span></a>
-                    <h4>Angellist</h4>
-                </div>
-            </div>
-            <div class="col-md-2 col-4">
-                <div class="parts-w3ls">
-                    <a href="#"><span class="fa fa-opencart"></span></a>
-                    <h4>opencart</h4>
-                </div>
-            </div>
-            <div class="col-md-2 col-4">
-                <div class="parts-w3ls">
-                    <a href="#"><span class="fa fa-lastfm"></span></a>
-                    <h4>lastfm</h4>
-                </div>
-            </div>
-            <div class="col-md-2 col-4 mt-md-0 mt-4">
-                <div class="parts-w3ls">
-                    <a href="#"><span class="fa fa-openid"></span></a>
-                    <h4>openid</h4>
-                </div>
-            </div>
-            <div class="col-md-2 col-4 mt-md-0 mt-4">
-                <div class="parts-w3ls">
-                    <a href="#"><span class="fa fa-skyatlas"></span></a>
-                    <h4>skyatlas</h4>
-                </div>
-            </div>
-            <div class="col-md-2 col-4 mt-md-0 mt-4">
-                <div class="parts-w3ls">
-                    <a href="#"><span class="fa fa-ravelry"></span></a>
-                    <h4>ravelry</h4>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <!-- //partners -->
 <!-- copyright bottom -->
 <div class="copy-bottom bg-li py-4 border-top">
