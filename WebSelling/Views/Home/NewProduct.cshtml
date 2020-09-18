@@ -9,49 +9,126 @@
         display: -webkit-box;
         font-weight: initial;
     }
+    /* component product-simple */
 
-    img.set {
-        border-radius: 100px;
-        width: 40px;
-        height: 40px;
-        display: inline-block;
-        vertical-align: middle;
+    .component-product-simple {
+        height: 22rem;
+        background-color: #f7f7f7;
+        font-weight: bold;
+        border-color: #f4f4f4;
+        transition: 200ms;
     }
 
-    a:hover {
-        color: #525f7f;
-    }
+        .component-product-simple .card-img-top {
+            cursor: pointer;
+        }
+
+            .component-product-simple .card-img-top > img {
+                object-fit: cover;
+            }
+
+            .component-product-simple .card-img-top .overlay {
+                transition: 200ms !important;
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+
+                .component-product-simple .card-img-top .overlay > a {
+                    width: 2rem;
+                    height: 2rem;
+                    cursor: pointer;
+                    transition: 200ms;
+                    z-index: 0;
+                    text-decoration: none;
+                    opacity: 0;
+                    background-color: #f2f2f2;
+                }
+
+        .component-product-simple .overlay > a i {
+            color: #000;
+        }
+
+        .component-product-simple:hover .overlay > a {
+            opacity: 1;
+        }
+
+        .component-product-simple .overlay > a:hover {
+            background-color: #99cc00;
+        }
+
+            .component-product-simple .overlay > a:hover i {
+                color: #fff;
+            }
+
+        .component-product-simple:hover .overlay {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .component-product-simple:hover {
+            box-shadow: 1px 10px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .component-product-simple .card-body .title {
+            color: #000;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: 200ms;
+        }
+
+            .component-product-simple .card-body .title:hover {
+                color: #379742;
+            }
+
+        .component-product-simple .card-body .price-sale span {
+            color: #99cc00;
+            font-size: 0.9rem;
+        }
+
+        .component-product-simple .card-body .price-sale u {
+            color: #99cc00;
+            font-size: 0.9rem;
+        }
+
+        .component-product-simple .card-body .price-old del {
+            color: #6d6b6a;
+            font-size: 0.9rem;
+        }
+    /* component product-simple */
 </style>
-<section style="color: #525F7F; margin-top: -5%">
-    <div class="product-box">
-        <div class="product-box-top" style="margin-left: 7.5%">
-            @foreach (var item in Model)
-            {
-                <div class="product-box1" style="border: 2px solid #2E8B57; border-radius: 5px; margin-top: 3%; margin-left: -2%">
-                    <div class="product-box-img">
-                        <img src="~/Content/Image/@item.Product_Img" alt="" style="width: 100%">
-                        <div class="blog-grid1" style="margin-top: -5%; margin-bottom: -5%">
-                            <ul class="post" style="margin-left: -5%">
-                                <li><i class="par"><img class="set" src="~/Content/Category/images/bl-p.jpg" /></i> Tiago</li>
-                                <label>|</label>
-                                <li><span>Ngày Đăng: <b>@item.Product_DateEdit.Value.ToShortDateString()</b></span></li>
-                            </ul>
-                        </div>
-                        <span style="font-weight: 800; font-size: 22px">@item.Product_Name</span>
-                        <p class="content">@Html.Raw(item.Product_Description)</p>
-                        <div class="product-box-bottom">
-                            <p style="color: #e50000; font-weight: 500">@{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</p>
-                            <a class="box-more" href="#" style="border-radius: 30px; background: #05B993; margin-left: 3%"><i class="fa fa-cart-plus"></i></a>
-                            <a class="box-more" href="#" style="border-radius: 30px; background: #05B993">Xem</a>
-                            <div class="clearfix"> </div>
-                        </div>
+<div class="row" style="margin-bottom: 3%; margin-top: 3%; margin-left: 12%">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-3" style="margin-left: -3%; margin-bottom: 2%">
+            <div class="component-product-simple card" style="width: 14rem; background-color: #f1f1f1; font-family: 'Nunito', sans-serif; font-weight: bold; border-color: rgba(0, 0, 0, 0.2); transition: 200ms;">
+            <div class="card-img-top w-100 h-75 position-relative" data-toggle="tooltip" title="@item.Product_Name">
+                <a class="stretched-link" href="product-detail.html"></a>
+                <img src="~/Content/Image/@item.Product_Img" class="rounded-top w-100 h-100" alt="@item.Product_Name">
+                <div class="overlay h-100 w-100 d-flex justify-content-center align-items-end">
+                    <a href="#" class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
+                       data-toggle="tooltip" title="Mua ngay">
+                        <i class="fa fa-shopping-cart"></i>
+                    </a>
+                    <a href="product-detail.html"
+                       class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
+                       data-toggle="tooltip" title="Xem nhanh">
+                        <i class="fa fa-search"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
+                <a href="product-detail.html" class="title card-title m-0">@item.Product_Name</a>
+                <div class="mt-1 d-flex justify-content-center">
+                    <div class="price-sale">
+                        <span>@{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</span>
                     </div>
                 </div>
-            }
-            <div class="clearfix"> </div>
+            </div>
         </div>
-    </div>
-</section>
+        </div>
+    }
+</div>
 
 
 

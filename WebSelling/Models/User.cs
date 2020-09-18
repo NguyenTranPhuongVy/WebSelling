@@ -26,30 +26,40 @@ namespace WebSelling.Models
         }
     
         public int User_ID { get; set; }
+        //[Required]
         public string User_LastName { get; set; }
+        //[Required]
         public string User_Name { get; set; }
         public string User_Token { get; set; }
         public Nullable<bool> User_Activate { get; set; }
-        [Required]
+        //[Required]
         public string User_Pass { get; set; }
-        [Required]
-        [NotMapped]
-        [System.Web.Mvc.Compare("User_Pass", ErrorMessage = "Mật khẩu nhập lại khôn khớp!!!")]
+        //[Required]
+        //[NotMapped]
+        //[System.Web.Mvc.Compare("User_Pass", ErrorMessage = "Mật khẩu nhập lại không khớp!!!")]
         public string User_Repeat { get; set; }
-        [Required]
-        [DataType(DataType.EmailAddress)]
-        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}")]
+        //[Required]
+        //[DataType(DataType.EmailAddress)]
+        //[RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}")]
         public string User_Email { get; set; }
+        //[Required]
+        //[RegularExpression(@"/((09|03|07|08|05)+([0-9]{8})\b)/g")]
         public string User_Phone { get; set; }
         public Nullable<int> User_Role { get; set; }
+        //[Required]
+        //[RegularExpression(@"/(?:http:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-]*\/)*([\w\-]*)/")]
         public string User_LinkF { get; set; }
         public string User_Img { get; set; }
         public Nullable<System.DateTime> User_DateCreate { get; set; }
         public Nullable<System.DateTime> User_DateLogin { get; set; }
+        //[Required]
         public Nullable<System.DateTime> User_DateBirth { get; set; }
         public Nullable<int> User_Sex { get; set; }
+        //[Required]
         public string User_Address { get; set; }
+        //[Required]
         public string User_Province { get; set; }
+        //[Required]
         public string User_City { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

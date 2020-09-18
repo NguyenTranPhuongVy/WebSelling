@@ -52,7 +52,7 @@ namespace WebSelling.Controllers
 
         public PartialViewResult NewProduct()
         {
-            return PartialView(db.Products.Where(n => n.Product_Activate == true).OrderByDescending(n => n.Product_DateCreate).Take(25).ToList());
+            return PartialView(db.Products.Where(n => n.Product_Activate == true).OrderByDescending(n => n.Product_DateCreate).Take(12).ToList());
         }
 
         public PartialViewResult KeyWork()

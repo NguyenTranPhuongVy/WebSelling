@@ -29,22 +29,23 @@
                         <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
                             <div class="card-header bg-white pb-5">
                                 <div class="text-muted text-center mb-3">
-                                    <small>Đăng Nhập Bởi</small>
+                                    <h3>Đăng Nhập</h3>
+                                    <small>Bằng Tài Khoản Mạng Xã Hội</small>
                                 </div>
                                 <div class="btn-wrapper text-center">
                                     <a href="javascript:;" class="btn btn-neutral btn-icon">
                                         <div class="row">
-                                            <div class="col-md-5">
+                                            <div class="col-md-4">
                                                 <span class="btn-inner--icon">
-                                                    <img src="~/Content/UI/assets/img/icons/common/github.svg">
+                                                    <img src="~/Content/UI/assets/img/icons/common/facebook.svg">
                                                 </span>
                                             </div>
-                                            <div class="col-md-7" style="margin-left: -15px">
-                                                <span class="btn-inner--text">Github</span>
+                                            <div class="col-md-3" style="margin-left: -15px">
+                                                <span class="btn-inner--text">Facebook</span>
                                             </div>
                                         </div>
                                     </a>
-                                    <a href="javascript:;" class="btn btn-neutral btn-icon">
+                                    <a href="javascript:;" class="btn btn-neutral btn-icon" style="width: 27%">
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <span class="btn-inner--icon">
@@ -58,23 +59,23 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="card-body px-lg-5 py-lg-5">
+                            <div class="card-body px-lg-5 py-lg-5" style="margin-top: -6%">
                                 <div class="text-center text-muted mb-4">
                                     <small>Or sign in with credentials</small>
                                 </div>
                                 <script>
                                     function validateForm() {
                                         // Lấy giá trị của username và password
-                                        var user_email = document.getElementById('user_email').value;
-                                        var user_pass = document.getElementById('user_pass').value;
+                                        var user_email = document.getElementById("user_email").value;
+                                        var user_pass = document.getElementById("user_pass").value;
                                         //Kiểm tra dữ liệu hợp lệ hay không
-                                        if (user_email == '' && user_pass == '') {
+                                        if (user_email == "" && user_pass == "") {
                                             document.getElementById("Notlogin").innerHTML = "<div class='alert alert-default alert-dismissible fade show' role='alert'><strong>Lưu ý!</strong> Bạn chưa nhập email và mật khẩu.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
                                         }
-                                        else if (user_pass == '') {
+                                        else if (user_pass == "") {
                                             document.getElementById("Notlogin").innerHTML = "<div class='alert alert-default alert-dismissible fade show' role='alert'><strong>Lưu ý!</strong> Bạn chưa nhập mật khẩu.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
                                         }
-                                        else if (user_email == '') {
+                                        else if (user_email == "") {
                                             document.getElementById("Notlogin").innerHTML = "<div class='alert alert-default alert-dismissible fade show' role='alert'><strong>Lưu ý!</strong> Bạn chưa nhập email.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
                                         }
                                         else {
@@ -120,21 +121,24 @@
                         </div>
                         <div class="tab-pane fade" id="tabs-icons-text-2" role="tabpanel" aria-labelledby="tabs-icons-text-2-tab">
                             <div class="card-header bg-white pb-5">
-                                <div class="text-muted text-center mb-3"><small>Đăng Ký Bằng</small></div>
-                                <div class="text-center">
-                                    <a href="#" class="btn btn-neutral btn-icon mr-4">
+                                <div class="text-muted text-center mb-3">
+                                    <h3>Đăng Ký</h3>
+                                    <small>Bằng Tài Khoản Mạng Xã Hội</small>
+                                </div>
+                                <div class="btn-wrapper text-center">
+                                    <a href="javascript:;" class="btn btn-neutral btn-icon">
                                         <div class="row">
-                                            <div class="col-md-5">
+                                            <div class="col-md-4">
                                                 <span class="btn-inner--icon">
-                                                    <img src="~/Content/UI/assets/img/icons/common/github.svg">
+                                                    <img src="~/Content/UI/assets/img/icons/common/facebook.svg">
                                                 </span>
                                             </div>
-                                            <div class="col-md-7" style="margin-left: -15px">
-                                                <span class="btn-inner--text">Github</span>
+                                            <div class="col-md-3" style="margin-left: -15px">
+                                                <span class="btn-inner--text">Facebook</span>
                                             </div>
                                         </div>
                                     </a>
-                                    <a href="#" class="btn btn-neutral btn-icon">
+                                    <a href="javascript:;" class="btn btn-neutral btn-icon" style="width: 27%">
                                         <div class="row">
                                             <div class="col-md-5">
                                                 <span class="btn-inner--icon">
@@ -148,41 +152,75 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="card-body px-lg-5 py-lg-5">
+                            <div class="card-body px-lg-5 py-lg-5" style="margin-top: -6%">
                                 <div class="text-center text-muted mb-4">
-                                    <small>Or sign up with credentials</small>
                                 </div>
-                                <!-- //form đăng nhập -->
-                                <!-- form đăng kí -->
-                                @using (Html.BeginForm("Registration", "Account", FormMethod.Post, new { @enctype = "multipart/form-data" }))
-                                {
-                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                    <div class="form-group">
-                                        @Html.EditorFor(model => model.User_Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
-                                        @Html.ValidationMessageFor(model => model.User_Email, "", new { @class = "text-default" })
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.EditorFor(model => model.User_Pass, new { htmlAttributes = new { @class = "form-control", placeholder = "Mật Khẩu" } })
-                                        @Html.ValidationMessageFor(model => model.User_Pass, "", new { @class = "text-default" })
-                                    </div>
-                                    <div class="form-group">
-                                        @Html.EditorFor(model => model.User_Repeat, new { htmlAttributes = new { @class = "form-control", placeholder = "Nhập Lại Mật Khẩu" } })
-                                        @Html.ValidationMessageFor(model => model.User_Repeat, "", new { @class = "text-default" })
-                                    </div>
-                                    <div class="row my-4">
-                                        <div class="col-12">
-                                            <div class="custom-control custom-control-alternative custom-checkbox">
-                                                <input class="custom-control-input" id="customCheckRegister" type="checkbox">
-                                                <label class="custom-control-label" for="customCheckRegister"><span>I agree with the <a href="#">Privacy Policy</a></span></label>
+                                <script>
+                                    function valiReg()
+                                    {
+                                        // Bước 1: Lấy giá trị của username và password
+                                        var user_emailes = document.getElementById("auser_emailes").value;
+                                        var user_passes = document.getElementById("auser_passes").value;
+                                        var user_repeat = document.getElementById("auser_repeat").value;
+                                        // Bước 2: Kiểm tra dữ liệu hợp lệ hay không
+                                        if (user_emailes == "" && user_passes == ""/* && user_repeat == ""*/) {
+                                            document.getElementById("Testsignup").innerHTML = "<div class='alert alert-default alert-dismissible fade show' role='alert'><strong>Lưu ý!</strong> Bạn chưa nhập email và mật khẩu.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
+                                        }
+                                        /*else */if (user_passes == "") {
+                                            document.getElementById("Testsignup").innerHTML = "<div class='alert alert-default alert-dismissible fade show' role='alert'><strong>Lưu ý!</strong> Bạn chưa nhập mật khẩu.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
+                                        }
+                                        else if (user_emailes == "") {
+                                            document.getElementById("Testsignup").innerHTML = "<div class='alert alert-default alert-dismissible fade show' role='alert'><strong>Lưu ý!</strong> Bạn chưa nhập vào email.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
+                                        }
+                                        else if (user_repeat == "")
+                                        {
+                                            document.getElementById("Testsignup").innerHTML = "<div class='alert alert-default alert-dismissible fade show' role='alert'><strong>Lưu ý!</strong> Bạn chưa xác nhận lại email.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
+                                        }
+                                        else if (user_passes != user_repeat) {
+                                            document.getElementById("Testsignup").innerHTML = "<div class='alert alert-default alert-dismissible fade show' role='alert'><strong>Lưu ý!</strong> Nhập sai mật hẩu.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>"
+                                        }
+                                        else {
+                                            return true;
+                                        }
+                                        return false;
+                                    }
+                                </script>
+                                <form role="form" action="@Url.Action("Registration", "Account")" method="post" onsubmit="return valiReg()">
+                                    <div class="form-group mb-3">
+                                        <div class="input-group input-group-alternative">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-email-83"></i></span>
                                             </div>
+                                            <input class="form-control" placeholder="Email" type="email" id="auser_emailes" name="user_emailes">
                                         </div>
                                     </div>
-                                    @Html.Raw(Session["TestRegistration"])
-                                    <div class="text-center">
-                                        <button type="submit" class="btn btn-primary mt-4" style="background-color: #2b6034">Đăng Ký</button>
+                                    <div class="form-group">
+                                        <div class="input-group input-group-alternative">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-key-25"></i></span>
+                                            </div>
+                                            <input class="form-control" placeholder="Mật Khẩu" type="password" name="user_passes" id="auser_passes">
+                                        </div>
                                     </div>
-                                }
-                                <!-- //form đăng kí-->
+                                    <div class="form-group">
+                                        <div class="input-group input-group-alternative">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                            </div>
+                                            <input class="form-control" placeholder="Nhập Lại Mật Khẩu" type="password" name="user_repeat" id="auser_repeat">
+                                        </div>
+                                    </div>
+                                    <a href="#" style="font-size: 12px; color: #05b993">
+                                        Bạn Đã Có Tài Khoản? Đăng Nhập!!
+                                    </a>
+                                    <br />
+                                    <br />
+                                    @Html.Raw(Session["Testsignup"])
+                                    <div id="Testsignup"></div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary my-4" style="background-color: #2b6034">Đăng Ký</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
