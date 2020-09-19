@@ -6,324 +6,46 @@
     Category cate = (Category)Session["category"];
 }
 <style>
-
-    .grid figure {
-        position: relative;
-        overflow: hidden;
-        background: #3085a3;
-        text-align: center;
-        cursor: pointer;
-        height: 200px;
+    .wavecard {
         width: 200px;
-        border-radius: 8px;
-    }
-
-        .grid figure img {
-            position: relative;
-            display: block;
-            min-height: 100%;
-            max-width: 100%;
-            opacity: 0.8;
-            margin: 0;
-            image-rendering: pixelated;
-            filter: drop-shadow(0 0 5px blue);
-        }
-
-        .grid figure figcaption {
-            padding: 2em;
-            color: #fff;
-            text-transform: uppercase;
-            font-size: 1.25em;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            font-family: 'Segoe UI';
-        }
-
-            .grid figure figcaption::before,
-            .grid figure figcaption::after {
-                pointer-events: none;
-            }
-
-            .grid figure figcaption,
-            .grid figure figcaption > a {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-            }
-
-                .grid figure figcaption > a {
-                    z-index: 1000;
-                    text-indent: 200%;
-                    white-space: nowrap;
-                    font-size: 0;
-                    opacity: 0;
-                }
-
-        .grid figure h7 {
-            word-spacing: -0.15em;
-        }
-
-            .grid figure h7 span {
-                font-family: 'Segoe UI';
-                color: snow;
-            }
-
-        .grid figure h7,
-        .grid figure p {
-            margin: 0;
-        }
-
-        .grid figure p {
-            letter-spacing: 1px;
-            font-size: 68.5%;
-        }
-
-    figure.effect-ravi {
-        background: #303fa9;
-        margin: 0;
-    }
-
-    .grid [class^="col"] {
-        padding: 2px;
-    }
-
-
-    figure.effect-ravi h7,
-    figure.effect-ravi p {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-        transition: opacity 0.35s, transform 0.35s;
-        -webkit-transform: translate3d(-50%, -50%, 0);
-        transform: translate3d(-50%, -50%, 0);
-        -webkit-transform-origin: 50%;
-        transform-origin: 50%;
-    }
-
-    figure.effect-ravi figcaption::before {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 120px;
-        height: 120px;
-        border: 2px solid #fff;
-        content: '';
-        opacity: 0;
-        -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-        transition: opacity 0.35s, transform 0.35s;
-        -webkit-transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -45deg) scale3d(0, 0, 1);
-        transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -45deg) scale3d(0, 0, 1);
-        -webkit-transform-origin: 50%;
-        transform-origin: 50%;
-    }
-
-    figure.effect-ravi p {
-        width: 100px;
-        text-transform: none;
-        font-size: 121%;
-        line-height: 2;
-    }
-
-        figure.effect-ravi p a {
-            color: #fff;
-        }
-
-            figure.effect-ravi p a:hover,
-            figure.effect-ravi p a:focus {
-                opacity: 0.6;
-            }
-
-            figure.effect-ravi p a i {
-                opacity: 0;
-                -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-                transition: opacity 0.35s, transform 0.35s;
-            }
-
-            figure.effect-ravi p a:first-child i {
-                -webkit-transform: translate3d(-60px, -60px, 0);
-                transform: translate3d(-60px, -60px, 0);
-            }
-
-            figure.effect-ravi p a:nth-child(2) i {
-                -webkit-transform: translate3d(60px, -60px, 0);
-                transform: translate3d(60px, -60px, 0);
-            }
-
-            figure.effect-ravi p a:nth-child(3) i {
-                -webkit-transform: translate3d(-60px, 60px, 0);
-                transform: translate3d(-60px, 60px, 0);
-            }
-
-            figure.effect-ravi p a:nth-child(4) i {
-                -webkit-transform: translate3d(60px, 60px, 0);
-                transform: translate3d(60px, 60px, 0);
-            }
-
-    figure.effect-ravi:hover figcaption::before {
-        opacity: 1;
-        -webkit-transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -45deg) scale3d(1, 1, 1);
-        transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, -45deg) scale3d(1, 1, 1);
-    }
-
-    figure.effect-ravi:hover h7 {
-        opacity: 0;
-        -webkit-transform: translate3d(-50%, -50%, 0) scale3d(0.8, 0.8, 1);
-        transform: translate3d(-50%, -50%, 0) scale3d(0.8, 0.8, 1);
-    }
-
-    figure.effect-ravi:hover p i:empty {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-        /* just because it's stronger than nth-child */
-        opacity: 1;
-    }
-
-    .breadcrumb {
-        padding: 0px;
-        background: #D4D4D4;
-        list-style: none;
-        overflow: hidden;
-        width: 100%;
-    }
-
-        .breadcrumb > li + li:before {
-            padding: 0;
-        }
-
-        .breadcrumb li {
-            float: left;
-        }
-
-            .breadcrumb li.active a {
-                background: brown;
-                background: #ffc107;
-            }
-
-            .breadcrumb li.completed a {
-                background: brown;
-                background: hsla(153, 57%, 51%, 1);
-            }
-
-            .breadcrumb li.active a:after {
-                border-left: 30px solid #ffc107;
-            }
-
-            .breadcrumb li.completed a:after {
-                border-left: 30px solid hsla(153, 57%, 51%, 1);
-            }
-
-            .breadcrumb li a {
-                color: black;
-                text-decoration: none;
-                padding: 10px 0 10px 45px;
-                position: relative;
-                display: block;
-                float: left;
-            }
-
-                .breadcrumb li a:after {
-                    content: " ";
-                    display: block;
-                    width: 0;
-                    height: 0;
-                    border-top: 50px solid transparent;
-                    border-bottom: 50px solid transparent;
-                    border-left: 30px solid hsla(0, 0%, 83%, 1);
-                    position: absolute;
-                    top: 50%;
-                    margin-top: -50px;
-                    left: 100%;
-                    z-index: 2;
-                }
-
-                .breadcrumb li a:before {
-                    content: " ";
-                    display: block;
-                    width: 0;
-                    height: 0;
-                    border-top: 50px solid transparent;
-                    border-bottom: 50px solid transparent;
-                    border-left: 30px solid white;
-                    position: absolute;
-                    top: 50%;
-                    margin-top: -50px;
-                    margin-left: 1px;
-                    left: 100%;
-                    z-index: 1;
-                }
-
-            .breadcrumb li:first-child a {
-                padding-left: 15px;
-            }
-
-            .breadcrumb li a:hover {
-                background: #ffc107;
-            }
-
-                .breadcrumb li a:hover:after {
-                    border-left-color: #ffc107 !important;
-                }
-
-    .navbar-light .navbar-nav .nav-link.active {
         background: #fff;
-        color: #27AE60;
-        font-family: 'Segoe UI';
-        border-radius: 5px;
-        padding: 0.5em 0.8em;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10);
     }
 
-    .navbar-light .navbar-nav .nav-link {
-        color: #27AE60;
-        font-family: 'Segoe UI';
-        border-radius: 5px;
-        padding: 0.5em 0.8em;
+    .clipcard-body, .wavecard-body {
+        padding: 15px;
+        color: #4da056;
+        font-weight: 400 !important;
     }
 
-        .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
-            font-family: 'Segoe UI';
-            border-radius: 5px;
-            background: #fff;
-            color: #27AE60;
+    .wavecard-image {
+        height: 130px;
+        width: 100%;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 43%, 100% 75%, 70% 84%, 34% 64%, 0 78%, 0% 43%, 0 0);
+        clip-path: polygon(50% 0%, 100% 0, 100% 43%, 100% 75%, 70% 84%, 34% 64%, 0 78%, 0% 43%, 0 0);
+        transition: all 0.5s ease-in-out;
+    }
+
+        .wavecard-image:hover {
+            -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 43%, 100% 79%, 66% 65%, 36% 78%, 0 78%, 0% 43%, 0 0);
+            clip-path: polygon(50% 0%, 100% 0, 100% 43%, 100% 79%, 66% 65%, 36% 78%, 0 78%, 0% 43%, 0 0);
         }
-
-    .font {
-        color: black;
-        font-family: 'Segoe UI';
-    }
-
-    b:hover {
-        color: red;
-    }
-
-    .color {
-        color: red;
-    }
-
-    .color1 {
-        color: #CD0005;
-    }
 </style>
 <br />
-<div class="container-fluid py-xl-2 py-lg-3" style="margin-top: -5%; margin-left: 9%">
-    <div class="row about-bottom-w3l mt-6" style="margin-left: 16%">
+<div class="container-fluid py-xl-2 py-lg-3" style="margin-top: -5%; margin-left: 11%">
+    <div class="row about-bottom-w3l mt-6">
         <div class="grid">
             <div class="row">
-                @foreach (var item in Model)
+                @foreach(var item in Model)
                 {
-                    <div class="col-md-4" style="margin-left: -15%">
-                        <figure class="effect-ravi">
-                            <img src="~/Content/Image/@item.Category_Img" alt="img25" style="height: 200px; width: 200px" />
-                            <figcaption>
-                                <h7 style="position: absolute; font-weight: bold"><span style="font-size: 20px !important">@item.Category_Name</span></h7>
-                                <p>
-                                    <a href="@Url.Action("DetailsCategory", "Home", new { categoryid = item.Category_ID})"><i class="fa fa-search"></i></a>
-                                </p>
-                            </figcaption>
-                        </figure>
-                        <br />
+                    <div class="col-md-3" style="margin-left: -9%">
+                        <div class="wavecard" style="margin-top: 5%">
+                                <a href="@Url.Action("DetailsCategory", "Home", new { categoryid = item.Category_ID})"><img class="wavecard-image" src="~/Content/Image/@item.Category_Img" alt="@item.Category_Name" /></a>
+                                <div class="wavecard-body" style="margin-top: -5%; color">@item.Category_Name</div>
+                            </div>
                     </div>
                 }
             </div>

@@ -44,7 +44,7 @@ namespace WebSelling.Controllers
             }   
             else
             {
-                Session["Notlogin"] = "<div class='alert alert-default alert-dismissible fade show' role='alert'><strong>Lưu ý!</strong> Sai tài khoản hoặc mật khẩu.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
+                Session["Notlogin"] = "<div class='alert alert-default alert-dismissible fade show' role='alert'><strong>Lưu ý!</strong> Không có thông tin đăng nhập.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";
                 return Redirect(Request.UrlReferrer.ToString());
             }    
         }
@@ -53,7 +53,7 @@ namespace WebSelling.Controllers
         [HttpPost]
         public ActionResult Registration([Bind(Include = "User_ID,User_LastName,User_Name,User_Token,User_Activate,User_Pass,User_Email,User_Phone,User_Role,User_LinkF,User_Img,User_DateCreate,User_DateLogin,User_DateBirth,User_Sex,User_Address,Province_ID,City_ID")] User user, FormCollection f)
         {
-            String sEmail = f["user_emailes"].ToString();
+            String sEmail = f["User_Email"].ToString();
             User Testuser = db.Users.SingleOrDefault(n => n.User_Email == sEmail);
             if(Testuser != null)
             {

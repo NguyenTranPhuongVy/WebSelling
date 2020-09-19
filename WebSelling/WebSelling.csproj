@@ -319,6 +319,7 @@
     <Content Include="Content\Image\ThuCung.jpg" />
     <Content Include="Content\Layout\css\bootstrap.css" />
     <Content Include="Content\Layout\css\font-awesome.min.css" />
+    <Content Include="Content\Layout\css\Signin.css" />
     <Content Include="Content\Layout\css\Style.css" />
     <Content Include="Content\Layout\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\Layout\images\about.png" />

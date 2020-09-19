@@ -9,125 +9,108 @@
         display: -webkit-box;
         font-weight: initial;
     }
-    /* component product-simple */
-
-    .component-product-simple {
-        height: 22rem;
-        background-color: #f7f7f7;
-        font-weight: bold;
-        border-color: #f4f4f4;
-        transition: 200ms;
+    .p-box {
+        font-family: 'Lato', sans-serif;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 40px 2fr 1fr;
+        min-width: 200px;
+        min-height: 300px;
+        background-color: #FFF;
+        box-shadow: 2px 2px 10px rgba(45, 45, 45, 0.2);
+        font-size: calc(14px + (32 - 14) * ((100vw - 300px) / (1600 - 320)));
     }
 
-        .component-product-simple .card-img-top {
-            cursor: pointer;
-        }
+    .p-top {
+        grid-row: 1 / 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 0 8px;
+        z-index: 55;
+    }
 
-            .component-product-simple .card-img-top > img {
-                object-fit: cover;
-            }
+    .p-heart {
+        justify-self: start;
+        align-self: center;
+        color: gray;
+    }
 
-            .component-product-simple .card-img-top .overlay {
-                transition: 200ms !important;
-                position: absolute;
-                top: 0;
-                left: 0;
-            }
+    .p-price {
+        justify-self: end;
+        align-self: center;
+        font-size: .6em;
+        font-weight: 600;
+    }
 
-                .component-product-simple .card-img-top .overlay > a {
-                    width: 2rem;
-                    height: 2rem;
-                    cursor: pointer;
-                    transition: 200ms;
-                    z-index: 0;
-                    text-decoration: none;
-                    opacity: 0;
-                    background-color: #f2f2f2;
-                }
 
-        .component-product-simple .overlay > a i {
-            color: #000;
-        }
+    .p-heart {
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-        .component-product-simple:hover .overlay > a {
-            opacity: 1;
-        }
+    .img1 {
+        width: 80%;
+        grid-row: 2 / 3;
+        position: relative;
+        top: 2px;
+        margin: 0 auto;
+    }
 
-        .component-product-simple .overlay > a:hover {
-            background-color: #99cc00;
-        }
+    .p-desc {
+        grid-row: 3 / 4;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, minmax(1em, 1.5em));
+        align-items: center;
+        justify-items: center;
+        border-top: 1px solid rgba(45, 45, 45, 0.1);
+        padding-top: 5px;
+    }
 
-            .component-product-simple .overlay > a:hover i {
-                color: #fff;
-            }
+    .p-category {
+        color: gray;
+        font-size: .8em;
+    }
 
-        .component-product-simple:hover .overlay {
-            background-color: rgba(255, 255, 255, 0.5);
-        }
+    .p-product {
+        font-size: 1em;
+    }
 
-        .component-product-simple:hover {
-            box-shadow: 1px 10px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .component-product-simple .card-body .title {
-            color: #000;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: 200ms;
-        }
-
-            .component-product-simple .card-body .title:hover {
-                color: #379742;
-            }
-
-        .component-product-simple .card-body .price-sale span {
-            color: #99cc00;
-            font-size: 0.9rem;
-        }
-
-        .component-product-simple .card-body .price-sale u {
-            color: #99cc00;
-            font-size: 0.9rem;
-        }
-
-        .component-product-simple .card-body .price-old del {
-            color: #6d6b6a;
-            font-size: 0.9rem;
-        }
-    /* component product-simple */
+    .p-stars {
+        color: #fce56a;
+        font-size: 0.6em;
+    }
 </style>
-<div class="row" style="margin-bottom: 3%; margin-top: 3%; margin-left: 12%">
+<div class="row" style="margin-bottom: 3%; margin-left: 3%">
     @foreach (var item in Model)
     {
-        <div class="col-md-3" style="margin-left: -3%; margin-bottom: 2%">
-            <div class="component-product-simple card" style="width: 14rem; background-color: #f1f1f1; font-family: 'Nunito', sans-serif; font-weight: bold; border-color: rgba(0, 0, 0, 0.2); transition: 200ms;">
-            <div class="card-img-top w-100 h-75 position-relative" data-toggle="tooltip" title="@item.Product_Name">
-                <a class="stretched-link" href="product-detail.html"></a>
-                <img src="~/Content/Image/@item.Product_Img" class="rounded-top w-100 h-100" alt="@item.Product_Name">
-                <div class="overlay h-100 w-100 d-flex justify-content-center align-items-end">
-                    <a href="#" class="mr-2 mb-3 rounded-circle  d-flex justify-content-center align-items-center"
-                       data-toggle="tooltip" title="Mua ngay">
-                        <i class="fa fa-shopping-cart"></i>
-                    </a>
-                    <a href="product-detail.html"
-                       class="mr-2 mb-3 rounded-circle d-flex justify-content-center align-items-center"
-                       data-toggle="tooltip" title="Xem nhanh">
-                        <i class="fa fa-search"></i>
-                    </a>
+        <div class="col-md-3" style="margin-top: 2%; margin-left: -1%;">
+            <div class="p-box" style="border-radius: 25px">
+                <div class="p-top">
+                    <div style="width: 20%">
+                        <center><i class="fa fa-heart-o"></i></center>
+                    </div>
+                    <span class="p-price">@{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</span>
                 </div>
-            </div>
-
-            <div class="card-body h-25 text-center d-flex align-items-center justify-content-center flex-column">
-                <a href="product-detail.html" class="title card-title m-0">@item.Product_Name</a>
-                <div class="mt-1 d-flex justify-content-center">
-                    <div class="price-sale">
-                        <span>@{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</span>
+                <a href="#"><img src="~/Content/Image/@item.Product_Img" alt="" class="img1" /></a>
+                <div class="p-desc" style="margin-top: -10%">
+                    <h5 class="p-product">@item.Product_Name</h5>
+                    <div style="margin-bottom: 5%; margin-top: 10%">
+                        <button type="button" class="btn btn-default" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ">Thêm Giỏ Hàng</button>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
     }
+    <script>
+        $(".slider").owlCarousel({
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: 2000,
+            autoplayHoverPause: true,
+            nav: true,
+        });
+    </script>
 </div>
 
 
