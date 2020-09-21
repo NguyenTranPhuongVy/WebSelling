@@ -9,109 +9,31 @@
         display: -webkit-box;
         font-weight: initial;
     }
-    .p-box {
-        font-family: 'Lato', sans-serif;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: 40px 2fr 1fr;
-        min-width: 200px;
-        min-height: 300px;
-        background-color: #FFF;
-        box-shadow: 2px 2px 10px rgba(45, 45, 45, 0.2);
-        font-size: calc(14px + (32 - 14) * ((100vw - 300px) / (1600 - 320)));
-    }
-
-    .p-top {
-        grid-row: 1 / 2;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        padding: 0 8px;
-        z-index: 55;
-    }
-
-    .p-heart {
-        justify-self: start;
-        align-self: center;
-        color: gray;
-    }
-
-    .p-price {
-        justify-self: end;
-        align-self: center;
-        font-size: .6em;
-        font-weight: 600;
-    }
-
-
-    .p-heart {
-        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .img1 {
-        width: 80%;
-        grid-row: 2 / 3;
-        position: relative;
-        top: 2px;
-        margin: 0 auto;
-    }
-
-    .p-desc {
-        grid-row: 3 / 4;
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(3, minmax(1em, 1.5em));
-        align-items: center;
-        justify-items: center;
-        border-top: 1px solid rgba(45, 45, 45, 0.1);
-        padding-top: 5px;
-    }
-
-    .p-category {
-        color: gray;
-        font-size: .8em;
-    }
-
-    .p-product {
-        font-size: 1em;
-    }
-
-    .p-stars {
-        color: #fce56a;
-        font-size: 0.6em;
-    }
 </style>
+<link href="~/Content/Layout/css/Newproduct.css" rel="stylesheet" />
 <div class="row" style="margin-bottom: 3%; margin-left: 3%">
     @foreach (var item in Model)
     {
-        <div class="col-md-3" style="margin-top: 2%; margin-left: -1%;">
-            <div class="p-box" style="border-radius: 25px">
-                <div class="p-top">
-                    <div style="width: 20%">
-                        <center><i class="fa fa-heart-o"></i></center>
-                    </div>
-                    <span class="p-price">@{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</span>
-                </div>
-                <a href="#"><img src="~/Content/Image/@item.Product_Img" alt="" class="img1" /></a>
-                <div class="p-desc" style="margin-top: -10%">
-                    <h5 class="p-product">@item.Product_Name</h5>
-                    <div style="margin-bottom: 5%; margin-top: 10%">
-                        <button type="button" class="btn btn-default" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ">Thêm Giỏ Hàng</button>
-                    </div>
-                </div>
-            </div>
+        <div class="col-md-3" style="margin-left: -1%">
+            <figure class="snip1246" style="border-radius: 10px">
+                <img src="~/Content/Image/@item.Product_Img" alt="sample88" />
+                <figcaption>
+                    <h3>@item.Product_Name</h3>
+                    <p class="content">@item.Product_Description</p>
+                    <div class="price">@{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</div>
+                    <a href="#" class="add-to-cart">Add to Cart</a>
+                </figcaption>
+            </figure>
         </div>
     }
-    <script>
-        $(".slider").owlCarousel({
-            loop: true,
-            autoplay: true,
-            autoplayTimeout: 2000,
-            autoplayHoverPause: true,
-            nav: true,
-        });
-    </script>
 </div>
+<script>
+    $(".hover").mouseleave(
+        function () {
+            $(this).removeClass("hover");
+        }
+    );
+</script>
 
 
 
