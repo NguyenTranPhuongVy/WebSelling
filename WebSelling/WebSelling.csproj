@@ -152,6 +152,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InformationController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -320,6 +321,7 @@
     <Content Include="Content\Layout\css\bootstrap.css" />
     <Content Include="Content\Layout\css\Detailsproduct.css" />
     <Content Include="Content\Layout\css\font-awesome.min.css" />
+    <Content Include="Content\Layout\css\InforUser.css" />
     <Content Include="Content\Layout\css\Newproduct.css" />
     <Content Include="Content\Layout\css\Signin.css" />
     <Content Include="Content\Layout\css\Style.css" />
@@ -808,6 +810,7 @@
     <Content Include="Views\Home\Category.cshtml" />
     <Content Include="Views\Home\DetailsCategory.cshtml" />
     <Content Include="Views\Home\NewProduct.cshtml" />
+    <Content Include="Views\Information\InforUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,40 @@
+﻿.container {
+    padding: 100px;
+}
+
+.image-circle {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border-top: 2px dashed #ffcc00;
+    border-right: 2px dashed #ffcc00;
+    border-left: 2px dashed #2E8B57;
+    border-bottom: 2px dashed #2E8B57;
+    padding: 10px;
+    animation: spin 10s infinite linear;
+}
+
+    .image-circle img {
+        animation: spin 10s infinite reverse linear;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+
+
+
+@keyframes spin {
+    100% {
+        transform: rotate(1turn);
+    }
+}
+
+.verticalLine {
+    border-left: thin solid #808080;
+}
+
+.boder {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
