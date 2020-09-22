@@ -187,6 +187,9 @@
     <Compile Include="Models\User.cs">
       <DependentUpon>WebSellingData.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\View.cs">
+      <DependentUpon>WebSellingData.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\WebSellingData.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -313,12 +316,14 @@
     <Content Include="Content\FormReg\assets\js\jquery-2.2.4.min.js" />
     <Content Include="Content\FormReg\assets\js\jquery.bootstrap.wizard.js" />
     <Content Include="Content\FormReg\assets\js\jquery.validate.min.js" />
+    <Content Include="Content\Image\customer.png" />
     <Content Include="Content\Image\Docongnghe.jpg" />
     <Content Include="Content\Image\dogiadung.jpg" />
     <Content Include="Content\Image\product.jpg" />
     <Content Include="Content\Image\Products-Online.jpg" />
     <Content Include="Content\Image\ThuCung.jpg" />
     <Content Include="Content\Layout\css\bootstrap.css" />
+    <Content Include="Content\Layout\css\product.css" />
     <Content Include="Content\Layout\css\Detailsproduct.css" />
     <Content Include="Content\Layout\css\font-awesome.min.css" />
     <Content Include="Content\Layout\css\InforUser.css" />
@@ -811,6 +816,8 @@
     <Content Include="Views\Home\DetailsCategory.cshtml" />
     <Content Include="Views\Home\NewProduct.cshtml" />
     <Content Include="Views\Information\InforUser.cshtml" />
+    <Content Include="Views\Home\DetailsProduct.cshtml" />
+    <Content Include="Views\Home\SimilarProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

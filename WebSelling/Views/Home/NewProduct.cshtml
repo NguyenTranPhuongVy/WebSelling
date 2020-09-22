@@ -18,7 +18,7 @@
             <figure class="snip1246" style="border-radius: 10px">
                 <img src="~/Content/Image/@item.Product_Img" alt="sample88" />
                 <figcaption>
-                    <h3>@item.Product_Name</h3>
+                    <a href="@Url.Action("DetailsProduct", "Home", new { productid = item.Product_ID})"><h3>@item.Product_Name</h3></a>
                     <p class="content">@item.Product_Description</p>
                     <div class="price">@{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</div>
                     <a href="#" class="add-to-cart">Add to Cart</a>

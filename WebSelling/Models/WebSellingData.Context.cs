@@ -35,5 +35,6 @@ namespace WebSelling.Models
         public virtual DbSet<SubProduct> SubProducts { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<View> Views { get; set; }
     }
 }

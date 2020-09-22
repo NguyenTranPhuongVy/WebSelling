@@ -30,25 +30,6 @@ namespace WebSelling.Controllers
             Session["category"] = cate;
             return View(db.Products.Where(n => n.Category_ID == categoryid && n.Product_Activate == true).OrderByDescending(n => n.Product_DateEdit).ToList());
         }
-        public ActionResult Product(int ? productid, int ? page)
-        {
-            if(productid == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-
-            Product pro = db.Products.SingleOrDefault(n => n.Product_ID == productid);
-            Session["product"] = pro.Product_ID;
-            if(pro == null)
-            {
-                Response.StatusCode = 404;
-                return null;
-            }
-            Session["productid"] = productid;
-            db.Products.Find(productid).Product_View++;
-            db.SaveChanges();
-            return View();
-        }
 
         public PartialViewResult NewProduct()
         {
@@ -58,6 +39,25 @@ namespace WebSelling.Controllers
         public PartialViewResult KeyWork()
         {
             return PartialView(db.SubCategories.Where(n => n.SubCategory_Activate == true).OrderBy(n => n.SubCategory_Name).ToList());
+        }
+
+        public ActionResult DetailsProduct(int productid)
+        {
+            Product pro = db.Products.SingleOrDefault(n => n.Product_ID == productid);
+            if (pro == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            Session["productid"] = productid;
+            db.Products.Find(productid).Product_View++;
+            db.SaveChanges();
+            return View(pro);
+        }
+
+        public PartialViewResult SimilarProduct()
+        {
+            return PartialView(db.Products.Where(n => n.Product_Activate == true).OrderByDescending(n => n.Product_DateCreate).Take(15).ToList());
         }
     }
 }

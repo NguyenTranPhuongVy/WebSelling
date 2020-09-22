@@ -21,28 +21,30 @@
     <div class="col-md-12">
         @foreach (var itemsub in Model)
         {
-            <a href="#"><span class="badge badge-pill badge-default text-uppercase">@itemsub.SubCategory.SubCategory_Name</span></a>
+            <button type="button" class="btn btn-outline-success" style="color: black">@itemsub.SubCategory.SubCategory_Name <i class="fa fa-angle-double-down"></i></button>
         }
     </div>
 </div>
-<div class="row" style="margin-left: 2%; margin-top: 2%; margin-bottom: 3%">
+<div class="row" style="margin-left: 2%; margin-top: 1%; margin-bottom: 3%">
     @foreach (var item in Model)
     {
-        <div class="col-md-3" style="margin-left: -1%">
-            <figure class="snip1249">
-                <div class="image">
-                    <img src="~/Content/Image/@item.Product_Img" alt="sample90" /><a href="#" style="color: white"><i class="fa fa-heart"></i></a>
-                </div>
-                <figcaption>
-                    <h3>@item.Product_Name</h3>
-                    <p class="content">@item.Product_Description</p>
-                    <div class="price">
-                        <s>@{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</s>
+        <a href="@Url.Action("DetailsProduct", "Home", new { productid = item.Product_ID})">
+            <div class="col-md-3" style="margin-left: -1%">
+                <figure class="snip1249">
+                    <div class="image">
+                        <img src="~/Content/Image/@item.Product_Img" alt="sample90" /><a href="#" style="color: white"><i class="fa fa-heart"></i></a>
                     </div>
-                    <a href="#" class="add-to-cart">Add to Cart</a>
-                </figcaption>
-            </figure>
-        </div>
+                    <figcaption>
+                        <h3>@item.Product_Name</h3>
+                        <p class="content">@item.Product_Description</p>
+                        <div class="price">
+                            <s>@{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</s>
+                        </div>
+                        <a href="#" class="add-to-cart">Add to Cart</a>
+                    </figcaption>
+                </figure>
+            </div>
+        </a>
     }
     <div class="clearfix"> </div>
 </div>

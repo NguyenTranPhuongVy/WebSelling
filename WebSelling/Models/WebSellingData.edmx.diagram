@@ -27,6 +27,9 @@
         <AssociationConnector Association="WebSellingModel.FK_SubProduct_Product" ManuallyRouted="false" />
         <AssociationConnector Association="WebSellingModel.FK_Repli_User" ManuallyRouted="false" />
         <AssociationConnector Association="WebSellingModel.FK_SubProduct_SubCategory" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WebSellingModel.View" Width="1.5" PointX="5.25" PointY="11.25" />
+        <AssociationConnector Association="WebSellingModel.FK_Views_Product" />
+        <AssociationConnector Association="WebSellingModel.FK_Views_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

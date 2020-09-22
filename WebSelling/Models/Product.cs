@@ -20,6 +20,7 @@ namespace WebSelling.Models
             this.Carts = new HashSet<Cart>();
             this.Comments = new HashSet<Comment>();
             this.SubProducts = new HashSet<SubProduct>();
+            this.Views = new HashSet<View>();
         }
     
         public int Product_ID { get; set; }
@@ -51,5 +52,7 @@ namespace WebSelling.Models
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SubProduct> SubProducts { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<View> Views { get; set; }
     }
 }
