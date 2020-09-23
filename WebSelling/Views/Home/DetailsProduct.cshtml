@@ -40,21 +40,28 @@
                             <span style="font-weight: 700; font-size: 16px">@{float price = (float)Model.Product_Price;} @price.ToString("#,##0") VNĐ</span>
                         </div>
                         <div class="col-md-6">
-                            <a href="#" class="btn btn-outline-secondary btn-lg" style="border-radius: 60px; border-color: #c90927; height: 35px; width: 40%; padding: 5px 10px 0; font-size: 16px; text-transform: none !important; color: #c90927; float: right"><i class="fa fa-heart-o" style="color: #c90927"> Lưu Tin</i></a>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a href="#" class="btn btn-outline-secondary btn-lg" style="border-radius: 60px; border-color: #c90927; height: 35px; width: 80%; padding: 5px 10px 0; font-size: 16px; text-transform: none !important; color: #c90927"><i class="fa fa-heart-o" style="color: #c90927"> Lưu Tin</i></a>
+                                </div>
+                                <div class="col-md-6" style="margin-left: -5%">
+                                    <a href="#" class="btn btn-outline-secondary btn-lg" style="border-radius: 60px; border-color: #c90927; height: 35px; width: 115%; padding: 5px 10px 0; font-size: 16px; text-transform: none !important; color: #c90927; margin-left: -5%"><i class="fa fa-shopping-cart" style="color: #c90927"> Thêm giỏ hàng</i></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div>
                         <span><b style="color: black; font-size: 16px">Mô tả sản phẩm</b></span>
-                        <p>@Model.Product_Description</p>
+                        <p>@Html.Raw(@Model.Product_Description)</p>
                     </div>
                     <div>
                         <span><b style="color: black; font-size: 16px">Chi tiết sản phẩm</b></span>
-                        <p>@Model.Product_Detail</p>
+                        <p>@Html.Raw(@Model.Product_Detail)</p>
                     </div>
                     <div>
                         <span><b style="color: black; font-size: 15px">Số điện thoại liên hệ: </b></span> <span style="color: #c90927">@Model.User.User_Phone</span>
                     </div>
-                    <div>
+                    <div style="margin-bottom: 3%">
                         <span><i class="fa fa-map-marker"></i> <b style="color: black; font-size: 16px">Khu vực</b></span>
                         <p>@Model.User.User_City, @Model.User.User_Province</p>
                     </div>

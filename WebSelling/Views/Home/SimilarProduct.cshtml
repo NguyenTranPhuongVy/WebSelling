@@ -22,7 +22,7 @@
                     <img src="~/Content/Image/@item.Product_Img" alt="@item.Product_Name" />
                     <figcaption>
                         <h6 style="color: black">@item.Product_Name</h6>
-                        <p class="content" style="color: black">@item.Product_Description</p>
+                        <p class="content" style="color: black">@Html.Raw(@item.Product_Description)</p>
                     </figcaption>
                     <a href="@Url.Action("DetailsProduct", "Home", new { productid = item.Product_ID})"></a>
                 </figure>

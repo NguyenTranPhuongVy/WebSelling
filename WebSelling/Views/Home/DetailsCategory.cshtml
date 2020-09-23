@@ -36,7 +36,7 @@
                     </div>
                     <figcaption>
                         <h3>@item.Product_Name</h3>
-                        <p class="content">@item.Product_Description</p>
+                        <p class="content">@Html.Raw(@item.Product_Description)</p>
                         <div class="price">
                             <s>@{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</s>
                         </div>
