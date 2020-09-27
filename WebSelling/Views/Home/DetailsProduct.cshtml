@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "DetailsProduct";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    User user = (User)Session["user"];
 }
 @Html.Action("Menu", "Menu")
 <body style="background-color: #f1f1f1">
@@ -77,7 +78,14 @@
                             <span><b style="color: black; font-size: 16px">@Model.User.User_LastName @Model.User.User_Name</b></span>
                         </div>
                         <div class="col-md-4" style="margin-left: -7%">
-                            <a href="#" class="btn btn-outline-secondary btn-lg" style="border-radius: 60px; border-color: #05b993; height: 35px; padding: 5px 10px 0; font-size: 16px; text-transform: none !important; color: #000000; background-color: #05b993"><i class="fa fa-star-o"> Xem cửa hàng</i></a>
+                            @if (user != null && user.User_ID == Model.User_ID)
+                            {
+                                <a href="@Url.Action("MyInforUser", "Information")" class="btn btn-outline-secondary btn-lg" style="border-radius: 60px; border-color: #05b993; height: 35px; padding: 5px 10px 0; font-size: 16px; text-transform: none !important; color: #000000; background-color: #05b993"><i class="fa fa-star-o"> Xem cửa hàng</i></a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action("InforUser", "Information", new { id = Model.User_ID})" class="btn btn-outline-secondary btn-lg" style="border-radius: 60px; border-color: #05b993; height: 35px; padding: 5px 10px 0; font-size: 16px; text-transform: none !important; color: #000000; background-color: #05b993"><i class="fa fa-star-o"> Xem cửa hàng</i></a>
+                            }
                         </div>
                     </div>
                     <div class="row">
