@@ -11,17 +11,17 @@
     }
 </style>
 <link href="~/Content/Layout/css/Newproduct.css" rel="stylesheet" />
-<div class="row" style="margin-bottom: 3%; margin-left: 3%">
+<div class="row w-100" style="margin-bottom: 3%; margin-left: -1%">
     @foreach (var item in Model)
     {
-        <div class="col-md-3" style="margin-left: -1%">
+        <div class="col-md-3">
             <figure class="snip1246" style="border-radius: 10px">
                 <img src="~/Content/Image/@item.Product_Img" alt="sample88" />
                 <figcaption>
                     <a href="@Url.Action("DetailsProduct", "Home", new { productid = item.Product_ID})"><h3>@item.Product_Name</h3></a>
                     <p class="content">@Html.Raw(@item.Product_Description)</p>
                     <div class="price">@{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</div>
-                    <a href="#" class="add-to-cart">Add to Cart</a>
+                    <a href="@Url.Action("DetailsProduct", "Home", new { productid = item.Product_ID})" class="add-to-cart">Xem Chi Tiết</a>
                 </figcaption>
             </figure>
         </div>

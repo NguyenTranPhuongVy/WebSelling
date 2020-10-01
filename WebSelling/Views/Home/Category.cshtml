@@ -35,21 +35,17 @@
         }
 </style>
 <br />
-<div class="container-fluid py-xl-2 py-lg-3" style="margin-top: -7%; margin-left: 11%">
+<div class="container-fluid py-xl-2 py-lg-2" style="margin-top: -7%">
     <div class="row about-bottom-w3l mt-6">
-        <div class="grid">
-            <div class="row">
-                @foreach(var item in Model)
-                {
-                    <div class="col-md-3" style="margin-left: -9%">
-                        <div class="wavecard" style="margin-top: 5%">
-                                <a href="@Url.Action("DetailsCategory", "Home", new { categoryid = item.Category_ID})"><img class="wavecard-image" src="~/Content/Image/@item.Category_Img" alt="@item.Category_Name" /></a>
-                                <div class="wavecard-body" style="margin-top: -5%; color">@item.Category_Name</div>
-                            </div>
-                    </div>
-                }
+        @foreach (var item in Model)
+        {
+            <div class="col-md-2">
+                <div class="wavecard" style="margin-top: 5%">
+                    <a href="@Url.Action("DetailsCategory", "Home", new { categoryid = item.Category_ID})"><img class="wavecard-image" src="~/Content/Image/@item.Category_Img" alt="@item.Category_Name" /></a>
+                    <div class="wavecard-body" style="margin-top: -5%"><a href="@Url.Action("DetailsCategory", "Home", new { categoryid = item.Category_ID}) ">@item.Category_Name</a></div>
+                </div>
             </div>
-        </div>
+        }
     </div>
 </div>
 

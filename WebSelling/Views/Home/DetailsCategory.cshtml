@@ -17,34 +17,32 @@
 </style>
 <link href="~/Content/Layout/css/Detailsproduct.css" rel="stylesheet" />
 @Html.Action("Menu", "Menu")
-<div class="row" style="margin-left: 5%; margin-top: 2%">
-    <div class="col-md-12">
+<div class="row w-100" style="padding: 2%">
+    <div class="col-lg-12">
         @foreach (var itemsub in Model)
         {
             <button type="button" class="btn btn-outline-success" style="color: black">@itemsub.SubCategory.SubCategory_Name <i class="fa fa-angle-double-down"></i></button>
         }
     </div>
 </div>
-<div class="row" style="margin-left: 2%; margin-top: 1%; margin-bottom: 3%">
+<div class="row w-100 mb-3">
     @foreach (var item in Model)
     {
-        <a href="@Url.Action("DetailsProduct", "Home", new { productid = item.Product_ID})">
-            <div class="col-md-3" style="margin-left: -1%">
-                <figure class="snip1249">
-                    <div class="image">
-                        <img src="~/Content/Image/@item.Product_Img" alt="sample90" /><a href="#" style="color: white"><i class="fa fa-heart"></i></a>
+        <div class="col-lg-3">
+            <figure class="snip1249">
+                <div class="image">
+                    <img src="~/Content/Image/@item.Product_Img" alt="sample90" /><a href="#" style="color: white"><i class="fa fa-heart"></i></a>
+                </div>
+                <figcaption>
+                    <h3 style="width: 120%">@item.Product_Name</h3>
+                    <p class="content">@Html.Raw(@item.Product_Description)</p>
+                    <div class="price">
+                        <s>@{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</s>
                     </div>
-                    <figcaption>
-                        <h3>@item.Product_Name</h3>
-                        <p class="content">@Html.Raw(@item.Product_Description)</p>
-                        <div class="price">
-                            <s>@{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</s>
-                        </div>
-                        <a href="#" class="add-to-cart">Add to Cart</a>
-                    </figcaption>
-                </figure>
-            </div>
-        </a>
+                    <a href="@Url.Action("DetailsProduct", "Home", new { productid = item.Product_ID})" class="add-to-cart" style="border-radius: 5px">Xem Chi Tiết</a>
+                </figcaption>
+            </figure>
+        </div>
     }
     <div class="clearfix"> </div>
 </div>

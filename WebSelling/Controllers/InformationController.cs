@@ -23,17 +23,22 @@ namespace WebSelling.Controllers
             {
                 return Redirect(ViewAcc);
             }
-            return View(/*db.Products.Where(n => n .Product_Activate == true && n.User_ID == user.User_ID).OrderByDescending(n => n.Product_DateCreate).ToList()*/);
+            return View();
+        }
+        //Sản phẩm cá nhân
+        public PartialViewResult MyProduct()
+        {
+            User user = (User)Session["user"];
+            return PartialView(db.Products.Where(n => n.User_ID == user.User_ID && n.Product_Activate == true).OrderByDescending(n => n.Product_DateCreate).ToList());
         }
 
-        // trang thông tin người dùng người khác
+        // trang thông tin người dùng
         public ActionResult InforUser(int ? id)
         {
             if(id == null)
             {
                 return Redirect(ViewAcc);
             }
-            // rồi đúng thì ra trang nào ??? thì ra cái trang 
             return View(db.Users.Find(id));
         }
     }
