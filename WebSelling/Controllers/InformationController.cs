@@ -25,12 +25,6 @@ namespace WebSelling.Controllers
             }
             return View();
         }
-        //Sản phẩm cá nhân
-        public PartialViewResult MyProduct()
-        {
-            User user = (User)Session["user"];
-            return PartialView(db.Products.Where(n => n.User_ID == user.User_ID && n.Product_Activate == true).OrderByDescending(n => n.Product_DateCreate).ToList());
-        }
 
         // trang thông tin người dùng
         public ActionResult InforUser(int ? id)
