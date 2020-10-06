@@ -7,7 +7,7 @@
 }
 <style>
     .wavecard {
-        width: 200px;
+        width: 220px;
         background: #fff;
         border-radius: 10px;
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10);
@@ -33,19 +33,29 @@
             -webkit-clip-path: polygon(50% 0%, 100% 0, 100% 43%, 100% 79%, 66% 65%, 36% 78%, 0 78%, 0% 43%, 0 0);
             clip-path: polygon(50% 0%, 100% 0, 100% 43%, 100% 79%, 66% 65%, 36% 78%, 0 78%, 0% 43%, 0 0);
         }
+
+        .chuyen{
+            color: black;
+        }
+
+        .chuyen:hover{
+            color: #4A9F43;
+        }
 </style>
 <br />
 <div class="container-fluid py-xl-2 py-lg-2" style="margin-top: -7%">
-    <div class="row about-bottom-w3l mt-6">
-        @foreach (var item in Model)
-        {
-            <div class="col-md-2">
-                <div class="wavecard" style="margin-top: 5%">
-                    <a href="@Url.Action("DetailsCategory", "Home", new { categoryid = item.Category_ID})"><img class="wavecard-image" src="~/Content/Image/@item.Category_Img" alt="@item.Category_Name" /></a>
-                    <div class="wavecard-body" style="margin-top: -5%"><a href="@Url.Action("DetailsCategory", "Home", new { categoryid = item.Category_ID}) ">@item.Category_Name</a></div>
+    <div class="container">
+        <div class="row about-bottom-w3l mt-6">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-3 mt-3 mb-3">
+                    <div class="wavecard">
+                        <a href="@Url.Action("DetailsCategory", "Home", new { categoryid = item.Category_ID})"><img class="wavecard-image" src="~/Content/Image/@item.Category_Img" alt="@item.Category_Name" /></a>
+                        <div class="wavecard-body" style="margin-top: -5%"><a href="@Url.Action("DetailsCategory", "Home", new { categoryid = item.Category_ID})" class="chuyen">@item.Category_Name</a></div>
+                    </div>
                 </div>
-            </div>
-        }
+            }
+        </div>
     </div>
 </div>
 
