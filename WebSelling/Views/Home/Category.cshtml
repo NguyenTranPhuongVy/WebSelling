@@ -36,6 +36,7 @@
 
         .chuyen{
             color: black;
+            font-size: 17px;
         }
 
         .chuyen:hover{
@@ -43,19 +44,17 @@
         }
 </style>
 <br />
-<div class="container-fluid py-xl-2 py-lg-2" style="margin-top: -7%">
-    <div class="container">
-        <div class="row about-bottom-w3l mt-6">
-            @foreach (var item in Model)
-            {
-                <div class="col-md-3 mt-3 mb-3">
-                    <div class="wavecard">
-                        <a href="@Url.Action("DetailsCategory", "Home", new { categoryid = item.Category_ID})"><img class="wavecard-image" src="~/Content/Image/@item.Category_Img" alt="@item.Category_Name" /></a>
-                        <div class="wavecard-body" style="margin-top: -5%"><a href="@Url.Action("DetailsCategory", "Home", new { categoryid = item.Category_ID})" class="chuyen">@item.Category_Name</a></div>
-                    </div>
+<div class="container py-xl-2 py-lg-2">
+    <div class="row about-bottom-w3l">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-3 mb-3">
+                <div class="wavecard">
+                    <a href="@Url.Action("DetailsCategory", "Home", new { categoryid = item.Category_ID})"><img class="wavecard-image" src="~/Content/Image/@item.Category_Img" alt="@item.Category_Name" /></a>
+                    <div class="wavecard-body" style="margin-top: -5%"><a href="@Url.Action("DetailsCategory", "Home", new { categoryid = item.Category_ID})" class="chuyen">@item.Category_Name</a></div>
                 </div>
-            }
-        </div>
+            </div>
+        }
     </div>
 </div>
 

@@ -1,5 +1,6 @@
 ﻿@using WebSelling.Models;
 @model List<Product>
+@Html.Action("Css", "Home")
 <style>
     .content {
         text-overflow: ellipsis;
@@ -9,31 +10,48 @@
         display: -webkit-box;
         font-weight: initial;
     }
-</style>
-<link href="~/Content/Layout/css/Newproduct.css" rel="stylesheet" />
-<div class="row w-100" style="margin-bottom: 3%; margin-left: -1%">
-    @foreach (var item in Model)
-    {
-        <div class="col-md-3">
-            <figure class="snip1246" style="border-radius: 10px">
-                <img src="~/Content/Image/@item.Product_Img" alt="sample88" />
-                <figcaption>
-                    <a href="@Url.Action("DetailsProduct", "Home", new { productid = item.Product_ID})"><h3>@item.Product_Name</h3></a>
-                    <p class="content">@Html.Raw(@item.Product_Description)</p>
-                    <div class="price">@{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</div>
-                    <a href="@Url.Action("DetailsProduct", "Home", new { productid = item.Product_ID})" class="add-to-cart">Xem Chi Tiết</a>
-                </figcaption>
-            </figure>
-        </div>
+    .chuyen{
+        color: black;
     }
-</div>
-<script>
-    $(".hover").mouseleave(
-        function () {
-            $(this).removeClass("hover");
+    .chuyen:hover{
+        color: #4A9F43 !important;
+    }
+</style>
+<div class="container py-xl-5 py-lg-3">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-3 mb-4">
+                <div class="ui special cards">
+                    <div class="card">
+                        <div class="blurring dimmable image">
+                            <div class="ui dimmer">
+                                <div class="content">
+                                    <div class="center">
+                                        <div class="ui inverted button">Xem Chi Tiết</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <img src="~/Content/Image/@item.Product_Img">
+                        </div>
+                        <div class="content">
+                            <a href="@Url.Action("DetailsProduct", "Home", new {productid = item.Product_ID})" class="header chuyen">@item.Product_Name</a>
+                            <div class="meta">
+                                Ngày Đăng: <span class="date">@item.Product_DateCreate.Value.Day/@item.Product_DateCreate.Value.Month/@item.Product_DateCreate.Value.Year</span>
+                            </div>
+                        </div>
+                        <div class="extra content">
+                            <a style="color: #a30606">
+                                <i class="dollar sign icon"></i>
+                                @{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
-    );
-</script>
+    </div>
+</div>
 
 
 

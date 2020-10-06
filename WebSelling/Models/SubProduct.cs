@@ -15,10 +15,9 @@ namespace WebSelling.Models
     public partial class SubProduct
     {
         public int SubProduct_ID { get; set; }
-        public Nullable<int> Product_ID { get; set; }
         public Nullable<int> SubCategory_ID { get; set; }
+        public string SubProduct_Name { get; set; }
     
-        public virtual Product Product { get; set; }
         public virtual SubCategory SubCategory { get; set; }
     }
 }

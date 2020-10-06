@@ -59,5 +59,9 @@ namespace WebSelling.Controllers
         {
             return PartialView(db.Products.Where(n => n.Product_Activate == true).OrderByDescending(n => n.Product_DateCreate).Take(15).ToList());
         }
+        public PartialViewResult Css()
+        {
+            return PartialView();
+        }
     }
 }
