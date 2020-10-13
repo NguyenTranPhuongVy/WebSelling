@@ -17,7 +17,7 @@ namespace WebSelling.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Comment()
         {
-            this.Replis = new HashSet<Repli>();
+            this.RepLis = new HashSet<RepLi>();
         }
     
         public int Comment_ID { get; set; }
@@ -30,6 +30,6 @@ namespace WebSelling.Models
         public virtual Product Product { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Repli> Replis { get; set; }
+        public virtual ICollection<RepLi> RepLis { get; set; }
     }
 }

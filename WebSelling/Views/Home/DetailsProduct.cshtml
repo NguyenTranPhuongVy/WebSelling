@@ -5,11 +5,17 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     User user = (User)Session["user"];
 }
+<style>
+    .font{
+        font-family: 'Segoe UI' !important;
+    }
+</style>
 @Html.Action("Menu", "Menu")
+@Html.Action("Css", "Home")
 <body style="background-color: #f1f1f1">
     <!--Details Product-->
     <div style="margin-bottom: 1%; margin-top: 1%">
-        <div class="container" style="background-color: #ffffff">
+        <div class="container font" style="background-color: #ffffff">
             <div class="row">
                 <div class="col-md-7">
                     <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style="border: 2px solid #ffffff">
@@ -42,29 +48,29 @@
                         </div>
                         <div class="col-md-6">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <a href="#" class="btn btn-outline-secondary btn-lg" style="border-radius: 60px; border-color: #c90927; height: 35px; width: 80%; padding: 5px 10px 0; font-size: 16px; text-transform: none !important; color: #c90927"><i class="fa fa-heart-o" style="color: #c90927"> Lưu Tin</i></a>
+                                <div class="col-md-5">
+                                    <a href="#" class="ui negative basic button" style="border-radius: 80px; width: 110%"><i class="fa fa-heart-o" style="color: #c90927"> Lưu Tin</i></a>
                                 </div>
-                                <div class="col-md-6" style="margin-left: -5%">
-                                    <a href="#" class="btn btn-outline-secondary btn-lg" style="border-radius: 60px; border-color: #c90927; height: 35px; width: 115%; padding: 5px 10px 0; font-size: 16px; text-transform: none !important; color: #c90927; margin-left: -5%"><i class="fa fa-shopping-cart" style="color: #c90927"> Thêm giỏ hàng</i></a>
+                                <div class="col-md-7">
+                                    <a href="#" class="ui negative basic button" style="border-radius: 80px"> <i class="fa fa-cart-plus"> Thêm Vào Giỏ</i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <span><b style="color: black; font-size: 16px">Mô tả sản phẩm</b></span>
+                        <span><b style="color: black; font-size: 16px">Mô tả sản phẩm: </b></span>
                         <p>@Html.Raw(@Model.Product_Description)</p>
                     </div>
                     <div>
-                        <span><b style="color: black; font-size: 16px">Chi tiết sản phẩm</b></span>
+                        <span><b style="color: black; font-size: 16px">Chi tiết sản phẩm: </b></span>
                         <p>@Html.Raw(@Model.Product_Detail)</p>
                     </div>
                     <div>
-                        <span><b style="color: black; font-size: 15px">Số điện thoại liên hệ: </b></span> <span style="color: #c90927">@Model.User.User_Phone</span>
+                        <span><b style="color: black; font-size: 15px">Số điện thoại liên hệ: </b></span> <a href="tel: @Model.User.User_Phone" style="color: #c90927">@Model.User.User_Phone</a>
                     </div>
                     <div style="margin-bottom: 3%">
                         <span><i class="fa fa-map-marker"></i> <b style="color: black; font-size: 16px">Khu vực</b></span>
-                        <p>@Model.User.User_City, @Model.User.User_Province</p>
+                        <p>@Model.User.Province.Province_Name, @Model.User.Province.City.City_Name</p>
                     </div>
                 </div>
                 <div class="col-md-5" style="margin-top: 2%">
@@ -77,7 +83,7 @@
                         <div class="col-md-6" style="margin-top: 1%">
                             <span><b style="color: black; font-size: 16px">@Model.User.User_LastName @Model.User.User_Name</b></span>
                         </div>
-                        <div class="col-md-4" style="margin-left: -7%">
+                        <div class="col-md-4" style="margin-left: -5%">
                             @if (user != null && user.User_ID == Model.User_ID)
                             {
                                 <a href="@Url.Action("MyInforUser", "Information")" class="btn btn-outline-secondary btn-lg" style="border-radius: 60px; border-color: #05b993; height: 35px; padding: 5px 10px 0; font-size: 16px; text-transform: none !important; color: #000000; background-color: #05b993"><i class="fa fa-star-o"> Xem cửa hàng</i></a>

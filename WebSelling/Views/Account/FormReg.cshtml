@@ -2,6 +2,7 @@
 @model User
 @{ 
     User user = (User)Session["user"];
+    WebSellingEntities db = new WebSellingEntities();
 }
 <!doctype html>
 <html lang="en">
@@ -195,13 +196,29 @@
                                             <div class="col-sm-5 col-sm-offset-1">
                                                 <div class="form-group">
                                                     <label>Thành Phố</label><br>
-                                                    <input type="text" name="User_City" placeholder="TP Hồ Chí Minh"/>
+                                                    @{
+                                                        List<City> cities = db.Cities.ToList();
+                                                    }
+                                                    <select name="City_ID" placeholder="TP Hồ Chí Minh" class="form-control">
+                                                        @foreach (var item in cities)
+                                                        {
+                                                            <option value="@item.City_ID"> @item.City_Name </option>
+                                                        }
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-sm-5">
                                                 <div class="form-group">
                                                     <label>Tỉnh Thành</label><br>
-                                                    <input type="text" name="User_Province" placeholder="Quận Bình Thạnh"/>
+                                                    @{ 
+                                                        List<Province> province = db.Provinces.ToList();
+                                                    }
+                                                    <select name="Province_ID" placeholder="TP Hồ Chí Minh" class="form-control">
+                                                        @foreach (var item in province)
+                                                        {
+                                                            <option value="@item.Province_ID"> @item.Province_Name </option>
+                                                        }
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>

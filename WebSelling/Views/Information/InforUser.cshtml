@@ -109,7 +109,7 @@
                         <i class="fa fa-location-arrow"> Địa chỉ: </i>
                     </div>
                     <div class="col-md-9" style="margin-left: -5%">
-                        <span style="font-size: 13px">@Model.User_Address @Model.User_Province @Model.User_City</span>
+                        <span style="font-size: 13px">@Model.User_Address @Model.Province.Province_Name @Model.City.City_Name</span>
                     </div>
                 </div>
                 <div class="row" style="margin-top: 3%">
@@ -154,22 +154,18 @@
                                         </h3>
                                         <div class="mb-1 text-muted small">Ngày Đăng: @item.Product_DateCreate.Value.Day/@item.Product_DateCreate.Value.Month/@item.Product_DateCreate.Value.Year</div>
                                         <p class="card-text mb-auto content">@Html.Raw(item.Product_Description)</p>
-                                        <a class="btn btn-outline-success btn-sm" href="http://www.jquery2dotnet.com/">Chỉnh Sửa Sản Phẩm</a>
+                                        <a class="btn btn-outline-success btn-sm" href="#">Chỉnh Sửa Sản Phẩm</a>
                                     </div>
                                     <img class="card-img-right flex-auto d-none d-lg-block" src="~/Content/Image/@item.Product_Img" style="width: 200px; height: 200px;">
                                 </div>
                             </div>
                         }
                     </div>
-                    <center>
-                        <a class="btn btn-outline-success btn-lg btn-block" style="height: 50px; width: 50%">Đăng Tin</a>
-                    </center>
                 }
                 else
                 {
                     <center>
                         <div class="alert alert-warning" style="height: 70px; width: 50%; background-color: #db972b">Bạn chưa có tin đăng cá nhân nào đang bán, thử đăng bán ngay.</div>
-                        <a class="btn btn-outline-dark btn-lg btn-block" style="height: 50px; width: 50%">Đăng Tin</a>
                     </center>
                 }
             </div>

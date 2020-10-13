@@ -12,20 +12,21 @@ namespace WebSelling.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SubProduct
+    public partial class City
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SubProduct()
+        public City()
         {
-            this.Products = new HashSet<Product>();
+            this.Provinces = new HashSet<Province>();
+            this.Users = new HashSet<User>();
         }
     
-        public int SubProduct_ID { get; set; }
-        public Nullable<int> SubCategory_ID { get; set; }
-        public string SubProduct_Name { get; set; }
+        public int City_ID { get; set; }
+        public string City_Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Products { get; set; }
-        public virtual SubCategory SubCategory { get; set; }
+        public virtual ICollection<Province> Provinces { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User> Users { get; set; }
     }
 }

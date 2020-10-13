@@ -85,7 +85,7 @@ namespace WebSelling.Controllers
             return PartialView();
         }
         [HttpPost]
-        public ActionResult FormReg(FormCollection f, DateTime User_DateBirth, String User_Sex)
+        public ActionResult FormReg(FormCollection f, DateTime User_DateBirth, String User_Sex, String Province_ID, String City_ID)
         {
             User user = (User)Session["user"];
             User usernew = db.Users.SingleOrDefault(n => n.User_ID == user.User_ID);
@@ -95,8 +95,8 @@ namespace WebSelling.Controllers
             String sFace = f["User_LinkF"].ToString();
             String sAdd = f["User_Address"].ToString();
             String sImg = f["User_Img"].ToString();
-            String sProvince = f["User_Province"].ToString();
-            String sCity = f["User_City"].ToString();
+            String sProvince = f["Province_ID"].ToString();
+            String sCity = f["City_ID"].ToString();
             String sSex = f["User_Sex"].ToString();
             db.Users.Find(user.User_ID).User_Name = sName;
             db.Users.Find(user.User_ID).User_LastName = sLName;
@@ -106,8 +106,8 @@ namespace WebSelling.Controllers
             db.Users.Find(user.User_ID).User_DateBirth = User_DateBirth;
             db.Users.Find(user.User_ID).User_DateLogin = DateTime.Now;
             db.Users.Find(user.User_ID).User_Img = sImg;
-            db.Users.Find(user.User_ID).User_City = sCity;
-            db.Users.Find(user.User_ID).User_Province = sProvince;
+            db.Users.Find(user.User_ID).City_ID = Int32.Parse(sCity.ToString());
+            db.Users.Find(user.User_ID).Province_ID = Int32.Parse(sProvince.ToString());
             db.Users.Find(user.User_ID).User_Sex = Int32.Parse(sSex.ToString());
             Session["user"] = usernew;
             db.SaveChanges();

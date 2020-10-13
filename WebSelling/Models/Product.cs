@@ -41,6 +41,7 @@ namespace WebSelling.Models
         public Nullable<int> User_ID { get; set; }
         public Nullable<int> SubCategory_ID { get; set; }
         public Nullable<int> Category_ID { get; set; }
+        public Nullable<int> SubProduct_ID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Carts { get; set; }
@@ -48,6 +49,7 @@ namespace WebSelling.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual SubCategory SubCategory { get; set; }
+        public virtual SubProduct SubProduct { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<View> Views { get; set; }

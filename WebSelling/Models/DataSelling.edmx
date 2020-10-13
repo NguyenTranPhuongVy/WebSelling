@@ -42,6 +42,13 @@
           <Property Name="Category_DateEdit" Type="datetime" />
           <Property Name="Category_Activate" Type="bit" />
         </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="City_ID" />
+          </Key>
+          <Property Name="City_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City_Name" Type="nvarchar" MaxLength="200" />
+        </EntityType>
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="Comment_ID" />
@@ -76,8 +83,17 @@
           <Property Name="User_ID" Type="int" />
           <Property Name="SubCategory_ID" Type="int" />
           <Property Name="Category_ID" Type="int" />
+          <Property Name="SubProduct_ID" Type="int" />
         </EntityType>
-        <EntityType Name="Repli">
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="Province_ID" />
+          </Key>
+          <Property Name="Province_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Province_Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="City_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="RepLi">
           <Key>
             <PropertyRef Name="Repli_ID" />
           </Key>
@@ -137,10 +153,8 @@
           <Property Name="User_DateBirth" Type="date" />
           <Property Name="User_Sex" Type="int" />
           <Property Name="User_Address" Type="nvarchar" MaxLength="300" />
-          <Property Name="User_Province" Type="nvarchar" MaxLength="300" />
-          <Property Name="User_City" Type="nvarchar" MaxLength="300" />
-          <Property Name="User_Follow" Type="int" />
-          <Property Name="User_Follower" Type="int" />
+          <Property Name="Province_ID" Type="int" />
+          <Property Name="City_ID" Type="int" />
         </EntityType>
         <EntityType Name="Views">
           <Key>
@@ -223,6 +237,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Product_SubProduct">
+          <End Role="SubProduct" Type="Self.SubProduct" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubProduct">
+              <PropertyRef Name="SubProduct_ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="SubProduct_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Product_User">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
@@ -235,26 +261,38 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Repli_Comment">
+        <Association Name="FK_Province_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Province" Type="Self.Province" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="City_ID" />
+            </Principal>
+            <Dependent Role="Province">
+              <PropertyRef Name="City_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RepLi_Comment">
           <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
-          <End Role="Repli" Type="Self.Repli" Multiplicity="*" />
+          <End Role="RepLi" Type="Self.RepLi" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Comment">
               <PropertyRef Name="Comment_ID" />
             </Principal>
-            <Dependent Role="Repli">
+            <Dependent Role="RepLi">
               <PropertyRef Name="Comment_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Repli_User">
+        <Association Name="FK_RepLi_User">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Repli" Type="Self.Repli" Multiplicity="*" />
+          <End Role="RepLi" Type="Self.RepLi" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="User_ID" />
             </Principal>
-            <Dependent Role="Repli">
+            <Dependent Role="RepLi">
               <PropertyRef Name="User_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -280,6 +318,30 @@
             </Principal>
             <Dependent Role="SubProduct">
               <PropertyRef Name="SubCategory_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="City_ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="City_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Province">
+          <End Role="Province" Type="Self.Province" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="Province_ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Province_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -311,9 +373,11 @@
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Repli" EntityType="Self.Repli" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RepLi" EntityType="Self.RepLi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubProduct" EntityType="Self.SubProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -343,17 +407,25 @@
             <End Role="SubCategory" EntitySet="SubCategory" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
+          <AssociationSet Name="FK_Product_SubProduct" Association="Self.FK_Product_SubProduct">
+            <End Role="SubProduct" EntitySet="SubProduct" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
           <AssociationSet Name="FK_Product_User" Association="Self.FK_Product_User">
             <End Role="User" EntitySet="User" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK_Repli_Comment" Association="Self.FK_Repli_Comment">
-            <End Role="Comment" EntitySet="Comment" />
-            <End Role="Repli" EntitySet="Repli" />
+          <AssociationSet Name="FK_Province_City" Association="Self.FK_Province_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="Province" EntitySet="Province" />
           </AssociationSet>
-          <AssociationSet Name="FK_Repli_User" Association="Self.FK_Repli_User">
+          <AssociationSet Name="FK_RepLi_Comment" Association="Self.FK_RepLi_Comment">
+            <End Role="Comment" EntitySet="Comment" />
+            <End Role="RepLi" EntitySet="RepLi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RepLi_User" Association="Self.FK_RepLi_User">
             <End Role="User" EntitySet="User" />
-            <End Role="Repli" EntitySet="Repli" />
+            <End Role="RepLi" EntitySet="RepLi" />
           </AssociationSet>
           <AssociationSet Name="FK_SubCategory_Category" Association="Self.FK_SubCategory_Category">
             <End Role="Category" EntitySet="Category" />
@@ -362,6 +434,14 @@
           <AssociationSet Name="FK_SubProduct_SubCategory" Association="Self.FK_SubProduct_SubCategory">
             <End Role="SubCategory" EntitySet="SubCategory" />
             <End Role="SubProduct" EntitySet="SubProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_City" Association="Self.FK_User_City">
+            <End Role="City" EntitySet="City" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Province" Association="Self.FK_User_Province">
+            <End Role="Province" EntitySet="Province" />
+            <End Role="User" EntitySet="User" />
           </AssociationSet>
           <AssociationSet Name="FK_Views_Product" Association="Self.FK_Views_Product">
             <End Role="Product" EntitySet="Product" />
@@ -418,6 +498,15 @@
           <NavigationProperty Name="Products" Relationship="Self.FK_Product_Category" FromRole="Category" ToRole="Product" />
           <NavigationProperty Name="SubCategories" Relationship="Self.FK_SubCategory_Category" FromRole="Category" ToRole="SubCategory" />
         </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="City_ID" />
+          </Key>
+          <Property Name="City_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Provinces" Relationship="Self.FK_Province_City" FromRole="City" ToRole="Province" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_City" FromRole="City" ToRole="User" />
+        </EntityType>
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="Comment_ID" />
@@ -430,7 +519,7 @@
           <Property Name="Product_ID" Type="Int32" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Comment_Product" FromRole="Comment" ToRole="Product" />
           <NavigationProperty Name="User" Relationship="Self.FK_Comment_User" FromRole="Comment" ToRole="User" />
-          <NavigationProperty Name="Replis" Relationship="Self.FK_Repli_Comment" FromRole="Comment" ToRole="Repli" />
+          <NavigationProperty Name="RepLis" Relationship="Self.FK_RepLi_Comment" FromRole="Comment" ToRole="RepLi" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -455,14 +544,26 @@
           <Property Name="User_ID" Type="Int32" />
           <Property Name="SubCategory_ID" Type="Int32" />
           <Property Name="Category_ID" Type="Int32" />
+          <Property Name="SubProduct_ID" Type="Int32" />
           <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_Product" FromRole="Product" ToRole="Cart" />
           <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Product" FromRole="Product" ToRole="Comment" />
           <NavigationProperty Name="SubCategory" Relationship="Self.FK_Product_SubCategory" FromRole="Product" ToRole="SubCategory" />
+          <NavigationProperty Name="SubProduct" Relationship="Self.FK_Product_SubProduct" FromRole="Product" ToRole="SubProduct" />
           <NavigationProperty Name="User" Relationship="Self.FK_Product_User" FromRole="Product" ToRole="User" />
           <NavigationProperty Name="Views" Relationship="Self.FK_Views_Product" FromRole="Product" ToRole="Views" />
         </EntityType>
-        <EntityType Name="Repli">
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="Province_ID" />
+          </Key>
+          <Property Name="Province_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Province_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="City_ID" Type="Int32" />
+          <NavigationProperty Name="City" Relationship="Self.FK_Province_City" FromRole="Province" ToRole="City" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_Province" FromRole="Province" ToRole="User" />
+        </EntityType>
+        <EntityType Name="RepLi">
           <Key>
             <PropertyRef Name="Repli_ID" />
           </Key>
@@ -471,8 +572,8 @@
           <Property Name="Repli_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Comment_ID" Type="Int32" />
           <Property Name="User_ID" Type="Int32" />
-          <NavigationProperty Name="Comment" Relationship="Self.FK_Repli_Comment" FromRole="Repli" ToRole="Comment" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Repli_User" FromRole="Repli" ToRole="User" />
+          <NavigationProperty Name="Comment" Relationship="Self.FK_RepLi_Comment" FromRole="RepLi" ToRole="Comment" />
+          <NavigationProperty Name="User" Relationship="Self.FK_RepLi_User" FromRole="RepLi" ToRole="User" />
         </EntityType>
         <EntityType Name="SubCategory">
           <Key>
@@ -496,6 +597,7 @@
           <Property Name="SubProduct_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SubCategory_ID" Type="Int32" />
           <Property Name="SubProduct_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="Self.FK_Product_SubProduct" FromRole="SubProduct" ToRole="Product" />
           <NavigationProperty Name="SubCategory" Relationship="Self.FK_SubProduct_SubCategory" FromRole="SubProduct" ToRole="SubCategory" />
         </EntityType>
         <EntityType Name="sysdiagram">
@@ -528,14 +630,14 @@
           <Property Name="User_DateBirth" Type="DateTime" Precision="0" />
           <Property Name="User_Sex" Type="Int32" />
           <Property Name="User_Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="User_Province" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="User_City" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="User_Follow" Type="Int32" />
-          <Property Name="User_Follower" Type="Int32" />
+          <Property Name="Province_ID" Type="Int32" />
+          <Property Name="City_ID" Type="Int32" />
           <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_User" FromRole="User" ToRole="Cart" />
+          <NavigationProperty Name="City" Relationship="Self.FK_User_City" FromRole="User" ToRole="City" />
           <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_User" FromRole="User" ToRole="Comment" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Product_User" FromRole="User" ToRole="Product" />
-          <NavigationProperty Name="Replis" Relationship="Self.FK_Repli_User" FromRole="User" ToRole="Repli" />
+          <NavigationProperty Name="Province" Relationship="Self.FK_User_Province" FromRole="User" ToRole="Province" />
+          <NavigationProperty Name="RepLis" Relationship="Self.FK_RepLi_User" FromRole="User" ToRole="RepLi" />
           <NavigationProperty Name="Views" Relationship="Self.FK_Views_User" FromRole="User" ToRole="Views" />
         </EntityType>
         <EntityType Name="View">
@@ -597,6 +699,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Province_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Province" Type="Self.Province" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="City_ID" />
+            </Principal>
+            <Dependent Role="Province">
+              <PropertyRef Name="City_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_City">
+          <End Role="City" Type="Self.City" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="City_ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="City_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Comment_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
           <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
@@ -621,14 +747,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Repli_Comment">
+        <Association Name="FK_RepLi_Comment">
           <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
-          <End Role="Repli" Type="Self.Repli" Multiplicity="*" />
+          <End Role="RepLi" Type="Self.RepLi" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Comment">
               <PropertyRef Name="Comment_ID" />
             </Principal>
-            <Dependent Role="Repli">
+            <Dependent Role="RepLi">
               <PropertyRef Name="Comment_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -642,6 +768,18 @@
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="SubCategory_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_SubProduct">
+          <End Role="SubProduct" Type="Self.SubProduct" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubProduct">
+              <PropertyRef Name="SubProduct_ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="SubProduct_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -669,14 +807,26 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Repli_User">
+        <Association Name="FK_User_Province">
+          <End Role="Province" Type="Self.Province" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="Province_ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Province_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RepLi_User">
           <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Repli" Type="Self.Repli" Multiplicity="*" />
+          <End Role="RepLi" Type="Self.RepLi" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="User_ID" />
             </Principal>
-            <Dependent Role="Repli">
+            <Dependent Role="RepLi">
               <PropertyRef Name="User_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -709,9 +859,11 @@
           <EntitySet Name="Admins" EntityType="Self.Admin" />
           <EntitySet Name="Carts" EntityType="Self.Cart" />
           <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
           <EntitySet Name="Comments" EntityType="Self.Comment" />
           <EntitySet Name="Products" EntityType="Self.Product" />
-          <EntitySet Name="Replis" EntityType="Self.Repli" />
+          <EntitySet Name="Provinces" EntityType="Self.Province" />
+          <EntitySet Name="RepLis" EntityType="Self.RepLi" />
           <EntitySet Name="SubCategories" EntityType="Self.SubCategory" />
           <EntitySet Name="SubProducts" EntityType="Self.SubProduct" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
@@ -733,6 +885,14 @@
             <End Role="Category" EntitySet="Categories" />
             <End Role="SubCategory" EntitySet="SubCategories" />
           </AssociationSet>
+          <AssociationSet Name="FK_Province_City" Association="Self.FK_Province_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Province" EntitySet="Provinces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_City" Association="Self.FK_User_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
           <AssociationSet Name="FK_Comment_Product" Association="Self.FK_Comment_Product">
             <End Role="Product" EntitySet="Products" />
             <End Role="Comment" EntitySet="Comments" />
@@ -741,12 +901,16 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Comment" EntitySet="Comments" />
           </AssociationSet>
-          <AssociationSet Name="FK_Repli_Comment" Association="Self.FK_Repli_Comment">
+          <AssociationSet Name="FK_RepLi_Comment" Association="Self.FK_RepLi_Comment">
             <End Role="Comment" EntitySet="Comments" />
-            <End Role="Repli" EntitySet="Replis" />
+            <End Role="RepLi" EntitySet="RepLis" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_SubCategory" Association="Self.FK_Product_SubCategory">
             <End Role="SubCategory" EntitySet="SubCategories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_SubProduct" Association="Self.FK_Product_SubProduct">
+            <End Role="SubProduct" EntitySet="SubProducts" />
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_User" Association="Self.FK_Product_User">
@@ -757,9 +921,13 @@
             <End Role="Product" EntitySet="Products" />
             <End Role="Views" EntitySet="Views" />
           </AssociationSet>
-          <AssociationSet Name="FK_Repli_User" Association="Self.FK_Repli_User">
+          <AssociationSet Name="FK_User_Province" Association="Self.FK_User_Province">
+            <End Role="Province" EntitySet="Provinces" />
             <End Role="User" EntitySet="Users" />
-            <End Role="Repli" EntitySet="Replis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RepLi_User" Association="Self.FK_RepLi_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="RepLi" EntitySet="RepLis" />
           </AssociationSet>
           <AssociationSet Name="FK_SubProduct_SubCategory" Association="Self.FK_SubProduct_SubCategory">
             <End Role="SubCategory" EntitySet="SubCategories" />
@@ -816,6 +984,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="WebSellingModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+                <ScalarProperty Name="City_Name" ColumnName="City_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Comments">
             <EntityTypeMapping TypeName="WebSellingModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
@@ -850,12 +1026,22 @@
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="SubCategory_ID" ColumnName="SubCategory_ID" />
                 <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+                <ScalarProperty Name="SubProduct_ID" ColumnName="SubProduct_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Replis">
-            <EntityTypeMapping TypeName="WebSellingModel.Repli">
-              <MappingFragment StoreEntitySet="Repli">
+          <EntitySetMapping Name="Provinces">
+            <EntityTypeMapping TypeName="WebSellingModel.Province">
+              <MappingFragment StoreEntitySet="Province">
+                <ScalarProperty Name="Province_ID" ColumnName="Province_ID" />
+                <ScalarProperty Name="Province_Name" ColumnName="Province_Name" />
+                <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RepLis">
+            <EntityTypeMapping TypeName="WebSellingModel.RepLi">
+              <MappingFragment StoreEntitySet="RepLi">
                 <ScalarProperty Name="Repli_ID" ColumnName="Repli_ID" />
                 <ScalarProperty Name="Repli_DateCreate" ColumnName="Repli_DateCreate" />
                 <ScalarProperty Name="Repli_Content" ColumnName="Repli_Content" />
@@ -916,10 +1102,8 @@
                 <ScalarProperty Name="User_DateBirth" ColumnName="User_DateBirth" />
                 <ScalarProperty Name="User_Sex" ColumnName="User_Sex" />
                 <ScalarProperty Name="User_Address" ColumnName="User_Address" />
-                <ScalarProperty Name="User_Province" ColumnName="User_Province" />
-                <ScalarProperty Name="User_City" ColumnName="User_City" />
-                <ScalarProperty Name="User_Follow" ColumnName="User_Follow" />
-                <ScalarProperty Name="User_Follower" ColumnName="User_Follower" />
+                <ScalarProperty Name="Province_ID" ColumnName="Province_ID" />
+                <ScalarProperty Name="City_ID" ColumnName="City_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

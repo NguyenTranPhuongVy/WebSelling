@@ -12,7 +12,7 @@ namespace WebSelling.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Repli
+    public partial class RepLi
     {
         public int Repli_ID { get; set; }
         public Nullable<System.DateTime> Repli_DateCreate { get; set; }

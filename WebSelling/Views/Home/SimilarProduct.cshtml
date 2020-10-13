@@ -13,21 +13,22 @@
 <link href="~/Content/Layout/css/product.css" rel="stylesheet" />
 <div style="background-color: #ffffff">
     <h3 style="font-weight: 600; font-family: 'Segoe UI'; margin-left: 2%; font-size: 30px">Có Thể Bạn Cần</h3>
-    <div class="row" style="margin-left: 3%">
-        @foreach (var item in Model)
-        {
-
-            <div class="col-md-2" style="margin-left: 2%">
-                <figure class="snip1543">
-                    <img src="~/Content/Image/@item.Product_Img" alt="@item.Product_Name" />
-                    <figcaption>
-                        <h6 style="color: black">@item.Product_Name</h6>
-                        <p class="content" style="color: black">@Html.Raw(@item.Product_Description)</p>
-                    </figcaption>
-                    <a href="@Url.Action("DetailsProduct", "Home", new { productid = item.Product_ID})"></a>
-                </figure>
-            </div>
-        }
+    <div class="container" style="max-width: 1300px">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3">
+                    <figure class="snip1543">
+                        <img src="~/Content/Image/@item.Product_Img" alt="@item.Product_Name" />
+                        <figcaption>
+                            <h6 style="color: black">@item.Product_Name</h6>
+                            <p class="content" style="color: black">@Html.Raw(@item.Product_Description)</p>
+                        </figcaption>
+                        <a href="@Url.Action("DetailsProduct", "Home", new { productid = item.Product_ID})"></a>
+                    </figure>
+                </div>
+            }
+        </div>
     </div>
 </div>
 <script>

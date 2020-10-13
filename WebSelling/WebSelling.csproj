@@ -158,52 +158,58 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Admin.cs">
-      <DependentUpon>WebSellingData.tt</DependentUpon>
+      <DependentUpon>DataSelling.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart.cs">
-      <DependentUpon>WebSellingData.tt</DependentUpon>
+      <DependentUpon>DataSelling.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Category.cs">
-      <DependentUpon>WebSellingData.tt</DependentUpon>
+      <DependentUpon>DataSelling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\City.cs">
+      <DependentUpon>DataSelling.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Comment.cs">
-      <DependentUpon>WebSellingData.tt</DependentUpon>
+      <DependentUpon>DataSelling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataSelling.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSelling.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataSelling.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSelling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DataSelling.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSelling.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Product.cs">
-      <DependentUpon>WebSellingData.tt</DependentUpon>
+      <DependentUpon>DataSelling.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Repli.cs">
-      <DependentUpon>WebSellingData.tt</DependentUpon>
+    <Compile Include="Models\Province.cs">
+      <DependentUpon>DataSelling.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RepLi.cs">
+      <DependentUpon>DataSelling.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SubCategory.cs">
-      <DependentUpon>WebSellingData.tt</DependentUpon>
+      <DependentUpon>DataSelling.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SubProduct.cs">
-      <DependentUpon>WebSellingData.tt</DependentUpon>
+      <DependentUpon>DataSelling.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>WebSellingData.tt</DependentUpon>
+      <DependentUpon>DataSelling.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
-      <DependentUpon>WebSellingData.tt</DependentUpon>
+      <DependentUpon>DataSelling.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\View.cs">
-      <DependentUpon>WebSellingData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\WebSellingData.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WebSellingData.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\WebSellingData.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WebSellingData.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\WebSellingData.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WebSellingData.edmx</DependentUpon>
+      <DependentUpon>DataSelling.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -671,15 +677,15 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\WebSellingData.Context.tt">
+    <Content Include="Models\DataSelling.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>WebSellingData.edmx</DependentUpon>
-      <LastGenOutput>WebSellingData.Context.cs</LastGenOutput>
+      <DependentUpon>DataSelling.edmx</DependentUpon>
+      <LastGenOutput>DataSelling.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\WebSellingData.tt">
+    <Content Include="Models\DataSelling.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>WebSellingData.edmx</DependentUpon>
-      <LastGenOutput>WebSellingData.cs</LastGenOutput>
+      <DependentUpon>DataSelling.edmx</DependentUpon>
+      <LastGenOutput>DataSelling.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
@@ -846,12 +852,12 @@
     <Content Include="Content\Semantic-UI-CSS-master\themes\default\assets\fonts\outline-icons.ttf" />
     <Content Include="Content\Semantic-UI-CSS-master\themes\default\assets\fonts\outline-icons.woff" />
     <Content Include="Content\Semantic-UI-CSS-master\themes\default\assets\fonts\outline-icons.woff2" />
-    <EntityDeploy Include="Models\WebSellingData.edmx">
+    <EntityDeploy Include="Models\DataSelling.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>WebSellingData.Designer.cs</LastGenOutput>
+      <LastGenOutput>DataSelling.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\WebSellingData.edmx.diagram">
-      <DependentUpon>WebSellingData.edmx</DependentUpon>
+    <Content Include="Models\DataSelling.edmx.diagram">
+      <DependentUpon>DataSelling.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
