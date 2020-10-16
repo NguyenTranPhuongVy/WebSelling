@@ -77,25 +77,31 @@
 <div class="modal fade" id="category" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">  
-                <h5 class="modal-title" id="exampleModalLabel">Chọn Danh Mục</h5>
-                <a data-dismiss="modal" aria-label="Close">
-                    <i class="times icon" aria-hidden="true"></i>
-                </a>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                        <ul style="list-style: none; box-sizing: border-box;">
-                            @foreach (var item in category)
-                            {
-                                <li>
-                                    <a class="chuyen">@item.Category_Name</a>
-                                </li>
-                            }
-                        </ul>
-                    </div>
+            <div class="modal-header">
+                <div class="col-md-4" style="cursor: pointer">
+                    <i class="arrow left icon"></i>
                 </div>
+                <div class="col-md-4">
+                    <h5 class="modal-title text-center" id="exampleModalLabel">Chọn Danh Mục</h5>
+                </div>
+                <div class="col-md-4 text-right" style="cursor: pointer">
+                    <a data-dismiss="modal" aria-label="Close">
+                        <i class="times icon" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ui middle aligned divided list mt--1">
+                @foreach (var item in category)
+                {
+                    <div class="item ui inverted green basic button" style="width: 100%; height: 50px; padding: 17px 8px">
+                        <div class="right floated content">
+                            <i class="chevron right icon"></i>
+                        </div>
+                        <div class="content" style="text-align: left">
+                            <a href="#" style="color: black">@item.Category_Name</a>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -106,27 +112,33 @@
     List<City> cities = db.Cities.ToList();
 }
 <div class="modal fade" id="province" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
-    <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Chọn Danh Mục</h5>
-                <a data-dismiss="modal" aria-label="Close">
-                    <i class="times icon" aria-hidden="true"></i>
-                </a>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    @foreach (var item in cities)
-                    {
-                        <div class="col-md-2 mb-3">
-                            <table>
-                                <tr>
-                                    <td><a href="#" class="chuyen">@item.City_Name</a></td>
-                                </tr>
-                            </table>
-                        </div>
-                    }
+                <div class="col-md-4" style="cursor: pointer">
+                    <i class="arrow left icon"></i>
                 </div>
+                <div class="col-md-4">
+                    <h5 class="modal-title text-center" id="exampleModalLabel">Chọn Khu Vực</h5>
+                </div>
+                <div class="col-md-4 text-right">
+                    <a data-dismiss="modal" aria-label="Close" style="cursor: pointer">
+                        <i class="times icon" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="ui middle aligned divided list mt--1">
+                @foreach (var item in cities)
+                {
+                    <div class="item ui inverted green basic button" style="width: 100%; height: 50px; padding: 17px 8px">
+                        <div class="right floated content">
+                            <i class="chevron right icon"></i>
+                        </div>
+                        <div class="content" style="text-align: left">
+                            <a href="#" style="color: black">@item.City_Name</a>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
