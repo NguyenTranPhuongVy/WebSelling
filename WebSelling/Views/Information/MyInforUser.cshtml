@@ -66,8 +66,9 @@
     }
 </style>
 @Html.Action("Css", "Home")
-<link href="~/Content/Layout/css/InforUser.css" rel="stylesheet" />
 @Html.Action("Menu", "Menu")
+<script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
+<link href="~/Content/Layout/css/InforUser.css" rel="stylesheet" />
 <body style="background-color: #f1f1f1">
     <div class="container">
         <div class="row mt--7 mb-3">
@@ -156,16 +157,18 @@
                         {
                             <div class="item">
                                 <div class="ui small image">
-                                    <img src="~/Content/Image/@item.Product_Img" style="width: 100%; height: 100%">
+                                    <img class="ui medium rounded image" src="~/Content/Image/@item.Product_Img" style="width: 100%; height: 180px">
                                 </div>
                                 <div class="content">
-                                    <div class="header">@item.Product_Name</div>
+                                    <div class="header"><a href="@Url.Action("DetailsProduct", "Home", new { productid = item.Product_ID })">@item.Product_Name</a></div>
                                     <div class="meta">
-                                        <span class="price">@{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</span>
+                                        <span class="price" style="color: #bd081c"> @{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</span>
                                         <span class="stay">Ngày Đăng: @item.Product_DateCreate.Value.Day/@item.Product_DateCreate.Value.Month/@item.Product_DateCreate.Value.Year</span>
                                     </div>
-                                    <div class="description">
-                                        <p class="content">@Html.Raw(item.Product_Description)</p>
+                                    <div class="description content">
+                                        <div>
+                                            @Html.Raw(item.Product_Description)
+                                        </div>
                                     </div>
                                     <div class="extra">
                                         <div class="ui right floated blue button">
@@ -202,7 +205,8 @@
                     </a>
                 </div>
                 <div class="modal-body">
-                    <form class="ui form">
+                    @using (Html.BeginForm("CreateProductUser", "Information", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "ui form" }))
+                    {
                         <div class="two fields">
                             <div class="field">
                                 <label>Tên Sản Phẩm</label>
@@ -215,41 +219,124 @@
                         </div>
                         <div class="field">
                             <label>Hình Ảnh Sản Phẩm</label>
-                            <input name="Product_Img" type="file">
+                            <input name="fileupload" type="file">
                         </div>
                         <div class="field">
                             <label>Danh Mục</label>
-                            @Html.DropDownList("Category_ID", null, htmlAttributes: new { @class = "ui dropdown" })
+                            @{
+                                List<Category> cate = db.Categories.ToList();
+                            }
+                            <select class="ui dropdown" name="Category_ID">
+                                @foreach (var item in cate)
+                                {
+                                    <option value="@item.Category_ID">@item.Category_Name</option>
+                                }
+                            </select>
                         </div>
                         <div class="two fields">
                             <div class="field">
                                 <label>Phân Loại Danh Mục</label>
-                                @Html.DropDownList("SubCategory_ID", null, htmlAttributes: new { @class = "ui dropdown" })
+                                @{
+                                    List<SubCategory> subCate = db.SubCategories.ToList();
+                                }
+                                <select class="ui dropdown" name="SubCategory_ID">
+                                    @foreach (var item in subCate)
+                                    {
+                                        <option value="@item.SubCategory_ID">@item.SubCategory_Name</option>
+                                    }
+                                </select>
                             </div>
                             <div class="field">
                                 <label>Phân Loại Sản Phẩm</label>
-                                @Html.DropDownList("SubProduct_ID", null, htmlAttributes: new { @class = "ui dropdown" })
+                                @{
+                                    List<SubProduct> subPro = db.SubProducts.ToList();
+                                }
+                                <select class="ui dropdown" name="SubProduct_ID">
+                                    @foreach (var item in subPro)
+                                    {
+                                        <option value="@item.SubProduct_ID">@item.SubProduct_Name</option>
+                                    }
+                                </select>
                             </div>
                         </div>
                         <div class="field">
                             <label>Mô Tả Sản Phẩm</label>
-                            <textarea></textarea>
+                            <textarea id="detailsdec" name="Product_Description"></textarea>
+                            <script>
+                                ClassicEditor
+                                    .create(document.querySelector('#detailsdec'))
+                                    .catch(error => {
+                                        console.error(error);
+                                    });
+                            </script>
                         </div>
                         <div class="field">
                             <label>Chi Tiết Sản Phẩm</label>
-                            <textarea></textarea>
+                            <textarea id="detailspro" name="Product_Detail"></textarea>
+                            <script>
+                                ClassicEditor
+                                    .create(document.querySelector('#detailspro'))
+                                    .catch(error => {
+                                        console.error(error);
+                                    });
+                            </script>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" class="btn btn-primary">Đăng Tin</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                         </div>
                         <div class="ui error message"></div>
-                    </form>
+                    }
                 </div>
             </div>
         </div>
     </div>
     <!--//Modal CreateProduct-->
+    <div class="copy-bottom bg-li py-4 border-top mt--5">
+        <div class="container-fluid">
+            <div class="d-md-flex px-md-3 position-relative text-center">
+                <!-- footer social icons -->
+                <div class="social-icons-footer mb-md-0 mb-3">
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#">
+                                <span class="fa fa-facebook"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa fa-twitter"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa fa-google-plus"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa fa-instagram"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- //footer social icons -->
+                <!-- copyright -->
+                <div class="copy_right mx-md-auto mb-md-0 mb-3">
+                    <p class="text-bl let">
+                        © 2019 Startup. All rights reserved | Design by
+                        <a href="http://w3layouts.com/" target="_blank">W3layouts</a>
+                    </p>
+                </div>
+                <!-- //copyright -->
+                <!-- move top icon -->
+                <a href="#home" class="move-top text-center">
+                    <span class="fa fa-level-up" aria-hidden="true"></span>
+                </a>
+                <!-- //move top icon -->
+            </div>
+        </div>
+    </div>
     <!--Script form create-->
     <script>
         $('.ui.form')
