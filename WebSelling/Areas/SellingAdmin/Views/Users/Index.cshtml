@@ -1,0 +1,200 @@
+﻿@using WebSelling.Models;
+@model IEnumerable<WebSelling.Models.User>
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Areas/SellingAdmin/Views/Shared/_ViewAdmin.cshtml";
+    WebSellingEntities db = new WebSellingEntities();
+}
+@Html.Action("CssAdmin", "HomeAdmin")
+<style>
+    .chuyen a {
+        color: black;
+    }
+
+        .chuyen a:hover {
+            color: #54a812;
+        }
+</style>
+<h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #0b4005; text-align: center">Quản Lý Tài Khoản Thành Viên</h2>
+<table class="ui compact celled definition table">
+    <thead class="full-width" style="font-size: 15px; font-family: 'Segoe UI'; text-align: center">
+        <tr>
+            <th>Trạng Thái</th>
+            <th>Họ Và Tên</th>
+            <th>Hình Đại Diện</th>
+            <th>Email Và Tài Khoản Mạng Xã Hội</th>
+            <th>Mật Khẩu</th>
+            <th>Ngày Sinh</th>
+            <th>Địa Chỉ</th>
+            <th>Ngày Tạo</th>
+            <th>Ngày Đăng Nhập</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="collapsing custom-toggle">
+                    @if (item.User_Activate.Value == true)
+                    {
+                        <input type="checkbox" checked="checked" disabled>
+                        <span class="custom-toggle-slider rounded-circle"></span>
+                    }
+                </td>
+                <td>@item.User_LastName @item.User_Name</td>
+                <td>
+                    <img src="~/Content/Image/@item.User_Img" style="width: 100px; height: 100px" />
+                </td>
+                <td class="chuyen">
+                    <a href="mailto:@item.User_Email" style="text-decoration-line: underline">@item.User_Email</a>
+                    <a href="@item.User_LinkF" style="text-decoration-line: underline">@item.User_LinkF</a>
+                </td>
+                <td>@item.User_Pass</td>
+                <td>@item.User_DateBirth.Value.ToShortDateString()</td>
+                <td>@item.User_Address @item.Province.Province_Name @item.City.City_Name</td>
+                <td>@item.User_DateCreate.Value.ToShortDateString()</td>
+                <td>@item.User_DateLogin.Value.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot class="full-width">
+        <tr>
+            <th colspan="10">
+                <div class="ui right floated small primary labeled icon button">
+                    <i class="user icon"></i> Add User
+                </div>
+            </th>
+        </tr>
+    </tfoot>
+</table>
+@{
+    List<Admin> admin = db.Admins.ToList();
+}
+<h2 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #0b4005; text-align: center">Quản Lý Tài Khoản Admin</h2>
+<table class="ui compact celled definition table">
+    <thead class="full-width" style="font-size: 15px; font-family: 'Segoe UI'; text-align: center">
+        <tr>
+            <th>Trạng Thái</th>
+            <th>Họ Tên</th>
+            <th>Mật Khẩu 1</th>
+            <th>Mật Khẩu 2</th>
+            <th>Email</th>
+            <th>Ngày Tạo</th>
+            <th>Ngày Đăng Nhập</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in admin)
+        {
+            <tr>
+                <td class="collapsing custom-toggle">
+                    @if (item.Admin_Activate.Value == true)
+                    {
+                        <input type="checkbox" checked="checked" disabled>
+                        <span class="custom-toggle-slider rounded-circle"></span>
+                    }
+                </td>
+                <td>@item.Admin_Name</td>
+                <td>@item.Admin_Pass</td>
+                <td>@item.Admin_Pass2</td>
+                <td>@item.Admin_Email</td>
+                <td>@item.Admin_DateCreate.Value.ToShortDateString()</td>
+                <td>@item.Admin_DateLogin.Value.ToShortDateString()</td>
+            </tr>
+        }
+    </tbody>
+    <tfoot class="full-width">
+        <tr>
+            <th colspan="7">
+                <div class="ui right floated small primary labeled icon button" data-toggle="modal" data-target="#createAdmin">
+                    <i class="user icon"></i>Thêm Admin
+                </div>
+            </th>
+        </tr>
+    </tfoot>
+</table>
+<!-- Modal -->
+<div class="modal fade" id="createAdmin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+    <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Thêm Admin</h5>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("CreateAdmin", "HomeAdmin", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "ui form" }))
+                {
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Họ Và Tên</label>
+                            <input placeholder="Nhập họ và tên" name="Admin_Name" type="text">
+                        </div>
+                        <div class="field">
+                            <label>Email</label>
+                            <input placeholder="Nhập email" name="Admin_Email" type="text">
+                        </div>
+                    </div>
+                    <div class="two fields">
+                        <div class="field">
+                            <label>Mật Khẩu 1</label>
+                            <input placeholder="Mật khẩu cấp 1" name="Admin_Pass" type="password">
+                        </div>
+                        <div class="field">
+                            <label>Mật Khẩu 2</label>
+                            <input placeholder="Mật khẩu cấp 2" type="password" name="Admin_Pass2">
+                        </div>
+                    </div>
+                    <div class="ui error message"></div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Thêm</button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!--//Modal-->
+<script>
+    $('.ui.form')
+        .form({
+            fields: {
+                Admin_Name: {
+                    identifier: 'Admin_Name',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Vui lòng nhập họ và tên'
+                        }
+                    ]
+                },
+                Admin_Email: {
+                    identifier: 'Admin_Email',
+                    rules: [
+                        {
+                            type: 'email',
+                            prompt: 'Vui lòng nhập đúng định dạng mail'
+                        }
+                    ]
+                },
+                Admin_Pass: {
+                    identifier: 'Admin_Pass',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Chưa nhập mật khẩu'
+                        }
+                    ]
+                },
+                Admin_Pass2: {
+                    identifier: 'Admin_Pass2',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Chưa nhập mật khẩu 2'
+                        }
+                    ]
+                },
+            }
+        })
+        ;
+</script>
