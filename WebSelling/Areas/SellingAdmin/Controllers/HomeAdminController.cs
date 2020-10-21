@@ -39,5 +39,20 @@ namespace WebSelling.Areas.SellingAdmin.Controllers
             db.SaveChanges();
             return Redirect(Request.UrlReferrer.ToString());
         }
+
+        [HttpPost]
+        public ActionResult EditAdmin(FormCollection f, int ? id)
+        {
+            String sAdminID = f["Admin_ID"].ToString();
+            String sName = f["Admin_Name"].ToString();
+            String sEmail = f["Admin_Email"].ToString();
+            String sPass2 = f["Admin_Pass2"].ToString();
+            id = Int32.Parse(sAdminID);
+            db.Admins.Find(id).Admin_Name = sName;
+            db.Admins.Find(id).Admin_Email = sEmail;
+            db.Admins.Find(id).Admin_Pass2 = sPass2;
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
+        }
     }
 }
