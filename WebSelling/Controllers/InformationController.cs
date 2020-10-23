@@ -26,7 +26,7 @@ namespace WebSelling.Controllers
             }
             return View();
         }
-        //Thêm sản phẩm
+        //Thêm sản phẩm người dùng
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult CreateProductUser([Bind(Include = "Product_ID,Product_Name,Product_Img,Product_DateSubmit,Product_Activate,Product_Price,Product_SalePrice,Product_Ship,Product_View,Product_Love,Product_Amount,Product_Description,Product_Detail,Product_Option,Product_DateCreate,Product_DateEdit,User_ID,SubCategory_ID,Category_ID,SubProduct_ID")] Product product, HttpPostedFileBase fileupload)
