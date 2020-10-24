@@ -1,24 +1,24 @@
 ﻿@using WebSelling.Models;
 @model List<SubCategory>
 <style>
-    .hover:hover{
+    .hover:hover {
         color: #277d32;
     }
-    .hover{
+
+    .hover {
         color: #000000;
     }
 </style>
-<div class="container py-xl-5 py-lg-3">
-    <div class="row" style="margin-left: -12%">
-        @foreach (var item in Model)
-        {
-            <div class="col-md-2">
-                <table>
-                    <tr>
-                        <td><a href="#" class="hover"><i class="fa fa-dot-circle"></i> @item.SubCategory_Name</a></td>
-                    </tr>
-                </table>
-            </div>
-        }
-    </div>
+<span style="margin-left: 1%; font-size: 30px; font-family: 'Segoe UI'!important; font-weight: bold">Xu Hướng Tìm Kiếm</span>
+<div class="row container-fluid ml-3 mt-3">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-2 ml--2">
+            <table>
+                <tr>
+                    <td><a href="#" class="hover"><i class="fa fa-dot-circle"></i> @item.SubCategory_Name</a></td>
+                </tr>
+            </table>
+        </div>
+    }
 </div>

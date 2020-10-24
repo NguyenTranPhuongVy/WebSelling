@@ -38,12 +38,12 @@
                 <td class="collapsing custom-toggle">
                     @if (item.User_Activate.Value == true)
                     {
-                        <input type="checkbox" checked="checked" disabled>
+                        <input type="checkbox" checked="checked">
                         <span class="custom-toggle-slider rounded-circle"></span>
                     }
                     else
                     {
-                        <input type="checkbox" checked="" disabled>
+                        <input type="checkbox" checked="">
                         <span class="custom-toggle-slider rounded-circle"></span>
                     }
                 </td>
@@ -109,12 +109,12 @@
                 <td class="collapsing custom-toggle">
                     @if (item.Admin_Activate.Value == true)
                     {
-                        <input type="checkbox" checked="checked" disabled>
+                        <input type="checkbox" checked="checked">
                         <span class="custom-toggle-slider rounded-circle"></span>
                     }
                     else
                     {
-                        <input type="checkbox" checked="" disabled>
+                        <input type="checkbox" checked="">
                         <span class="custom-toggle-slider rounded-circle"></span>
                     }
                 </td>
@@ -142,7 +142,7 @@
                         <div class="modal-header">
                             <h5 class="modal-title" id="exampleModalLabel">Sửa Thông Tin Admin</h5>
                         </div>
-                        <form class="ui form" method="post" action="@Url.Action("EditAdmin", "HomeAdmin")">
+                        <form class="ui form" method="post" action="@Url.Action("EditAdmin", "Select")">
                             <div class="modal-body ui form">
                                 <div class="field">
                                     <input value="@item.Admin_ID" type="hidden" name="Admin_ID">
@@ -159,7 +159,7 @@
                                 </div>
                                 <div class="field">
                                     <label>Mật Khẩu 2</label>
-                                    <input placeholder="@item.Admin_Pass2" value="Admin_Pass2" type="password" name="Admin_Pass2">
+                                    <input placeholder="@item.Admin_Pass2" value="@item.Admin_Pass2" type="password" name="Admin_Pass2">
                                 </div>
                                 <div class="ui error message"></div>
                                 <div class="modal-footer">
@@ -192,7 +192,7 @@
                 <h5 class="modal-title" id="exampleModalLabel">Thêm Admin</h5>
             </div>
             <div class="modal-body">
-                @using (Html.BeginForm("CreateAdmin", "HomeAdmin", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "ui form" }))
+                @using (Html.BeginForm("CreateAdmin", "Select", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "ui form" }))
                 {
                     <div class="two fields">
                         <div class="field">

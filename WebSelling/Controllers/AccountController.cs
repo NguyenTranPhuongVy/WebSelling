@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Security.Permissions;
 using System.Web;
@@ -85,8 +86,24 @@ namespace WebSelling.Controllers
             return PartialView();
         }
         [HttpPost]
-        public ActionResult FormReg(FormCollection f, DateTime User_DateBirth, String User_Sex, String Province_ID, String City_ID)
+        public ActionResult FormReg(FormCollection f, DateTime User_DateBirth, String User_Sex, String Province_ID, String City_ID, HttpPostedFileBase fileupload)
         {
+            //Tên hình ảnh
+            var fileimg = Path.GetFileName(fileupload.FileName);
+            //Đưa tên ảnh vào file
+            var pa = Path.Combine(Server.MapPath("~/Content/Image/"), fileimg);
+            if (fileupload == null)
+            {
+                ViewBag.ThongBao = "Ảnh Trống";
+            }
+            else if (System.IO.File.Exists(pa))
+            {
+                ViewBag.ThongBao = "Ảnh Trùng";
+            }
+            else
+            {
+                fileupload.SaveAs(pa);
+            }
             User user = (User)Session["user"];
             User usernew = db.Users.SingleOrDefault(n => n.User_ID == user.User_ID);
             String sName = f["User_Name"].ToString();
@@ -94,7 +111,6 @@ namespace WebSelling.Controllers
             String sPhone = f["User_Phone"].ToString();
             String sFace = f["User_LinkF"].ToString();
             String sAdd = f["User_Address"].ToString();
-            String sImg = f["User_Img"].ToString();
             String sProvince = f["Province_ID"].ToString();
             String sCity = f["City_ID"].ToString();
             String sSex = f["User_Sex"].ToString();
@@ -105,7 +121,7 @@ namespace WebSelling.Controllers
             db.Users.Find(user.User_ID).User_Address = sAdd;
             db.Users.Find(user.User_ID).User_DateBirth = User_DateBirth;
             db.Users.Find(user.User_ID).User_DateLogin = DateTime.Now;
-            db.Users.Find(user.User_ID).User_Img = sImg;
+            db.Users.Find(user.User_ID).User_Img = fileupload.FileName;
             db.Users.Find(user.User_ID).City_ID = Int32.Parse(sCity.ToString());
             db.Users.Find(user.User_ID).Province_ID = Int32.Parse(sProvince.ToString());
             db.Users.Find(user.User_ID).User_Sex = Int32.Parse(sSex.ToString());

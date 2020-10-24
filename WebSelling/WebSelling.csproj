@@ -150,9 +150,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Areas\SellingAdmin\Controllers\AdminsController.cs" />
     <Compile Include="Areas\SellingAdmin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\SellingAdmin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\SellingAdmin\Controllers\SelectController.cs" />
     <Compile Include="Areas\SellingAdmin\Controllers\UsersController.cs" />
     <Compile Include="Areas\SellingAdmin\SellingAdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -1042,13 +1042,12 @@
     <Content Include="Areas\SellingAdmin\Views\Users\Details.cshtml" />
     <Content Include="Areas\SellingAdmin\Views\Users\Edit.cshtml" />
     <Content Include="Areas\SellingAdmin\Views\Users\Index.cshtml" />
-    <Content Include="Areas\SellingAdmin\Views\Admins\Delete.cshtml" />
-    <Content Include="Areas\SellingAdmin\Views\Admins\Index.cshtml" />
     <Content Include="Areas\SellingAdmin\Views\Products\Create.cshtml" />
     <Content Include="Areas\SellingAdmin\Views\Products\Delete.cshtml" />
     <Content Include="Areas\SellingAdmin\Views\Products\Details.cshtml" />
     <Content Include="Areas\SellingAdmin\Views\Products\Edit.cshtml" />
     <Content Include="Areas\SellingAdmin\Views\Products\Index.cshtml" />
+    <Content Include="Areas\SellingAdmin\Views\Select\ViewProduct.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
