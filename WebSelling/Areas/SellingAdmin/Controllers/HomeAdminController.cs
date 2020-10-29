@@ -20,10 +20,5 @@ namespace WebSelling.Areas.SellingAdmin.Controllers
         {
             return PartialView();
         }
-
-        public ActionResult CreateAdmin()
-        {
-            return View();
-        }
     }
 }

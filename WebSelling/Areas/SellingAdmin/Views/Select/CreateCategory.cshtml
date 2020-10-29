@@ -1,0 +1,49 @@
+﻿@using WebSelling.Models;
+@model Category
+@{
+    ViewBag.Title = "CreateCategory";
+    Layout = "~/Areas/SellingAdmin/Views/Shared/_ViewAdmin.cshtml";
+}
+@Html.Action("CssAdmin", "HomeAdmin")
+<br />
+&nbsp; &nbsp; &nbsp;<a href="@Url.Action("Index", "Categories")" class="ui teal tag label">Trở Về</a>
+@using (Html.BeginForm("CreateCategory", "Select", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "ui form segment" }))
+{
+    <p>Thêm Danh Mục</p>
+    <div class="field">
+        <label>Tên Danh Mục</label>
+        <input placeholder="Nhập tên danh mục" name="Category_Name" type="text">
+    </div>
+    <div class="field">
+        <label>Hình Ảnh Danh Mục</label>
+        <input name="fileupload" type="file">
+    </div>
+    <button type="submit" class="ui primary submit button">Thêm Danh Mục</button>
+    <div class="ui error message"></div>
+}
+<script>
+    $('.ui.form')
+        .form({
+            fields: {
+                fileupload: {
+                    identifier: 'fileupload',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Vui lòng không để trống'
+                        }
+                    ]
+                },
+                Category_Name: {
+                    identifier: 'Category_Name',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Vui lòng không để trống'
+                        }
+                    ]
+                },
+            }
+        })
+        ;
+</script>

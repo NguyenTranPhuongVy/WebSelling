@@ -7,19 +7,17 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebSelling.Models;
-using EntityState = System.Data.EntityState;
 
 namespace WebSelling.Areas.SellingAdmin.Controllers
 {
-    public class UsersController : Controller
+    public class CategoriesController : Controller
     {
         private WebSellingEntities db = new WebSellingEntities();
 
-        // GET: SellingAdmin/Users
+        // GET: SellingAdmin/Categories
         public ActionResult Index()
         {
-            var users = db.Users.Include(u => u.City).Include(u => u.Province);
-            return View(users.ToList());
+            return View(db.Categories.ToList());
         }
 
         protected override void Dispose(bool disposing)

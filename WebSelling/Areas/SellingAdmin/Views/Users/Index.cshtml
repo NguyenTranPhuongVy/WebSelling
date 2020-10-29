@@ -114,7 +114,7 @@
                     }
                     else
                     {
-                        <input type="checkbox" checked="">
+                        <input type="checkbox">
                         <span class="custom-toggle-slider rounded-circle"></span>
                     }
                 </td>
@@ -157,9 +157,18 @@
                                         <input value="@item.Admin_Email" name="Admin_Email" type="text">
                                     </div>
                                 </div>
-                                <div class="field">
-                                    <label>Mật Khẩu 2</label>
-                                    <input placeholder="@item.Admin_Pass2" value="@item.Admin_Pass2" type="password" name="Admin_Pass2">
+                                <div class="two fields">
+                                    <div class="field">
+                                        <label>Mật Khẩu 2</label>
+                                        <input placeholder="@item.Admin_Pass2" value="@item.Admin_Pass2" type="password" name="Admin_Pass2">
+                                    </div>
+                                    <div class="field">
+                                        <label>Trạng Thái</label>
+                                        <select name="Admin_Active">
+                                            <option value="true" @(item.Admin_Activate == true ? "selected" : "")>Hoạt Động</option>
+                                            <option value="false" @(item.Admin_Activate == false ? "selected" : "")>Không Hoạt Động</option>
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="ui error message"></div>
                                 <div class="modal-footer">

@@ -1,0 +1,81 @@
+﻿@using WebSelling.Models;
+@model List<Category>
+@{
+    ViewBag.Title = "ViewCategory";
+    Layout = "~/Areas/SellingAdmin/Views/Shared/_ViewAdmin.cshtml";
+}
+@Html.Action("CssAdmin", "HomeAdmin")
+@*<style>
+    ::placeholder { /* chạy tốt trên Chrome, Firefox, Opera, Safari 10.1+ */
+        color: forestgreen !important;
+        font-size: 15px;
+        opacity: 1; /* Firefox */
+    }
+</style>
+@Html.Action("CssAdmin", "HomeAdmin")
+<br />
+<div style="margin-left: 2%">
+    <a href="@Url.Action("Index", "Products")" class="ui red tag label">Trở về</a>
+</div>
+<form class="ui form segment">
+    <div class="two fields">
+        <div class="field">
+            <label>Tên Sản Phẩm</label>
+            <input placeholder="@Model.Product_Name" name="Product_Name" type="text" disabled>
+        </div>
+        <div class="field">
+            <label>Giá Sản Phẩm</label>
+            <input placeholder="@Model.Product_Price.Value.ToString("#,##0") VNĐ" disabled />
+        </div>
+    </div>
+    <div class="field">
+        <label>Hình ảnh sản phẩm</label>
+        <img src="~/Content/Image/@Model.Product_Img" style="width: 250px; height: 150px" disabled />
+    </div>
+    <div class="two fields">
+        <div class="field">
+            <label>Danh Mục</label>
+            <input placeholder="@Model.Category.Category_Name" type="text" disabled>
+        </div>
+        <div class="field">
+            <label>Phân Loại Danh Mục</label>
+            @if (Model.SubCategory_ID == null)
+            {
+                <input type="text" placeholder="Không Có" disabled>
+            }
+            else
+            {
+                <input type="text" placeholder="@Model.SubCategory.SubCategory_Name" disabled>
+            }
+        </div>
+    </div>
+    <div class="two fields">
+        <div class="field">
+            <label>Phân Loại Sản Phẩm</label>
+            @if (Model.SubProduct_ID == null)
+            {
+                <input type="text" placeholder="Không Có" disabled>
+            }
+            else
+            {
+                <input type="text" placeholder="@Model.SubProduct.SubProduct_Name" disabled>
+            }
+        </div>
+        <div class="field">
+            <label>Người Đăng</label>
+            <input placeholder="@Model.User.User_LastName @Model.User.User_Name" type="text" disabled>
+        </div>
+    </div>
+    <div class="field">
+        <label>Mô Tả Sản Phẩm</label>
+        <textarea>@Html.Raw(Model.Product_Description)</textarea>
+    </div>
+    <div class="field">
+        <label>Chi Tiết Sản Phẩm</label>
+        <textarea>@Html.Raw(Model.Product_Detail)</textarea>
+    </div>
+    <div class="modal-footer">
+        <button class="ui secondary basic button">Chỉnh Sửa</button>
+        <button class="ui positive basic button">Xoá Sản Phẩm</button>
+    </div>
+</form>*@

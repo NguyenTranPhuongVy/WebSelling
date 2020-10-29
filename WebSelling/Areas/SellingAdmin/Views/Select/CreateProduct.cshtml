@@ -1,0 +1,82 @@
+﻿@using WebSelling.Models;
+@model Product
+@{
+    ViewBag.Title = "CreateProduct";
+    Layout = "~/Areas/SellingAdmin/Views/Shared/_ViewAdmin.cshtml";
+}
+<style>
+    ::placeholder { /* chạy tốt trên Chrome, Firefox, Opera, Safari 10.1+ */
+        color: forestgreen !important;
+        font-size: 15px;
+        opacity: 1; /* Firefox */
+    }
+</style>
+@Html.Action("CssAdmin", "HomeAdmin")
+<script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
+<br />
+<div style="margin-left: 2%">
+    <a href="@Url.Action("Index", "Products")" class="ui red tag label">Trở về</a>
+</div>
+@using (Html.BeginForm("CreateProduct", "Select", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "ui form segment" }))
+{
+    <div class="two fields">
+        <div class="field">
+            <label>Tên Sản Phẩm</label>
+            <input placeholder="Nhập tên sản phẩm" name="Product_Name" type="text">
+        </div>
+        <div class="field">
+            <label>Giá Sản Phẩm</label>
+            <input placeholder="Nhập giá sản phẩm" name="Product_Price"/>
+        </div>
+    </div>
+    <div class="field">
+        <label>Hình ảnh sản phẩm</label>
+        <input type="file" name="fileupload"/>
+    </div>
+    <div class="two fields">
+        <div class="field">
+            <label>Danh Mục</label>
+            @Html.DropDownList("Category_ID", null, htmlAttributes: new { @class = "ui form" })
+        </div>
+        <div class="field">
+            <label>Phân Loại Danh Mục</label>
+            @Html.DropDownList("SubCategory_ID", null, htmlAttributes: new { @class = "ui form" })
+        </div>
+    </div>
+    <div class="two fields">
+        <div class="field">
+            <label>Phân Loại Sản Phẩm</label>
+            @Html.DropDownList("SubProduct_ID", null, htmlAttributes: new { @class = "ui form" })
+        </div>
+        <div class="field">
+            <label>Người Đăng</label>
+            <input placeholder="" type="text" disabled>
+        </div>
+    </div>
+    <div class="field">
+        <label>Mô Tả Sản Phẩm</label>
+        <textarea id="createproductdes" name="Product_Description"></textarea>
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#createproductdes'))
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
+    </div>
+    <div class="field">
+        <label>Chi Tiết Sản Phẩm</label>
+        <textarea id="createproductdet" name="Product_Description"></textarea>
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#createproductdet'))
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
+    </div>
+    <div class="modal-footer">
+        <button class="ui secondary basic button" type="submit">Đăng Sản Phẩm</button>
+    </div>
+}
+
