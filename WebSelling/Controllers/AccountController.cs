@@ -35,6 +35,7 @@ namespace WebSelling.Controllers
             String sEmail = f["user_email"].ToString();
             String sPass = f["user_pass"].ToString();
             User user = db.Users.Where(n => n.User_Activate == true && n.User_Role == 0).SingleOrDefault(n => n.User_Email == sEmail && n.User_Pass == sPass);
+            Admin admin = db.Admins.Where(n => n.Admin_Activate == true && n.Admin_Role == 1).SingleOrDefault(n => n.Admin_Email == sEmail && n.Admin_Pass == sPass);
             if(user != null)
             {
                 Session["user"] = user;
@@ -42,7 +43,15 @@ namespace WebSelling.Controllers
                 db.Users.Find(user.User_ID).User_Token = Guid.NewGuid().ToString();
                 db.SaveChanges();
                 return Redirect(ViewHome);
-            }   
+            }
+            else if(admin != null)
+            {
+                Session["admin"] = admin;
+                db.Admins.Find(admin.Admin_ID).Admin_DateLogin = DateTime.Now;
+                db.Admins.Find(admin.Admin_ID).Admin_Token = Guid.NewGuid().ToString();
+                db.SaveChanges();
+                return Redirect("/SellingAdmin/HomeAdmin/LoginAdmin");
+            }    
             else
             {
                 Session["Notlogin"] = "<div class='alert alert-default alert-dismissible fade show' role='alert'><strong>Lưu ý!</strong> Không có thông tin đăng nhập.<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div>";

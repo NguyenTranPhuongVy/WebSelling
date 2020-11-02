@@ -151,10 +151,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\SellingAdmin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\SellingAdmin\Controllers\CitiesController.cs" />
     <Compile Include="Areas\SellingAdmin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\SellingAdmin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\SellingAdmin\Controllers\SelectController.cs" />
     <Compile Include="Areas\SellingAdmin\Controllers\SubCategoriesController.cs" />
+    <Compile Include="Areas\SellingAdmin\Controllers\SubProductsController.cs" />
     <Compile Include="Areas\SellingAdmin\Controllers\UsersController.cs" />
     <Compile Include="Areas\SellingAdmin\SellingAdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -330,6 +332,7 @@
     <Content Include="Content\FormReg\assets\js\jquery-2.2.4.min.js" />
     <Content Include="Content\FormReg\assets\js\jquery.bootstrap.wizard.js" />
     <Content Include="Content\FormReg\assets\js\jquery.validate.min.js" />
+    <Content Include="Content\Image\1fa16d89d704c3e7f79bfcf660d22325.jpg" />
     <Content Include="Content\Image\customer.png" />
     <Content Include="Content\Image\Docongnghe.jpg" />
     <Content Include="Content\Image\dogiadung.jpg" />
@@ -337,6 +340,7 @@
     <Content Include="Content\Image\Products-Online.jpg" />
     <Content Include="Content\Image\ThuCung.jpg" />
     <Content Include="Content\Layout\css\bootstrap.css" />
+    <Content Include="Content\Layout\css\loginAdmin.css" />
     <Content Include="Content\Layout\css\product.css" />
     <Content Include="Content\Layout\css\Detailsproduct.css" />
     <Content Include="Content\Layout\css\font-awesome.min.css" />
@@ -1051,6 +1055,10 @@
     <Content Include="Areas\SellingAdmin\Views\SubCategories\Details.cshtml" />
     <Content Include="Areas\SellingAdmin\Views\SubCategories\Edit.cshtml" />
     <Content Include="Areas\SellingAdmin\Views\SubCategories\Index.cshtml" />
+    <Content Include="Areas\SellingAdmin\Views\SubProducts\Index.cshtml" />
+    <Content Include="Areas\SellingAdmin\Views\Cities\Index.cshtml" />
+    <Content Include="Areas\SellingAdmin\Views\Select\ViewProvince.cshtml" />
+    <Content Include="Areas\SellingAdmin\Views\HomeAdmin\LoginAdmin.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

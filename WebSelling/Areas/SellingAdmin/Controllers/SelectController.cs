@@ -250,16 +250,16 @@ namespace WebSelling.Areas.SellingAdmin.Controllers
         //Sửa danh mục phụ
         public ActionResult EditSubCategory(FormCollection f, int ? id, HttpPostedFileBase fileedit)
         {
-            String sSubCategory_ID = f["SubCategory_ID"].ToString();
             String sName = f["SubCategory_Name"].ToString();
+            String sCategory = f["Category_ID"].ToString();
             String sActive = f["SubCategory_Activate"].ToString();
-            id = Int32.Parse(sSubCategory_ID);
             SubCategory sub = db.SubCategories.Find(id);
             if (fileedit == null)
             {
                 db.SubCategories.Find(id).SubCategory_Name = sName;
                 db.SubCategories.Find(id).SubCategory_DateEdit = DateTime.Now;
                 db.SubCategories.Find(id).SubCategory_Activate = Boolean.Parse(sActive);
+                db.SubCategories.Find(id).Category_ID = Int32.Parse(sCategory);
                 db.SubCategories.Find(id).SubCategory_Img = sub.SubCategory_Img;
                 db.SaveChanges();
                 return Redirect(Request.UrlReferrer.ToString());
@@ -285,10 +285,78 @@ namespace WebSelling.Areas.SellingAdmin.Controllers
                 db.SubCategories.Find(id).SubCategory_Name = sName;
                 db.SubCategories.Find(id).SubCategory_DateEdit = DateTime.Now;
                 db.SubCategories.Find(id).SubCategory_Activate = Boolean.Parse(sActive);
+                db.SubCategories.Find(id).Category_ID = Int32.Parse(sCategory);
                 db.SubCategories.Find(id).SubCategory_Img = fileedit.FileName;
                 db.SaveChanges();
                 return Redirect(Request.UrlReferrer.ToString());
             }
+        }
+
+        //Thêm danh mục sản phẩm phụ
+        [HttpPost]
+        public ActionResult CreateSubProduct([Bind(Include = "SubProduct_ID,SubCategory_ID,SubProduct_Name")] SubProduct subProduct)
+        {
+            db.SubProducts.Add(subProduct);
+            db.SaveChanges();
+
+            ViewBag.SubCategory_ID = new SelectList(db.SubCategories, "SubCategory_ID", "SubCategory_Name", subProduct.SubCategory_ID);
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        //Sửa danh mục sản phẩm phụ
+        [HttpPost]
+        public ActionResult EditSubProduct(FormCollection f, int ? id)
+        {
+            String sName = f["SubProduct_Name"].ToString();
+            String sSubCategory = f["SubCategory_ID"].ToString();
+            db.SubProducts.Find(id).SubProduct_Name = sName;
+            db.SubProducts.Find(id).SubCategory_ID = Int32.Parse(sSubCategory);
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        //Thêm Thành Phố
+        [HttpPost]
+        public ActionResult CreateCity([Bind(Include = "City_ID,City_Name")] City city)
+        {
+            db.Cities.Add(city);
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+        //Sửa Thành Phố
+        [HttpPost]
+        public ActionResult EditCity(FormCollection f, int ? id)
+        {
+            String sName = f["City_Name"].ToString();
+            db.Cities.Find(id).City_Name = sName;
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+        //Xem tỉnh
+        public ActionResult ViewProvince()
+        {
+            var provinces = db.Provinces.Include(p => p.City);
+            return View(provinces.ToList());
+        }
+        //Thêm Tỉnh
+        [HttpPost]
+        public ActionResult CreateProvince([Bind(Include = "Province_ID,Province_Name,City_ID")] Province province)
+        {
+            db.Provinces.Add(province);
+            db.SaveChanges();
+            ViewBag.City_ID = new SelectList(db.Cities, "City_ID", "City_Name", province.City_ID);
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+        //Sửa Tỉnh
+        [HttpPost]
+        public ActionResult EditProvince(FormCollection f, int ? id)
+        {
+            String sName = f["Province_Name"].ToString();
+            String sCity = f["City_ID"].ToString();
+            db.Provinces.Find(id).Province_Name = sName;
+            db.Provinces.Find(id).City_ID = Int32.Parse(sCity);
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
         }
     }
 }

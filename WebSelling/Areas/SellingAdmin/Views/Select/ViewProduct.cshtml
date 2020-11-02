@@ -5,7 +5,7 @@
     Layout = "~/Areas/SellingAdmin/Views/Shared/_ViewAdmin.cshtml";
 }
 <style>
-    ::placeholder { /* chạy tốt trên Chrome, Firefox, Opera, Safari 10.1+ */
+    ::value { /* chạy tốt trên Chrome, Firefox, Opera, Safari 10.1+ */
         color: forestgreen !important;
         font-size: 15px;
         opacity: 1; /* Firefox */
@@ -20,11 +20,11 @@
     <div class="two fields">
         <div class="field">
             <label>Tên Sản Phẩm</label>
-            <input placeholder="@Model.Product_Name" name="Product_Name" type="text" disabled>
+            <input value="@Model.Product_Name" name="Product_Name" type="text" disabled>
         </div>
         <div class="field">
             <label>Giá Sản Phẩm</label>
-            <input placeholder="@Model.Product_Price.Value.ToString("#,##0") VNĐ" disabled/>
+            <input value="@Model.Product_Price.Value.ToString("#,##0") VNĐ" disabled/>
         </div>
     </div>
     <div class="field">
@@ -34,17 +34,17 @@
     <div class="two fields">
         <div class="field">
             <label>Danh Mục</label>
-            <input placeholder="@Model.Category.Category_Name" type="text" disabled>
+            <input value="@Model.Category.Category_Name" type="text" disabled>
         </div>
         <div class="field">
             <label>Phân Loại Danh Mục</label>
             @if (Model.SubCategory_ID == null)
             {
-                <input type="text" placeholder="Không Có" disabled>
+                <input type="text" value="Không Có" disabled>
             }
             else
             {
-                <input type="text" placeholder="@Model.SubCategory.SubCategory_Name" disabled>
+                <input type="text" value="@Model.SubCategory.SubCategory_Name" disabled>
             }
         </div>
     </div>
@@ -53,16 +53,16 @@
             <label>Phân Loại Sản Phẩm</label>
             @if (Model.SubProduct_ID == null)
             {
-                <input type="text" placeholder="Không Có" disabled>
+                <input type="text" value="Không Có" disabled>
             }
             else
             {
-                <input type="text" placeholder="@Model.SubProduct.SubProduct_Name" disabled>
+                <input type="text" value="@Model.SubProduct.SubProduct_Name" disabled>
             }
         </div>
         <div class="field">
             <label>Người Đăng</label>
-            <input placeholder="@Model.User.User_LastName @Model.User.User_Name" type="text" disabled>
+            <input value="@Model.User.User_LastName @Model.User.User_Name" type="text" disabled>
         </div>
     </div>
     <div class="field">
