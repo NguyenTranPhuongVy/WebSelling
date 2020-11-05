@@ -220,10 +220,10 @@
                         </div>
 
                         <div class="profile-content">
-                            <div class="profile-name">@user.User_LastName @user.User_Name</div>
+                            <a href="@Url.Action("Info", "Account")"><div class="profile-name">@user.User_LastName @user.User_Name</div></a>
                             <div class="profile-designation">Thành Viên</div>
                             <ul class="profile-info-list">
-                                <a href="" class="profile-info-list-item"><i class="mdi mdi-pencil"></i>Sửa Đổi Thông Tin</a>
+                                <a href="@Url.Action("EditProfile", "Account")" class="profile-info-list-item"><i class="mdi mdi-pencil"></i>Sửa Đổi Thông Tin</a>
                                 <a href="" class="profile-info-list-item"><i class="mdi mdi-account-key"></i>Đổi Mật Khẩu</a>
                             </ul>
                         </div>

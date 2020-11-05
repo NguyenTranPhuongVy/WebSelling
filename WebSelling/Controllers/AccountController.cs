@@ -50,7 +50,7 @@ namespace WebSelling.Controllers
                 db.Admins.Find(admin.Admin_ID).Admin_DateLogin = DateTime.Now;
                 db.Admins.Find(admin.Admin_ID).Admin_Token = Guid.NewGuid().ToString();
                 db.SaveChanges();
-                return Redirect("/SellingAdmin/HomeAdmin/LoginAdmin");
+                return Redirect("/SellingAdmin/HomeAdmin/AdminLoginForm");
             }    
             else
             {
@@ -148,6 +148,66 @@ namespace WebSelling.Controllers
                 return Redirect(ViewAcc);
             }    
             return View();
+        }
+
+        //Chỉnh sửa thông tin cá nhân
+        public PartialViewResult EditProfile()
+        {
+            return PartialView("_ViewProfileUser");
+        }
+
+        [HttpPost]
+        public ActionResult EditProfile([Bind(Include = "User_ID,User_LastName,User_Name,User_Token,User_Activate,User_Pass,User_Email,User_Phone,User_Role,User_LinkF,User_Img,User_DateCreate,User_DateLogin,User_DateBirth,User_Sex,User_Address,Province_ID,City_ID")] User user, HttpPostedFileBase fileprofile)
+        {
+            User us = (User)Session["user"];
+            if(fileprofile == null)
+            {
+                db.Entry(user).State = EntityState.Modified;
+                user.User_Token = Guid.NewGuid().ToString();
+                user.User_Activate = true;
+                user.User_DateCreate = us.User_DateCreate;
+                user.User_DateLogin = DateTime.Now;
+                user.User_Pass = us.User_Pass;
+                user.User_Sex = us.User_Sex;
+                user.User_Role = 0;
+                user.User_Img = us.User_Img;
+                db.SaveChanges();
+                ViewBag.City_ID = new SelectList(db.Cities, "City_ID", "City_Name", user.City_ID);
+                ViewBag.Province_ID = new SelectList(db.Provinces, "Province_ID", "Province_Name", user.Province_ID);
+                return Redirect(Request.UrlReferrer.ToString());
+            }    
+            else
+            {
+                //Tên hình ảnh
+                var fileimg = Path.GetFileName(fileprofile.FileName);
+                //Đưa tên ảnh vào file
+                var pa = Path.Combine(Server.MapPath("~/Content/Image/"), fileimg);
+                if (fileprofile == null)
+                {
+                    ViewBag.ThongBao = "Ảnh Trống";
+                }
+                else if (System.IO.File.Exists(pa))
+                {
+                    ViewBag.ThongBao = "Ảnh Trùng";
+                }
+                else
+                {
+                    fileprofile.SaveAs(pa);
+                }
+                db.Entry(user).State = EntityState.Modified;
+                user.User_Img = fileprofile.FileName;
+                user.User_Activate = true;
+                user.User_Token = Guid.NewGuid().ToString();
+                user.User_DateCreate = us.User_DateCreate;
+                user.User_Role = 0;
+                user.User_DateLogin = DateTime.Now;
+                user.User_Pass = us.User_Pass;
+                user.User_Sex = us.User_Sex;
+                db.SaveChanges();
+                ViewBag.City_ID = new SelectList(db.Cities, "City_ID", "City_Name", user.City_ID);
+                ViewBag.Province_ID = new SelectList(db.Provinces, "Province_ID", "Province_Name", user.Province_ID);
+                return Redirect(Request.UrlReferrer.ToString());
+            }
         }
     }
 }

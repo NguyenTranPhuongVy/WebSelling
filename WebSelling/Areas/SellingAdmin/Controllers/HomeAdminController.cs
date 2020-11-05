@@ -20,12 +20,15 @@ namespace WebSelling.Areas.SellingAdmin.Controllers
         {
             return PartialView();
         }
-
-        [HttpPost]
-        public ActionResult LoginAdmin(FormCollection f)
+        public ActionResult AdminLoginForm()
         {
-            String sEmail = f["user_email"].ToString();
-            String sPass = f["user_pass"].ToString();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AdminLoginForm(FormCollection f)
+        {
+            String sEmail = f["Admin_Email"].ToString();
+            String sPass = f["Admin_Pass2"].ToString();
             Admin admin = db.Admins.Where(n => n.Admin_Activate == true && n.Admin_Role == 1).SingleOrDefault(n => n.Admin_Email == sEmail && n.Admin_Pass2 == sPass);
             if (admin != null)
             {
@@ -41,5 +44,12 @@ namespace WebSelling.Areas.SellingAdmin.Controllers
                 return Redirect(Request.UrlReferrer.ToString());
             }
         }
+        //Đăng xuất
+        public ActionResult LogoutAdmin()
+        {
+            Session["admin"] = null;
+            return Redirect("/Home/Index");
+        }
+
     }
 }

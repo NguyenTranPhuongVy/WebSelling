@@ -1,4 +1,9 @@
-﻿<!doctype html>
+﻿@using WebSelling.Models;
+@model Admin
+@{ 
+    Admin admin = (Admin)Session["admin"];
+}
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -146,12 +151,21 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li>
-                                <a href="">
-                                    <p>Tài Khoản</p>
-                                </a>
+                                @if (admin != null)
+                                {
+                                    <a href="">
+                                        <p>@admin.Admin_Name</p>
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a href="">
+                                        <p>Tài Khoản</p>
+                                    </a>
+                                }
                             </li>
                             <li>
-                                <a href="#">
+                                <a href="@Url.Action("LogoutAdmin", "HomeAdmin")">
                                     <p>Đăng Xuất</p>
                                 </a>
                             </li>
