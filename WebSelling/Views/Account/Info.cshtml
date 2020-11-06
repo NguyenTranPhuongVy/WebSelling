@@ -224,7 +224,7 @@
                             <div class="profile-designation">Thành Viên</div>
                             <ul class="profile-info-list">
                                 <a href="@Url.Action("EditProfile", "Account")" class="profile-info-list-item"><i class="mdi mdi-pencil"></i>Sửa Đổi Thông Tin</a>
-                                <a href="" class="profile-info-list-item"><i class="mdi mdi-account-key"></i>Đổi Mật Khẩu</a>
+                                <a href="@Url.Action("EditPass", "Account", new { id = user.User_ID})" class="profile-info-list-item"><i class="mdi mdi-account-key"></i>Đổi Mật Khẩu</a>
                             </ul>
                         </div>
                     </div>

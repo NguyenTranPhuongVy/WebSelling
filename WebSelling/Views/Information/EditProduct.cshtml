@@ -1,0 +1,98 @@
+﻿@using WebSelling.Models;
+@model Product
+@{
+    ViewBag.Title = "EditProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    WebSellingEntities db = new WebSellingEntities();
+    User user = (User)Session["user"];
+    String ckeditor = "detail";
+    String ckeditordes = "des";
+}
+@Html.Action("Menu", "Menu")
+@Html.Action("Css", "Home")
+<script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
+<div class="container mt-2">
+    @using (Html.BeginForm("EditProduct", "Information", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "ui form segment" }))
+    {
+        <div class="two fields">
+            <div class="field">
+                <label>Tên Sản Phẩm</label>
+                <input value="@Model.Product_Name" name="Product_Name" type="text">
+            </div>
+            <div class="field">
+                <label>Giá Sản Phẩm</label>
+                <input value="@Model.Product_Price" name="Product_Price" type="text">
+            </div>
+        </div>
+        <div class="field">
+            <label>Hình Ảnh Sản Phẩm</label>
+            <input name="fileupload" type="file">
+        </div>
+        <div class="field">
+            <label>Danh Mục</label>
+            @{
+                List<Category> cate = db.Categories.ToList();
+            }
+            <select class="ui dropdown" name="Category_ID">
+                @foreach (var item in cate)
+                {
+                    <option value="@item.Category_ID" @(item.Category_ID == Model.Category_ID ? "selected" : "")>@item.Category_Name</option>
+                }
+            </select>
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label>Phân Loại Danh Mục</label>
+                @{
+                    List<SubCategory> subCate = db.SubCategories.ToList();
+                }
+                <select class="ui dropdown" name="SubCategory_ID">
+                    @foreach (var item in subCate)
+                    {
+                        <option value="@item.SubCategory_ID" @(item.SubCategory_ID == Model.SubCategory_ID ? "selected" : "")>@item.SubCategory_Name</option>
+                    }
+                </select>
+            </div>
+            <div class="field">
+                <label>Phân Loại Sản Phẩm</label>
+                @{
+                    List<SubProduct> subPro = db.SubProducts.ToList();
+                }
+                <select class="ui dropdown" name="SubProduct_ID">
+                    @foreach (var item in subPro)
+                    {
+                        <option value="@item.SubProduct_ID" @(item.SubProduct_ID == Model.SubProduct_ID ? "selected" : "")>@item.SubProduct_Name</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="field">
+            <label>Mô Tả Sản Phẩm</label>
+            <textarea id="@ckeditor@Model.Product_ID" name="Product_Description">@Html.Raw(@Model.Product_Description)</textarea>
+            <script>
+                ClassicEditor
+                    .create(document.querySelector('#@ckeditordes@Model.Product_ID'))
+                    .catch(error => {
+                        console.error(error);
+                    });
+            </script>
+        </div>
+        <div class="field">
+            <label>Chi Tiết Sản Phẩm</label>
+            <textarea id="@ckeditor@Model.Product_ID" name="Product_Detail">@Html.Raw(@Model.Product_Detail)</textarea>
+            <script>
+                ClassicEditor
+                    .create(document.querySelector('#@ckeditor@Model.Product_ID'))
+                    .catch(error => {
+                        console.error(error);
+                    });
+            </script>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Đăng Tin</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        </div>
+        <div class="ui error message"></div>
+    }
+</div>
+

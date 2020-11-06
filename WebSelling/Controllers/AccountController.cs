@@ -209,5 +209,40 @@ namespace WebSelling.Controllers
                 return Redirect(Request.UrlReferrer.ToString());
             }
         }
+
+        //Sửa mật khẩu
+        public ActionResult EditPass()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditPass(FormCollection f, int ? id)
+        {
+            User us = db.Users.Find(id);
+            User user = (User)Session["user"];
+            String sOldPass = f["OldPass"].ToString();
+            String sNewPass = f["NewPass"].ToString();
+            String sRePass = f["RePass"].ToString();
+            if(sOldPass != us.User_Pass)
+            {
+                ViewBag.TestPass = "Mật Khẩu Không Đúng";
+            }
+            else
+            {
+                if(sNewPass != sRePass)
+                {
+                    ViewBag.CheckPass = "Mật Khẩu Mới Không Khớp";
+                } 
+                else
+                {
+                    us.User_Pass = sNewPass;
+                    db.SaveChanges();
+                    Session["user"] = db.Users.Find(us.User_ID);
+                    return Redirect(ViewHome);
+                }    
+            }
+            return View();
+        }
     }
 }
