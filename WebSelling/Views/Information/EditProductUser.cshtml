@@ -1,7 +1,7 @@
 ﻿@using WebSelling.Models;
 @model Product
 @{
-    ViewBag.Title = "EditProduct";
+    ViewBag.Title = "EditProductUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
     WebSellingEntities db = new WebSellingEntities();
     User user = (User)Session["user"];
@@ -12,8 +12,19 @@
 @Html.Action("Css", "Home")
 <script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
 <div class="container mt-2">
-    @using (Html.BeginForm("EditProduct", "Information", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "ui form segment" }))
+    @using (Html.BeginForm("EditProductUser", "Information", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "ui form segment" }))
     {
+        @Html.HiddenFor(x => x.Product_DateCreate)
+        @Html.HiddenFor(x => x.Product_DateEdit)
+        @Html.HiddenFor(x => x.Product_DateSubmit)
+        @Html.HiddenFor(x => x.Product_Activate)
+        @Html.HiddenFor(x => x.Product_View)
+        @Html.HiddenFor(x => x.User_ID)
+        @Html.HiddenFor(x => x.Product_Img)
+        @Html.HiddenFor(x => x.Product_ID)
+        @Html.HiddenFor(x => x.Product_Ship)
+        @Html.HiddenFor(x => x.Product_Love)
+        @Html.HiddenFor(x => x.Product_Amount)
         <div class="two fields">
             <div class="field">
                 <label>Tên Sản Phẩm</label>
@@ -26,7 +37,7 @@
         </div>
         <div class="field">
             <label>Hình Ảnh Sản Phẩm</label>
-            <input name="fileupload" type="file">
+            <input name="fileeditproduct" value="@Model.Product_Img" type="file">
         </div>
         <div class="field">
             <label>Danh Mục</label>
@@ -94,5 +105,50 @@
         </div>
         <div class="ui error message"></div>
     }
+</div>
+<div class="copy-bottom bg-li py-4 border-top mt-3">
+    <div class="container-fluid">
+        <div class="d-md-flex px-md-3 position-relative text-center">
+            <!-- footer social icons -->
+            <div class="social-icons-footer mb-md-0 mb-3">
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-facebook"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-twitter"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-google-plus"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-instagram"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- //footer social icons -->
+            <!-- copyright -->
+            <div class="copy_right mx-md-auto mb-md-0 mb-3">
+                <p class="text-bl let">
+                    © 2019 Startup. All rights reserved | Design by
+                    <a href="http://w3layouts.com/" target="_blank">W3layouts</a>
+                </p>
+            </div>
+            <!-- //copyright -->
+            <!-- move top icon -->
+            <a href="#home" class="move-top text-center">
+                <span class="fa fa-level-up" aria-hidden="true"></span>
+            </a>
+            <!-- //move top icon -->
+        </div>
+    </div>
 </div>
 

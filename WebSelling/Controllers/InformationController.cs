@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.IO;
 using WebSelling.Models;
 using System.Net;
+using System.Data.Entity;
 
 namespace WebSelling.Controllers
 {
@@ -56,6 +57,8 @@ namespace WebSelling.Controllers
             product.Product_Activate = true;
             product.Product_Img = fileupload.FileName;
             product.User_ID = user.User_ID;
+            product.Product_Love = 0;
+            product.Product_View = 0;
             db.SaveChanges();
             ViewBag.Category_ID = new SelectList(db.Categories, "Category_ID", "Category_Name", product.Category_ID);
             ViewBag.SubCategory_ID = new SelectList(db.SubCategories, "SubCategory_ID", "SubCategory_Name", product.SubCategory_ID);
@@ -65,7 +68,7 @@ namespace WebSelling.Controllers
         }
 
         //Sửa sản phẩm
-        public ActionResult EditProduct(int? id)
+        public ActionResult EditProductUser(int? id)
         {
             if (id == null)
             {
@@ -85,52 +88,33 @@ namespace WebSelling.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult EditProduct([Bind(Include = "Product_ID,Product_Name,Product_Img,Product_DateSubmit,Product_Activate,Product_Price,Product_SalePrice,Product_Ship,Product_View,Product_Love,Product_Amount,Product_Description,Product_Detail,Product_Option,Product_DateCreate,Product_DateEdit,User_ID,SubCategory_ID,Category_ID,SubProduct_ID")] Product product, int? id, HttpPostedFileBase fileupload)
+        public ActionResult EditProductUser([Bind(Include = "Product_ID,Product_Name,Product_Img,Product_DateSubmit,Product_Activate,Product_Price,Product_SalePrice,Product_Ship,Product_View,Product_Love,Product_Amount,Product_Description,Product_Detail,Product_Option,Product_DateCreate,Product_DateEdit,User_ID,SubCategory_ID,Category_ID,SubProduct_ID")] Product product, HttpPostedFileBase fileeditproduct)
         {
-            Product pro = db.Products.Find(id);
-            if (fileupload == null)
+            if (ModelState.IsValid)
             {
-                product.Product_DateEdit = DateTime.Now;
-                product.Product_DateSubmit = DateTime.Now;
-                product.Product_Img = pro.Product_Img;
-                product.Product_Activate = true;
-                product.User_ID = pro.User_ID;
-                db.SaveChanges();
-                ViewBag.Category_ID = new SelectList(db.Categories, "Category_ID", "Category_Name", product.Category_ID);
-                ViewBag.SubCategory_ID = new SelectList(db.SubCategories, "SubCategory_ID", "SubCategory_Name", product.SubCategory_ID);
-                ViewBag.SubProduct_ID = new SelectList(db.SubProducts, "SubProduct_ID", "SubProduct_Name", product.SubProduct_ID);
-                ViewBag.User_ID = new SelectList(db.Users, "User_ID", "User_LastName", product.User_ID);
-                return Redirect(Request.UrlReferrer.ToString());
-            }
-            else
-            {
-                var fileimg = Path.GetFileName(fileupload.FileName);
-                //Đưa tên ảnh vào file
-                var pa = Path.Combine(Server.MapPath("~/Content/Image/"), fileimg);
-                if (fileupload == null)
+                if (fileeditproduct != null)
                 {
-                    ViewBag.ThongBao = "Ảnh Trống";
-                }
-                else if (System.IO.File.Exists(pa))
-                {
-                    ViewBag.ThongBao = "Ảnh Trùng";
-                }
-                else
-                {
-                    fileupload.SaveAs(pa);
+                    //Tên file ảnh sản phẩm
+                    var fileimg = Path.GetFileName(fileeditproduct.FileName);
+                    // Đưa tên ảnh vào đúng file
+                    var pa = Path.Combine(Server.MapPath("~/Content/Image"), fileimg);
+                    // Ảnh trống
+                    if (fileeditproduct == null)
+                    {
+                        ViewBag.ThongBao = "Ảnh trống !";
+                        return View(product);
+                    }
+                    //Lưu pa vào name fileUpload
+                    fileeditproduct.SaveAs(pa);
+                    product.Product_Img = fileeditproduct.FileName;
                 }
                 product.Product_DateEdit = DateTime.Now;
                 product.Product_DateSubmit = DateTime.Now;
-                product.Product_Img = fileupload.FileName;
-                product.Product_Activate = true;
-                product.User_ID = pro.User_ID;
+                db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
-                ViewBag.Category_ID = new SelectList(db.Categories, "Category_ID", "Category_Name", product.Category_ID);
-                ViewBag.SubCategory_ID = new SelectList(db.SubCategories, "SubCategory_ID", "SubCategory_Name", product.SubCategory_ID);
-                ViewBag.SubProduct_ID = new SelectList(db.SubProducts, "SubProduct_ID", "SubProduct_Name", product.SubProduct_ID);
-                ViewBag.User_ID = new SelectList(db.Users, "User_ID", "User_LastName", product.User_ID);
-                return Redirect(Request.UrlReferrer.ToString());
+                return Redirect("/Information/MyInforUser");
             }
+            return View(product);
         }
 
         // trang thông tin người dùng
