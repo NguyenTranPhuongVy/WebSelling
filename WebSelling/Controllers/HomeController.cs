@@ -41,16 +41,22 @@ namespace WebSelling.Controllers
             return PartialView(db.SubCategories.Where(n => n.SubCategory_Activate == true).OrderBy(n => n.SubCategory_Name).ToList());
         }
 
-        public ActionResult DetailsProduct(int productid)
+        public ActionResult DetailsProduct(int ? id)
         {
-            Product pro = db.Products.SingleOrDefault(n => n.Product_ID == productid);
-            if (pro == null)
+            User user = (User)Session["user"];
+            Product pro = db.Products.SingleOrDefault(n => n.Product_ID == id);
+            if(pro == null)
             {
                 Response.StatusCode = 404;
                 return null;
             }
-            Session["productid"] = productid;
-            db.Products.Find(productid).Product_View++;
+            if(user != null)
+            {
+                List<View> views = db.Views.Where(n => n.User_ID == user.User_ID && n.Product_ID == id && n.View_Bin == false).ToList();
+                ViewBag.Count = views.Count;
+            }    
+            Session["productid"] = id;
+            db.Products.Find(id).Product_View++;
             db.SaveChanges();
             return View(pro);
         }

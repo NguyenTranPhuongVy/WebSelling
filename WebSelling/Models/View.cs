@@ -18,6 +18,7 @@ namespace WebSelling.Models
         public Nullable<int> Product_ID { get; set; }
         public Nullable<int> User_ID { get; set; }
         public Nullable<System.DateTime> View_Date { get; set; }
+        public Nullable<bool> View_Bin { get; set; }
     
         public virtual Product Product { get; set; }
         public virtual User User { get; set; }

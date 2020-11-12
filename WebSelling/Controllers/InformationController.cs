@@ -17,6 +17,7 @@ namespace WebSelling.Controllers
         String strHome = "/Home/Index";
         String ViewAcc = "/";
         String strAcc = "/Account/Login";
+        String favourite = "/Home/DetailsProduct/";
         // GET: Information
         // trang thông tin cá nhân người dùng
         public ActionResult MyInforUser()
@@ -117,6 +118,34 @@ namespace WebSelling.Controllers
             return View(product);
         }
 
+        //Thêm yêu thích
+        [HttpPost]
+        public ActionResult CreateFavourite([Bind(Include = "View_ID,Product_ID,User_ID,View_Date,View_Bin")] View view, int ? id)
+        {
+            User user = (User)Session["user"];
+            if(user != null)
+            {
+                db.Views.Add(view);
+                view.View_Bin = false;
+                view.View_Date = DateTime.Now;
+                view.User_ID = user.User_ID;
+                view.Product_ID = id;
+                db.SaveChanges();
+                return Redirect(favourite + id);
+            }
+            else
+            {
+                return Redirect(strAcc);
+            }
+        }
+        //Huỷ yêu thích
+        public ActionResult DeleteFavourite(int ? id)
+        {
+            View view = db.Views.Find(id);
+            view.View_Bin = true;
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
+        }
         // trang thông tin người dùng
         public ActionResult InforUser(int ? id)
         {

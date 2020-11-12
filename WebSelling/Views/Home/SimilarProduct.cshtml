@@ -19,11 +19,11 @@
             {
                 <div class="col-lg-3">
                     <figure class="snip1543">
-                        <img src="~/Content/Image/@item.Product_Img" alt="@item.Product_Name" />
+                        <img src="~/Content/Image/@item.Product_Img" alt="@item.Product_Name" style="height: 240px;"/>
                         <figcaption>
-                            <h6 style="color: black; font-size: 20px !important">@item.Product_Name</h6>
-                            <p style="color: black">Ngày Đăng: @item.Product_DateCreate.Value.Day/@item.Product_DateCreate.Value.Month/@item.Product_DateCreate.Value.Year</p>
-                            <p style="color: #ff0000">@{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</p>
+                            <h6 style="color: black; font-size: 22px !important">@item.Product_Name</h6>
+                            <p style="color: black; font-size: 14px">Ngày Đăng: @item.Product_DateCreate.Value.Day/@item.Product_DateCreate.Value.Month/@item.Product_DateCreate.Value.Year</p>
+                            <p style="color: #ff0000; font-size: 18px">@{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</p>
                         </figcaption>
                         <a href="@Url.Action("DetailsProduct", "Home", new { productid = item.Product_ID})"></a>
                     </figure>

@@ -24,12 +24,22 @@
         </div>
         <div class="field">
             <label>Giá Sản Phẩm</label>
-            <input value="@Model.Product_Price.Value.ToString("#,##0") VNĐ" disabled/>
+            <input value="@Model.Product_Price.Value.ToString("#,##0") VNĐ" disabled />
+        </div>
+    </div>
+    <div class="two fields">
+        <div class="field">
+            <label>Lượt Xem</label>
+            <input value="@Model.Product_View" name="Product_View" type="text" disabled>
+        </div>
+        <div class="field">
+            <label>Lượt Thích</label>
+            <input value="@Model.Product_Love" disabled />
         </div>
     </div>
     <div class="field">
         <label>Hình ảnh sản phẩm</label>
-        <img src="~/Content/Image/@Model.Product_Img" style="width: 250px; height: 150px" disabled/>
+        <img src="~/Content/Image/@Model.Product_Img" style="width: 250px; height: 150px" disabled />
     </div>
     <div class="two fields">
         <div class="field">

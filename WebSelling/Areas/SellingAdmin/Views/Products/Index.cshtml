@@ -61,17 +61,13 @@
             {
                 <td>Sản phẩm không chỉnh sửa</td>
             }
-            <td>@item.Category.Category_Name</td>
-            @if (item.SubCategory_ID == null || item.SubProduct_ID == null)
-            {
-                <td>Không</td>
-                <td>Không</td>
-            }
             else
             {
-                <td>@item.SubCategory.SubCategory_Name</td>
-                <td>@item.SubProduct.SubProduct_Name</td>
+                <td>@item.Product_DateEdit.Value.Day/@item.Product_DateEdit.Value.Month/@item.Product_DateEdit.Value.Year</td>
             }
+            <td>@item.Category.Category_Name</td>
+            <td>@item.SubCategory.SubCategory_Name</td>
+            <td>@item.SubProduct.SubProduct_Name</td>
             <td>@item.User.User_LastName @item.User.User_Name</td>
             <td>
                 <center>
