@@ -25,7 +25,7 @@ namespace WebSelling.Controllers
             User user = (User)Session["user"];
             if (user == null)
             {
-                return Redirect(ViewAcc);
+                return Redirect(Request.UrlReferrer.ToString());
             }
             return View();
         }

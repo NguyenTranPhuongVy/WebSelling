@@ -58,7 +58,6 @@ namespace WebSelling.Controllers
                 return Redirect(Request.UrlReferrer.ToString());
             }    
         }
-
         //Đăng Ký Người Dùng
         [HttpPost]
         public ActionResult Registration([Bind(Include = "User_ID,User_LastName,User_Name,User_Token,User_Activate,User_Pass,User_Email,User_Phone,User_Role,User_LinkF,User_Img,User_DateCreate,User_DateLogin,User_DateBirth,User_Sex,User_Address,Province_ID,City_ID")] User user, FormCollection f)
@@ -243,6 +242,42 @@ namespace WebSelling.Controllers
                 }    
             }
             return View();
+        }
+
+        //Bình luận 
+        public PartialViewResult ViewComment(int ? id)
+        {
+            List<Comment> comments = db.Comments.Where(n => n.Product_ID == id).OrderByDescending(n => n.Comment_DateCreate).ToList();
+            return PartialView(comments);
+        }
+
+        [HttpPost]
+        public ActionResult ViewComment([Bind(Include = "Comment_ID,Comment_DateCreate,Comment_Content,Comment_Spam,User_ID,Product_ID")] Comment comment)
+        {
+            User user = (User)Session["user"];
+            comment.User_ID = user.User_ID;
+            comment.Comment_DateCreate = DateTime.Now;
+            db.Comments.Add(comment);
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        //Trả lời
+        public PartialViewResult ViewRep(int ? id)
+        {
+            List<RepLi> replis = db.RepLis.Where(n => n.Comment_ID == id).OrderByDescending(n => n.Repli_DateCreate).ToList();
+            return PartialView(replis);
+        }
+
+        [HttpPost]
+        public ActionResult ViewRep([Bind(Include = "Repli_ID,Repli_DateCreate,Repli_Content,Comment_ID,User_ID")] RepLi repLi)
+        {
+            User user = (User)Session["user"];
+            repLi.User_ID = user.User_ID;
+            repLi.Repli_DateCreate = DateTime.Now;
+            db.RepLis.Add(repLi);
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
         }
     }
 }

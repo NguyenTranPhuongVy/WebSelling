@@ -3,11 +3,15 @@
 @{
     ViewBag.Title = "DetailsProduct";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var rep = "repli";
+    var test = "rep";
     User user = (User)Session["user"];
     WebSellingEntities db = new WebSellingEntities();
 }
 @{ 
     List<View> view = db.Views.Where(n => n.Product_ID == Model.Product_ID && n.View_Bin == false).ToList();
+    //DS comment
+    List<Comment> comments = db.Comments.Where(n => n.Product_ID == Model.Product_ID).OrderByDescending(n => n.Comment_DateCreate).ToList();
 }
 <style>
     .font{
@@ -161,6 +165,130 @@
                     </center>
                 </div>
             </div>
+            <!--Comment-->
+            <div class="ui minimal comments" style="font-size: 16px">
+                <h3 class="ui dividing header">Bình Luận</h3>
+                @foreach (var item in comments)
+                {
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="~/Content/Image/@item.User.User_Img" style="width: 150%">
+                        </a>
+                        <div class="content">
+                            <a href="@Url.Action("InforUser", "Information", new { id = item.User.User_ID})" class="author">@item.User.User_Name</a>
+                            <div class="metadata">
+                                <span class="date">Ngày đăng: @item.Comment_DateCreate.Value.Day/@item.Comment_DateCreate.Value.Month/@item.Comment_DateCreate.Value.Year<span>
+                            </div>
+                            <div class="text">
+                                @item.Comment_Content
+                            </div>
+                            @if (user != null && user.User_ID == item.User_ID)
+                            {
+                                <div class="actions">
+                                    <a class="reply">Chỉnh sửa</a>
+                                    <a class="save" data-toggle="collapse" href="#@rep@item.Comment_ID" role="button" aria-expanded="false" aria-controls="collapseExample">Trả lời |&nbsp;</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="actions">
+                                    <a class="reply" data-toggle="collapse" href="#@rep@item.Comment_ID" role="button" aria-expanded="false" aria-controls="collapseExample">Trả lời</a>
+                                </div>
+                            }
+                        </div>
+                        @{
+                            //DS repli
+                            List<RepLi> replis = db.RepLis.Where(n => n.Comment_ID == item.Comment_ID).OrderByDescending(n => n.Repli_DateCreate).ToList();
+                        }
+                        <!--Form repli-->
+                        <div class="collapse" id="@rep@item.Comment_ID">
+                            <div class="clearfix"></div>
+                            @if (user != null)
+                            {
+                                using (Html.BeginForm("ViewRep", "Account", FormMethod.Post, new { @class = "ui reply form", enctype = "multipart/form-data" }))
+                                {
+                                    <input type="hidden" name="Comment_ID" value="@item.Comment_ID" />
+                                    <div class="field">
+                                        <textarea name="Repli_Content" value="Repli_Content"></textarea>
+                                    </div>
+                                    <button type="submit" class="ui positive button" style="float: right">
+                                        <i class="edit icon"></i>
+                                        Trả Lời
+                                    </button>
+                                    <div class="clearfix"></div>
+                                }
+                            }
+                            else
+                            {
+                                <div class="ui compact green message center">
+                                    <p>Để bình luận vui lòng đăng nhập tài khoản. <a href="@Url.Action("Login", "Account")" style="color: red">Đăng nhập!</a></p>
+                                </div>
+                                <div class="clearfix"></div>
+                            }
+                            <div class="clearfix"></div>
+                        </div>
+                        <!--Form repli-->
+                        @foreach (var items in replis)
+                        {
+                            <div class="comments">
+                                <div class="comment">
+                                    <a class="avatar">
+                                        <img src="~/Content/Image/@items.User.User_Img" style="width: 150%">
+                                    </a>
+                                    <div class="content">
+                                        <a class="author">@items.User.User_Name</a>
+                                        <div class="metadata">
+                                            <span class="date">Ngày đăng: @items.Repli_DateCreate.Value.Day/@items.Repli_DateCreate.Value.Month/@items.Repli_DateCreate.Value.Year</span>
+                                        </div>
+                                        <div class="text">
+                                            @items.Repli_Content
+                                        </div>
+                                        @if (user != null && user.User_ID == item.User_ID)
+                                        {
+                                            <div class="actions">
+                                                <a class="reply">Chỉnh sửa</a>
+                                                <a class="save" data-toggle="collapse" href="#@rep@item.Comment_ID" role="button" aria-expanded="false" aria-controls="collapseExample">Trả lời |&nbsp;</a>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="actions">
+                                                <a class="reply" data-toggle="collapse" href="#@rep@item.Comment_ID" role="button" aria-expanded="false" aria-controls="collapseExample">Trả lời</a>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                }
+                <div class="clearfix"></div>
+                @if (user != null)
+                {
+                    using (Html.BeginForm("ViewComment", "Account", FormMethod.Post, new { @class = "ui reply form", enctype = "multipart/form-data" }))
+                    {
+                        <input type="hidden" name="Product_ID" value="@Model.Product_ID"/>
+                        <div class="field">
+                            <textarea name="Comment_Content" value="Comment_Content"></textarea>
+                        </div>
+                        <button type="submit" class="ui positive button" style="float: right">
+                            <i class="edit icon"></i>
+                            Bình Luận
+                        </button>
+                        <div class="clearfix"></div>
+                    }
+                }
+                else
+                {
+                    <div class="ui compact green message center">
+                        <p>Để bình luận vui lòng đăng nhập tài khoản. <a href="@Url.Action("Login", "Account")" style="color: red">Đăng nhập!</a></p>
+                    </div>
+                    <div class="clearfix"></div>
+                }
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+            <!--EndComment-->
         </div>
     </div>
     <!--End Details Product-->

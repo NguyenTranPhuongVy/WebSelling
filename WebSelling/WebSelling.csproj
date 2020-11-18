@@ -163,6 +163,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InformationController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\RepLisController.cs" />
     <Compile Include="Controllers\SeleteHomeController.cs" />
     <Compile Include="Controllers\ViewsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1200,17 +1201,16 @@
     <Content Include="Views\Shared\_ViewProfileUser.cshtml" />
     <Content Include="Views\Account\EditPass.cshtml" />
     <Content Include="Views\Information\EditProductUser.cshtml" />
-    <Content Include="Views\Views\Create.cshtml" />
-    <Content Include="Views\Views\Delete.cshtml" />
-    <Content Include="Views\Views\Details.cshtml" />
-    <Content Include="Views\Views\Edit.cshtml" />
-    <Content Include="Views\Views\Index.cshtml" />
     <Content Include="Views\Shared\_DetailCategory.cshtml" />
+    <Content Include="Views\RepLis\Create.cshtml" />
+    <Content Include="Views\RepLis\Delete.cshtml" />
+    <Content Include="Views\RepLis\Details.cshtml" />
+    <Content Include="Views\RepLis\Edit.cshtml" />
+    <Content Include="Views\RepLis\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\SellingAdmin\Data\" />
-    <Folder Include="Views\SeleteHome\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
