@@ -69,5 +69,11 @@ namespace WebSelling.Controllers
         {
             return PartialView();
         }
+
+        //Tìm kiếm
+        public PartialViewResult Search()
+        {
+            return PartialView();
+        }
     }
 }

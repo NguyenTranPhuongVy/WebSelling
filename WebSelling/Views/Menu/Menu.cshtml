@@ -1,7 +1,9 @@
 ﻿@using WebSelling.Models;
 @{ 
     User user = (User)Session["user"];
+    WebSellingEntities db = new WebSellingEntities();
 }
+@Html.Action("Css", "Home")
 <header style="background-color: #3CB371">
     <div class="container-fluid">
         <div class="header d-lg-flex justify-content-between align-items-center py-3 px-sm-3">
@@ -68,12 +70,47 @@
             <!-- //nav -->
             <div class="d-flex mt-lg-1 mt-sm-2 mt-3 justify-content-center">
                 <!-- search -->
-                <div class="search-w3layouts mr-3">
+                <div class="ui search search-w3layouts mr-3">
                     <form action="#" method="post" class="search-bottom-wthree d-flex">
-                        <input class="search" type="search" placeholder="Tìm Kiếm..." required="" style="border-radius: 50px"> &ensp;
+                        <input class="search prompt" type="search" placeholder="Tìm Kiếm..." required="" style="border-radius: 50px"> &ensp;
                         <button class="form-control btn" type="submit" style="border-radius: 100%; background-color: #fff"><span class="fa fa-search" style="color: #000000"></span></button>
-                        <button class="form-control btn" type="submit" style="border-radius: 100%; background-color: #fff"><span class="fa fa-cart-arrow-down" style="color: #000000"></span></button>
+                        <button class="form-control btn" type="button" style="border-radius: 100%; background-color: #fff"><span class="fa fa-cart-arrow-down" style="color: #000000"></span></button>
                     </form>
+                    <script>
+                        var content = [
+                            { title: 'United Arab Emirates' },
+                            { title: 'Afghanistan' },
+                            { title: 'Antigua' },
+                            { title: 'Anguilla' },
+                            { title: 'Albania' },
+                            { title: 'Armenia' },
+                            { title: 'Netherlands Antilles' },
+                            { title: 'Angola' },
+                            { title: 'Argentina' },
+                            { title: 'American Samoa' },
+                            { title: 'Austria' },
+                            { title: 'Australia' },
+                            { title: 'Aruba' },
+                            { title: 'Aland Islands' },
+                            { title: 'Azerbaijan' },
+                            { title: 'Bosnia' },
+                            { title: 'Barbados' },
+                            { title: 'Bangladesh' },
+                            { title: 'Belgium' },
+                            { title: 'Burkina Faso' },
+                            { title: 'Bulgaria' },
+                            { title: 'Bahrain' },
+                            { title: 'Burundi' }
+                            // etc
+                        ];
+                    </script>
+                    <script>
+                        $('.ui.search')
+                            .search({
+                                source: content
+                            })
+                            ;
+                    </script>
                 </div>
                 <!-- //search -->
             </div>

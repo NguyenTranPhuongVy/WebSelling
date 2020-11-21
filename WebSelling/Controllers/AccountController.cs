@@ -279,5 +279,27 @@ namespace WebSelling.Controllers
             db.SaveChanges();
             return Redirect(Request.UrlReferrer.ToString());
         }
+
+        ////Chỉnh sửa bình luận
+        //public ActionResult EditComment(FormCollection f ,int ? id)
+        //{
+        //    User user = (User)Session["user"];
+        //    String sID = f["Comment_ID"].ToString();
+        //    String sContent = f["Comment_Content"].ToString();
+        //    Comment comment = db.Comments.SingleOrDefault(n => n.Comment_ID == id && n.User_ID == user.User_ID);
+        //    if(user != null)
+        //    {
+        //        db.Comments.Find(comment).Comment_Content = sContent;
+        //        db.Comments.Find(comment).Comment_DateCreate = comment.Comment_DateCreate;
+        //        db.Comments.Find(comment).User_ID = user.User_ID;
+        //        db.Comments.Find(comment).Product_ID = comment.Product_ID;
+        //        db.SaveChanges();
+        //        return Redirect(Request.UrlReferrer.ToString());
+        //    }    
+        //    else
+        //    {
+
+        //    }    
+        //}
     }
 }
