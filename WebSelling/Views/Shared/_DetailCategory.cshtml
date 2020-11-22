@@ -1,41 +1,50 @@
 ﻿@using WebSelling.Models;
-@model List<Product>
-    @{ 
-        Category cate = (Category)Session["category"];
-    }
+@model List<View>
+@{
+    User user = (User)Session["user"];
+}
 @Html.Action("Css", "Home")
-<div class="row">
-    @foreach (var item in Model)
-    {
-        <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})">
-            <div class="col-lg-3 mb-3">
-                <div class="ui link cards">
-                    <div class="card">
-                        <div class="image">
-                            <img src="~/Content/Image/@item.Product_Img" style="height: 200px; width: 100%">
-                        </div>
-                        <div class="content">
-                            <div class="header"><a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">@item.Product_Name</a></div>
-                            <div class="meta">
-                                <p style="color: orangered"><i class="dollar sign icon"></i> @{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</p>
+@if (user != null)
+{
+    <div class="row">
+        @foreach (var item in Model.Where(n => n.User_ID == user.User_ID))
+        {
+            <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})">
+                <div class="col-lg-3 mb-3">
+                    <div class="ui link cards">
+                        <div class="card">
+                            <div class="image">
+                                <img src="~/Content/Image/@item.Product.Product_Img" style="height: 200px; width: 100%">
                             </div>
-                        </div>
-                        <div class="extra content">
-                            <span class="left floated like">
-                                <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">
-                                    <i class="like icon"></i>Yêu Thích
-                                </a>
-                            </span>
-                            <span class="right floated like">
-                                <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">Xem Chi Tiết</a>
-                            </span>
+                            <div class="content">
+                                <div class="header"><a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">@item.Product.Product_Name</a></div>
+                                <div class="meta">
+                                    <p style="color: orangered"><i class="dollar sign icon"></i> @{float price = (float)item.Product.Product_Price;} @price.ToString("#,##0") VNĐ</p>
+                                </div>
+                            </div>
+                            <div class="extra content">
+                                <span class="left floated like">
+                                    <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">
+                                        <i class="like icon"></i>Yêu Thích
+                                    </a>
+                                </span>
+                                <span class="right floated like">
+                                    <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">Xem Chi Tiết</a>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </a>
-    }
-    <div class="clearfix"> </div>
-</div>
-
+            </a>
+        }
+        <div class="clearfix"> </div>
+    </div>
+}
+else
+{
+    <div class="ui compact green message center">
+        <p>Để bình luận vui lòng đăng nhập tài khoản. <a href="@Url.Action("Login", "Account")" style="color: red">Đăng nhập!</a></p>
+    </div>
+    <div class="clearfix"></div>
+}
 

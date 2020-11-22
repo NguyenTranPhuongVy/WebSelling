@@ -1,5 +1,11 @@
 ﻿@using WebSelling.Models;
 @model User
+    @{ 
+        WebSellingEntities db = new WebSellingEntities();
+    }
+@{ 
+    List<View> view = db.Views.Where(n => n.Product_ID == Model.Province_ID && n.View_Bin == false).ToList();
+}
 <link href="~/Content/Layout/css/InforUser.css" rel="stylesheet" />
 <style>
     .content {
@@ -149,9 +155,6 @@
             </div>
             <div class="container-fluid mt--3 mb-3">
                 @{
-                    WebSellingEntities db = new WebSellingEntities();
-                }
-                @{
                     List<Product> product = db.Products.Where(n => n.User_ID == Model.User_ID && n.Product_Activate == true).OrderByDescending(n => n.Product_DateCreate).ToList();
                 }
                 @if (Model.Products.Count != 0)
@@ -176,9 +179,9 @@
                                     </div>
                                     <div class="extra">
                                         <span class="right floated">
-                                            <i class="heart outline like icon" style="font-size: 22px"></i>
+                                            @view.Count<i class="heart like icon" style="font-size: 22px"></i>
                                         </span>
-                                        <a href="@Url.Action("DetailsProduct", "Home", new { productid = item.Product_ID })" class="ui secondary basic button" style="font-size: 15px">Xem Chi Tiết</a>
+                                        <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID })" class="ui secondary basic button" style="font-size: 15px">Xem Chi Tiết</a>
                                     </div>
                                 </div>
                             </div>

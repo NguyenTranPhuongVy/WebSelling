@@ -1207,6 +1207,7 @@
     <Content Include="Views\RepLis\Details.cshtml" />
     <Content Include="Views\RepLis\Edit.cshtml" />
     <Content Include="Views\RepLis\Index.cshtml" />
+    <Content Include="Views\Account\ListProductsUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

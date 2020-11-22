@@ -301,5 +301,11 @@ namespace WebSelling.Controllers
 
         //    }    
         //}
+
+        public ActionResult ListProductsUser()
+        {
+            User user = (User)Session["user"];
+            return View(db.Views.Where(n => n.View_Bin == false).OrderByDescending(n => n.View_Date).ToList());
+        }
     }
 }
