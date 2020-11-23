@@ -1,0 +1,68 @@
+﻿@using WebSelling.Models
+@model List<Cart>
+@{
+    ViewBag.Title = "ViewCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Action("Css","Home")
+@Html.Action("Menu", "Menu")
+<style>
+    .chuyen {
+        color: black;
+    }
+
+        .chuyen:hover {
+            color: #ff0000 !important;
+        }
+
+    .font {
+        font-family: 'Segoe UI' !important;
+    }
+</style>
+<div class="ui yellow message">Chọn sản phẩm cần mua và thanh toán!!!</div>
+<table class="ui compact celled table">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>Đơn Giá</th>
+            <th>Số Tiền</th>
+            <th>Thao Tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="collapsing">
+                    <div class="ui read-only checkbox center">
+                        <input type="checkbox" value="Cart_Activate">
+                        <label></label>
+                    </div>
+                </td>
+                <td>
+                    <img class="ui top aligned tiny image" src="~/Content/Image/@item.Product.Product_Img" style="width: 150px; height: 100px">
+                    <span>@item.Product.Product_Name</span>
+                </td>
+                <td>@{float price = (float)item.Product.Product_Price;} @price.ToString("#,##0")</td>
+                <td>@{float prices = (float)item.Product.Product_Price;} @price.ToString("#,##0") VNĐ</td>
+                <td>
+                    <center>
+                        <a class="chuyen">Xoá</a>
+                    </center>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot class="full-width">
+        <tr>
+            <th></th>
+            <th colspan="4">
+                <div class="ui right floated small button">
+                    Thanh Toán
+                </div>
+            </th>
+        </tr>
+    </tfoot>
+</table>
+

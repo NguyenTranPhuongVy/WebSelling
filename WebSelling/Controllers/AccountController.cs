@@ -305,7 +305,19 @@ namespace WebSelling.Controllers
         public ActionResult ListProductsUser()
         {
             User user = (User)Session["user"];
-            return View(db.Views.Where(n => n.View_Bin == false).OrderByDescending(n => n.View_Date).ToList());
+            return View(db.Views.Where(n => n.View_Bin == false && n.User_ID == user.User_ID).OrderByDescending(n => n.View_Date).ToList());
+        }
+        
+        public PartialViewResult ProductsActivate()
+        {
+            User user = (User)Session["user"];
+            return PartialView("_DetailCategory", db.Products.Where(n => n.User_ID == user.User_ID && n.Product_Activate == true).OrderByDescending(n => n.Product_DateCreate).ToList());
+        }
+
+        public PartialViewResult ProductsNoActivate()
+        {
+            User user = (User)Session["user"];
+            return PartialView("_DetailCategory", db.Products.Where(n => n.User_ID == user.User_ID && n.Product_Activate == false).OrderByDescending(n => n.Product_DateCreate).ToList());
         }
     }
 }

@@ -70,10 +70,16 @@ namespace WebSelling.Controllers
             return PartialView();
         }
 
-        //Tìm kiếm
-        public PartialViewResult Search()
+        //Giỏ Hàng
+        public ActionResult ViewCart()
         {
-            return PartialView();
+            User user = (User)Session["user"];
+            return View(db.Carts.Where(n => n.User_ID == user.User_ID).OrderByDescending(n => n.Cart_DateCreate).ToList());
+        }
+
+        public ActionResult ViewPay()
+        {
+            return View();
         }
     }
 }

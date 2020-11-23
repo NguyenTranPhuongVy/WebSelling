@@ -113,7 +113,7 @@ namespace WebSelling.Controllers
                 product.Product_DateSubmit = DateTime.Now;
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
-                return Redirect("/Information/MyInforUser");
+                return Redirect("/Account/ListProductsUser");
             }
             return View(product);
         }

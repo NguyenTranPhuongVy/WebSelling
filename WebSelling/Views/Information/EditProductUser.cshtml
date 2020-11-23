@@ -17,7 +17,6 @@
         @Html.HiddenFor(x => x.Product_DateCreate)
         @Html.HiddenFor(x => x.Product_DateEdit)
         @Html.HiddenFor(x => x.Product_DateSubmit)
-        @Html.HiddenFor(x => x.Product_Activate)
         @Html.HiddenFor(x => x.Product_View)
         @Html.HiddenFor(x => x.User_ID)
         @Html.HiddenFor(x => x.Product_Img)
@@ -39,17 +38,26 @@
             <label>Hình Ảnh Sản Phẩm</label>
             <input name="fileeditproduct" value="@Model.Product_Img" type="file">
         </div>
-        <div class="field">
-            <label>Danh Mục</label>
-            @{
-                List<Category> cate = db.Categories.ToList();
-            }
-            <select class="ui dropdown" name="Category_ID">
-                @foreach (var item in cate)
-                {
-                    <option value="@item.Category_ID" @(item.Category_ID == Model.Category_ID ? "selected" : "")>@item.Category_Name</option>
+        <div class="two fields">
+            <div class="field">
+                <label>Danh Mục</label>
+                @{
+                    List<Category> cate = db.Categories.ToList();
                 }
-            </select>
+                <select class="ui dropdown" name="Category_ID">
+                    @foreach (var item in cate)
+                    {
+                        <option value="@item.Category_ID" @(item.Category_ID == Model.Category_ID ? "selected" : "")>@item.Category_Name</option>
+                    }
+                </select>
+            </div>
+            <div class="field">
+                <label>Trạng Thái</label>
+                <select class="ui dropdown" name="Product_Activate">
+                    <option value="true" @(Model.Product_Activate == true ? "selected" : "")>Hoạt Động</option>
+                    <option value="false" @(Model.Product_Activate == false ? "selected" : "")>Không Hoạt Động</option>
+                </select>
+            </div>
         </div>
         <div class="two fields">
             <div class="field">
@@ -90,10 +98,10 @@
         </div>
         <div class="field">
             <label>Chi Tiết Sản Phẩm</label>
-            <textarea id="@ckeditor@Model.Product_ID" name="Product_Detail">@Html.Raw(@Model.Product_Detail)</textarea>
+            <textarea id="@ckeditordes@Model.Product_ID" name="Product_Detail">@Html.Raw(@Model.Product_Detail)</textarea>
             <script>
                 ClassicEditor
-                    .create(document.querySelector('#@ckeditor@Model.Product_ID'))
+                    .create(document.querySelector('#@ckeditordes@Model.Product_ID'))
                     .catch(error => {
                         console.error(error);
                     });

@@ -1,0 +1,53 @@
+﻿@using WebSelling.Models;
+@{
+    ViewBag.Title = "ViewPay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Action("Menu", "Menu")
+<div class="ui horizontal divider">Thông Tin Nhận Hàng</div>
+<form class="ui form segment">
+    <p>Kiểm Tra Thông Tin Nhận Hàng</p>
+    <div class="field">
+        <label>Họ Và Tên</label>
+        <input value="name" name="name" type="text">
+    </div>
+    <div class="field">
+        <label>Số Điện Thoại</label>
+        <input placeholder="Username" name="username" type="text">
+    </div>
+    <div class="three fields">
+        <div class="field">
+            <label>Tỉnh/Thành Phố</label>
+            <input placeholder="First Name" name="name" type="text">
+        </div>
+        <div class="field">
+            <label>Quận/Huyện</label>
+            <input placeholder="First Name" name="name" type="text">
+        </div>
+        <div class="field">
+            <label>Địa Chỉ Cụ Thể</label>
+            <input placeholder="Số nhà, tên đường, ..." name="name" type="text">
+        </div>
+    </div>
+    <div class="ui buttons">
+        <button class="ui button">Huỷ Bỏ</button>
+        <div class="or"></div>
+        <button class="ui positive button">Thanh Toán</button>
+    </div>
+    <div class="ui error message"></div>
+</form>
+<script>
+    $('.ui.form')
+        .form({
+            fields: {
+                name: 'empty',
+                gender: 'empty',
+                username: 'empty',
+                password: ['minLength[6]', 'empty'],
+                skills: ['minCount[2]', 'empty'],
+                terms: 'checked'
+            }
+        })
+        ;
+</script>
+

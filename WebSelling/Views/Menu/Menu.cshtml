@@ -4,6 +4,19 @@
     WebSellingEntities db = new WebSellingEntities();
 }
 @Html.Action("Css", "Home")
+<style>
+    .ui.search > .results .result {
+        cursor: pointer;
+        display: block;
+        overflow: hidden;
+        font-size: 1em;
+        padding: 0px !important;
+        color: rgba(0,0,0,.87);
+        line-height: 1.33;
+        border-bottom: none !important;
+    }
+
+</style>
 <header style="background-color: #3CB371">
     <div class="container-fluid">
         <div class="header d-lg-flex justify-content-between align-items-center py-3 px-sm-3">
@@ -29,7 +42,7 @@
                         }
                         else
                         {
-                            <li><a href="@Url.Action("MyInforUser", "Information")"><i class="fa fa-product-hunt"></i> Sản Phẩm Của Tôi</a></li>
+                            <li><a href="@Url.Action("ListProductsUser", "Account")"><i class="fa fa-product-hunt"></i> Sản Phẩm Của Tôi</a></li>
                             <li><a href="pricing.html"><i class="fa fa-comments"></i> Tin Nhắn</a></li>
                             <li><a href="contact.html"><i class="fa fa-bell"></i> Thông Báo</a></li>
                         }
@@ -52,7 +65,7 @@
                             }
                             else
                             {
-                                <a href=""><i class="fa fa-user-circle"></i> @user.User_Name <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                                <a href="@Url.Action("MyInforUser", "Information")"><i class="fa fa-user-circle"></i> @user.User_Name <span class="fa fa-angle-down" aria-hidden="true"></span></a>
                                 <input type="checkbox" id="drop-2" />
                                 <ul>
                                     <li><a href="@Url.Action("Info", "Account")" class="drop-text"><i class="fa fa-pencil"></i>Thông Tin Cá Nhân</a></li>
@@ -77,37 +90,13 @@
                         <button class="form-control btn" type="button" style="border-radius: 100%; background-color: #fff"><span class="fa fa-cart-arrow-down" style="color: #000000"></span></button>
                     </form>
                     <script>
-                        var content = [
-                            { title: 'United Arab Emirates' },
-                            { title: 'Afghanistan' },
-                            { title: 'Antigua' },
-                            { title: 'Anguilla' },
-                            { title: 'Albania' },
-                            { title: 'Armenia' },
-                            { title: 'Netherlands Antilles' },
-                            { title: 'Angola' },
-                            { title: 'Argentina' },
-                            { title: 'American Samoa' },
-                            { title: 'Austria' },
-                            { title: 'Australia' },
-                            { title: 'Aruba' },
-                            { title: 'Aland Islands' },
-                            { title: 'Azerbaijan' },
-                            { title: 'Bosnia' },
-                            { title: 'Barbados' },
-                            { title: 'Bangladesh' },
-                            { title: 'Belgium' },
-                            { title: 'Burkina Faso' },
-                            { title: 'Bulgaria' },
-                            { title: 'Bahrain' },
-                            { title: 'Burundi' }
-                            // etc
-                        ];
+                        @Html.Action("SematicSearch", "Search")
                     </script>
                     <script>
                         $('.ui.search')
                             .search({
-                                source: content
+                                source: content,
+                                maxResults: 20
                             })
                             ;
                     </script>

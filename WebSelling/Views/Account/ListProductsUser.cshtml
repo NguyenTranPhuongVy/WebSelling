@@ -4,12 +4,32 @@
     ViewBag.Title = "ListProductsUser";
     Layout = "~/Views/Shared/_Layout.cshtml";
     User user = (User)Session["user"];
+    WebSellingEntities db = new WebSellingEntities();
 }
+<script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
+<style>
+    .chuyen {
+        color: black;
+    }
+
+        .chuyen:hover {
+            color: #3CB371 !important;
+        }
+
+    .font {
+        font-family: 'Segoe UI' !important;
+    }
+</style>
 @Html.Action("Menu", "Menu")
-<div class="bg-li py-5">
-    <div class="container">
+<div class="ui secondary pointing menu">
+    <a class="item active" href="@Url.Action("ListProductsUser", "Account")">Sản Phẩm Yêu Thích</a>
+    <a class="item" href="@Url.Action("ProductsActivate", "Account")" data-ajax="true" data-ajax-method="GET" data-ajax-update="#divAjax" data-ajax-="replace" data-ajax-loading="#divLoading">Sản Phẩm Đang Hoạt Động</a>
+    <a class="item" href="@Url.Action("ProductsNoActivate", "Account")" data-ajax="true" data-ajax-method="GET" data-ajax-update="#divAjax" data-ajax-="replace" data-ajax-loading="#divLoading">Sản Phẩm Ngừng Hoạt Động</a>
+</div>
+<div class="bg-li py-5 mt--3">
+    <div class="container" id="divAjax">
         <div class="row">
-            @foreach (var item in Model.Where(n => n.User_ID == user.User_ID))
+            @foreach (var item in Model)
             {
                 <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})">
                     <div class="col-lg-3 mb-3">
@@ -43,4 +63,49 @@
         </div>
     </div>
 </div>
-
+<!-- copyright bottom -->
+<div class="copy-bottom bg-li py-4 border-top">
+    <div class="container-fluid">
+        <div class="d-md-flex px-md-3 position-relative text-center">
+            <!-- footer social icons -->
+            <div class="social-icons-footer mb-md-0 mb-3">
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-facebook"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-twitter"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-google-plus"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-instagram"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- //footer social icons -->
+            <!-- copyright -->
+            <div class="copy_right mx-md-auto mb-md-0 mb-3">
+                <p class="text-bl let">
+                    © 2019 Startup. All rights reserved | Design by
+                    <a href="http://w3layouts.com/" target="_blank">W3layouts</a>
+                </p>
+            </div>
+            <!-- //copyright -->
+            <!-- move top icon -->
+            <a href="#home" class="move-top text-center">
+                <span class="fa fa-level-up" aria-hidden="true"></span>
+            </a>
+            <!-- //move top icon -->
+        </div>
+    </div>
+</div>

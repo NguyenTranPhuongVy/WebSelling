@@ -30,6 +30,7 @@
           <Property Name="Cart_TotalProduct" Type="int" />
           <Property Name="User_ID" Type="int" />
           <Property Name="Product_ID" Type="int" />
+          <Property Name="Cart_DateCreate" Type="datetime" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -484,6 +485,7 @@
           <Property Name="Product_ID" Type="Int32" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Cart_Product" FromRole="Cart" ToRole="Product" />
           <NavigationProperty Name="User" Relationship="Self.FK_Cart_User" FromRole="Cart" ToRole="User" />
+          <Property Name="Cart_DateCreate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -964,6 +966,7 @@
           <EntitySetMapping Name="Carts">
             <EntityTypeMapping TypeName="WebSellingModel.Cart">
               <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="Cart_DateCreate" ColumnName="Cart_DateCreate" />
                 <ScalarProperty Name="Cart_ID" ColumnName="Cart_ID" />
                 <ScalarProperty Name="Cart_TotalPament" ColumnName="Cart_TotalPament" />
                 <ScalarProperty Name="Cart_Activate" ColumnName="Cart_Activate" />

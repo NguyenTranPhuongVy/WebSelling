@@ -1,0 +1,13 @@
+﻿@using WebSelling.Models;
+@{
+    WebSellingEntities db = new WebSellingEntities();
+}
+@{
+    List<Product> pr = db.Products.Where(n => n.Product_Activate == true).OrderByDescending(n => n.Product_DateCreate).ToList();
+}
+var content = [
+@foreach (var item in pr)
+{
+    @: { title: '<a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})"><input type="hidden" value="@item.Category.Category_Name" /><div class="row"><div class="col-lg-4"><img src="/Content/Image/@item.Product_Img" class="mt-2" style="width: 100%; height: 45px" /></div><div class="col-lg-8">@item.Product_Name</div></div></a>' },
+}
+];

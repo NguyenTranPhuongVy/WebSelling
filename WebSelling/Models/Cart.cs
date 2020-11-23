@@ -20,6 +20,7 @@ namespace WebSelling.Models
         public Nullable<int> Cart_TotalProduct { get; set; }
         public Nullable<int> User_ID { get; set; }
         public Nullable<int> Product_ID { get; set; }
+        public Nullable<System.DateTime> Cart_DateCreate { get; set; }
     
         public virtual Product Product { get; set; }
         public virtual User User { get; set; }
