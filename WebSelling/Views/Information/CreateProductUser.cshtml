@@ -1,0 +1,140 @@
+﻿@using WebSelling.Models;
+@model Product
+@{
+    ViewBag.Title = "CreateProductUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    User user = (User)Session["user"];
+    WebSellingEntities db = new WebSellingEntities();
+}
+
+<script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
+@using (Html.BeginForm("CreateProductUser", "Information", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "ui form" }))
+{
+    <div class="ui horizontal divider">Nhập Thông Tin Sản Phẩm</div>
+    <div class="two fields">
+        <div class="field">
+            <label>Tên Sản Phẩm</label>
+            <input placeholder="Nhập Tên Sản Phấm" name="Product_Name" type="text">
+        </div>
+        <div class="field">
+            <label>Giá Sản Phẩm</label>
+            <input placeholder="Nhập Giá Sản Phấm" name="Product_Price" type="text">
+        </div>
+    </div>
+    <div class="field">
+        <label>Hình Ảnh Sản Phẩm</label>
+        <input name="fileupload" type="file" required>
+        @ViewBag.ThongBao
+    </div>
+    <div class="field">
+        <label>Danh Mục</label>
+        @{
+            List<Category> cate = db.Categories.ToList();
+        }
+        <select class="ui dropdown" name="Category_ID">
+            @foreach (var item in cate)
+            {
+                <option value="@item.Category_ID">@item.Category_Name</option>
+            }
+        </select>
+    </div>
+    <div class="two fields">
+        <div class="field">
+            <label>Phân Loại Danh Mục</label>
+            @{
+                List<SubCategory> subCate = db.SubCategories.ToList();
+            }
+            <select class="ui dropdown" name="SubCategory_ID">
+                @foreach (var item in subCate)
+                {
+                    <option value="@item.SubCategory_ID">@item.SubCategory_Name</option>
+                }
+            </select>
+        </div>
+        <div class="field">
+            <label>Phân Loại Sản Phẩm</label>
+            @{
+                List<SubProduct> subPro = db.SubProducts.ToList();
+            }
+            <select class="ui dropdown" name="SubProduct_ID">
+                @foreach (var item in subPro)
+                {
+                    <option value="@item.SubProduct_ID">@item.SubProduct_Name</option>
+                }
+            </select>
+        </div>
+    </div>
+    <div class="field">
+        <label>Mô Tả Sản Phẩm</label>
+        <textarea id="detailsdec" name="Product_Description"></textarea>
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#detailsdec'))
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
+    </div>
+    <div class="field">
+        <label>Chi Tiết Sản Phẩm</label>
+        <textarea id="detailspro" name="Product_Detail"></textarea>
+        <script>
+            ClassicEditor
+                .create(document.querySelector('#detailspro'))
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary submit">Đăng Tin</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+    </div>
+    <div class="ui error message"></div>
+}
+<div class="copy-bottom bg-li py-4 border-top mt-3">
+    <div class="container-fluid">
+        <div class="d-md-flex px-md-3 position-relative text-center">
+            <!-- footer social icons -->
+            <div class="social-icons-footer mb-md-0 mb-3">
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-facebook"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-twitter"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-google-plus"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-instagram"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- //footer social icons -->
+            <!-- copyright -->
+            <div class="copy_right mx-md-auto mb-md-0 mb-3">
+                <p class="text-bl let">
+                    © 2019 Startup. All rights reserved | Design by
+                    <a href="http://w3layouts.com/" target="_blank">W3layouts</a>
+                </p>
+            </div>
+            <!-- //copyright -->
+            <!-- move top icon -->
+            <a href="#home" class="move-top text-center">
+                <span class="fa fa-level-up" aria-hidden="true"></span>
+            </a>
+            <!-- //move top icon -->
+        </div>
+    </div>
+</div>
+

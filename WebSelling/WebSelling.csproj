@@ -150,8 +150,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\SellingAdmin\Controllers\AjaxController.cs" />
     <Compile Include="Areas\SellingAdmin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\SellingAdmin\Controllers\CitiesController.cs" />
+    <Compile Include="Areas\SellingAdmin\Controllers\CommentsController.cs" />
     <Compile Include="Areas\SellingAdmin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\SellingAdmin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\SellingAdmin\Controllers\SelectController.cs" />
@@ -1063,6 +1065,10 @@
     <Content Include="Areas\SellingAdmin\Views\Cities\Index.cshtml" />
     <Content Include="Areas\SellingAdmin\Views\Select\ViewProvince.cshtml" />
     <Content Include="Areas\SellingAdmin\Views\HomeAdmin\AdminLoginForm.cshtml" />
+    <Content Include="Areas\SellingAdmin\Views\Shared\_ViewProduct.cshtml" />
+    <Content Include="Areas\SellingAdmin\Views\Comments\Index.cshtml" />
+    <Content Include="Areas\SellingAdmin\Views\Shared\_ViewRep.cshtml" />
+    <Content Include="Areas\SellingAdmin\Views\Shared\_ViewComment.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -1212,10 +1218,14 @@
     <Content Include="Views\Search\SematicSearch.cshtml" />
     <Content Include="Views\Home\ViewCart.cshtml" />
     <Content Include="Views\Home\ViewPay.cshtml" />
+    <Content Include="Views\Account\ScriptValidation.cshtml" />
+    <Content Include="Views\Shared\_ViewLove.cshtml" />
+    <Content Include="Views\Information\CreateProductUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\SellingAdmin\Data\" />
+    <Folder Include="Areas\SellingAdmin\Views\Ajax\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

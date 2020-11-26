@@ -10,14 +10,14 @@
 <br />
 <div class="ui compact menu" style="margin-left: 2%">
     <a class="item" href="@Url.Action("Index", "Cities")">
-        <i class="map marker alternate icon"></i> Thành Phố
+        <i class="map marker alternate icon"></i> Tỉnh Thành
     </a>
 </div>
 <table class="ui compact celled definition table">
     <thead class="full-width">
         <tr class="text-center">
+            <th>Tên Quận Huyện</th>
             <th>Tên Tỉnh Thành</th>
-            <th>Tên Thành Phố</th>
             <th>Tuỳ Chọn</th>
         </tr>
     </thead>
@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="two fields ui form">
                                     <div class="field">
-                                        <label>Tên Danh Mục</label>
+                                        <label>Tên Quận Huyện</label>
                                         <input value="@item.Province_Name" name="Province_Name" type="text">
                                     </div>
                                     <div class="field">
@@ -86,7 +86,7 @@
             <th></th>
             <th colspan="6">
                 <a class="ui right floated small primary labeled icon button" data-toggle="modal" data-target="#createProvince" style="color: white">
-                    <i class="file icon"></i> Thêm Tỉnh Thành
+                    <i class="file icon"></i> Thêm Quận Huyện
                 </a>
             </th>
         </tr>
@@ -97,15 +97,15 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Thêm Tỉnh</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Thêm Quận Huyện</h5>
             </div>
             <div class="modal-body">
                 <form class="ui form" method="post" action="@Url.Action("CreateProvince", "Select")" enctype="multipart/form-data">
-                    <p>Thêm Tỉnh Thành</p>
+                    <p>Thêm Quận Huyện</p>
                     <div class="two fields">
                         <div class="field">
-                            <label>Tên Tỉnh Thành</label>
-                            <input placeholder="Nhập Tỉnh Thành" name="Province_Name" type="text">
+                            <label>Tên Quận Huyện</label>
+                            <input placeholder="Nhập Quận Huyện" name="Province_Name" type="text">
                         </div>
                         @{
                             List<City> city = db.Cities.ToList();

@@ -29,6 +29,15 @@
             <input placeholder="Số nhà, tên đường, ..." name="name" type="text">
         </div>
     </div>
+    <div class="field">
+        <label>Phương Thức Thanh Toán</label>
+        <select class="ui dropdown" name="gender">
+            <option value="">Chọn Phương Thức</option>
+            <option value="0" >Thanh Toán Tính Dụng/Visa</option>
+            <option value="1">Thanh Toán Ví MoMo</option>
+            <option value="2">Thanh Toán Khi Nhận Hàng</option>
+        </select>
+    </div>
     <div class="ui buttons">
         <button class="ui button">Huỷ Bỏ</button>
         <div class="or"></div>
@@ -50,4 +59,8 @@
         })
         ;
 </script>
-
+<script>
+    $('.ui.dropdown')
+        .dropdown()
+        ;
+</script>

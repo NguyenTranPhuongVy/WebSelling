@@ -90,7 +90,7 @@
             <textarea id="@ckeditor@Model.Product_ID" name="Product_Description">@Html.Raw(@Model.Product_Description)</textarea>
             <script>
                 ClassicEditor
-                    .create(document.querySelector('#@ckeditordes@Model.Product_ID'))
+                    .create(document.querySelector('#@ckeditor@Model.Product_ID'))
                     .catch(error => {
                         console.error(error);
                     });
@@ -159,4 +159,5 @@
         </div>
     </div>
 </div>
+@Html.Action("ScriptValidation", "Account")
 

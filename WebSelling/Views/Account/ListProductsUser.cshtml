@@ -22,9 +22,10 @@
 </style>
 @Html.Action("Menu", "Menu")
 <div class="ui secondary pointing menu">
-    <a class="item active" href="@Url.Action("ListProductsUser", "Account")">Sản Phẩm Yêu Thích</a>
+    <a class="item active" href="@Url.Action("ProductLove", "Account")" data-ajax="true" data-ajax-method="GET" data-ajax-update="#divAjax" data-ajax-="replace" data-ajax-loading="#divLoading">Sản Phẩm Yêu Thích</a>
     <a class="item" href="@Url.Action("ProductsActivate", "Account")" data-ajax="true" data-ajax-method="GET" data-ajax-update="#divAjax" data-ajax-="replace" data-ajax-loading="#divLoading">Sản Phẩm Đang Hoạt Động</a>
     <a class="item" href="@Url.Action("ProductsNoActivate", "Account")" data-ajax="true" data-ajax-method="GET" data-ajax-update="#divAjax" data-ajax-="replace" data-ajax-loading="#divLoading">Sản Phẩm Ngừng Hoạt Động</a>
+    <a class="item" href="@Url.Action("MyInforUser", "Information")">Cửa Hàng</a>
 </div>
 <div class="bg-li py-5 mt--3">
     <div class="container" id="divAjax">

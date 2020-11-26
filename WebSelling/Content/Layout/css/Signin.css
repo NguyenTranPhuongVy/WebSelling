@@ -139,7 +139,6 @@
 }
 
     .form .sign-in, .form .sign-up {
-        --padding: 50px;
         position: absolute;
         /*  Width is 100% - 385px - padding  */
         width: calc(var(--form-width) - 385px - var(--padding) * 2);

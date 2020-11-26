@@ -58,6 +58,13 @@ namespace WebSelling.Controllers
                 return Redirect(Request.UrlReferrer.ToString());
             }    
         }
+
+        //Test Validation
+        public PartialViewResult ScriptValidation()
+        {
+            return PartialView();
+        }    
+
         //Đăng Ký Người Dùng
         [HttpPost]
         public ActionResult Registration([Bind(Include = "User_ID,User_LastName,User_Name,User_Token,User_Activate,User_Pass,User_Email,User_Phone,User_Role,User_LinkF,User_Img,User_DateCreate,User_DateLogin,User_DateBirth,User_Sex,User_Address,Province_ID,City_ID")] User user, FormCollection f)
@@ -238,7 +245,7 @@ namespace WebSelling.Controllers
                     us.User_Pass = sNewPass;
                     db.SaveChanges();
                     Session["user"] = db.Users.Find(us.User_ID);
-                    return Redirect(ViewHome);
+                    return Redirect(Request.UrlReferrer.ToString());
                 }    
             }
             return View();
@@ -307,7 +314,13 @@ namespace WebSelling.Controllers
             User user = (User)Session["user"];
             return View(db.Views.Where(n => n.View_Bin == false && n.User_ID == user.User_ID).OrderByDescending(n => n.View_Date).ToList());
         }
-        
+
+        public ActionResult ProductLove()
+        {
+            User user = (User)Session["user"];
+            return View( "_ViewLove" ,db.Views.Where(n => n.View_Bin == false && n.User_ID == user.User_ID).OrderByDescending(n => n.View_Date).ToList());
+        }
+
         public PartialViewResult ProductsActivate()
         {
             User user = (User)Session["user"];

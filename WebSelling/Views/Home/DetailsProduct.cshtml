@@ -31,10 +31,10 @@
                             <div class="carousel-item active" style="margin-top: 3%">
                                 <img class="d-block w-100" src="~/Content/Image/@Model.Product_Img" style="height: 365px" alt="First slide">
                             </div>
-                            @for (int i = 0; i < 5; i++)
+                            @for (int i = 0; i < 3; i++)
                             {
                                 <div class="carousel-item" style="margin-top: 3%">
-                                    <img class="d-block w-100" src="~/Content/Image/Docongnghe.jpg" style="height: 365px" alt="Second slide">
+                                    <img class="d-block w-100" src="~/Content/Image/@Model.Product_Img" style="height: 365px" alt="Second slide">
                                 </div>
                             }
                         </div>
@@ -92,13 +92,13 @@
                     </div>
                     <div class="col-lg-12" style="color: black">
                         <span><b style="color: black; font-size: 16px">Mô tả sản phẩm: </b></span>
-                        <div>
+                        <div style="color: black">
                             @Html.Raw(@Model.Product_Description)
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <span><b style="color: black; font-size: 16px">Chi tiết sản phẩm: </b></span>
-                        <div>
+                        <div style="text-decoration-color: black">
                             @Html.Raw(@Model.Product_Detail)
                         </div>
                     </div>
@@ -293,7 +293,6 @@
     </div>
     <!--End Details Product-->
     <!--Slider Product-->
-    @Html.Action("SimilarProduct", "Home")
     <!--End Slider Product-->
     <!-- copyright bottom -->
     <div class="copy-bottom bg-li py-4 border-top">

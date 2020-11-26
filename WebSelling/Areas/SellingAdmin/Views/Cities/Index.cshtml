@@ -10,13 +10,13 @@
 <br />
 <div class="ui compact menu" style="margin-left: 2%">
     <a class="item" href="@Url.Action("ViewProvince", "Select")">
-        <i class="map marker alternate icon"></i> Tỉnh Thành
+        <i class="map marker alternate icon"></i> Quận Huyện
     </a>
 </div>
 <table class="ui compact celled definition table">
     <thead class="full-width">
         <tr class="text-center">
-            <th>Tên Thành Phố</th>
+            <th>Tên Tỉnh Thành</th>
             <th>Tuỳ Chọn</th>
         </tr>
     </thead>
@@ -72,7 +72,7 @@
             <th></th>
             <th colspan="6">
                 <a class="ui right floated small primary labeled icon button" data-toggle="modal" data-target="#createCity" style="color: white">
-                    <i class="file icon"></i> Thêm Thành Phố
+                    <i class="file icon"></i> Thêm Tỉnh Thành
                 </a>
             </th>
         </tr>
@@ -87,11 +87,11 @@
             </div>
             <div class="modal-body">
                 <form class="ui form" method="post" action="@Url.Action("CreateCity", "Select")" enctype="multipart/form-data">
-                    <p>Thêm Thành Phố</p>
+                    <p>Thêm Tỉnh Thành</p>
                     <div class="two fields">
                         <div class="field">
-                            <label>Tên Thành Phố</label>
-                            <input placeholder="Nhập Tên Thành Phố" name="City_Name" type="text">
+                            <label>Tên Tỉnh Thành</label>
+                            <input placeholder="Nhập Tên Tỉnh Thành" name="City_Name" type="text">
                         </div>
                     </div>
                     <div class="modal-footer">

@@ -1,0 +1,115 @@
+﻿@{
+    var a = "@";
+}
+<script>
+$('.ui.form')
+    .form({
+        fields: {
+            User_Email: {
+                identifier: 'User_Email',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Email trống! Vui lòng nhập email'
+                    },
+                    {
+                        type: 'email',
+                        prompt: 'Email không đúng định dạng'
+                    }
+                ]
+            },
+            User_Pass: {
+                identifier: 'User_Pass',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Mật khẩu trống! Vui lòng nhập mật khẩu'
+                    },
+                    {
+                        type: 'regExp[^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@a#\$%\^&\*])(?=.{8,})]',
+                        prompt: 'Mật khẩu phải có ít nhất 8 ký tự bao gồm(Viết hoa, viết thường, ký tự số và ký tự đặt biệt)'
+                    }
+                ]
+            },
+            user_repeat: {
+                identifier: 'user_repeat',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Vui lòng xác nhận lại mật khẩu'
+                    },
+                    {
+                        type: 'match[User_Pass]',
+                        prompt: 'Mật khẩu xác nhận không đúng'
+                    }
+                ]
+            },
+            //Thêm sản phẩm
+            Product_Name: {
+                identifier: 'Product_Name',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Bạn Chưa Nhập Tên Sản Phẩm'
+                    }
+                ]
+            },
+            fileupload: {
+                identifier: 'fileupload',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Bắt Buộc Phải Có Hình'
+                    }
+                ]
+            },
+            Product_Price: {
+                identifier: 'Product_Price',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Giá Không Được Để Trống'
+                    },
+                    {
+                        type: 'integer[1000..1000000000000000000000000000000000000000000]',
+                        prompt: 'Please enter an integer value'
+                    }
+                ]
+            },
+            Category_ID: {
+                identifier: 'Category_ID',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Không Đươc Phép Để Trống'
+                    }
+                ]
+            },
+            Product_Description: {
+                identifier: 'Product_Description',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Không Đươc Phép Để Trống'
+                    }
+                ]
+            },
+            Product_Detail: {
+                identifier: 'Product_Detail',
+                rules: [
+                    {
+                        type: 'empty',
+                        prompt: 'Không Đươc Phép Để Trống'
+                    }
+                ]
+            }
+
+
+
+
+
+        }
+    })
+    ;
+</script>
+

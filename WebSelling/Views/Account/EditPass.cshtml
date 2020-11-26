@@ -3,6 +3,7 @@
     ViewBag.Title = "EditPass";
     Layout = "~/Views/Shared/_Layout.cshtml";
     User user = (User)Session["user"];
+    var a = "@";
 }
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -248,7 +249,7 @@
                             </div>
                             <div class="field">
                                 <label>Xác Nhận Mật KHẩu Mới</label>
-                                <input placeholder="Xác Nhận Lại Mật Khẩu" name="Repass" type="password">
+                                <input placeholder="Xác Nhận Lại Mật Khẩu" name="RePass" type="password">
                                 <span style="color:red">@ViewBag.CheckPass</span>
                             </div>
                             <div class="ui buttons">
@@ -333,6 +334,10 @@
                         {
                             type: 'empty',
                             prompt: 'Không Được Để Trống'
+                        },
+                        {
+                            type: 'regExp[^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@a#\$%\^&\*])(?=.{8,})]',
+                            prompt: 'Mật Khẩu Ít Nhất Phải Có 8 Ký Tự Bao Gồm(Viết Hoa, Viết Thường, Ký Tự Số Và Ký Tự Đặc Biệt)'
                         }
                     ]
                 },
@@ -340,8 +345,12 @@
                     identifier: 'RePass',
                     rules: [
                         {
-                            type: 'NewPass[Repass]',
+                            type: 'match[NewPass]',
                             prompt: 'Mật khẩu Nhập Lại Không Khớp'
+                        }, 
+                        {
+                            type: 'empty',
+                            prompt: 'Vui Lòng Xác Nhận Lại Mật Khẩu'
                         }
                     ]
                 },

@@ -8,6 +8,6 @@
 var content = [
 @foreach (var item in pr)
 {
-    @: { title: '<a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})"><input type="hidden" value="@item.Category.Category_Name" /><div class="row"><div class="col-lg-4"><img src="/Content/Image/@item.Product_Img" class="mt-2" style="width: 100%; height: 45px" /></div><div class="col-lg-8">@item.Product_Name</div></div></a>' },
+    @: { title: '<a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" style="color: black"><input type="hidden" value="@item.Category.Category_Name" /><img class="ui middle aligned tiny image rounded mt-2 mb-2 ml-2" src="/Content/Image/@item.Product_Img" style="width: 100px; height: 60px"><span class="ml-3">@item.Product_Name</span></a>' },
 }
 ];
