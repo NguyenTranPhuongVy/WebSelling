@@ -6,7 +6,7 @@
     User user = (User)Session["user"];
     WebSellingEntities db = new WebSellingEntities();
 }
-
+@Html.Action("Menu", "Menu")
 <script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
 @using (Html.BeginForm("CreateProductUser", "Information", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "ui form" }))
 {

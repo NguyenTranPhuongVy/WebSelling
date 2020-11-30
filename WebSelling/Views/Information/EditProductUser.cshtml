@@ -1,4 +1,4 @@
-﻿@using WebSelling.Models;
+﻿@using WebSelling.Models
 @model Product
 @{
     ViewBag.Title = "EditProductUser";
@@ -31,7 +31,7 @@
             </div>
             <div class="field">
                 <label>Giá Sản Phẩm</label>
-                <input value="@Model.Product_Price" name="Product_Price" type="text">
+                <input value="@((int)@Model.Product_Price)" name="Product_Price" type="text">
             </div>
         </div>
         <div class="field">

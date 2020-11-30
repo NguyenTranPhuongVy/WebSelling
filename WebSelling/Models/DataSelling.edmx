@@ -61,6 +61,29 @@
           <Property Name="User_ID" Type="int" />
           <Property Name="Product_ID" Type="int" />
         </EntityType>
+        <EntityType Name="DetailsInvoices">
+          <Key>
+            <PropertyRef Name="DetailsInvoices_ID" />
+          </Key>
+          <Property Name="DetailsInvoices_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_ID" Type="int" />
+          <Property Name="Invoices_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Invoices">
+          <Key>
+            <PropertyRef Name="Invoices_ID" />
+          </Key>
+          <Property Name="Invoices_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Invoices_Buyer" Type="nvarchar" MaxLength="300" />
+          <Property Name="Invoices_Seller" Type="nvarchar" MaxLength="300" />
+          <Property Name="Invoices_Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="Invoices_Phone" Type="varchar" MaxLength="12" />
+          <Property Name="User_ID" Type="int" />
+          <Property Name="Invoices_TotalPay" Type="int" />
+          <Property Name="Invoices_DateCreate" Type="datetime" />
+          <Property Name="Invoices_Note" Type="nvarchar(max)" />
+          <Property Name="StatusBill_ID" Type="int" />
+        </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="Product_ID" />
@@ -103,6 +126,13 @@
           <Property Name="Repli_Content" Type="nvarchar(max)" />
           <Property Name="Comment_ID" Type="int" />
           <Property Name="User_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="StatusBill">
+          <Key>
+            <PropertyRef Name="StatusBill_ID" />
+          </Key>
+          <Property Name="StatusBill_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusBill_Name" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="SubCategory">
           <Key>
@@ -212,6 +242,42 @@
             </Principal>
             <Dependent Role="Comment">
               <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetailsInvoices_Invoices">
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="0..1" />
+          <End Role="DetailsInvoices" Type="Self.DetailsInvoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoices">
+              <PropertyRef Name="Invoices_ID" />
+            </Principal>
+            <Dependent Role="DetailsInvoices">
+              <PropertyRef Name="Invoices_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoices_StatusBill">
+          <End Role="StatusBill" Type="Self.StatusBill" Multiplicity="0..1" />
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusBill">
+              <PropertyRef Name="StatusBill_ID" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="StatusBill_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoices_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Invoices" Type="Self.Invoices" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Invoices">
+              <PropertyRef Name="Invoices_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -377,9 +443,12 @@
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Comment" EntityType="Self.Comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetailsInvoices" EntityType="Self.DetailsInvoices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoices" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Province" EntityType="Self.Province" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RepLi" EntityType="Self.RepLi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusBill" EntityType="Self.StatusBill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubProduct" EntityType="Self.SubProduct" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -400,6 +469,18 @@
           <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
             <End Role="User" EntitySet="User" />
             <End Role="Comment" EntitySet="Comment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailsInvoices_Invoices" Association="Self.FK_DetailsInvoices_Invoices">
+            <End Role="Invoices" EntitySet="Invoices" />
+            <End Role="DetailsInvoices" EntitySet="DetailsInvoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoices_StatusBill" Association="Self.FK_Invoices_StatusBill">
+            <End Role="StatusBill" EntitySet="StatusBill" />
+            <End Role="Invoices" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoices_User" Association="Self.FK_Invoices_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Invoices" EntitySet="Invoices" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
             <End Role="Category" EntitySet="Category" />
@@ -641,6 +722,7 @@
           <NavigationProperty Name="Province" Relationship="Self.FK_User_Province" FromRole="User" ToRole="Province" />
           <NavigationProperty Name="RepLis" Relationship="Self.FK_RepLi_User" FromRole="User" ToRole="RepLi" />
           <NavigationProperty Name="Views" Relationship="Self.FK_Views_User" FromRole="User" ToRole="Views" />
+          <NavigationProperty Name="Invoice" Relationship="WebSellingModel.FK_Invoices_User" FromRole="User" ToRole="Invoice" />
         </EntityType>
         <EntityType Name="View">
           <Key>
@@ -940,7 +1022,93 @@
             <End Role="User" EntitySet="Users" />
             <End Role="Views" EntitySet="Views" />
           </AssociationSet>
+          <EntitySet Name="DetailsInvoices" EntityType="WebSellingModel.DetailsInvoice" />
+          <EntitySet Name="Invoices" EntityType="WebSellingModel.Invoice" />
+          <EntitySet Name="StatusBills" EntityType="WebSellingModel.StatusBill" />
+          <AssociationSet Name="FK_DetailsInvoices_Invoices" Association="WebSellingModel.FK_DetailsInvoices_Invoices">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="DetailsInvoice" EntitySet="DetailsInvoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoices_StatusBill" Association="WebSellingModel.FK_Invoices_StatusBill">
+            <End Role="StatusBill" EntitySet="StatusBills" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoices_User" Association="WebSellingModel.FK_Invoices_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="DetailsInvoice">
+          <Key>
+            <PropertyRef Name="DetailsInvoices_ID" />
+          </Key>
+          <Property Name="DetailsInvoices_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_ID" Type="Int32" />
+          <Property Name="Invoices_ID" Type="Int32" />
+          <NavigationProperty Name="Invoice" Relationship="WebSellingModel.FK_DetailsInvoices_Invoices" FromRole="DetailsInvoice" ToRole="Invoice" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="Invoices_ID" />
+          </Key>
+          <Property Name="Invoices_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Invoices_Buyer" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Invoices_Seller" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Invoices_Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Invoices_Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="Invoices_TotalPay" Type="Int32" />
+          <Property Name="Invoices_DateCreate" Type="DateTime" Precision="3" />
+          <Property Name="Invoices_Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StatusBill_ID" Type="Int32" />
+          <NavigationProperty Name="DetailsInvoices" Relationship="WebSellingModel.FK_DetailsInvoices_Invoices" FromRole="Invoice" ToRole="DetailsInvoice" />
+          <NavigationProperty Name="StatusBill" Relationship="WebSellingModel.FK_Invoices_StatusBill" FromRole="Invoice" ToRole="StatusBill" />
+          <NavigationProperty Name="User" Relationship="WebSellingModel.FK_Invoices_User" FromRole="Invoice" ToRole="User" />
+        </EntityType>
+        <EntityType Name="StatusBill">
+          <Key>
+            <PropertyRef Name="StatusBill_ID" />
+          </Key>
+          <Property Name="StatusBill_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusBill_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Invoices" Relationship="WebSellingModel.FK_Invoices_StatusBill" FromRole="StatusBill" ToRole="Invoice" />
+        </EntityType>
+        <Association Name="FK_DetailsInvoices_Invoices">
+          <End Type="WebSellingModel.Invoice" Role="Invoice" Multiplicity="0..1" />
+          <End Type="WebSellingModel.DetailsInvoice" Role="DetailsInvoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Invoice">
+              <PropertyRef Name="Invoices_ID" />
+            </Principal>
+            <Dependent Role="DetailsInvoice">
+              <PropertyRef Name="Invoices_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoices_StatusBill">
+          <End Type="WebSellingModel.StatusBill" Role="StatusBill" Multiplicity="0..1" />
+          <End Type="WebSellingModel.Invoice" Role="Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusBill">
+              <PropertyRef Name="StatusBill_ID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="StatusBill_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Invoices_User">
+          <End Type="WebSellingModel.User" Role="User" Multiplicity="1" />
+          <End Type="WebSellingModel.Invoice" Role="Invoice" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="Invoices_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1119,6 +1287,39 @@
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="View_Date" ColumnName="View_Date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetailsInvoices">
+            <EntityTypeMapping TypeName="WebSellingModel.DetailsInvoice">
+              <MappingFragment StoreEntitySet="DetailsInvoices">
+                <ScalarProperty Name="Invoices_ID" ColumnName="Invoices_ID" />
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="DetailsInvoices_ID" ColumnName="DetailsInvoices_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="WebSellingModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoices">
+                <ScalarProperty Name="StatusBill_ID" ColumnName="StatusBill_ID" />
+                <ScalarProperty Name="Invoices_Note" ColumnName="Invoices_Note" />
+                <ScalarProperty Name="Invoices_DateCreate" ColumnName="Invoices_DateCreate" />
+                <ScalarProperty Name="Invoices_TotalPay" ColumnName="Invoices_TotalPay" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Invoices_Phone" ColumnName="Invoices_Phone" />
+                <ScalarProperty Name="Invoices_Address" ColumnName="Invoices_Address" />
+                <ScalarProperty Name="Invoices_Seller" ColumnName="Invoices_Seller" />
+                <ScalarProperty Name="Invoices_Buyer" ColumnName="Invoices_Buyer" />
+                <ScalarProperty Name="Invoices_ID" ColumnName="Invoices_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusBills">
+            <EntityTypeMapping TypeName="WebSellingModel.StatusBill">
+              <MappingFragment StoreEntitySet="StatusBill">
+                <ScalarProperty Name="StatusBill_Name" ColumnName="StatusBill_Name" />
+                <ScalarProperty Name="StatusBill_ID" ColumnName="StatusBill_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

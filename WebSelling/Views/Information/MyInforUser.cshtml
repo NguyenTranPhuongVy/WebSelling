@@ -184,14 +184,28 @@
                         }
                     </div>
                     <center>
-                        <a href="@Url.Action("CreateProductUser", "Information")" class="ui inverted green button mb-2" style="height: 50px; width: 50%">Đăng Tin</a>
+                        <div class="ui yellow message">
+
+                            <i class="close icon"></i>
+                            <div class="header">
+                                Bạn chưa có tin đăng cá nhân nào đang bán!
+                            </div>
+                            <p>Hãy thử đăng bán ngay nào.</p>
+                        </div>
+                        <a href="@Url.Action("CreateProductUser", "Information")" class="ui positive basic button" style="height: 50px; width: 50%">Đăng Tin</a>
                     </center>
                 }
                 else
                 {
                     <center>
-                        <div class="alert alert-warning" style="height: 70px; width: 50%; background-color: #db972b">Bạn chưa có tin đăng cá nhân nào đang bán, thử đăng bán ngay.</div>
-                        <a href="@Url.Action("CreateProductUser", "Information")" class="ui inverted green button mb-2" style="height: 50px; width: 50%">Đăng Tin</a>
+                        <div class="ui yellow message">
+                            <i class="close icon"></i>
+                            <div class="header">
+                                Bạn chưa có tin đăng cá nhân nào đang bán!
+                            </div>
+                            <p>Hãy thử đăng bán ngay nào.</p>
+                        </div>
+                        <a href="@Url.Action("CreateProductUser", "Information")" class="ui positive basic button" style="height: 50px; width: 50%">Đăng Tin</a>
                     </center>
                 }
             </div>
