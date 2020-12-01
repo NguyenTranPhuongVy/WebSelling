@@ -94,7 +94,12 @@ namespace WebSelling.Controllers
             Session["user"] = null;
             return Redirect(ViewHome);
         }
-
+        //Ajax Address 
+        public PartialViewResult ajaxFilterProvinceByCityID(int City_Id)
+        {
+            List<Province> provinces = db.Provinces.Where(t => t.City_ID == City_Id).ToList();
+            return PartialView(provinces);
+        }
         //Cập Nhật Thông Tin
         public PartialViewResult FormReg()
         {
@@ -312,13 +317,15 @@ namespace WebSelling.Controllers
         public ActionResult ListProductsUser()
         {
             User user = (User)Session["user"];
-            return View(db.Views.Where(n => n.View_Bin == false && n.User_ID == user.User_ID).OrderByDescending(n => n.View_Date).ToList());
+            List<View> views = db.Views.Where(n => n.View_Bin == false && n.User_ID == user.User_ID).OrderByDescending(n => n.View_Date).ToList();
+            return View(views);
         }
 
         public ActionResult ProductLove()
         {
             User user = (User)Session["user"];
-            return View( "_ViewLove" ,db.Views.Where(n => n.View_Bin == false && n.User_ID == user.User_ID).OrderByDescending(n => n.View_Date).ToList());
+            List<View> views = db.Views.Where(n => n.View_Bin == false && n.User_ID == user.User_ID).OrderByDescending(n => n.View_Date).ToList();
+            return View( "_ViewLove" , views);
         }
 
         public PartialViewResult ProductsActivate()

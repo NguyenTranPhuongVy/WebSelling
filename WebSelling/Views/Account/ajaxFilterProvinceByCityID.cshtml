@@ -1,0 +1,10 @@
+﻿@model IEnumerable<WebSelling.Models.Province>
+
+<label>Tỉnh Thành</label>
+<br>
+<select name="Province_ID" placeholder="TP Hồ Chí Minh" class="form-control">
+    @foreach (var item in Model)
+    {
+        <option value="@item.Province_ID"> @item.Province_Name </option>
+    }
+</select>

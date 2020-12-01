@@ -28,7 +28,8 @@ namespace WebSelling.Controllers
         {
             Category cate = db.Categories.SingleOrDefault(n => n.Category_ID == categoryid);
             Session["category"] = cate;
-            return View(db.Products.Where(n => n.Category_ID == categoryid && n.Product_Activate == true).OrderByDescending(n => n.Product_DateCreate).ToList());
+            List<Product> products = db.Products.Where(n => n.Category_ID == categoryid && n.Product_Activate == true).OrderByDescending(n => n.Product_DateCreate).ToList();
+            return View(products);
         }
 
         public PartialViewResult NewProduct()

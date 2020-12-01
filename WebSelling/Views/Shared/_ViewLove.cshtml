@@ -7,36 +7,48 @@
     User user = (User)Session["user"];
     WebSellingEntities db = new WebSellingEntities();
 }
-<div class="row">
-    @foreach (var item in Model)
-    {
-    <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})">
-        <div class="col-lg-3 mb-3">
-            <div class="ui link cards">
-                <div class="card">
-                    <div class="image rounded">
-                        <img src="~/Content/Image/@item.Product.Product_Img" style="height: 200px; width: 100%">
-                    </div>
-                    <div class="content">
-                        <div class="header"><a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product.Product_ID})" class="chuyen">@item.Product.Product_Name</a></div>
-                        <div class="meta">
-                            <p style="color: orangered"><i class="dollar sign icon"></i> @{float price = (float)item.Product.Product_Price;} @price.ToString("#,##0") VNĐ</p>
+@if (Model.Count == 0)
+{
+    <div class="ui success message">
+        <div class="header">
+            Không có sản phẩm.
+        </div>
+        <p>Bạn có thể lưu các sản phẩm bạn tâm đắc.</p>
+    </div>
+}
+else
+{
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})">
+                <div class="col-lg-3 mb-3">
+                    <div class="ui link cards">
+                        <div class="card">
+                            <div class="image">
+                                <img src="~/Content/Image/@item.Product.Product_Img" style="height: 200px; width: 100%">
+                            </div>
+                            <div class="content">
+                                <div class="header"><a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product.Product_ID})" class="chuyen">@item.Product.Product_Name</a></div>
+                                <div class="meta">
+                                    <p style="color: orangered"><i class="dollar sign icon"></i> @{float price = (float)item.Product.Product_Price;} @price.ToString("#,##0") VNĐ</p>
+                                </div>
+                            </div>
+                            <div class="extra content">
+                                <span class="left floated like">
+                                    <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">
+                                        <i class="like icon"></i>Yêu Thích
+                                    </a>
+                                </span>
+                                <span class="right floated like">
+                                    <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">Xem Chi Tiết</a>
+                                </span>
+                            </div>
                         </div>
                     </div>
-                    <div class="extra content">
-                        <span class="left floated like">
-                            <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">
-                                <i class="like icon"></i>Yêu Thích
-                            </a>
-                        </span>
-                        <span class="right floated like">
-                            <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">Xem Chi Tiết</a>
-                        </span>
-                    </div>
                 </div>
-            </div>
-        </div>
-    </a>
-    }
-    <div class="clearfix"> </div>
-</div>
+            </a>
+        }
+    </div>
+}
+<div class="clearfix"> </div>

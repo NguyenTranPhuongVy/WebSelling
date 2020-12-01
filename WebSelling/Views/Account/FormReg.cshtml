@@ -199,7 +199,8 @@
                                                     @{
                                                         List<City> cities = db.Cities.ToList();
                                                     }
-                                                    <select name="City_ID" placeholder="TP Hồ Chí Minh" class="form-control">
+                                                    <select name="City_ID" placeholder="TP Hồ Chí Minh" class="form-control" id="slCity">
+                                                        <option>-- Chọn thành phố --</option>
                                                         @foreach (var item in cities)
                                                         {
                                                             <option value="@item.City_ID"> @item.City_Name </option>
@@ -208,16 +209,11 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-5">
-                                                <div class="form-group">
+                                                
+                                                <div class="form-group" id="newFilterProvinceByCity">
                                                     <label>Tỉnh Thành</label><br>
-                                                    @{ 
-                                                        List<Province> province = db.Provinces.ToList();
-                                                    }
                                                     <select name="Province_ID" placeholder="TP Hồ Chí Minh" class="form-control">
-                                                        @foreach (var item in province)
-                                                        {
-                                                            <option value="@item.Province_ID"> @item.Province_Name </option>
-                                                        }
+                                                        <option>-- Chọn thành phố trước --</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -259,12 +255,30 @@
     <script src="~/Content/FormReg/assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="~/Content/FormReg/assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
 
+    <!--script-->
+    <script>
+        $(document).ready(function () {
+            $("#slCity").click(function () {
+                let id = $(this).val();
+                debugger
+                $.ajax({
+                    type: "post",
+                    url: "/Account/ajaxFilterProvinceByCityID?City_Id=" + id,
+                    contentType: "html",
+                    success: function (result) {
+                        $("#newFilterProvinceByCity").html(result);
+                    }
+                })
+            })
+        })
+    </script>
     <!--  Plugin for the Wizard -->
     <script src="~/Content/FormReg/assets/js/gsdk-bootstrap-wizard.js"></script>
 
     <!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
     <script src="~/Content/FormReg/assets/js/jquery.validate.min.js"></script>
     <script src="~/Scripts/fontawesome/all.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js" integrity="sha512-DedNBWPF0hLGUPNbCYfj8qjlEnNE92Fqn7xd3Sscfu7ipy7Zu33unHdugqRD3c4Vj7/yLv+slqZhMls/4Oc7Zg==" crossorigin="anonymous"></script>
 </body>
 </html>
 

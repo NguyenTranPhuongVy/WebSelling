@@ -1232,6 +1232,7 @@
     <Content Include="Views\Shared\_ViewLove.cshtml" />
     <Content Include="Views\Information\CreateProductUser.cshtml" />
     <Content Include="Views\Invoices\IndexCart.cshtml" />
+    <Content Include="Views\Account\ajaxFilterProvinceByCityID.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

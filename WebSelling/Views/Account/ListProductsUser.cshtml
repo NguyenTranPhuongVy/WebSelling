@@ -29,10 +29,21 @@
 </div>
 <div class="bg-li py-5 mt--3">
     <div class="container" id="divAjax">
-        <div class="row">
-            @foreach (var item in Model)
-            {
-                <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})">
+        @if (Model.Count == 0)
+        {
+            <div class="ui success message">
+                <div class="header">
+                    Không có sản phẩm.
+                </div>
+                <p>Bạn có thể lưu các sản phẩm bạn tâm đắc.</p>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})">
                     <div class="col-lg-3 mb-3">
                         <div class="ui link cards">
                             <div class="card">
@@ -59,9 +70,10 @@
                         </div>
                     </div>
                 </a>
-            }
-            <div class="clearfix"> </div>
-        </div>
+                }
+            </div>
+        }
+        <div class="clearfix"> </div>
     </div>
 </div>
 <!-- copyright bottom -->

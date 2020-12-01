@@ -15,64 +15,72 @@
         display: -webkit-box;
         font-weight: initial;
     }
-    .chuyen{
+
+    .chuyen {
         color: black;
     }
-   .chuyen:hover{
+
+        .chuyen:hover {
             color: #3CB371 !important;
         }
-   .font{
-       font-family: 'Segoe UI' !important;
-   }
+
+    .font {
+        font-family: 'Segoe UI' !important;
+    }
 </style>
 @Html.Action("Menu", "Menu")
 @Html.Action("Css", "Home")
-<div class="container" style="height: 50px">
-    <div class="row">
-        <div class="col-lg-12 mt-2">
-            <button class="ui olive basic button font"><i class="filter icon"></i> Lọc</button>
-            <button class="ui olive basic button font" data-toggle="modal" data-target="#province"><i class="map marker alternate icon"></i>Chọn Khu Vực <i class="caret down icon"></i></button>
-            <button class="ui olive basic button font" data-toggle="modal" data-target="#category">@cate.Category_Name <i class="caret down icon"></i></button>
-        </div>
-    </div>
+<div class="mt-3 ml-5">
+    <a href="@Url.Action("Index", "Home")" class="ui teal tag label" style="font-family: 'Segoe UI'; font-size: 15px">Trở Lại Trang Chủ</a>
 </div>
 <div class="py-5">
     <div class="container">
-        <div class="row">
-            @foreach (var item in Model)
-            {
-                <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})">
-                    <div class="col-lg-3 mb-3">
-                        <div class="ui link cards">
-                            <div class="card">
-                                <div class="image rounded">
-                                    <img src="~/Content/Image/@item.Product_Img" style="height: 200px; width: 100%">
-                                </div>
-                                <div class="content">
-                                    <div class="header">
-                                        <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">@item.Product_Name</a>
+        @if (Model.Count() == 0)
+        {
+            <div class="ui success message">
+                <div class="header">
+                    Không có sản phẩm nào.
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})">
+                        <div class="col-lg-3 mb-3">
+                            <div class="ui link cards">
+                                <div class="card">
+                                    <div class="image rounded">
+                                        <img src="~/Content/Image/@item.Product_Img" style="height: 200px; width: 100%">
                                     </div>
-                                    <div class="meta">
-                                        <p style="color: orangered"><i class="dollar sign icon"></i> @{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</p>
+                                    <div class="content">
+                                        <div class="header">
+                                            <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">@item.Product_Name</a>
+                                        </div>
+                                        <div class="meta">
+                                            <p style="color: orangered"><i class="dollar sign icon"></i> @{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="extra content">
-                                    <span class="left floated like">
-                                        <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">
-                                            <i class="like icon"></i>Yêu Thích
-                                        </a>
-                                    </span>
-                                    <span class="right floated like">
-                                        <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">Xem Chi Tiết</a>
-                                    </span>
+                                    <div class="extra content">
+                                        <span class="left floated like">
+                                            <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">
+                                                <i class="like icon"></i>Yêu Thích
+                                            </a>
+                                        </span>
+                                        <span class="right floated like">
+                                            <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">Xem Chi Tiết</a>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            }
-            <div class="clearfix"> </div>
-        </div>
+                    </a>
+                }
+            </div>
+        }
+        <div class="clearfix"></div>
     </div>
 </div>
 <!--Modal category-->
@@ -97,14 +105,14 @@
             }
             <div class="ui middle aligned divided list mt--1">
                 <div class="item ui inverted green basic button" style="width: 100%; height: 50px; padding: 17px 8px">
-                        <div class="right floated content">
-                            <i class="chevron right icon"></i>
+                    <div class="right floated content">
+                        <i class="chevron right icon"></i>
+                    </div>
+                    <a href="@Url.Action("DetailsCatelogry", "Home", new { categoryid = cate.Category_ID})" style="color: black">
+                        <div class="content" style="text-align: left">
+                            Tất Cả
                         </div>
-                        <a href="@Url.Action("DetailsCatelogry", "Home", new { categoryid = cate.Category_ID})" style="color: black">
-                            <div class="content" style="text-align: left">
-                                Tất Cả
-                            </div>
-                        </a>
+                    </a>
                 </div>
                 @foreach (var item in category)
                 {
@@ -125,7 +133,7 @@
 </div>
 <!--//Modal category-->
 <!--Modal province-->
-@{ 
+@{
     List<City> cities = db.Cities.ToList();
 }
 <div class="modal fade" id="province" tabindex="1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">

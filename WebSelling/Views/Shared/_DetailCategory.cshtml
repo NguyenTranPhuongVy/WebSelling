@@ -5,16 +5,25 @@
     WebSellingEntities db = new WebSellingEntities();
 }
 @Html.Action("Css", "Home")
-<div class="row">
-    @if (user.Products.Count != 0)
-    {
-        foreach (var item in Model)
+@if (Model.Count == 0)
+{
+    <div class="ui success message">
+        <div class="header">
+            Không có sản phẩm.
+        </div>
+        <p>Bạn không có bất cứ sản phẩm không hoạt động nào.</p>
+    </div>
+}
+else
+{
+    <div class="row">
+        @foreach (var item in Model)
         {
             <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})">
                 <div class="col-lg-3 mb-3">
                     <div class="ui link cards">
                         <div class="card">
-                            <div class="image rounded">
+                            <div class="image">
                                 <img src="~/Content/Image/@item.Product_Img" style="height: 200px; width: 100%">
                             </div>
                             <div class="content">
@@ -24,22 +33,11 @@
                                 </div>
                             </div>
                             <div class="extra content">
-                                @if (item.User_ID == user.User_ID)
-                                {
-                                    <span class="left floated like">
-                                        <a href="@Url.Action("EditProductUser", "Information", new { id = item.Product_ID})" class="chuyen">
-                                            <i class="edit outline icon"></i>Chỉnh Sửa
-                                        </a>
-                                    </span>
-                                }
-                                else
-                                {
-                                    <span class="left floated like">
-                                        <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">
-                                            <i class="like icon"></i>Yêu Thích
-                                        </a>
-                                    </span>
-                                }
+                                <span class="left floated like">
+                                    <a href="@Url.Action("EditProductUser", "Information", new { id = item.Product_ID})" class="chuyen">
+                                        <i class="edit icon"></i>Chỉnh Sửa
+                                    </a>
+                                </span>
                                 <span class="right floated like">
                                     <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">Xem Chi Tiết</a>
                                 </span>
@@ -49,24 +47,6 @@
                 </div>
             </a>
         }
-    }
-    else
-    {
-        <div class="ui positive message">
-            <i class="close icon"></i>
-            <div class="header">
-                Không Có Sản Phẩm
-            </div>
-        </div>
-    }
-</div>
-<script>
-    $('.message .close')
-        .on('click', function () {
-            $(this)
-                .closest('.message')
-                .transition('fade')
-                ;
-        })
-        ;
-</script>
+    </div>
+}
+<div class="clearfix"> </div>
