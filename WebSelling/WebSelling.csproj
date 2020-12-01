@@ -1228,8 +1228,6 @@
     <Content Include="Views\RepLis\Index.cshtml" />
     <Content Include="Views\Account\ListProductsUser.cshtml" />
     <Content Include="Views\Search\SematicSearch.cshtml" />
-    <Content Include="Views\Home\ViewCart.cshtml" />
-    <Content Include="Views\Home\ViewPay.cshtml" />
     <Content Include="Views\Account\ScriptValidation.cshtml" />
     <Content Include="Views\Shared\_ViewLove.cshtml" />
     <Content Include="Views\Information\CreateProductUser.cshtml" />

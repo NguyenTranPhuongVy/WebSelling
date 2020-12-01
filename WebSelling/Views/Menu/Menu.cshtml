@@ -87,7 +87,16 @@
                     <form action="#" method="post" class="search-bottom-wthree d-flex">
                         <input class="search prompt" type="search" placeholder="Tìm Kiếm..." required="" style="border-radius: 50px"> &ensp;
                         <button class="form-control btn" type="submit" style="border-radius: 100%; background-color: #fff"><span class="fa fa-search" style="color: #000000"></span></button>
-                        <button class="form-control btn" type="button" style="border-radius: 100%; background-color: #fff"><span class="fa fa-cart-arrow-down" style="color: #000000"></span></button>
+                        @if (user != null)
+                        {
+                            <a href="@Url.Action("IndexCart", "Invoices")">
+                                <button type="button" class="form-control btn" style="border-radius: 80%; background-color: #fff"><span class="fa fa-cart-arrow-down" style="color: #000000"></span></button>
+                            </a>
+                        }
+                        else
+                        {
+                            <button class="form-control btn" type="button" style="border-radius: 100%; background-color: #fff"><span class="fa fa-cart-arrow-down" style="color: #000000"></span></button>
+                        }
                     </form>
                     <script>
                         @Html.Action("SematicSearch", "Search")

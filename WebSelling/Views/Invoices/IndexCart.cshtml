@@ -3,16 +3,91 @@
 @{
     ViewBag.Title = "IndexCart";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    User user = (User)Session["user"];
 }
+@Html.Action("Menu", "Menu")
+<style>
+    .chuyen {
+        color: black;
+    }
 
-@if(Model == null || Model.Count == 0)
+        .chuyen:hover {
+            color: #ff0000 !important;
+        }
+
+    .font {
+        font-family: 'Segoe UI' !important;
+    }
+</style>
+@if (Model == null || Model.Count == 0)
 {
-    <h1>Trống</h1>
+    <div class="ui success message">
+        <div class="header">
+            Bạn không có đơn hàng nào.
+        </div>
+    </div>
 }
 else
 {
-    foreach(var item in Model)
-    {
-        <h1>@item.Product_Name</h1>
-    }
+    <div class="ui success message">
+        <i class="close icon"></i>
+        <div class="header">
+            Chọn sản phẩm bạn muốn mua!
+        </div>
+    </div>
+    <table class="ui compact celled table" style="font-size: 16px">
+        @foreach (var item in Model)
+        {
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>@item.User_LastName @item.User_Name</th>
+                    <th style="text-align: center">Đơn Giá</th>
+                    <th style="text-align: center">Số Tiền</th>
+                    <th style="text-align: center">Thao Tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="collapsing">
+                        <div class="ui read-only checkbox center">
+                            <input type="checkbox" value="Cart_Activate">
+                            <label></label>
+                        </div>
+                    </td>
+                    <td>
+                        <img class="ui middle aligned tiny rounded image" src="~/Content/Image/@item.Product_Img" style="width: 150px; height: 100px">
+                        <span>@item.Product_Name</span>
+                    </td>
+                    <td style="text-align: center">VNĐ</td>
+                    <td style="text-align: center">@{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</td>
+                    <td>
+                        <center>
+                            <a class="chuyen" style="">Xoá</a>
+                        </center>
+                    </td>
+                </tr>
+            </tbody>
+        }
+        <tfoot class="full-width">
+            <tr>
+                <th></th>
+                <th colspan="4">
+                    <div class="ui right floated small button">
+                        Thanh Toán
+                    </div>
+                </th>
+            </tr>
+        </tfoot>
+    </table>
 }
+<script>
+    $('.message .close')
+        .on('click', function () {
+            $(this)
+                .closest('.message')
+                .transition('fade')
+                ;
+        })
+        ;
+</script>

@@ -20,6 +20,8 @@ namespace WebSelling.Controllers
         //xu ly them vao gio hang
         public ActionResult CreateCart(int? id)
         {
+            User user = (User)Session["user"];
+            Product pro = db.Products.SingleOrDefault(n => n.Product_ID == id);
             //In so tren thanh gio hang (truong hop khong co)
             if (Session["sptt"] == null)
             {
@@ -28,7 +30,7 @@ namespace WebSelling.Controllers
             }
             //xu ly lu sesion va +so ngay gio hang lay theo id san pha
             List<SessionCart> ghtt = Session["sptt"] as List<SessionCart>;
-            if (ghtt.FirstOrDefault(n => n.Product_ID == id) == null)
+            if (ghtt.FirstOrDefault(n => n.Product_ID == id) == null && user.User_ID != pro.User_ID)
             {
                 Product sp = db.Products.Find(id);
                 if (Session["dem"].ToString() == "Trống")
@@ -39,7 +41,9 @@ namespace WebSelling.Controllers
                     Product_ID = sp.Product_ID,
                     Product_Img = sp.Product_Img,
                     Product_Name = sp.Product_Name,
-                    Product_Price = decimal.ToInt32(sp.Product_Price.Value)
+                    Product_Price = decimal.ToInt32(sp.Product_Price.Value),
+                    User_LastName = sp.User.User_LastName,
+                    User_Name = sp.User.User_Name
                 };
                 ghtt.Add(giatri);
             }
