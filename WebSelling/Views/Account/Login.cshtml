@@ -135,7 +135,7 @@
                         </button>
                     </div>
                 </div>
-                <form class="ui form segment" style="width: 95%" action="@Url.Action("Registration", "Account")" method="post" onsubmit="valiSignUp()">
+                <form class="ui form segment" style="width: 95%" action="@Url.Action("Registration", "Account")" method="post">
                     <p>Tài Khoản Của Bạn</p>
                     <div class="field">
                         <label>Email</label>
@@ -143,11 +143,11 @@
                     </div>
                     <div class="field">
                         <label>Mật Khẩu</label>
-                        <input placeholder="Nhập mật khẩu" name="User_Pass" type="password">
+                        <input placeholder="Nhập mật khẩu" name="User_Pass" id="User_Pass" type="password">
                     </div>
                     <div class="field">
                         <label>Xác Nhận Mật Khẩu</label>
-                        <input placeholder="Xác nhận lại mật khẩu" name="User_Repeats" type="password">
+                        <input placeholder="Xác nhận lại mật khẩu" name="User_Repeats" id="User_Repeats" type="password">
                     </div>
                     @Html.Raw(Session["Testsignup"])
                     <div class="inline field">
