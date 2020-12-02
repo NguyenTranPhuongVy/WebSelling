@@ -182,6 +182,7 @@ namespace WebSelling.Controllers
                 user.User_Sex = us.User_Sex;
                 user.User_Role = 0;
                 user.User_Img = us.User_Img;
+                user.User_Email = us.User_Email;
                 db.SaveChanges();
                 ViewBag.City_ID = new SelectList(db.Cities, "City_ID", "City_Name", user.City_ID);
                 ViewBag.Province_ID = new SelectList(db.Provinces, "Province_ID", "Province_Name", user.Province_ID);
@@ -214,6 +215,7 @@ namespace WebSelling.Controllers
                 user.User_DateLogin = DateTime.Now;
                 user.User_Pass = us.User_Pass;
                 user.User_Sex = us.User_Sex;
+                user.User_Email = us.User_Email;
                 db.SaveChanges();
                 ViewBag.City_ID = new SelectList(db.Cities, "City_ID", "City_Name", user.City_ID);
                 ViewBag.Province_ID = new SelectList(db.Provinces, "Province_ID", "Province_Name", user.Province_ID);

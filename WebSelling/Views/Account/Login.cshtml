@@ -97,7 +97,7 @@
             </div>
         </div>
     </section>
-
+    <!--Đăng ký-->
     <section id="content2" class="tab-content">
         <h3>Đăng Ký Tài Khoản</h3>
         <div class="row">
@@ -135,7 +135,7 @@
                         </button>
                     </div>
                 </div>
-                <form class="ui form segment" style="width: 95%" action="@Url.Action("Registration", "Account")" method="post">
+                <form class="ui form segment" style="width: 95%" action="@Url.Action("Registration", "Account")" method="post" onsubmit="valiSignUp()">
                     <p>Tài Khoản Của Bạn</p>
                     <div class="field">
                         <label>Email</label>
@@ -147,8 +147,9 @@
                     </div>
                     <div class="field">
                         <label>Xác Nhận Mật Khẩu</label>
-                        <input placeholder="Xác nhận lại mật khẩu" name="user_repeat" type="password">
+                        <input placeholder="Xác nhận lại mật khẩu" name="User_Repeats" type="password">
                     </div>
+                    @Html.Raw(Session["Testsignup"])
                     <div class="inline field">
                         <div class="ui checkbox">
                             <input type="checkbox" name="terms">
@@ -162,13 +163,13 @@
                         </div>
                         <p>Mật khẩu cần phải trên 8 ký tự bao gồm ít nhất 1 ký tự (Viết hoa, viết thường, sô và kí tự đặt biệt).</p>
                     </div>
-                    @Html.Raw(Session["Testsignup"])
                     <div class="positive ui primary submit button">Đăng Ký</div>
                     <div class="ui error message"></div>
                 </form>
             </div>
         </div>
     </section>
+    <!--Quên Mật Khẩu-->
     <section id="content3" class="tab-content">
         <h3>Quên Mật Khẩu</h3>
         <div class="row">
@@ -180,7 +181,7 @@
             </div>
             <div class="col-lg-7">
                 <div class="ui horizontal divider" style="width: 95%">or</div>
-                <form class="ui form segment" style="width: 95%" action="@Url.Action("Registration", "Account")" method="post">
+                <form class="ui form segment" style="width: 95%" method="post">
                     <p>Nhập Vào Email Để Lấy Lại Mật Khẩu</p>
                     <div class="field">
                         <label>Email</label>

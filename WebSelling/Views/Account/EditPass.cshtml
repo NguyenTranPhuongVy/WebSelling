@@ -315,46 +315,4 @@
         </div>
     </div>
 </div>
-<script>
-    $('.ui.form')
-        .form({
-            fields: {
-                OldPass: {
-                    identifier: 'OldPass',
-                    rules: [
-                        {
-                            type: 'empty',
-                            prompt: 'Không Được Để Trống'
-                        }
-                    ]
-                },
-                NewPass: {
-                    identifier: 'NewPass',
-                    rules: [
-                        {
-                            type: 'empty',
-                            prompt: 'Không Được Để Trống'
-                        },
-                        {
-                            type: 'regExp[^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@a#\$%\^&\*])(?=.{8,})]',
-                            prompt: 'Mật Khẩu Ít Nhất Phải Có 8 Ký Tự Bao Gồm(Viết Hoa, Viết Thường, Ký Tự Số Và Ký Tự Đặc Biệt)'
-                        }
-                    ]
-                },
-                RePass: {
-                    identifier: 'RePass',
-                    rules: [
-                        {
-                            type: 'match[NewPass]',
-                            prompt: 'Mật khẩu Nhập Lại Không Khớp'
-                        }, 
-                        {
-                            type: 'empty',
-                            prompt: 'Vui Lòng Xác Nhận Lại Mật Khẩu'
-                        }
-                    ]
-                },
-            }
-        })
-        ;
-</script>
+@Html.Action("ScriptValidation", "Account")

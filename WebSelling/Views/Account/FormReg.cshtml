@@ -200,7 +200,7 @@
                                                         List<City> cities = db.Cities.ToList();
                                                     }
                                                     <select name="City_ID" placeholder="TP Hồ Chí Minh" class="form-control" id="slCity">
-                                                        <option>-- Chọn thành phố --</option>
+                                                        <option>-- Thành Phố/Tỉnh Thành --</option>
                                                         @foreach (var item in cities)
                                                         {
                                                             <option value="@item.City_ID"> @item.City_Name </option>
@@ -211,9 +211,9 @@
                                             <div class="col-sm-5">
                                                 
                                                 <div class="form-group" id="newFilterProvinceByCity">
-                                                    <label>Tỉnh Thành</label><br>
+                                                    <label>Quận Huyện</label><br>
                                                     <select name="Province_ID" placeholder="TP Hồ Chí Minh" class="form-control">
-                                                        <option>-- Chọn thành phố trước --</option>
+                                                        <option>-- Vui lòng chọn thành phố/tỉnh thành --</option>
                                                     </select>
                                                 </div>
                                             </div>
