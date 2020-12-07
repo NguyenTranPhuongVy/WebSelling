@@ -30,6 +30,7 @@ namespace WebSelling.Models
         public Nullable<System.DateTime> Invoices_DateCreate { get; set; }
         public string Invoices_Note { get; set; }
         public Nullable<int> StatusBill_ID { get; set; }
+        public string Invoices_EmailSeller { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetailsInvoice> DetailsInvoices { get; set; }

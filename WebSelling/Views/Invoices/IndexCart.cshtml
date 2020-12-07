@@ -4,6 +4,8 @@
     ViewBag.Title = "IndexCart";
     Layout = "~/Views/Shared/_Layout.cshtml";
     User user = (User)Session["user"];
+    WebSellingEntities db = new WebSellingEntities();
+    Product product = db.Products.Find(Int32.Parse(Session["productid"].ToString()));
 }
 @Html.Action("Menu", "Menu")
 <style>
@@ -73,21 +75,14 @@ else
             <tr>
                 <th></th>
                 <th colspan="4">
-                    <div class="ui right floated small button">
-                        Thanh Toán
-                    </div>
+                    <a href="@Url.Action("Pay", "Invoices")">
+                        <div class="ui right floated small button">
+                            Thanh Toán
+                        </div>
+                    </a>
                 </th>
             </tr>
         </tfoot>
     </table>
 }
-<script>
-    $('.message .close')
-        .on('click', function () {
-            $(this)
-                .closest('.message')
-                .transition('fade')
-                ;
-        })
-        ;
-</script>
+

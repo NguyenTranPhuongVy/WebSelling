@@ -70,7 +70,7 @@
 @Html.Action("Menu", "Menu")
 <script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
 <link href="~/Content/Layout/css/InforUser.css" rel="stylesheet" />
-<body style="background-color: #f1f1f1">
+<body style="background-color: #f1f1f1; font-family: 'Segoe UI'">
     <div class="container">
         <div class="row mt--7 mb-3">
             <div class="col-md-6" style="background-color: #ffffff;  border-radius: 5px">
@@ -183,23 +183,19 @@
                             </div>
                         }
                     </div>
-                    <center>
-                        <div class="ui yellow message">
-
-                            <i class="close icon"></i>
+                    <center class="mb-3">
+                        <div class="ui success message">
                             <div class="header">
-                                Bạn chưa có tin đăng cá nhân nào đang bán!
+                                Bạn cần bán sản phẩm nào!
                             </div>
-                            <p>Hãy thử đăng bán ngay nào.</p>
+                            <p style="color: #2c662d">Hãy <a href="@Url.Action("CreateProductUser", "Information")" style="color: #2c662d; font-weight: 700"> Đăng Tin</a></p>
                         </div>
-                        <a href="@Url.Action("CreateProductUser", "Information")" class="ui positive basic button" style="height: 50px; width: 50%">Đăng Tin</a>
                     </center>
                 }
                 else
                 {
-                    <center>
-                        <div class="ui yellow message">
-                            <i class="close icon"></i>
+                    <center class="mb-3">
+                        <div class="ui success message">
                             <div class="header">
                                 Bạn chưa có tin đăng cá nhân nào đang bán!
                             </div>

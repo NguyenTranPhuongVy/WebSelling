@@ -183,10 +183,10 @@ namespace WebSelling.Controllers
                 user.User_Role = 0;
                 user.User_Img = us.User_Img;
                 user.User_Email = us.User_Email;
+                user.City_ID = us.City_ID;
+                user.Province_ID = us.Province_ID;
                 db.SaveChanges();
                 Session["user"] = db.Users.Find(us.User_ID);
-                ViewBag.City_ID = new SelectList(db.Cities, "City_ID", "City_Name", user.City_ID);
-                ViewBag.Province_ID = new SelectList(db.Provinces, "Province_ID", "Province_Name", user.Province_ID);
                 return Redirect(Request.UrlReferrer.ToString());
             }    
             else
@@ -217,10 +217,10 @@ namespace WebSelling.Controllers
                 user.User_Pass = us.User_Pass;
                 user.User_Sex = us.User_Sex;
                 user.User_Email = us.User_Email;
+                user.City_ID = us.City_ID;
+                user.Province_ID = us.Province_ID;
                 db.SaveChanges();
                 Session["user"] = db.Users.Find(us.User_ID);
-                ViewBag.City_ID = new SelectList(db.Cities, "City_ID", "City_Name", user.City_ID);
-                ViewBag.Province_ID = new SelectList(db.Provinces, "Province_ID", "Province_Name", user.Province_ID);
                 return Redirect(Request.UrlReferrer.ToString());
             }
         }

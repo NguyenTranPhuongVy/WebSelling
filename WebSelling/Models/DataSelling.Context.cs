@@ -38,8 +38,8 @@ namespace WebSelling.Models
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<View> Views { get; set; }
+        public virtual DbSet<StatusBill> StatusBills { get; set; }
         public virtual DbSet<DetailsInvoice> DetailsInvoices { get; set; }
         public virtual DbSet<Invoice> Invoices { get; set; }
-        public virtual DbSet<StatusBill> StatusBills { get; set; }
     }
 }

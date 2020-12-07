@@ -83,23 +83,32 @@
                                             </button>
                                         }
                                     </div>
-                                    <div class="col-md-6">
-                                        <a href="@Url.Action("CreateCart", "Invoices", new { id = Model.Product_ID})" class="ui inverted red button" style="border-radius: 80px"> <i class="fa fa-cart-plus"></i></a>
-                                    </div>
+                                    @if (user == null)
+                                    {
+                                        <div class="col-md-6">
+                                            <a href="@Url.Action("Login", "Account")" class="ui inverted red button" style="border-radius: 80px"> <i class="fa fa-cart-plus"></i></a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-md-6">
+                                            <a href="@Url.Action("CreateCart", "Invoices", new { id = Model.Product_ID})" class="ui inverted red button" style="border-radius: 80px"> <i class="fa fa-cart-plus"></i></a>
+                                        </div>
+                                    }
                                 </div>
                             </form>
                         </div>
                     </div>
                     <div class="col-lg-12" style="color: black">
                         <span><b style="color: black; font-size: 16px">Mô tả sản phẩm: </b></span>
-                        <div style="color: black">
-                            @Html.Raw(@Model.Product_Description)
+                        <div style="color: black; font-family: 'Segoe UI'; font-weight: 700">
+                            <p>@Html.Raw(@Model.Product_Description)</p>
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <span><b style="color: black; font-size: 16px">Chi tiết sản phẩm: </b></span>
                         <div style="text-decoration-color: black">
-                            @Html.Raw(@Model.Product_Detail)
+                            <p>@Html.Raw(@Model.Product_Detail)</p>
                         </div>
                     </div>
                     <div class="col-lg-12">

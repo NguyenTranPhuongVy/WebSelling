@@ -35,13 +35,14 @@
         <AssociationConnector Association="WebSellingModel.FK_RepLi_User" ManuallyRouted="false" />
         <AssociationConnector Association="WebSellingModel.FK_SubProduct_SubCategory" ManuallyRouted="false" />
         <AssociationConnector Association="WebSellingModel.FK_Views_User" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="WebSellingModel.DetailsInvoice" Width="1.5" PointX="9.75" PointY="13.125" />
-        <EntityTypeShape EntityType="WebSellingModel.Invoice" Width="1.5" PointX="7.5" PointY="12.25" />
         <EntityTypeShape EntityType="WebSellingModel.StatusBill" Width="1.5" PointX="5.25" PointY="21.25" />
+        <EntityTypeShape EntityType="WebSellingModel.DetailsInvoice" Width="1.5" PointX="9.75" PointY="1" />
+        <EntityTypeShape EntityType="WebSellingModel.Invoice" Width="1.5" PointX="7.5" PointY="13.125" />
         <AssociationConnector Association="WebSellingModel.FK_DetailsInvoices_Invoices" />
+        <AssociationConnector Association="WebSellingModel.FK_DetailsInvoices_Product" />
         <AssociationConnector Association="WebSellingModel.FK_Invoices_StatusBill" />
         <AssociationConnector Association="WebSellingModel.FK_Invoices_User" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

@@ -1,0 +1,118 @@
+﻿@using WebSelling.Models;
+@model List<Invoice>
+@{
+    ViewBag.Title = "ViewCartInFo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    User user = (User)Session["user"];
+    WebSellingEntities db = new WebSellingEntities();
+}
+@{
+    List<DetailsInvoice> detailsInvoices = db.DetailsInvoices.Where(n => n.Invoice.User_ID == user.User_ID).ToList();
+}
+@Html.Action("Menu", "Menu")
+@if (Model.Count == 0)
+{
+    <div class="ui positive message">
+        <div class="header">
+            Bạn không có đơn hàng.
+        </div>
+        <p>Về trang chủ <b>xem và</b> mua hàng.</p>
+    </div>
+}
+else
+{
+    foreach (var items in Model)
+    {
+        if (items.User_ID == user.User_ID)
+        {
+            <table class="ui green table">
+                <thead>
+                    <tr>
+                        <th>Thông Tin Người Mua</th>
+                        <th>Sản Phẩm</th>
+                        <th>Tổng Thanh Toán</th>
+                        <th>Ghi Chú</th>
+                        <th>Thông Tin Người Bán</th>
+                        <th>Trạng Thái Đơn Hàng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <p>Họ Tên: @item.Invoices_Buyer</p>
+                                <p>Số Điện Thoại: @item.Invoices_Phone</p>
+                                <p>Địa Chỉ: @item.Invoices_Address</p>
+                            </td>
+                            <td>
+                                @foreach (var details in detailsInvoices)
+                                {
+                                    <div style="margin-bottom: 3%">
+                                        <img class="ui middle rounded aligned tiny image" src="~/Content/Image/@details.Product.Product_Img" style="width: 150px; height: 120px">
+                                        <span>@details.Product.Product_Name</span>
+                                    </div>
+                                }
+                            </td>
+                            <td>@{float price = (float)@item.Invoices_TotalPay;} @price.ToString("#,##0") VNĐ</td>
+                            <td>@item.Invoices_Note</td>
+                            <td>
+                                <p>Họ Tên: @item.Invoices_Seller</p>
+                                <p>Email: @item.Invoices_EmailSeller</p>
+                            </td>
+                            <td>@item.StatusBill.StatusBill_Name</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    }
+    <!-- copyright bottom -->
+    <div class="copy-bottom bg-li py-4 border-top">
+        <div class="container-fluid">
+            <div class="d-md-flex px-md-3 position-relative text-center">
+                <!-- footer social icons -->
+                <div class="social-icons-footer mb-md-0 mb-3">
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#">
+                                <span class="fa fa-facebook"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa fa-twitter"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa fa-google-plus"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa fa-instagram"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- //footer social icons -->
+                <!-- copyright -->
+                <div class="copy_right mx-md-auto mb-md-0 mb-3">
+                    <p class="text-bl let">
+                        © 2019 Startup. All rights reserved | Design by
+                        <a href="http://w3layouts.com/" target="_blank">W3layouts</a>
+                    </p>
+                </div>
+                <!-- //copyright -->
+                <!-- move top icon -->
+                <a href="#home" class="move-top text-center">
+                    <span class="fa fa-level-up" aria-hidden="true"></span>
+                </a>
+                <!-- //move top icon -->
+            </div>
+        </div>
+    </div>
+}
+
+

@@ -164,6 +164,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InformationController.cs" />
+    <Compile Include="Controllers\Invoices1Controller.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\RepLisController.cs" />
@@ -1233,6 +1234,8 @@
     <Content Include="Views\Information\CreateProductUser.cshtml" />
     <Content Include="Views\Invoices\IndexCart.cshtml" />
     <Content Include="Views\Account\ajaxFilterProvinceByCityID.cshtml" />
+    <Content Include="Views\Invoices\Pay.cshtml" />
+    <Content Include="Views\Invoices\ViewCartInFo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

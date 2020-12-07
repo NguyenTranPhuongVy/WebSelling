@@ -1,0 +1,51 @@
+﻿@using WebSelling.Models;
+@model List<SessionCart>
+@{
+    ViewBag.Title = "Thanh Toán";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    User user = (User)Session["user"];
+    WebSellingEntities db = new WebSellingEntities();
+    Product product = db.Products.Find(Int32.Parse(Session["productid"].ToString()));
+}
+@Html.Action("Menu", "Menu")
+<div class="ui horizontal divider">Thông Tin Nhận Hàng</div>
+<form class="ui form segment" action="@Url.Action("PayProduct", "Invoices")" method="post">
+    <p>Kiểm Tra Thông Tin Nhận Hàng</p>
+    <input value="@user.User_ID" name="User_ID" type="hidden" />
+    <input value="@product.User.User_LastName @product.User.User_Name" name="Invoices_Seller" type="hidden" />
+    <div class="field">
+        <label>Họ và tên</label>
+        <input value="@user.User_LastName @user.User_Name" name="Invoices_Buyer" type="text">
+    </div>
+    <div class="field">
+        <label>Số Điện Thoại</label>
+        <input value="@user.User_Phone" name="Invoices_Phone" type="text">
+    </div>
+    <div class="field">
+        <label>Địa Chỉ Cụ Thể</label>
+        <input value="@user.User_Address @user.Province.Province_Name @user.City.City_Name" name="Invoices_Address" type="text">
+    </div>
+    <div class="field">
+        <label>Ghi Chú</label>
+        <input placeholder="Nhập nội dung cần lưu ý" name="Invoices_Note" type="text">
+    </div>
+    <div class="field">
+        <label>Tổng Hoá Đơn</label>
+        <input value="@Model.Sum(n => n.Product_Price)" name="Invoices_TotalPay" type="text">
+    </div>
+    <div class="ui buttons">
+        <button class="ui button">Huỷ Bỏ</button>
+        <div class="or"></div>
+        <button class="ui positive button submit" type="submit">Thanh Toán</button>
+    </div>
+    <div class="ui error message"></div>
+</form>
+@Html.Action("ScriptValidation", "Account")
+<!--script-->
+<script>
+    $('.ui.dropdown')
+        .dropdown()
+        ;
+</script>
+
+

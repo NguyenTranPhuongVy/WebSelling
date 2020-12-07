@@ -22,6 +22,7 @@ namespace WebSelling.Models
             this.Products = new HashSet<Product>();
             this.RepLis = new HashSet<RepLi>();
             this.Views = new HashSet<View>();
+            this.Invoices = new HashSet<Invoice>();
         }
     
         public int User_ID { get; set; }
@@ -55,6 +56,7 @@ namespace WebSelling.Models
         public virtual ICollection<RepLi> RepLis { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<View> Views { get; set; }
-        public virtual Invoice Invoice { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Invoice> Invoices { get; set; }
     }
 }

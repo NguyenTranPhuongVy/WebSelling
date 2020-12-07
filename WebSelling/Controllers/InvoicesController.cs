@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebSelling.Models;
@@ -52,6 +54,48 @@ namespace WebSelling.Controllers
                 SessionCart gh = ghtt.FirstOrDefault(n => n.Product_ID == id);
             }
             return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        [HttpGet]
+        public ActionResult Pay()
+        {
+            List<SessionCart> ghtt = Session["sptt"] as List<SessionCart>;
+            return View(ghtt);
+        }
+        [HttpPost]
+        public ActionResult PayProduct([Bind(Include = "Invoices_ID,Invoices_Buyer,Invoices_Seller,Invoices_Address,Invoices_Phone,User_ID,Invoices_TotalPay,Invoices_DateCreate,Invoices_Note,StatusBill_ID,Invoices_EmailSeller")] Invoice invoice)
+        {
+            List<SessionCart> ghtt = Session["sptt"] as List<SessionCart>;
+            Product product = db.Products.Find(Int32.Parse(Session["productid"].ToString()));
+            db.Invoices.Add(invoice);
+            invoice.Invoices_DateCreate = DateTime.Now;
+            invoice.Invoices_EmailSeller = product.User.User_Email;
+            invoice.StatusBill_ID = 1;
+            product.Product_Activate = false;
+            db.SaveChanges();
+            return RedirectToAction("PayDetail", new { id = invoice.Invoices_ID});
+        }
+
+        public RedirectToRouteResult PayDetail(int id)
+        {
+            int ma;
+            List<SessionCart> ghtt = Session["sptt"] as List<SessionCart>;
+            foreach (var item in ghtt)
+            {
+                DetailsInvoice dh = new DetailsInvoice();
+                dh.Invoices_ID = id;
+                dh.Product_ID = item.Product_ID;
+                ma = item.Product_ID;
+                db.DetailsInvoices.Add(dh);
+            }
+            db.SaveChanges();
+            return RedirectToAction("Index","Home");
+        }
+
+        public ActionResult ViewCartInFo()
+        {
+            var invoices = db.Invoices.Include(i => i.StatusBill).Include(i => i.User);
+            return View(invoices.ToList());
         }
     }
 }

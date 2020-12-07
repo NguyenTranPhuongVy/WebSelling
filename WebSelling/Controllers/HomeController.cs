@@ -70,17 +70,5 @@ namespace WebSelling.Controllers
         {
             return PartialView();
         }
-
-        //Giỏ Hàng
-        public ActionResult ViewCart()
-        {
-            User user = (User)Session["user"];
-            return View(db.Carts.Where(n => n.User_ID == user.User_ID).OrderByDescending(n => n.Cart_DateCreate).ToList());
-        }
-
-        public ActionResult ViewPay()
-        {
-            return View();
-        }
     }
 }
