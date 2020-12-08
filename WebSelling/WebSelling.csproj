@@ -154,6 +154,7 @@
     <Compile Include="Areas\SellingAdmin\Controllers\CategoriesController.cs" />
     <Compile Include="Areas\SellingAdmin\Controllers\CitiesController.cs" />
     <Compile Include="Areas\SellingAdmin\Controllers\CommentsController.cs" />
+    <Compile Include="Areas\SellingAdmin\Controllers\DetailsInvoicesController.cs" />
     <Compile Include="Areas\SellingAdmin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\SellingAdmin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\SellingAdmin\Controllers\SelectController.cs" />
@@ -1082,6 +1083,7 @@
     <Content Include="Areas\SellingAdmin\Views\Comments\Index.cshtml" />
     <Content Include="Areas\SellingAdmin\Views\Shared\_ViewRep.cshtml" />
     <Content Include="Areas\SellingAdmin\Views\Shared\_ViewComment.cshtml" />
+    <Content Include="Areas\SellingAdmin\Views\DetailsInvoices\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -1236,6 +1238,7 @@
     <Content Include="Views\Account\ajaxFilterProvinceByCityID.cshtml" />
     <Content Include="Views\Invoices\Pay.cshtml" />
     <Content Include="Views\Invoices\ViewCartInFo.cshtml" />
+    <Content Include="Views\Invoices\EditPay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

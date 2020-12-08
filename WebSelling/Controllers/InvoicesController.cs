@@ -97,5 +97,23 @@ namespace WebSelling.Controllers
             var invoices = db.Invoices.Include(i => i.StatusBill).Include(i => i.User);
             return View(invoices.ToList());
         }
+
+        public ActionResult EditPay()
+        {
+            User user = (User)Session["user"];
+            List<DetailsInvoice> detailsInvoices = db.DetailsInvoices.Where(n => n.Product.User_ID == user.User_ID).ToList();
+            return View(detailsInvoices);
+        }
+
+        [HttpPost]
+        public ActionResult EditPay(FormCollection f, int ? id)
+        {
+            String sInvoicesID = f["Invoices_ID"].ToString();
+            String sStatusBill_ID = f["StatusBill_ID"].ToString();
+            id = Int32.Parse(sInvoicesID);
+            db.Invoices.Find(id).StatusBill_ID = Int32.Parse(sStatusBill_ID);
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
+        }
     }
 }

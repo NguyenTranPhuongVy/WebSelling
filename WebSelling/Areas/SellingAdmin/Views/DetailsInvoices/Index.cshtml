@@ -1,0 +1,58 @@
+﻿@using WebSelling.Models;
+@model List<DetailsInvoice>
+@{
+    ViewBag.Title = "Giỏ Hàng";
+    Layout = "~/Areas/SellingAdmin/Views/Shared/_ViewAdmin.cshtml";
+    WebSellingEntities db = new WebSellingEntities();
+}
+@{
+    List<Invoice> invoices = db.Invoices.ToList();
+}
+<style>
+    p{
+        font-family: 'Segoe UI';
+        font-size: 13px;
+    }
+</style>
+@Html.Action("CssAdmin", "HomeAdmin")
+
+<table class="ui green table" id="divAjax">
+    <thead>
+        <tr>
+            <th>Thông Tin Người Mua</th>
+            <th>Sản Phẩm</th>
+            <th>Tổng Thanh Toán</th>
+            <th>Ghi Chú</th>
+            <th>Thông Tin Người Bán</th>
+            <th>Trạng Thái Đơn Hàng</th>
+        </tr>
+    </thead>
+    @foreach (var item in invoices)
+    {
+        <tbody>
+            <tr style="text-align: left">
+                <td>
+                    <p>Họ Tên: @item.Invoices_Buyer</p>
+                    <p>Số Điện Thoại: @item.Invoices_Phone</p>
+                    <p>Địa Chỉ: @item.Invoices_Address</p>
+                </td>
+                <td>
+                    @foreach (var details in Model.Where(n => n.Invoices_ID == item.Invoices_ID))
+                    {
+                        <div style="margin-bottom: 3%">
+                            <img class="ui middle rounded aligned tiny image" src="~/Content/Image/@details.Product.Product_Img" style="width: 150px; height: 120px">
+                            <span>@details.Product.Product_Name</span>
+                        </div>
+                    }
+                </td>
+                <td>@{float price = (float)@item.Invoices_TotalPay;} @price.ToString("#,##0") VNĐ</td>
+                <td>@item.Invoices_Note</td>
+                <td>
+                    <p>Họ Tên: @item.Invoices_Seller</p>
+                    <p>Email: @item.Invoices_EmailSeller</p>
+                </td>
+                <td>@item.StatusBill.StatusBill_Name</td>
+            </tr>
+        </tbody>
+    }
+</table>
