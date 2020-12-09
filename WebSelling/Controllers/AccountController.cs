@@ -296,28 +296,51 @@ namespace WebSelling.Controllers
             return Redirect(Request.UrlReferrer.ToString());
         }
 
-        ////Chỉnh sửa bình luận
-        //public ActionResult EditComment(FormCollection f ,int ? id)
-        //{
-        //    User user = (User)Session["user"];
-        //    String sID = f["Comment_ID"].ToString();
-        //    String sContent = f["Comment_Content"].ToString();
-        //    Comment comment = db.Comments.SingleOrDefault(n => n.Comment_ID == id && n.User_ID == user.User_ID);
-        //    if(user != null)
-        //    {
-        //        db.Comments.Find(comment).Comment_Content = sContent;
-        //        db.Comments.Find(comment).Comment_DateCreate = comment.Comment_DateCreate;
-        //        db.Comments.Find(comment).User_ID = user.User_ID;
-        //        db.Comments.Find(comment).Product_ID = comment.Product_ID;
-        //        db.SaveChanges();
-        //        return Redirect(Request.UrlReferrer.ToString());
-        //    }    
-        //    else
-        //    {
-
-        //    }    
-        //}
-
+        //Chỉnh sửa bình luận
+        public ActionResult EditComment(FormCollection f, int? id)
+        {
+            User user = (User)Session["user"];
+            String sID = f["Comment_ID"].ToString();
+            String sContent = f["Comment_Content"].ToString();
+            id = Int32.Parse(sID);
+            Comment comment = db.Comments.SingleOrDefault(n => n.Comment_ID == id && n.User_ID == user.User_ID);
+            if (user != null)
+            {
+                db.Comments.Find(id).Comment_Content = sContent;
+                db.Comments.Find(id).Comment_DateCreate = comment.Comment_DateCreate;
+                db.Comments.Find(id).User_ID = user.User_ID;
+                db.Comments.Find(id).Product_ID = comment.Product_ID;
+                db.SaveChanges();
+                return Redirect(Request.UrlReferrer.ToString());
+            }
+            else
+            {
+                return Redirect(Request.UrlReferrer.ToString());
+            }
+        }
+        // Chỉnh sửa trả lời
+        [HttpPost]
+        public ActionResult EditRep(FormCollection f, int ? id)
+        {
+            User user = (User)Session["user"];
+            String sID = f["Repli_ID"].ToString();
+            String sContent = f["Repli_Content"].ToString();
+            id = Int32.Parse(sID);
+            RepLi rep = db.RepLis.SingleOrDefault(n => n.Repli_ID == id && n.User_ID == user.User_ID);
+            if (user != null)
+            {
+                db.RepLis.Find(id).Repli_Content = sContent;
+                db.RepLis.Find(id).Repli_DateCreate = rep.Repli_DateCreate;
+                db.RepLis.Find(id).User_ID = user.User_ID;
+                db.RepLis.Find(id).Comment_ID = rep.Comment_ID;
+                db.SaveChanges();
+                return Redirect(Request.UrlReferrer.ToString());
+            }
+            else
+            {
+                return Redirect(Request.UrlReferrer.ToString());
+            }
+        }
         public ActionResult ListProductsUser()
         {
             User user = (User)Session["user"];

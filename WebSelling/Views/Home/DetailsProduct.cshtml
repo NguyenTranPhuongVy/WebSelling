@@ -4,7 +4,8 @@
     ViewBag.Title = "DetailsProduct";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var rep = "repli";
-    var test = "rep";
+    var editcmt = "edit";
+    var repcmt = "repcom";
     User user = (User)Session["user"];
     WebSellingEntities db = new WebSellingEntities();
 }
@@ -194,8 +195,31 @@
                             @if (user != null && user.User_ID == item.User_ID)
                             {
                                 <div class="actions">
-                                    <a class="reply">Chỉnh sửa</a>
+                                    <a class="reply" data-toggle="modal" data-target="#@editcmt@item.Comment_ID">Chỉnh sửa</a>
                                     <a class="save" data-toggle="collapse" href="#@rep@item.Comment_ID" role="button" aria-expanded="false" aria-controls="collapseExample">Trả lời |&nbsp;</a>
+                                </div>
+                                <!--Modal chỉnh sửa-->
+                                <div class="modal fade" id="@editcmt@item.Comment_ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Nhập nội dung cần chỉnh sửa</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form class="ui form" action="@Url.Action("EditComment", "Account", new { id = item.Comment_ID})" method="post">
+                                                    <input value="@item.Comment_ID" name="Comment_ID" type="hidden">
+                                                    <div class="field">
+                                                        <label>Nội Dung</label>
+                                                        <input value="@item.Comment_Content" name="Comment_Content" type="text">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                                        <button type="submit" class="btn btn-primary">Thay đổi</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             }
                             else
@@ -255,8 +279,31 @@
                                         @if (user != null && user.User_ID == item.User_ID)
                                         {
                                             <div class="actions">
-                                                <a class="reply">Chỉnh sửa</a>
+                                                <a class="reply" data-toggle="modal" data-target="#@repcmt@items.Repli_ID">Chỉnh sửa</a>
                                                 <a class="save" data-toggle="collapse" href="#@rep@item.Comment_ID" role="button" aria-expanded="false" aria-controls="collapseExample">Trả lời |&nbsp;</a>
+                                            </div>
+                                            <!--Modal chỉnh sửa-->
+                                            <div class="modal fade" id="@repcmt@items.Repli_ID" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Nhập nội dung cần chỉnh sửa</h5>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form class="ui form" action="@Url.Action("EditRep", "Account", new { id = items.Repli_ID})" method="post">
+                                                                <input value="@items.Repli_ID" name="Repli_ID" type="hidden">
+                                                                <div class="field">
+                                                                    <label>Nội Dung</label>
+                                                                    <input value="@items.Repli_Content" name="Repli_Content" type="text">
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                                                    <button type="submit" class="btn btn-primary">Thay đổi</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         }
                                         else

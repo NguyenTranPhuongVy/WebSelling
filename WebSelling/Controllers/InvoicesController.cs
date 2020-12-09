@@ -94,7 +94,8 @@ namespace WebSelling.Controllers
 
         public ActionResult ViewCartInFo()
         {
-            var invoices = db.Invoices.Include(i => i.StatusBill).Include(i => i.User);
+            User user = (User)Session["user"];
+            var invoices = db.Invoices.Include(i => i.StatusBill).Include(i => i.User).Where(n => n.User_ID == user.User_ID);
             return View(invoices.ToList());
         }
 
