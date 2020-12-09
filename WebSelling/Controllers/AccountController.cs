@@ -158,13 +158,14 @@ namespace WebSelling.Controllers
             {
                 return Redirect(ViewAcc);
             }    
-            return View();
+            return View(user);
         }
 
         //Chỉnh sửa thông tin cá nhân
         public PartialViewResult EditProfile()
         {
-            return PartialView("_ViewProfileUser");
+            User user = (User)Session["user"];
+            return PartialView("_ViewProfileUser",  user);
         }
 
         [HttpPost]
@@ -173,20 +174,20 @@ namespace WebSelling.Controllers
             User us = (User)Session["user"];
             if(fileprofile == null)
             {
-                db.Entry(user).State = EntityState.Modified;
-                user.User_Token = Guid.NewGuid().ToString();
+                user.User_Img = fileprofile.FileName;
                 user.User_Activate = true;
+                user.User_Token = Guid.NewGuid().ToString();
                 user.User_DateCreate = us.User_DateCreate;
+                user.User_Role = 0;
                 user.User_DateLogin = DateTime.Now;
                 user.User_Pass = us.User_Pass;
                 user.User_Sex = us.User_Sex;
-                user.User_Role = 0;
-                user.User_Img = us.User_Img;
                 user.User_Email = us.User_Email;
                 user.City_ID = us.City_ID;
                 user.Province_ID = us.Province_ID;
+                db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                Session["user"] = db.Users.Find(us.User_ID);
+                Session["user"] = user;
                 return Redirect(Request.UrlReferrer.ToString());
             }    
             else
@@ -207,7 +208,6 @@ namespace WebSelling.Controllers
                 {
                     fileprofile.SaveAs(pa);
                 }
-                db.Entry(user).State = EntityState.Modified;
                 user.User_Img = fileprofile.FileName;
                 user.User_Activate = true;
                 user.User_Token = Guid.NewGuid().ToString();
@@ -219,6 +219,7 @@ namespace WebSelling.Controllers
                 user.User_Email = us.User_Email;
                 user.City_ID = us.City_ID;
                 user.Province_ID = us.Province_ID;
+                db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
                 Session["user"] = db.Users.Find(us.User_ID);
                 return Redirect(Request.UrlReferrer.ToString());

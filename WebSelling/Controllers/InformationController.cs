@@ -27,7 +27,7 @@ namespace WebSelling.Controllers
             {
                 return Redirect(Request.UrlReferrer.ToString());
             }
-            return View();
+            return View(user);
         }
         //Thêm sản phẩm người dùng
         public ActionResult CreateProductUser()
