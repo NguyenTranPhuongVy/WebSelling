@@ -799,7 +799,7 @@
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\Database\DataWeb.sql" />
+    <Content Include="Models\Database\DataWebSelling.sql" />
     <Content Include="Models\DataSelling.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DataSelling.edmx</DependentUpon>
