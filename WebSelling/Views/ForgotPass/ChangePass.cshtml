@@ -1,0 +1,28 @@
+﻿@using WebSelling.Models;
+@model User
+@{
+    ViewBag.Title = "ChangePass";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Html.Action("Menu", "Menu")
+<div class="container">
+    <form class="ui form segment" method="post">
+        <p>Thay Đổi Mật Khẩu</p>
+        <div class="field">
+            <label>Nhập Mật Khẩu Mới</label>
+            <input placeholder="Mật Khẩu Mới" name="NewPass" type="password">
+        </div>
+        <div class="field">
+            <label>Xác Nhận Mật KHẩu Mới</label>
+            <input placeholder="Xác Nhận Lại Mật Khẩu" name="RePass" type="password">
+            <span style="color:red">@ViewBag.CheckPass</span>
+        </div>
+        <div class="ui buttons">
+            <button type="reset" class="ui button">Huỷ</button>
+            <div class="or"></div>
+            <button type="submit" class="ui positive button">Lưu</button>
+        </div>
+        <div class="ui error message"></div>
+    </form>
+</div>
+

@@ -163,6 +163,7 @@
     <Compile Include="Areas\SellingAdmin\Controllers\UsersController.cs" />
     <Compile Include="Areas\SellingAdmin\SellingAdminAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ForgotPassController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InformationController.cs" />
     <Compile Include="Controllers\Invoices1Controller.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="Models\DetailsInvoice.cs">
       <DependentUpon>DataSelling.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ForgotPass.cs" />
     <Compile Include="Models\Invoice.cs">
       <DependentUpon>DataSelling.tt</DependentUpon>
     </Compile>
@@ -1239,6 +1241,8 @@
     <Content Include="Views\Invoices\Pay.cshtml" />
     <Content Include="Views\Invoices\ViewCartInFo.cshtml" />
     <Content Include="Views\Invoices\EditPay.cshtml" />
+    <Content Include="Views\ForgotPass\ChangePass.cshtml" />
+    <Content Include="Views\ForgotPass\Mail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

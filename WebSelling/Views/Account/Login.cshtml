@@ -34,9 +34,6 @@
     <input id="tab2" type="radio" name="tabs" style="display: none">
     <label for="tab2" class="labels"><i class="fa fa-pencil-square-o"></i><span>Đăng Ký</span></label>
 
-    <input id="tab3" type="radio" name="tabs" style="display: none">
-    <label for="tab3" class="labels"><i class="fa fa-key"></i><span>Quên Mật Khẩu</span></label>
-
     <section id="content1" class="tab-content">
         <h3>Đăng Nhập Tài Khoản</h3>
         <div class="row">
@@ -88,6 +85,7 @@
                         <div class="ui checkbox">
                             <input type="checkbox" name="terms">
                             <label>I agree to the terms and conditions</label>
+                            <a href="@Url.Action("Mail", "ForgotPass")">Quên Mật Khẩu</a>
                         </div>
                     </div>
                     @Html.Raw(Session["Notlogin"])
@@ -181,11 +179,11 @@
             </div>
             <div class="col-lg-7">
                 <div class="ui horizontal divider" style="width: 95%">or</div>
-                <form class="ui form segment" style="width: 95%" method="post">
+                <form class="ui form segment" action="@Url.Action("Mail", "ForgotPass")" style="width: 95%" method="post">
                     <p>Nhập Vào Email Để Lấy Lại Mật Khẩu</p>
                     <div class="field">
                         <label>Email</label>
-                        <input placeholder="Nhập vào email" name="User_Email" type="text">
+                        <input placeholder="Nhập vào email" name="Email" type="text">
                     </div>
                     <div class="ui positive message">
                         <i class="close icon"></i>
@@ -194,6 +192,7 @@
                         </div>
                         <p>Nhập vào thông tin email mà bạn đã đăng ký.</p>
                     </div>
+                    @ViewBag.Status
                     <div class="positive ui primary submit button">Nhận Lại Mật Khẩu</div>
                     <div class="ui error message"></div>
                 </form>
