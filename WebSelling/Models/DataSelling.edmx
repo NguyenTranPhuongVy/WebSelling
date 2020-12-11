@@ -109,7 +109,6 @@
           <Property Name="SubCategory_ID" Type="int" />
           <Property Name="Category_ID" Type="int" />
           <Property Name="SubProduct_ID" Type="int" />
-          <Property Name="Product_Bin" Type="bit" />
         </EntityType>
         <EntityType Name="Province">
           <Key>
@@ -155,16 +154,6 @@
           <Property Name="SubProduct_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SubCategory_ID" Type="int" />
           <Property Name="SubProduct_Name" Type="nvarchar" MaxLength="250" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -465,7 +454,6 @@
           <EntitySet Name="StatusBill" EntityType="Self.StatusBill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategory" EntityType="Self.SubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubProduct" EntityType="Self.SubProduct" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Views" EntityType="Self.Views" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Cart_Product" Association="Self.FK_Cart_Product">
@@ -557,6 +545,107 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WebSellingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="WebSellingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admins" EntityType="WebSellingModel.Admin" />
+          <EntitySet Name="Carts" EntityType="WebSellingModel.Cart" />
+          <EntitySet Name="Categories" EntityType="WebSellingModel.Category" />
+          <EntitySet Name="Cities" EntityType="WebSellingModel.City" />
+          <EntitySet Name="Comments" EntityType="WebSellingModel.Comment" />
+          <EntitySet Name="DetailsInvoices" EntityType="WebSellingModel.DetailsInvoice" />
+          <EntitySet Name="Invoices" EntityType="WebSellingModel.Invoice" />
+          <EntitySet Name="Products" EntityType="WebSellingModel.Product" />
+          <EntitySet Name="Provinces" EntityType="WebSellingModel.Province" />
+          <EntitySet Name="RepLis" EntityType="WebSellingModel.RepLi" />
+          <EntitySet Name="StatusBills" EntityType="WebSellingModel.StatusBill" />
+          <EntitySet Name="SubCategories" EntityType="WebSellingModel.SubCategory" />
+          <EntitySet Name="SubProducts" EntityType="WebSellingModel.SubProduct" />
+          <EntitySet Name="Users" EntityType="WebSellingModel.User" />
+          <EntitySet Name="Views" EntityType="WebSellingModel.View" />
+          <AssociationSet Name="FK_Cart_Product" Association="WebSellingModel.FK_Cart_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cart_User" Association="WebSellingModel.FK_Cart_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Category" Association="WebSellingModel.FK_Product_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubCategory_Category" Association="WebSellingModel.FK_SubCategory_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="SubCategory" EntitySet="SubCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Province_City" Association="WebSellingModel.FK_Province_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="Province" EntitySet="Provinces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_City" Association="WebSellingModel.FK_User_City">
+            <End Role="City" EntitySet="Cities" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_Product" Association="WebSellingModel.FK_Comment_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Comment_User" Association="WebSellingModel.FK_Comment_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Comment" EntitySet="Comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RepLi_Comment" Association="WebSellingModel.FK_RepLi_Comment">
+            <End Role="Comment" EntitySet="Comments" />
+            <End Role="RepLi" EntitySet="RepLis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailsInvoices_Invoices" Association="WebSellingModel.FK_DetailsInvoices_Invoices">
+            <End Role="Invoice" EntitySet="Invoices" />
+            <End Role="DetailsInvoice" EntitySet="DetailsInvoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailsInvoices_Product" Association="WebSellingModel.FK_DetailsInvoices_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="DetailsInvoice" EntitySet="DetailsInvoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoices_StatusBill" Association="WebSellingModel.FK_Invoices_StatusBill">
+            <End Role="StatusBill" EntitySet="StatusBills" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Invoices_User" Association="WebSellingModel.FK_Invoices_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Invoice" EntitySet="Invoices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_SubCategory" Association="WebSellingModel.FK_Product_SubCategory">
+            <End Role="SubCategory" EntitySet="SubCategories" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_SubProduct" Association="WebSellingModel.FK_Product_SubProduct">
+            <End Role="SubProduct" EntitySet="SubProducts" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_User" Association="WebSellingModel.FK_Product_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Views_Product" Association="WebSellingModel.FK_Views_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="View" EntitySet="Views" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Province" Association="WebSellingModel.FK_User_Province">
+            <End Role="Province" EntitySet="Provinces" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RepLi_User" Association="WebSellingModel.FK_RepLi_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="RepLi" EntitySet="RepLis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubProduct_SubCategory" Association="WebSellingModel.FK_SubProduct_SubCategory">
+            <End Role="SubCategory" EntitySet="SubCategories" />
+            <End Role="SubProduct" EntitySet="SubProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Views_User" Association="WebSellingModel.FK_Views_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="View" EntitySet="Views" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="Admin_ID" />
@@ -582,9 +671,9 @@
           <Property Name="Cart_TotalProduct" Type="Int32" />
           <Property Name="User_ID" Type="Int32" />
           <Property Name="Product_ID" Type="Int32" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Cart_Product" FromRole="Cart" ToRole="Product" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Cart_User" FromRole="Cart" ToRole="User" />
           <Property Name="Cart_DateCreate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Product" Relationship="WebSellingModel.FK_Cart_Product" FromRole="Cart" ToRole="Product" />
+          <NavigationProperty Name="User" Relationship="WebSellingModel.FK_Cart_User" FromRole="Cart" ToRole="User" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
@@ -596,8 +685,8 @@
           <Property Name="Category_DateCreate" Type="DateTime" Precision="3" />
           <Property Name="Category_DateEdit" Type="DateTime" Precision="3" />
           <Property Name="Category_Activate" Type="Boolean" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_Product_Category" FromRole="Category" ToRole="Product" />
-          <NavigationProperty Name="SubCategories" Relationship="Self.FK_SubCategory_Category" FromRole="Category" ToRole="SubCategory" />
+          <NavigationProperty Name="Products" Relationship="WebSellingModel.FK_Product_Category" FromRole="Category" ToRole="Product" />
+          <NavigationProperty Name="SubCategories" Relationship="WebSellingModel.FK_SubCategory_Category" FromRole="Category" ToRole="SubCategory" />
         </EntityType>
         <EntityType Name="City">
           <Key>
@@ -605,8 +694,8 @@
           </Key>
           <Property Name="City_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="City_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Provinces" Relationship="Self.FK_Province_City" FromRole="City" ToRole="Province" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_User_City" FromRole="City" ToRole="User" />
+          <NavigationProperty Name="Provinces" Relationship="WebSellingModel.FK_Province_City" FromRole="City" ToRole="Province" />
+          <NavigationProperty Name="Users" Relationship="WebSellingModel.FK_User_City" FromRole="City" ToRole="User" />
         </EntityType>
         <EntityType Name="Comment">
           <Key>
@@ -618,457 +707,9 @@
           <Property Name="Comment_Spam" Type="Boolean" />
           <Property Name="User_ID" Type="Int32" />
           <Property Name="Product_ID" Type="Int32" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Comment_Product" FromRole="Comment" ToRole="Product" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Comment_User" FromRole="Comment" ToRole="User" />
-          <NavigationProperty Name="RepLis" Relationship="Self.FK_RepLi_Comment" FromRole="Comment" ToRole="RepLi" />
-        </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="Product_ID" />
-          </Key>
-          <Property Name="Product_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Product_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Product_Img" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Name="Product_DateSubmit" Type="DateTime" Precision="3" />
-          <Property Name="Product_Activate" Type="Boolean" />
-          <Property Name="Product_Price" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Product_SalePrice" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Product_Ship" Type="Boolean" />
-          <Property Name="Product_View" Type="Int32" />
-          <Property Name="Product_Love" Type="Int32" />
-          <Property Name="Product_Amount" Type="Int32" />
-          <Property Name="Product_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Product_Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Product_Option" Type="Boolean" />
-          <Property Name="Product_DateCreate" Type="DateTime" Precision="3" />
-          <Property Name="Product_DateEdit" Type="DateTime" Precision="3" />
-          <Property Name="User_ID" Type="Int32" />
-          <Property Name="SubCategory_ID" Type="Int32" />
-          <Property Name="Category_ID" Type="Int32" />
-          <Property Name="SubProduct_ID" Type="Int32" />
-          <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_Product" FromRole="Product" ToRole="Cart" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
-          <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_Product" FromRole="Product" ToRole="Comment" />
-          <NavigationProperty Name="SubCategory" Relationship="Self.FK_Product_SubCategory" FromRole="Product" ToRole="SubCategory" />
-          <NavigationProperty Name="SubProduct" Relationship="Self.FK_Product_SubProduct" FromRole="Product" ToRole="SubProduct" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Product_User" FromRole="Product" ToRole="User" />
-          <NavigationProperty Name="Views" Relationship="Self.FK_Views_Product" FromRole="Product" ToRole="Views" />
-          <NavigationProperty Name="DetailsInvoices" Relationship="WebSellingModel.FK_DetailsInvoices_Product" FromRole="Product" ToRole="DetailsInvoice" />
-          <Property Name="Product_Bin" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="Province">
-          <Key>
-            <PropertyRef Name="Province_ID" />
-          </Key>
-          <Property Name="Province_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Province_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="City_ID" Type="Int32" />
-          <NavigationProperty Name="City" Relationship="Self.FK_Province_City" FromRole="Province" ToRole="City" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_User_Province" FromRole="Province" ToRole="User" />
-        </EntityType>
-        <EntityType Name="RepLi">
-          <Key>
-            <PropertyRef Name="Repli_ID" />
-          </Key>
-          <Property Name="Repli_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Repli_DateCreate" Type="DateTime" Precision="3" />
-          <Property Name="Repli_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Comment_ID" Type="Int32" />
-          <Property Name="User_ID" Type="Int32" />
-          <NavigationProperty Name="Comment" Relationship="Self.FK_RepLi_Comment" FromRole="RepLi" ToRole="Comment" />
-          <NavigationProperty Name="User" Relationship="Self.FK_RepLi_User" FromRole="RepLi" ToRole="User" />
-        </EntityType>
-        <EntityType Name="SubCategory">
-          <Key>
-            <PropertyRef Name="SubCategory_ID" />
-          </Key>
-          <Property Name="SubCategory_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SubCategory_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="SubCategory_Img" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Name="SubCategory_DateCreate" Type="DateTime" Precision="3" />
-          <Property Name="SubCategory_DateEdit" Type="DateTime" Precision="3" />
-          <Property Name="SubCategory_Activate" Type="Boolean" />
-          <Property Name="Category_ID" Type="Int32" />
-          <NavigationProperty Name="Category" Relationship="Self.FK_SubCategory_Category" FromRole="SubCategory" ToRole="Category" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_Product_SubCategory" FromRole="SubCategory" ToRole="Product" />
-          <NavigationProperty Name="SubProducts" Relationship="Self.FK_SubProduct_SubCategory" FromRole="SubCategory" ToRole="SubProduct" />
-        </EntityType>
-        <EntityType Name="SubProduct">
-          <Key>
-            <PropertyRef Name="SubProduct_ID" />
-          </Key>
-          <Property Name="SubProduct_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="SubCategory_ID" Type="Int32" />
-          <Property Name="SubProduct_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_Product_SubProduct" FromRole="SubProduct" ToRole="Product" />
-          <NavigationProperty Name="SubCategory" Relationship="Self.FK_SubProduct_SubCategory" FromRole="SubProduct" ToRole="SubCategory" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="User_ID" />
-          </Key>
-          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="User_LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="User_Token" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="User_Activate" Type="Boolean" />
-          <Property Name="User_Pass" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
-          <Property Name="User_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="User_Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
-          <Property Name="User_Role" Type="Int32" />
-          <Property Name="User_LinkF" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Name="User_Img" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
-          <Property Name="User_DateCreate" Type="DateTime" Precision="3" />
-          <Property Name="User_DateLogin" Type="DateTime" Precision="3" />
-          <Property Name="User_DateBirth" Type="DateTime" Precision="0" />
-          <Property Name="User_Sex" Type="Int32" />
-          <Property Name="User_Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
-          <Property Name="Province_ID" Type="Int32" />
-          <Property Name="City_ID" Type="Int32" />
-          <NavigationProperty Name="Carts" Relationship="Self.FK_Cart_User" FromRole="User" ToRole="Cart" />
-          <NavigationProperty Name="City" Relationship="Self.FK_User_City" FromRole="User" ToRole="City" />
-          <NavigationProperty Name="Comments" Relationship="Self.FK_Comment_User" FromRole="User" ToRole="Comment" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_Product_User" FromRole="User" ToRole="Product" />
-          <NavigationProperty Name="Province" Relationship="Self.FK_User_Province" FromRole="User" ToRole="Province" />
-          <NavigationProperty Name="RepLis" Relationship="Self.FK_RepLi_User" FromRole="User" ToRole="RepLi" />
-          <NavigationProperty Name="Views" Relationship="Self.FK_Views_User" FromRole="User" ToRole="Views" />
-          <NavigationProperty Name="Invoices" Relationship="WebSellingModel.FK_Invoices_User" FromRole="User" ToRole="Invoice" />
-          </EntityType>
-        <EntityType Name="View">
-          <Key>
-            <PropertyRef Name="View_ID" />
-          </Key>
-          <Property Name="View_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Product_ID" Type="Int32" />
-          <Property Name="User_ID" Type="Int32" />
-          <Property Name="View_Date" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_Views_Product" FromRole="Views" ToRole="Product" />
-          <NavigationProperty Name="User" Relationship="Self.FK_Views_User" FromRole="Views" ToRole="User" />
-          <Property Name="View_Bin" Type="Boolean" />
-        </EntityType>
-        <Association Name="FK_Cart_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
-          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Product_ID" />
-            </Principal>
-            <Dependent Role="Cart">
-              <PropertyRef Name="Product_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cart_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
-            </Principal>
-            <Dependent Role="Cart">
-              <PropertyRef Name="User_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="Category_ID" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="Category_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SubCategory_Category">
-          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
-          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Category">
-              <PropertyRef Name="Category_ID" />
-            </Principal>
-            <Dependent Role="SubCategory">
-              <PropertyRef Name="Category_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Province_City">
-          <End Role="City" Type="Self.City" Multiplicity="0..1" />
-          <End Role="Province" Type="Self.Province" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="City">
-              <PropertyRef Name="City_ID" />
-            </Principal>
-            <Dependent Role="Province">
-              <PropertyRef Name="City_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_City">
-          <End Role="City" Type="Self.City" Multiplicity="0..1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="City">
-              <PropertyRef Name="City_ID" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="City_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Comment_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
-          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Product_ID" />
-            </Principal>
-            <Dependent Role="Comment">
-              <PropertyRef Name="Product_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Comment_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Comment" Type="Self.Comment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
-            </Principal>
-            <Dependent Role="Comment">
-              <PropertyRef Name="User_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RepLi_Comment">
-          <End Role="Comment" Type="Self.Comment" Multiplicity="0..1" />
-          <End Role="RepLi" Type="Self.RepLi" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Comment">
-              <PropertyRef Name="Comment_ID" />
-            </Principal>
-            <Dependent Role="RepLi">
-              <PropertyRef Name="Comment_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_SubCategory">
-          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SubCategory">
-              <PropertyRef Name="SubCategory_ID" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="SubCategory_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_SubProduct">
-          <End Role="SubProduct" Type="Self.SubProduct" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SubProduct">
-              <PropertyRef Name="SubProduct_ID" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="SubProduct_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="User_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Views_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
-          <End Role="Views" Type="Self.View" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="Product_ID" />
-            </Principal>
-            <Dependent Role="Views">
-              <PropertyRef Name="Product_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_User_Province">
-          <End Role="Province" Type="Self.Province" Multiplicity="0..1" />
-          <End Role="User" Type="Self.User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Province">
-              <PropertyRef Name="Province_ID" />
-            </Principal>
-            <Dependent Role="User">
-              <PropertyRef Name="Province_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RepLi_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="RepLi" Type="Self.RepLi" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
-            </Principal>
-            <Dependent Role="RepLi">
-              <PropertyRef Name="User_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SubProduct_SubCategory">
-          <End Role="SubCategory" Type="Self.SubCategory" Multiplicity="0..1" />
-          <End Role="SubProduct" Type="Self.SubProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SubCategory">
-              <PropertyRef Name="SubCategory_ID" />
-            </Principal>
-            <Dependent Role="SubProduct">
-              <PropertyRef Name="SubCategory_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Views_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Views" Type="Self.View" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
-            </Principal>
-            <Dependent Role="Views">
-              <PropertyRef Name="User_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="WebSellingEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Admins" EntityType="Self.Admin" />
-          <EntitySet Name="Carts" EntityType="Self.Cart" />
-          <EntitySet Name="Categories" EntityType="Self.Category" />
-          <EntitySet Name="Cities" EntityType="Self.City" />
-          <EntitySet Name="Comments" EntityType="Self.Comment" />
-          <EntitySet Name="Products" EntityType="Self.Product" />
-          <EntitySet Name="Provinces" EntityType="Self.Province" />
-          <EntitySet Name="RepLis" EntityType="Self.RepLi" />
-          <EntitySet Name="SubCategories" EntityType="Self.SubCategory" />
-          <EntitySet Name="SubProducts" EntityType="Self.SubProduct" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <EntitySet Name="Views" EntityType="Self.View" />
-          <AssociationSet Name="FK_Cart_Product" Association="Self.FK_Cart_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Cart" EntitySet="Carts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cart_User" Association="Self.FK_Cart_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Cart" EntitySet="Carts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubCategory_Category" Association="Self.FK_SubCategory_Category">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="SubCategory" EntitySet="SubCategories" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Province_City" Association="Self.FK_Province_City">
-            <End Role="City" EntitySet="Cities" />
-            <End Role="Province" EntitySet="Provinces" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_City" Association="Self.FK_User_City">
-            <End Role="City" EntitySet="Cities" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Comment_Product" Association="Self.FK_Comment_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Comment" EntitySet="Comments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Comment_User" Association="Self.FK_Comment_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Comment" EntitySet="Comments" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RepLi_Comment" Association="Self.FK_RepLi_Comment">
-            <End Role="Comment" EntitySet="Comments" />
-            <End Role="RepLi" EntitySet="RepLis" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_SubCategory" Association="Self.FK_Product_SubCategory">
-            <End Role="SubCategory" EntitySet="SubCategories" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_SubProduct" Association="Self.FK_Product_SubProduct">
-            <End Role="SubProduct" EntitySet="SubProducts" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_User" Association="Self.FK_Product_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Product" EntitySet="Products" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Views_Product" Association="Self.FK_Views_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Views" EntitySet="Views" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Province" Association="Self.FK_User_Province">
-            <End Role="Province" EntitySet="Provinces" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RepLi_User" Association="Self.FK_RepLi_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="RepLi" EntitySet="RepLis" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SubProduct_SubCategory" Association="Self.FK_SubProduct_SubCategory">
-            <End Role="SubCategory" EntitySet="SubCategories" />
-            <End Role="SubProduct" EntitySet="SubProducts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Views_User" Association="Self.FK_Views_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Views" EntitySet="Views" />
-          </AssociationSet>
-          <EntitySet Name="StatusBills" EntityType="WebSellingModel.StatusBill" />
-          <EntitySet Name="DetailsInvoices" EntityType="WebSellingModel.DetailsInvoice" />
-          <EntitySet Name="Invoices" EntityType="WebSellingModel.Invoice" />
-          <AssociationSet Name="FK_DetailsInvoices_Invoices" Association="WebSellingModel.FK_DetailsInvoices_Invoices">
-            <End Role="Invoice" EntitySet="Invoices" />
-            <End Role="DetailsInvoice" EntitySet="DetailsInvoices" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DetailsInvoices_Product" Association="WebSellingModel.FK_DetailsInvoices_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="DetailsInvoice" EntitySet="DetailsInvoices" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Invoices_StatusBill" Association="WebSellingModel.FK_Invoices_StatusBill">
-            <End Role="StatusBill" EntitySet="StatusBills" />
-            <End Role="Invoice" EntitySet="Invoices" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Invoices_User" Association="WebSellingModel.FK_Invoices_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Invoice" EntitySet="Invoices" />
-          </AssociationSet>
-          </EntityContainer>
-        <EntityType Name="StatusBill">
-          <Key>
-            <PropertyRef Name="StatusBill_ID" />
-          </Key>
-          <Property Name="StatusBill_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StatusBill_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Invoices" Relationship="WebSellingModel.FK_Invoices_StatusBill" FromRole="StatusBill" ToRole="Invoice" />
+          <NavigationProperty Name="Product" Relationship="WebSellingModel.FK_Comment_Product" FromRole="Comment" ToRole="Product" />
+          <NavigationProperty Name="User" Relationship="WebSellingModel.FK_Comment_User" FromRole="Comment" ToRole="User" />
+          <NavigationProperty Name="RepLis" Relationship="WebSellingModel.FK_RepLi_Comment" FromRole="Comment" ToRole="RepLi" />
         </EntityType>
         <EntityType Name="DetailsInvoice">
           <Key>
@@ -1099,6 +740,245 @@
           <NavigationProperty Name="StatusBill" Relationship="WebSellingModel.FK_Invoices_StatusBill" FromRole="Invoice" ToRole="StatusBill" />
           <NavigationProperty Name="User" Relationship="WebSellingModel.FK_Invoices_User" FromRole="Invoice" ToRole="User" />
         </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Product_ID" />
+          </Key>
+          <Property Name="Product_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Product_Img" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Product_DateSubmit" Type="DateTime" Precision="3" />
+          <Property Name="Product_Activate" Type="Boolean" />
+          <Property Name="Product_Price" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Product_SalePrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Product_Ship" Type="Boolean" />
+          <Property Name="Product_View" Type="Int32" />
+          <Property Name="Product_Love" Type="Int32" />
+          <Property Name="Product_Amount" Type="Int32" />
+          <Property Name="Product_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Product_Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Product_Option" Type="Boolean" />
+          <Property Name="Product_DateCreate" Type="DateTime" Precision="3" />
+          <Property Name="Product_DateEdit" Type="DateTime" Precision="3" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="SubCategory_ID" Type="Int32" />
+          <Property Name="Category_ID" Type="Int32" />
+          <Property Name="SubProduct_ID" Type="Int32" />
+          <NavigationProperty Name="Carts" Relationship="WebSellingModel.FK_Cart_Product" FromRole="Product" ToRole="Cart" />
+          <NavigationProperty Name="Category" Relationship="WebSellingModel.FK_Product_Category" FromRole="Product" ToRole="Category" />
+          <NavigationProperty Name="Comments" Relationship="WebSellingModel.FK_Comment_Product" FromRole="Product" ToRole="Comment" />
+          <NavigationProperty Name="DetailsInvoices" Relationship="WebSellingModel.FK_DetailsInvoices_Product" FromRole="Product" ToRole="DetailsInvoice" />
+          <NavigationProperty Name="SubCategory" Relationship="WebSellingModel.FK_Product_SubCategory" FromRole="Product" ToRole="SubCategory" />
+          <NavigationProperty Name="SubProduct" Relationship="WebSellingModel.FK_Product_SubProduct" FromRole="Product" ToRole="SubProduct" />
+          <NavigationProperty Name="User" Relationship="WebSellingModel.FK_Product_User" FromRole="Product" ToRole="User" />
+          <NavigationProperty Name="Views" Relationship="WebSellingModel.FK_Views_Product" FromRole="Product" ToRole="View" />
+        </EntityType>
+        <EntityType Name="Province">
+          <Key>
+            <PropertyRef Name="Province_ID" />
+          </Key>
+          <Property Name="Province_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Province_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="City_ID" Type="Int32" />
+          <NavigationProperty Name="City" Relationship="WebSellingModel.FK_Province_City" FromRole="Province" ToRole="City" />
+          <NavigationProperty Name="Users" Relationship="WebSellingModel.FK_User_Province" FromRole="Province" ToRole="User" />
+        </EntityType>
+        <EntityType Name="RepLi">
+          <Key>
+            <PropertyRef Name="Repli_ID" />
+          </Key>
+          <Property Name="Repli_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Repli_DateCreate" Type="DateTime" Precision="3" />
+          <Property Name="Repli_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Comment_ID" Type="Int32" />
+          <Property Name="User_ID" Type="Int32" />
+          <NavigationProperty Name="Comment" Relationship="WebSellingModel.FK_RepLi_Comment" FromRole="RepLi" ToRole="Comment" />
+          <NavigationProperty Name="User" Relationship="WebSellingModel.FK_RepLi_User" FromRole="RepLi" ToRole="User" />
+        </EntityType>
+        <EntityType Name="StatusBill">
+          <Key>
+            <PropertyRef Name="StatusBill_ID" />
+          </Key>
+          <Property Name="StatusBill_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusBill_Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Invoices" Relationship="WebSellingModel.FK_Invoices_StatusBill" FromRole="StatusBill" ToRole="Invoice" />
+        </EntityType>
+        <EntityType Name="SubCategory">
+          <Key>
+            <PropertyRef Name="SubCategory_ID" />
+          </Key>
+          <Property Name="SubCategory_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubCategory_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SubCategory_Img" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="SubCategory_DateCreate" Type="DateTime" Precision="3" />
+          <Property Name="SubCategory_DateEdit" Type="DateTime" Precision="3" />
+          <Property Name="SubCategory_Activate" Type="Boolean" />
+          <Property Name="Category_ID" Type="Int32" />
+          <NavigationProperty Name="Category" Relationship="WebSellingModel.FK_SubCategory_Category" FromRole="SubCategory" ToRole="Category" />
+          <NavigationProperty Name="Products" Relationship="WebSellingModel.FK_Product_SubCategory" FromRole="SubCategory" ToRole="Product" />
+          <NavigationProperty Name="SubProducts" Relationship="WebSellingModel.FK_SubProduct_SubCategory" FromRole="SubCategory" ToRole="SubProduct" />
+        </EntityType>
+        <EntityType Name="SubProduct">
+          <Key>
+            <PropertyRef Name="SubProduct_ID" />
+          </Key>
+          <Property Name="SubProduct_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubCategory_ID" Type="Int32" />
+          <Property Name="SubProduct_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Products" Relationship="WebSellingModel.FK_Product_SubProduct" FromRole="SubProduct" ToRole="Product" />
+          <NavigationProperty Name="SubCategory" Relationship="WebSellingModel.FK_SubProduct_SubCategory" FromRole="SubProduct" ToRole="SubCategory" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="User_Token" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="User_Activate" Type="Boolean" />
+          <Property Name="User_Pass" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="User_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="User_Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="User_Role" Type="Int32" />
+          <Property Name="User_LinkF" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="User_Img" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="User_DateCreate" Type="DateTime" Precision="3" />
+          <Property Name="User_DateLogin" Type="DateTime" Precision="3" />
+          <Property Name="User_DateBirth" Type="DateTime" Precision="0" />
+          <Property Name="User_Sex" Type="Int32" />
+          <Property Name="User_Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Province_ID" Type="Int32" />
+          <Property Name="City_ID" Type="Int32" />
+          <NavigationProperty Name="Carts" Relationship="WebSellingModel.FK_Cart_User" FromRole="User" ToRole="Cart" />
+          <NavigationProperty Name="City" Relationship="WebSellingModel.FK_User_City" FromRole="User" ToRole="City" />
+          <NavigationProperty Name="Comments" Relationship="WebSellingModel.FK_Comment_User" FromRole="User" ToRole="Comment" />
+          <NavigationProperty Name="Invoices" Relationship="WebSellingModel.FK_Invoices_User" FromRole="User" ToRole="Invoice" />
+          <NavigationProperty Name="Products" Relationship="WebSellingModel.FK_Product_User" FromRole="User" ToRole="Product" />
+          <NavigationProperty Name="Province" Relationship="WebSellingModel.FK_User_Province" FromRole="User" ToRole="Province" />
+          <NavigationProperty Name="RepLis" Relationship="WebSellingModel.FK_RepLi_User" FromRole="User" ToRole="RepLi" />
+          <NavigationProperty Name="Views" Relationship="WebSellingModel.FK_Views_User" FromRole="User" ToRole="View" />
+        </EntityType>
+        <EntityType Name="View">
+          <Key>
+            <PropertyRef Name="View_ID" />
+          </Key>
+          <Property Name="View_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_ID" Type="Int32" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="View_Date" Type="DateTime" Precision="3" />
+          <Property Name="View_Bin" Type="Boolean" />
+          <NavigationProperty Name="Product" Relationship="WebSellingModel.FK_Views_Product" FromRole="View" ToRole="Product" />
+          <NavigationProperty Name="User" Relationship="WebSellingModel.FK_Views_User" FromRole="View" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_Cart_Product">
+          <End Type="WebSellingModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="WebSellingModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cart_User">
+          <End Type="WebSellingModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="WebSellingModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Category">
+          <End Type="WebSellingModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="WebSellingModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Category_ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="Category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubCategory_Category">
+          <End Type="WebSellingModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="WebSellingModel.SubCategory" Role="SubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Category_ID" />
+            </Principal>
+            <Dependent Role="SubCategory">
+              <PropertyRef Name="Category_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Province_City">
+          <End Type="WebSellingModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="WebSellingModel.Province" Role="Province" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="City_ID" />
+            </Principal>
+            <Dependent Role="Province">
+              <PropertyRef Name="City_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_City">
+          <End Type="WebSellingModel.City" Role="City" Multiplicity="0..1" />
+          <End Type="WebSellingModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="City">
+              <PropertyRef Name="City_ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="City_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_Product">
+          <End Type="WebSellingModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="WebSellingModel.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Comment_User">
+          <End Type="WebSellingModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="WebSellingModel.Comment" Role="Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Comment">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RepLi_Comment">
+          <End Type="WebSellingModel.Comment" Role="Comment" Multiplicity="0..1" />
+          <End Type="WebSellingModel.RepLi" Role="RepLi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Comment">
+              <PropertyRef Name="Comment_ID" />
+            </Principal>
+            <Dependent Role="RepLi">
+              <PropertyRef Name="Comment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DetailsInvoices_Invoices">
           <End Type="WebSellingModel.Invoice" Role="Invoice" Multiplicity="0..1" />
           <End Type="WebSellingModel.DetailsInvoice" Role="DetailsInvoice" Multiplicity="*" />
@@ -1147,6 +1027,102 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Product_SubCategory">
+          <End Type="WebSellingModel.SubCategory" Role="SubCategory" Multiplicity="0..1" />
+          <End Type="WebSellingModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubCategory">
+              <PropertyRef Name="SubCategory_ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="SubCategory_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_SubProduct">
+          <End Type="WebSellingModel.SubProduct" Role="SubProduct" Multiplicity="0..1" />
+          <End Type="WebSellingModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubProduct">
+              <PropertyRef Name="SubProduct_ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="SubProduct_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_User">
+          <End Type="WebSellingModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="WebSellingModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Views_Product">
+          <End Type="WebSellingModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="WebSellingModel.View" Role="View" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="View">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Province">
+          <End Type="WebSellingModel.Province" Role="Province" Multiplicity="0..1" />
+          <End Type="WebSellingModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Province">
+              <PropertyRef Name="Province_ID" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Province_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RepLi_User">
+          <End Type="WebSellingModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="WebSellingModel.RepLi" Role="RepLi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="RepLi">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubProduct_SubCategory">
+          <End Type="WebSellingModel.SubCategory" Role="SubCategory" Multiplicity="0..1" />
+          <End Type="WebSellingModel.SubProduct" Role="SubProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubCategory">
+              <PropertyRef Name="SubCategory_ID" />
+            </Principal>
+            <Dependent Role="SubProduct">
+              <PropertyRef Name="SubCategory_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Views_User">
+          <End Type="WebSellingModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="WebSellingModel.View" Role="View" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="View">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1156,16 +1132,16 @@
           <EntitySetMapping Name="Admins">
             <EntityTypeMapping TypeName="WebSellingModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
-                <ScalarProperty Name="Admin_ID" ColumnName="Admin_ID" />
-                <ScalarProperty Name="Admin_Pass" ColumnName="Admin_Pass" />
-                <ScalarProperty Name="Admin_Pass2" ColumnName="Admin_Pass2" />
-                <ScalarProperty Name="Admin_Email" ColumnName="Admin_Email" />
-                <ScalarProperty Name="Admin_Role" ColumnName="Admin_Role" />
-                <ScalarProperty Name="Admin_Token" ColumnName="Admin_Token" />
-                <ScalarProperty Name="Admin_Activate" ColumnName="Admin_Activate" />
-                <ScalarProperty Name="Admin_DateCreate" ColumnName="Admin_DateCreate" />
-                <ScalarProperty Name="Admin_DateLogin" ColumnName="Admin_DateLogin" />
                 <ScalarProperty Name="Admin_Name" ColumnName="Admin_Name" />
+                <ScalarProperty Name="Admin_DateLogin" ColumnName="Admin_DateLogin" />
+                <ScalarProperty Name="Admin_DateCreate" ColumnName="Admin_DateCreate" />
+                <ScalarProperty Name="Admin_Activate" ColumnName="Admin_Activate" />
+                <ScalarProperty Name="Admin_Token" ColumnName="Admin_Token" />
+                <ScalarProperty Name="Admin_Role" ColumnName="Admin_Role" />
+                <ScalarProperty Name="Admin_Email" ColumnName="Admin_Email" />
+                <ScalarProperty Name="Admin_Pass2" ColumnName="Admin_Pass2" />
+                <ScalarProperty Name="Admin_Pass" ColumnName="Admin_Pass" />
+                <ScalarProperty Name="Admin_ID" ColumnName="Admin_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1173,167 +1149,44 @@
             <EntityTypeMapping TypeName="WebSellingModel.Cart">
               <MappingFragment StoreEntitySet="Cart">
                 <ScalarProperty Name="Cart_DateCreate" ColumnName="Cart_DateCreate" />
-                <ScalarProperty Name="Cart_ID" ColumnName="Cart_ID" />
-                <ScalarProperty Name="Cart_TotalPament" ColumnName="Cart_TotalPament" />
-                <ScalarProperty Name="Cart_Activate" ColumnName="Cart_Activate" />
-                <ScalarProperty Name="Cart_TotalProduct" ColumnName="Cart_TotalProduct" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Cart_TotalProduct" ColumnName="Cart_TotalProduct" />
+                <ScalarProperty Name="Cart_Activate" ColumnName="Cart_Activate" />
+                <ScalarProperty Name="Cart_TotalPament" ColumnName="Cart_TotalPament" />
+                <ScalarProperty Name="Cart_ID" ColumnName="Cart_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
             <EntityTypeMapping TypeName="WebSellingModel.Category">
               <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
-                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
-                <ScalarProperty Name="Category_Img" ColumnName="Category_Img" />
-                <ScalarProperty Name="Category_DateCreate" ColumnName="Category_DateCreate" />
-                <ScalarProperty Name="Category_DateEdit" ColumnName="Category_DateEdit" />
                 <ScalarProperty Name="Category_Activate" ColumnName="Category_Activate" />
+                <ScalarProperty Name="Category_DateEdit" ColumnName="Category_DateEdit" />
+                <ScalarProperty Name="Category_DateCreate" ColumnName="Category_DateCreate" />
+                <ScalarProperty Name="Category_Img" ColumnName="Category_Img" />
+                <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
+                <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Cities">
             <EntityTypeMapping TypeName="WebSellingModel.City">
               <MappingFragment StoreEntitySet="City">
-                <ScalarProperty Name="City_ID" ColumnName="City_ID" />
                 <ScalarProperty Name="City_Name" ColumnName="City_Name" />
+                <ScalarProperty Name="City_ID" ColumnName="City_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Comments">
             <EntityTypeMapping TypeName="WebSellingModel.Comment">
               <MappingFragment StoreEntitySet="Comment">
-                <ScalarProperty Name="Comment_ID" ColumnName="Comment_ID" />
-                <ScalarProperty Name="Comment_DateCreate" ColumnName="Comment_DateCreate" />
-                <ScalarProperty Name="Comment_Content" ColumnName="Comment_Content" />
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="Comment_Spam" ColumnName="Comment_Spam" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
-                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="WebSellingModel.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="Product_Bin" ColumnName="Product_Bin" />
-                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
-                <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
-                <ScalarProperty Name="Product_Img" ColumnName="Product_Img" />
-                <ScalarProperty Name="Product_DateSubmit" ColumnName="Product_DateSubmit" />
-                <ScalarProperty Name="Product_Activate" ColumnName="Product_Activate" />
-                <ScalarProperty Name="Product_Price" ColumnName="Product_Price" />
-                <ScalarProperty Name="Product_SalePrice" ColumnName="Product_SalePrice" />
-                <ScalarProperty Name="Product_Ship" ColumnName="Product_Ship" />
-                <ScalarProperty Name="Product_View" ColumnName="Product_View" />
-                <ScalarProperty Name="Product_Love" ColumnName="Product_Love" />
-                <ScalarProperty Name="Product_Amount" ColumnName="Product_Amount" />
-                <ScalarProperty Name="Product_Description" ColumnName="Product_Description" />
-                <ScalarProperty Name="Product_Detail" ColumnName="Product_Detail" />
-                <ScalarProperty Name="Product_Option" ColumnName="Product_Option" />
-                <ScalarProperty Name="Product_DateCreate" ColumnName="Product_DateCreate" />
-                <ScalarProperty Name="Product_DateEdit" ColumnName="Product_DateEdit" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
-                <ScalarProperty Name="SubCategory_ID" ColumnName="SubCategory_ID" />
-                <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
-                <ScalarProperty Name="SubProduct_ID" ColumnName="SubProduct_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Provinces">
-            <EntityTypeMapping TypeName="WebSellingModel.Province">
-              <MappingFragment StoreEntitySet="Province">
-                <ScalarProperty Name="Province_ID" ColumnName="Province_ID" />
-                <ScalarProperty Name="Province_Name" ColumnName="Province_Name" />
-                <ScalarProperty Name="City_ID" ColumnName="City_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RepLis">
-            <EntityTypeMapping TypeName="WebSellingModel.RepLi">
-              <MappingFragment StoreEntitySet="RepLi">
-                <ScalarProperty Name="Repli_ID" ColumnName="Repli_ID" />
-                <ScalarProperty Name="Repli_DateCreate" ColumnName="Repli_DateCreate" />
-                <ScalarProperty Name="Repli_Content" ColumnName="Repli_Content" />
+                <ScalarProperty Name="Comment_Content" ColumnName="Comment_Content" />
+                <ScalarProperty Name="Comment_DateCreate" ColumnName="Comment_DateCreate" />
                 <ScalarProperty Name="Comment_ID" ColumnName="Comment_ID" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SubCategories">
-            <EntityTypeMapping TypeName="WebSellingModel.SubCategory">
-              <MappingFragment StoreEntitySet="SubCategory">
-                <ScalarProperty Name="SubCategory_ID" ColumnName="SubCategory_ID" />
-                <ScalarProperty Name="SubCategory_Name" ColumnName="SubCategory_Name" />
-                <ScalarProperty Name="SubCategory_Img" ColumnName="SubCategory_Img" />
-                <ScalarProperty Name="SubCategory_DateCreate" ColumnName="SubCategory_DateCreate" />
-                <ScalarProperty Name="SubCategory_DateEdit" ColumnName="SubCategory_DateEdit" />
-                <ScalarProperty Name="SubCategory_Activate" ColumnName="SubCategory_Activate" />
-                <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SubProducts">
-            <EntityTypeMapping TypeName="WebSellingModel.SubProduct">
-              <MappingFragment StoreEntitySet="SubProduct">
-                <ScalarProperty Name="SubProduct_ID" ColumnName="SubProduct_ID" />
-                <ScalarProperty Name="SubCategory_ID" ColumnName="SubCategory_ID" />
-                <ScalarProperty Name="SubProduct_Name" ColumnName="SubProduct_Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="WebSellingModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="WebSellingModel.User">
-              <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
-                <ScalarProperty Name="User_LastName" ColumnName="User_LastName" />
-                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
-                <ScalarProperty Name="User_Token" ColumnName="User_Token" />
-                <ScalarProperty Name="User_Activate" ColumnName="User_Activate" />
-                <ScalarProperty Name="User_Pass" ColumnName="User_Pass" />
-                <ScalarProperty Name="User_Email" ColumnName="User_Email" />
-                <ScalarProperty Name="User_Phone" ColumnName="User_Phone" />
-                <ScalarProperty Name="User_Role" ColumnName="User_Role" />
-                <ScalarProperty Name="User_LinkF" ColumnName="User_LinkF" />
-                <ScalarProperty Name="User_Img" ColumnName="User_Img" />
-                <ScalarProperty Name="User_DateCreate" ColumnName="User_DateCreate" />
-                <ScalarProperty Name="User_DateLogin" ColumnName="User_DateLogin" />
-                <ScalarProperty Name="User_DateBirth" ColumnName="User_DateBirth" />
-                <ScalarProperty Name="User_Sex" ColumnName="User_Sex" />
-                <ScalarProperty Name="User_Address" ColumnName="User_Address" />
-                <ScalarProperty Name="Province_ID" ColumnName="Province_ID" />
-                <ScalarProperty Name="City_ID" ColumnName="City_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Views">
-            <EntityTypeMapping TypeName="WebSellingModel.View">
-              <MappingFragment StoreEntitySet="Views">
-                <ScalarProperty Name="View_Bin" ColumnName="View_Bin" />
-                <ScalarProperty Name="View_ID" ColumnName="View_ID" />
-                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
-                <ScalarProperty Name="View_Date" ColumnName="View_Date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StatusBills">
-            <EntityTypeMapping TypeName="WebSellingModel.StatusBill">
-              <MappingFragment StoreEntitySet="StatusBill">
-                <ScalarProperty Name="StatusBill_Name" ColumnName="StatusBill_Name" />
-                <ScalarProperty Name="StatusBill_ID" ColumnName="StatusBill_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1360,6 +1213,117 @@
                 <ScalarProperty Name="Invoices_Seller" ColumnName="Invoices_Seller" />
                 <ScalarProperty Name="Invoices_Buyer" ColumnName="Invoices_Buyer" />
                 <ScalarProperty Name="Invoices_ID" ColumnName="Invoices_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="WebSellingModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="SubProduct_ID" ColumnName="SubProduct_ID" />
+                <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+                <ScalarProperty Name="SubCategory_ID" ColumnName="SubCategory_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Product_DateEdit" ColumnName="Product_DateEdit" />
+                <ScalarProperty Name="Product_DateCreate" ColumnName="Product_DateCreate" />
+                <ScalarProperty Name="Product_Option" ColumnName="Product_Option" />
+                <ScalarProperty Name="Product_Detail" ColumnName="Product_Detail" />
+                <ScalarProperty Name="Product_Description" ColumnName="Product_Description" />
+                <ScalarProperty Name="Product_Amount" ColumnName="Product_Amount" />
+                <ScalarProperty Name="Product_Love" ColumnName="Product_Love" />
+                <ScalarProperty Name="Product_View" ColumnName="Product_View" />
+                <ScalarProperty Name="Product_Ship" ColumnName="Product_Ship" />
+                <ScalarProperty Name="Product_SalePrice" ColumnName="Product_SalePrice" />
+                <ScalarProperty Name="Product_Price" ColumnName="Product_Price" />
+                <ScalarProperty Name="Product_Activate" ColumnName="Product_Activate" />
+                <ScalarProperty Name="Product_DateSubmit" ColumnName="Product_DateSubmit" />
+                <ScalarProperty Name="Product_Img" ColumnName="Product_Img" />
+                <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Provinces">
+            <EntityTypeMapping TypeName="WebSellingModel.Province">
+              <MappingFragment StoreEntitySet="Province">
+                <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+                <ScalarProperty Name="Province_Name" ColumnName="Province_Name" />
+                <ScalarProperty Name="Province_ID" ColumnName="Province_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RepLis">
+            <EntityTypeMapping TypeName="WebSellingModel.RepLi">
+              <MappingFragment StoreEntitySet="RepLi">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Comment_ID" ColumnName="Comment_ID" />
+                <ScalarProperty Name="Repli_Content" ColumnName="Repli_Content" />
+                <ScalarProperty Name="Repli_DateCreate" ColumnName="Repli_DateCreate" />
+                <ScalarProperty Name="Repli_ID" ColumnName="Repli_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusBills">
+            <EntityTypeMapping TypeName="WebSellingModel.StatusBill">
+              <MappingFragment StoreEntitySet="StatusBill">
+                <ScalarProperty Name="StatusBill_Name" ColumnName="StatusBill_Name" />
+                <ScalarProperty Name="StatusBill_ID" ColumnName="StatusBill_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubCategories">
+            <EntityTypeMapping TypeName="WebSellingModel.SubCategory">
+              <MappingFragment StoreEntitySet="SubCategory">
+                <ScalarProperty Name="Category_ID" ColumnName="Category_ID" />
+                <ScalarProperty Name="SubCategory_Activate" ColumnName="SubCategory_Activate" />
+                <ScalarProperty Name="SubCategory_DateEdit" ColumnName="SubCategory_DateEdit" />
+                <ScalarProperty Name="SubCategory_DateCreate" ColumnName="SubCategory_DateCreate" />
+                <ScalarProperty Name="SubCategory_Img" ColumnName="SubCategory_Img" />
+                <ScalarProperty Name="SubCategory_Name" ColumnName="SubCategory_Name" />
+                <ScalarProperty Name="SubCategory_ID" ColumnName="SubCategory_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubProducts">
+            <EntityTypeMapping TypeName="WebSellingModel.SubProduct">
+              <MappingFragment StoreEntitySet="SubProduct">
+                <ScalarProperty Name="SubProduct_Name" ColumnName="SubProduct_Name" />
+                <ScalarProperty Name="SubCategory_ID" ColumnName="SubCategory_ID" />
+                <ScalarProperty Name="SubProduct_ID" ColumnName="SubProduct_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="WebSellingModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="City_ID" ColumnName="City_ID" />
+                <ScalarProperty Name="Province_ID" ColumnName="Province_ID" />
+                <ScalarProperty Name="User_Address" ColumnName="User_Address" />
+                <ScalarProperty Name="User_Sex" ColumnName="User_Sex" />
+                <ScalarProperty Name="User_DateBirth" ColumnName="User_DateBirth" />
+                <ScalarProperty Name="User_DateLogin" ColumnName="User_DateLogin" />
+                <ScalarProperty Name="User_DateCreate" ColumnName="User_DateCreate" />
+                <ScalarProperty Name="User_Img" ColumnName="User_Img" />
+                <ScalarProperty Name="User_LinkF" ColumnName="User_LinkF" />
+                <ScalarProperty Name="User_Role" ColumnName="User_Role" />
+                <ScalarProperty Name="User_Phone" ColumnName="User_Phone" />
+                <ScalarProperty Name="User_Email" ColumnName="User_Email" />
+                <ScalarProperty Name="User_Pass" ColumnName="User_Pass" />
+                <ScalarProperty Name="User_Activate" ColumnName="User_Activate" />
+                <ScalarProperty Name="User_Token" ColumnName="User_Token" />
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="User_LastName" ColumnName="User_LastName" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Views">
+            <EntityTypeMapping TypeName="WebSellingModel.View">
+              <MappingFragment StoreEntitySet="Views">
+                <ScalarProperty Name="View_Bin" ColumnName="View_Bin" />
+                <ScalarProperty Name="View_Date" ColumnName="View_Date" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="View_ID" ColumnName="View_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -19,8 +19,8 @@ namespace WebSelling.Models
         {
             this.Carts = new HashSet<Cart>();
             this.Comments = new HashSet<Comment>();
-            this.Views = new HashSet<View>();
             this.DetailsInvoices = new HashSet<DetailsInvoice>();
+            this.Views = new HashSet<View>();
         }
     
         public int Product_ID { get; set; }
@@ -43,19 +43,18 @@ namespace WebSelling.Models
         public Nullable<int> SubCategory_ID { get; set; }
         public Nullable<int> Category_ID { get; set; }
         public Nullable<int> SubProduct_ID { get; set; }
-        public Nullable<bool> Product_Bin { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Carts { get; set; }
         public virtual Category Category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DetailsInvoice> DetailsInvoices { get; set; }
         public virtual SubCategory SubCategory { get; set; }
         public virtual SubProduct SubProduct { get; set; }
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<View> Views { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetailsInvoice> DetailsInvoices { get; set; }
     }
 }
