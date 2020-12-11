@@ -1239,7 +1239,6 @@
     <Content Include="Views\ForgotPass\ChangePass.cshtml" />
     <Content Include="Views\ForgotPass\Mail.cshtml" />
     <Content Include="Views\Home\FilterProductBySubCatId.cshtml" />
-    <Content Include="Views\Information\CreateProductUser.cshtml" />
     <Content Include="Views\Information\CreateProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>

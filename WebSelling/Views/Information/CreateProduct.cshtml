@@ -7,7 +7,7 @@
     WebSellingEntities db = new WebSellingEntities();
 }
 @Html.Action("Menu", "Menu")
-@Html.Action("Css", "Home")
+
 <script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
 @using (Html.BeginForm("CreateProduct", "Information", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "ui form" }))
 {
@@ -25,7 +25,7 @@
     </div>
     <div class="field">
         <label>Hình Ảnh Sản Phẩm</label>
-        <input name="fileupload" type="file" required>
+        <input name="fileupload" type="file">
         @ViewBag.ThongBao
     </div>
     <div class="field">
