@@ -24,11 +24,26 @@ namespace WebSelling.Controllers
             return PartialView(db.Categories.Where(n => n.Category_Activate == true).OrderBy(n => n.Category_DateCreate).ToList());
         }
 
-        public ActionResult DetailsCategory(int ? categoryid)
+        public ActionResult DetailsCategory(int? categoryid)
         {
-            Category cate = db.Categories.SingleOrDefault(n => n.Category_ID == categoryid);
-            Session["category"] = cate;
-            List<Product> products = db.Products.Where(n => n.Category_ID == categoryid && n.Product_Activate == true).OrderByDescending(n => n.Product_DateCreate).ToList();
+            //Category cate = db.Categories.SingleOrDefault(n => n.Category_ID == categoryid);
+            //Session["category"] = cate;
+            //List<Product> products = db.Products.Where(n => n.Category_ID == categoryid && n.Product_Activate == true).OrderByDescending(n => n.Product_DateCreate).ToList();
+            //return View(products);
+            if(categoryid == null)
+            {
+                return HttpNotFound();
+            }
+            List<SubCategory> subCategories = db.SubCategories.Where(t => t.Category_ID == categoryid).ToList();
+            return View(subCategories);
+        }
+        public ActionResult FilterProductBySubCatId(int? id)
+        {
+            if(id == null)
+            {
+                return HttpNotFound();
+            }
+            List<Product> products = db.Products.Where(t => t.Product_Activate == true && t.SubCategory_ID == id && t.Product_Bin == false).ToList();
             return View(products);
         }
 

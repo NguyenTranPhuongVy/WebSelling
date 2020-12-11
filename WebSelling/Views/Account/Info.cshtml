@@ -1,9 +1,9 @@
-﻿@using WebSelling.Models
+﻿@using WebSelling.Models;
 @model User
+
 @{
     ViewBag.Title = "Info";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    User user = (User)Session["user"];
 }
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -28,7 +28,6 @@
         margin-bottom: .5rem;
         line-height: 1.3rem;
     }
-
 
     .card {
         position: relative;
@@ -60,8 +59,6 @@
         overflow: hidden;
     }
 
-
-
     .user-image {
         position: absolute;
         height: 80px;
@@ -85,8 +82,6 @@
     .profile-card .profile-content {
         padding: 50px 20px 30px 20px;
     }
-
-
 
     .profile-card .profile-name {
         font-size: 1.2rem;
@@ -119,15 +114,10 @@
         color: #777;
     }
 
-
-
-
         .profile-card ul.profile-info-list a {
             text-decoration: none;
             color: inherit;
         }
-
-
 
     .profile-card a.profile-info-list-item {
         margin: 10px 0;
@@ -147,7 +137,6 @@
             transition: all .5s ease-in-out;
         }
 
-
         .profile-card a.profile-info-list-item i {
             padding: 10px;
         }
@@ -165,8 +154,6 @@
         /* font-weight: 400; */
     }
 
-
-
         li.about-items i {
             color: #607d8b;
         }
@@ -176,7 +163,6 @@
         display: inline-flex;
         margin-left: 10px;
     }
-
 
     span.about-item-detail {
         display: inline-flex;
@@ -213,19 +199,19 @@
                         <div class="profile-header">
 
                             <div class="cover-image">
-                                <img src="~/Content/Image/@user.User_Img" class="img img-fluid">
+                                <img src="~/Content/Image/@Model.User_Img" class="img img-fluid">
                             </div>
                             <div class="user-image">
-                                <img src="~/Content/Image/@user.User_Img" class="img">
+                                <img src="~/Content/Image/@Model.User_Img" class="img">
                             </div>
                         </div>
 
                         <div class="profile-content">
-                            <a href="@Url.Action("Info", "Account")"><div class="profile-name">@user.User_LastName @user.User_Name</div></a>
+                            <a href="@Url.Action("Info", "Account")"><div class="profile-name">@Model.User_LastName @Model.User_Name</div></a>
                             <div class="profile-designation">Thành Viên</div>
                             <ul class="profile-info-list">
                                 <a href="@Url.Action("EditProfile", "Account")" class="profile-info-list-item"><i class="mdi mdi-pencil"></i>Sửa Đổi Thông Tin</a>
-                                <a href="@Url.Action("EditPass", "Account", new { id = user.User_ID})" class="profile-info-list-item"><i class="mdi mdi-account-key"></i>Đổi Mật Khẩu</a>
+                                <a href="@Url.Action("EditPass", "Account", new { id = Model.User_ID})" class="profile-info-list-item"><i class="mdi mdi-account-key"></i>Đổi Mật Khẩu</a>
                             </ul>
                         </div>
                     </div>
@@ -239,27 +225,27 @@
                         <hr>
                         <p class="card-description">Thông Tin Cá Nhân</p>
                         <ul class="about">
-                            <li class="about-items"><i class="mdi mdi-account icon-sm "></i><span class="about-item-name">Họ Và Tên:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@user.User_LastName @user.User_Name</span></li>
-                            <li class="about-items"><i class="mdi mdi-at icon-sm "></i><span class="about-item-name">Tên Tài Khoản:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@user.User_Name</span></li>
-                            <li class="about-items"><i class="mdi mdi-facebook-box icon-sm "></i><span class="about-item-name">Link Facebook:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;<a href="@user.User_LinkF">@user.User_LinkF</a></span></li>
+                            <li class="about-items"><i class="mdi mdi-account icon-sm "></i><span class="about-item-name">Họ Và Tên:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@Model.User_LastName @Model.User_Name</span></li>
+                            <li class="about-items"><i class="mdi mdi-at icon-sm "></i><span class="about-item-name">Tên Tài Khoản:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@Model.User_Name</span></li>
+                            <li class="about-items"><i class="mdi mdi-facebook-box icon-sm "></i><span class="about-item-name">Link Facebook:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;<a href="@Model.User_LinkF">@Model.User_LinkF</a></span></li>
                             <li class="about-items"><i class="mdi mdi-lock-outline icon-sm "></i><span class="about-item-name">Vai Trò:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;Người Dùng</span></li>
                         </ul>
                         <p class="card-description">Thông Tin Liên Hệ</p>
                         <ul class="about">
-                            <li class="about-items"><i class="mdi mdi-phone icon-sm "></i><span class="about-item-name">Số Điện Thoại:</span><span class="about-item-detail"><a href="tel:@user.User_Phone" style="color: black">&nbsp;&nbsp;&nbsp;&nbsp;@user.User_Phone</a></span></li>
-                            <li class="about-items"><i class="mdi mdi-map-marker icon-sm "></i><span class="about-item-name">Địa Chỉ:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@user.User_Address</span></li>
+                            <li class="about-items"><i class="mdi mdi-phone icon-sm "></i><span class="about-item-name">Số Điện Thoại:</span><span class="about-item-detail"><a href="tel:@Model.User_Phone" style="color: black">&nbsp;&nbsp;&nbsp;&nbsp;@Model.User_Phone</a></span></li>
+                            <li class="about-items"><i class="mdi mdi-map-marker icon-sm "></i><span class="about-item-name">Địa Chỉ:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@Model.User_Address</span></li>
                             <li class="about-items"><i class="mdi mdi-city icon-sm "></i><span class="about-item-name">Thành Phố:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@Model.City.City_Name</span></li>
                             <li class="about-items"><i class="mdi mdi-map-marker icon-sm "></i><span class="about-item-name">Tỉnh Thành:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@Model.Province.Province_Name</span></li>
-                            <li class="about-items"><i class="mdi mdi-gmail icon-sm "></i><span class="about-item-name">Email:</span><span class="about-item-detail"><a href="mailto:@user.User_Email">&nbsp;&nbsp;&nbsp;&nbsp;@user.User_Email</a></span></li>
+                            <li class="about-items"><i class="mdi mdi-gmail icon-sm "></i><span class="about-item-name">Email:</span><span class="about-item-detail"><a href="mailto:@Model.User_Email">&nbsp;&nbsp;&nbsp;&nbsp;@Model.User_Email</a></span></li>
                         </ul>
                         <p class="card-description">Thông Tin Cơ Bản</p>
                         <ul class="about">
-                            <li class="about-items"><i class="mdi mdi-cake-variant icon-sm "></i><span class="about-item-name">Ngày Sinh:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@user.User_DateBirth.Value.ToShortDateString()</span></li>
-                            @if (user.User_Sex.Value == 1)
+                            <li class="about-items"><i class="mdi mdi-cake-variant icon-sm "></i><span class="about-item-name">Ngày Sinh:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;@Model.User_DateBirth.Value.ToShortDateString()</span></li>
+                            @if (Model.User_Sex.Value == 1)
                             {
                                 <li class="about-items"><i class="mdi mdi-gender-transgender icon-sm"></i><span class="about-item-name">Giới Tính:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;Nam</span></li>
                             }
-                            else if (user.User_Sex.Value == 0)
+                            else if (Model.User_Sex.Value == 0)
                             {
                                 <li class="about-items"><i class="mdi mdi-gender-transgender icon-sm"></i><span class="about-item-name">Giới Tính:</span><span class="about-item-detail">&nbsp;&nbsp;&nbsp;&nbsp;Nữ</span></li>
                             }

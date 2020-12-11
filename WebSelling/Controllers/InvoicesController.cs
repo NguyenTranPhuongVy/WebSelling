@@ -23,6 +23,7 @@ namespace WebSelling.Controllers
         public ActionResult CreateCart(int? id)
         {
             User user = (User)Session["user"];
+            Session["noti_addCart"] = "add success";
             Product pro = db.Products.SingleOrDefault(n => n.Product_ID == id);
             //In so tren thanh gio hang (truong hop khong co)
             if (Session["sptt"] == null)

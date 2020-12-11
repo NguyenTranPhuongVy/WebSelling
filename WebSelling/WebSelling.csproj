@@ -1243,6 +1243,7 @@
     <Content Include="Views\Invoices\EditPay.cshtml" />
     <Content Include="Views\ForgotPass\ChangePass.cshtml" />
     <Content Include="Views\ForgotPass\Mail.cshtml" />
+    <Content Include="Views\Home\FilterProductBySubCatId.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

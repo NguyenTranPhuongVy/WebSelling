@@ -1,12 +1,12 @@
 ﻿@using WebSelling.Models;
-@model List<Product>
+@model List<SubCategory>
 @{
     ViewBag.Title = "DetailsCategory";
     Layout = "~/Views/Shared/_Layout.cshtml";
     Category cate = (Category)Session["category"];
     WebSellingEntities db = new WebSellingEntities();
 }
-@{ 
+@{
     List<Category> categories = db.Categories.Where(n => n.Category_Activate == true).ToList();
 }
 <style>
@@ -33,74 +33,95 @@
 </style>
 @Html.Action("Menu", "Menu")
 @Html.Action("Css", "Home")
-<div class="ui fluid selection dropdown">
-    <div class="text">
-        <img class="ui medium rounded image" src="~/Content/Image/@cate.Category_Img" style="width: 60px !important">
-        @cate.Category_Name
-    </div>
-    <i class="dropdown icon"></i>
-    <div class="menu">
-        @foreach (var items in categories.Where(n => n.Category_ID != cate.Category_ID))
-        {
-            <div class="item mb-3">
-                <img class="ui medium rounded image" src="~/Content/Image/@items.Category_Img" style="width: 60px !important">
-                <a href="@Url.Action("DetailsCategory", "Home", new { categoryid = items.Category_ID})" class="text" style="color: black">
-                    @items.Category_Name
-                </a>
-            </div>
-        }
-    </div>
-</div>
-<div class="py-5">
-    <div class="container">
-        @if (Model.Count() == 0)
-        {
-            <div class="ui success message">
-                <div class="header">
-                    Không có sản phẩm nào.
+@*<div class="ui fluid selection dropdown">
+        <div class="text">
+            <img class="ui medium rounded image" src="~/Content/Image/@cate.Category_Img" style="width: 60px !important">
+            @cate.Category_Name
+        </div>
+        <i class="dropdown icon"></i>
+        <div class="menu">
+            @foreach (var items in categories.Where(n => n.Category_ID != cate.Category_ID))
+            {
+                <div class="item mb-3">
+                    <img class="ui medium rounded image" src="~/Content/Image/@items.Category_Img" style="width: 60px !important">
+                    <a href="@Url.Action("DetailsCategory", "Home", new { categoryid = items.Category_ID})" class="text" style="color: black">
+                        @items.Category_Name
+                    </a>
                 </div>
-            </div>
-        }
-        else
-        {
-            <div class="row">
-                @foreach (var item in Model)
-                {
-                    <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})">
-                        <div class="col-lg-3 mb-3">
-                            <div class="ui link cards">
-                                <div class="card">
-                                    <div class="image rounded">
-                                        <img class="ui medium rounded image" src="~/Content/Image/@item.Product_Img" style="height: 200px; width: 100%">
-                                    </div>
-                                    <div class="content">
-                                        <div class="header">
-                                            <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">@item.Product_Name</a>
+            }
+        </div>
+    </div>
+    <div class="py-5">
+        <div class="container">
+            @if (Model.Count() == 0)
+            {
+                <div class="ui success message">
+                    <div class="header">
+                        Không có sản phẩm nào.
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <a href="@Url.Action("FilterProductBySubCatId", "Home", new { id = item.SubCategory_ID})">
+                            <div class="col-lg-3 mb-3">
+                                <div class="ui link cards">
+                                    <div class="card">
+                                        <div class="image rounded">
+                                            <img class="ui medium rounded image" src="~/Content/Image/@item.z" style="height: 200px; width: 100%">
                                         </div>
-                                        <div class="meta">
-                                            <p style="color: orangered"><i class="dollar sign icon"></i> @{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</p>
+                                        <div class="content">
+                                            <div class="header">
+                                                <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">@item.Product_Name</a>
+                                            </div>
+                                            <div class="meta">
+                                                <p style="color: orangered"><i class="dollar sign icon"></i> @{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="extra content">
-                                        <span class="left floated like">
-                                            <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">
-                                                <i class="like icon"></i>Yêu Thích
-                                            </a>
-                                        </span>
-                                        <span class="right floated like">
-                                            <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">Xem Chi Tiết</a>
-                                        </span>
+                                        <div class="extra content">
+                                            <span class="left floated like">
+                                                <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">
+                                                    <i class="like icon"></i>Yêu Thích
+                                                </a>
+                                            </span>
+                                            <span class="right floated like">
+                                                <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">Xem Chi Tiết</a>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </a>
-                }
-            </div>
+                        </a>
+                    }
+                </div>
+            }
+            <div class="clearfix"></div>
+        </div>
+    </div>*@
+
+
+
+<div class="container">
+    <h3 style="color: red">@Model.First().Category.Category_Name</h3>
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <a href="@Url.Action("FilterProductBySubCatId", "Home", new { id = item.SubCategory_ID})">
+                <div class="col-md-4">
+                    <img src="~/Content/Image/@item.SubCategory_Img" style="width: 100%; height: 80px" />
+                    <div>
+                        <h3>@item.SubCategory_Name</h3>
+                    </div>
+                </div>
+            </a>
         }
-        <div class="clearfix"></div>
     </div>
 </div>
+
+
 <!-- copyright bottom -->
 <div class="copy-bottom bg-li py-4 border-top">
     <div class="container-fluid">

@@ -323,7 +323,7 @@
                 {
                     using (Html.BeginForm("ViewComment", "Account", FormMethod.Post, new { @class = "ui reply form", enctype = "multipart/form-data" }))
                     {
-                        <input type="hidden" name="Product_ID" value="@Model.Product_ID"/>
+                        <input type="hidden" name="Product_ID" value="@Model.Product_ID" />
                         <div class="field">
                             <textarea name="Comment_Content" value="Comment_Content"></textarea>
                         </div>
@@ -396,5 +396,33 @@
             </div>
         </div>
     </div>
+    <style>
+        .noti_addCart {
+            width: 200px;
+            right: -200px;
+            height: 45px;
+            position: fixed;
+            top: 100px;
+            animation: mymove 1s normal;
+        }
+            @@keyframes mymove {
+                from {right: -200px;}
+                to {right: 0;
+
+            }
+}
+    </style>
+    <div class="alert alert-success" id="alert_addCart">
+        <span>Đã thêm vào giỏ hàng!</span>
+    </div>
+    @if (Session["noti_addCart"] != null)
+    {
+        <script>
+            $(document).ready(function () {
+                document.getElementById("alert_addCart").classList.add("noti_addCart");
+            })
+        </script>
+        Session["noti_addCart"] = null;
+    }
 </body>
 

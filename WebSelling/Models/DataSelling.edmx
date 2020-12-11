@@ -109,6 +109,7 @@
           <Property Name="SubCategory_ID" Type="int" />
           <Property Name="Category_ID" Type="int" />
           <Property Name="SubProduct_ID" Type="int" />
+          <Property Name="Product_Bin" Type="bit" />
         </EntityType>
         <EntityType Name="Province">
           <Key>
@@ -653,6 +654,7 @@
           <NavigationProperty Name="User" Relationship="Self.FK_Product_User" FromRole="Product" ToRole="User" />
           <NavigationProperty Name="Views" Relationship="Self.FK_Views_Product" FromRole="Product" ToRole="Views" />
           <NavigationProperty Name="DetailsInvoices" Relationship="WebSellingModel.FK_DetailsInvoices_Product" FromRole="Product" ToRole="DetailsInvoice" />
+          <Property Name="Product_Bin" Type="Boolean" />
         </EntityType>
         <EntityType Name="Province">
           <Key>
@@ -1215,6 +1217,7 @@
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="WebSellingModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Product_Bin" ColumnName="Product_Bin" />
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
                 <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
                 <ScalarProperty Name="Product_Img" ColumnName="Product_Img" />

@@ -1,0 +1,139 @@
+﻿@using WebSelling.Models;
+@model List<Product>
+@{
+    ViewBag.Title = "Danh sách sản phẩm theo danh mục";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    WebSellingEntities db = new WebSellingEntities();
+}
+@{
+    List<Category> categories = db.Categories.Where(n => n.Category_Activate == true).ToList();
+}
+<style>
+    .content {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        display: -webkit-box;
+        font-weight: initial;
+    }
+
+    .chuyen {
+        color: black;
+    }
+
+        .chuyen:hover {
+            color: #3CB371 !important;
+        }
+
+    .font {
+        font-family: 'Segoe UI' !important;
+    }
+</style>
+@Html.Action("Menu", "Menu")
+@Html.Action("Css", "Home")
+
+<div class="py-5">
+    <div class="container">
+        @if (Model.Count() == 0)
+        {
+            <div class="ui success message">
+                <div class="header">
+                    Không có sản phẩm nào.
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})">
+                        <div class="col-lg-3 mb-3">
+                            <div class="ui link cards">
+                                <div class="card">
+                                    <div class="image rounded">
+                                        <img class="ui medium rounded image" src="~/Content/Image/@item.Product_Img" style="height: 200px; width: 100%">
+                                    </div>
+                                    <div class="content">
+                                        <div class="header">
+                                            <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">@item.Product_Name</a>
+                                        </div>
+                                        <div class="meta">
+                                            <p style="color: orangered"><i class="dollar sign icon"></i> @{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</p>
+                                        </div>
+                                    </div>
+                                    <div class="extra content">
+                                        <span class="left floated like">
+                                            <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">
+                                                <i class="like icon"></i>Yêu Thích
+                                            </a>
+                                        </span>
+                                        <span class="right floated like">
+                                            <a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID})" class="chuyen">Xem Chi Tiết</a>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+        }
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- copyright bottom -->
+<div class="copy-bottom bg-li py-4 border-top">
+    <div class="container-fluid">
+        <div class="d-md-flex px-md-3 position-relative text-center">
+            <!-- footer social icons -->
+            <div class="social-icons-footer mb-md-0 mb-3">
+                <ul class="list-unstyled">
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-facebook"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-twitter"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-google-plus"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="fa fa-instagram"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- //footer social icons -->
+            <!-- copyright -->
+            <div class="copy_right mx-md-auto mb-md-0 mb-3">
+                <p class="text-bl let">
+                    © 2019 Startup. All rights reserved | Design by
+                    <a href="http://w3layouts.com/" target="_blank">W3layouts</a>
+                </p>
+            </div>
+            <!-- //copyright -->
+            <!-- move top icon -->
+            <a href="#home" class="move-top text-center">
+                <span class="fa fa-level-up" aria-hidden="true"></span>
+            </a>
+            <!-- //move top icon -->
+        </div>
+    </div>
+</div>
+<script>
+    $('.ui.dropdown')
+        .dropdown()
+        ;
+</script>
+
+
+
