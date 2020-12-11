@@ -11,6 +11,7 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
 @using (Html.BeginForm("CreateProductUser", "Information", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "ui form" }))
 {
+    @Html.AntiForgeryToken()
     <div class="ui horizontal divider">Nhập Thông Tin Sản Phẩm</div>
     <div class="two fields">
         <div class="field">
