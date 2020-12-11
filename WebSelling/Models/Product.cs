@@ -43,6 +43,7 @@ namespace WebSelling.Models
         public Nullable<int> SubCategory_ID { get; set; }
         public Nullable<int> Category_ID { get; set; }
         public Nullable<int> SubProduct_ID { get; set; }
+        public Nullable<bool> Product_Bin { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cart> Carts { get; set; }

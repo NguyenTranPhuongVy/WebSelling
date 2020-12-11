@@ -166,9 +166,9 @@
     <Compile Include="Controllers\ForgotPassController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InformationController.cs" />
-    <Compile Include="Controllers\Invoices1Controller.cs" />
     <Compile Include="Controllers\InvoicesController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\RepLisController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SeleteHomeController.cs" />
@@ -230,9 +230,6 @@
       <DependentUpon>DataSelling.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SubProduct.cs">
-      <DependentUpon>DataSelling.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>DataSelling.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\User.cs">
@@ -1235,7 +1232,6 @@
     <Content Include="Views\Search\SematicSearch.cshtml" />
     <Content Include="Views\Account\ScriptValidation.cshtml" />
     <Content Include="Views\Shared\_ViewLove.cshtml" />
-    <Content Include="Views\Information\CreateProductUser.cshtml" />
     <Content Include="Views\Invoices\IndexCart.cshtml" />
     <Content Include="Views\Account\ajaxFilterProvinceByCityID.cshtml" />
     <Content Include="Views\Invoices\Pay.cshtml" />
@@ -1244,6 +1240,13 @@
     <Content Include="Views\ForgotPass\ChangePass.cshtml" />
     <Content Include="Views\ForgotPass\Mail.cshtml" />
     <Content Include="Views\Home\FilterProductBySubCatId.cshtml" />
+    <Content Include="Views\Information\CreateProductUser.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\Information\CreateProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

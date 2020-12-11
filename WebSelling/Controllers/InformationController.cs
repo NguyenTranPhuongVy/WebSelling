@@ -30,7 +30,7 @@ namespace WebSelling.Controllers
             return View(user);
         }
         //Thêm sản phẩm người dùng
-        public ActionResult CreateProductUser()
+        public ActionResult CreateProduct()
         {
             ViewBag.Category_ID = new SelectList(db.Categories, "Category_ID", "Category_Name");
             ViewBag.SubCategory_ID = new SelectList(db.SubCategories, "SubCategory_ID", "SubCategory_Name");
@@ -38,44 +38,74 @@ namespace WebSelling.Controllers
             ViewBag.User_ID = new SelectList(db.Users, "User_ID", "User_LastName");
             return View();
         }
+
+        // POST: Products/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateInput(false)]
-        public ActionResult CreateProductUser([Bind(Include = "Product_ID,Product_Name,Product_Img,Product_DateSubmit,Product_Activate,Product_Price,Product_SalePrice,Product_Ship,Product_View,Product_Love,Product_Amount,Product_Description,Product_Detail,Product_Option,Product_DateCreate,Product_DateEdit,User_ID,SubCategory_ID,Category_ID,SubProduct_ID")] Product product, HttpPostedFileBase fileupload)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Product_ID,Product_Name,Product_Img,Product_DateSubmit,Product_Activate,Product_Price,Product_SalePrice,Product_Ship,Product_View,Product_Love,Product_Amount,Product_Description,Product_Detail,Product_Option,Product_DateCreate,Product_DateEdit,User_ID,SubCategory_ID,Category_ID,SubProduct_ID,Product_Bin")] Product product)
         {
-            User user = (User)Session["user"];
-            //Tên hình ảnh
-            var fileimg = Path.GetFileName(fileupload.FileName);
-            //Đưa tên ảnh vào file
-            var pa = Path.Combine(Server.MapPath("~/Content/Image/"), fileimg);
-            if (fileupload == null)
+            if (ModelState.IsValid)
             {
-                ViewBag.ThongBao = "Ảnh Trống";
-            }
-            else if (System.IO.File.Exists(pa))
-            {
-                ViewBag.ThongBao = "Ảnh Trùng";
-            }
-            else
-            {
-                fileupload.SaveAs(pa);
                 db.Products.Add(product);
-                product.Product_DateCreate = DateTime.Now;
-                product.Product_DateSubmit = DateTime.Now;
-                product.Product_DateEdit = DateTime.Now;
-                product.Product_Activate = true;
-                product.Product_Img = fileupload.FileName;
-                product.User_ID = user.User_ID;
-                product.Product_Love = 0;
-                product.Product_View = 0;
                 db.SaveChanges();
-                ViewBag.Category_ID = new SelectList(db.Categories, "Category_ID", "Category_Name", product.Category_ID);
-                ViewBag.SubCategory_ID = new SelectList(db.SubCategories, "SubCategory_ID", "SubCategory_Name", product.SubCategory_ID);
-                ViewBag.SubProduct_ID = new SelectList(db.SubProducts, "SubProduct_ID", "SubProduct_Name", product.SubProduct_ID);
-                ViewBag.User_ID = new SelectList(db.Users, "User_ID", "User_LastName", product.User_ID);
-                return Redirect(Request.UrlReferrer.ToString());
+                return RedirectToAction("Index");
             }
-            return View();
+
+            ViewBag.Category_ID = new SelectList(db.Categories, "Category_ID", "Category_Name", product.Category_ID);
+            ViewBag.SubCategory_ID = new SelectList(db.SubCategories, "SubCategory_ID", "SubCategory_Name", product.SubCategory_ID);
+            ViewBag.SubProduct_ID = new SelectList(db.SubProducts, "SubProduct_ID", "SubProduct_Name", product.SubProduct_ID);
+            ViewBag.User_ID = new SelectList(db.Users, "User_ID", "User_LastName", product.User_ID);
+            return View(product);
         }
+        //public ActionResult CreateProductUser()
+        //{
+        //    ViewBag.Category_ID = new SelectList(db.Categories, "Category_ID", "Category_Name");
+        //    ViewBag.SubCategory_ID = new SelectList(db.SubCategories, "SubCategory_ID", "SubCategory_Name");
+        //    ViewBag.SubProduct_ID = new SelectList(db.SubProducts, "SubProduct_ID", "SubProduct_Name");
+        //    ViewBag.User_ID = new SelectList(db.Users, "User_ID", "User_LastName");
+        //    return View();
+        //}
+        //[HttpPost]
+        //[ValidateInput(false)]
+        //public ActionResult CreateProductUser([Bind(Include = "Product_ID,Product_Name,Product_Img,Product_DateSubmit,Product_Activate,Product_Price,Product_SalePrice,Product_Ship,Product_View,Product_Love,Product_Amount,Product_Description,Product_Detail,Product_Option,Product_DateCreate,Product_DateEdit,User_ID,SubCategory_ID,Category_ID,SubProduct_ID,Product_Bin")] Product product, HttpPostedFileBase fileupload)
+        //{
+        //    User user = (User)Session["user"];
+        //    //Tên hình ảnh
+        //    var fileimg = Path.GetFileName(fileupload.FileName);
+        //    //Đưa tên ảnh vào file
+        //    var pa = Path.Combine(Server.MapPath("~/Content/Image/"), fileimg);
+        //    if (fileupload == null)
+        //    {
+        //        ViewBag.ThongBao = "Ảnh Trống";
+        //    }
+        //    else if (System.IO.File.Exists(pa))
+        //    {
+        //        ViewBag.ThongBao = "Ảnh Trùng";
+        //    }
+        //    else
+        //    {
+        //        fileupload.SaveAs(pa);
+        //        db.Products.Add(product);
+        //        product.Product_DateCreate = DateTime.Now;
+        //        product.Product_DateSubmit = DateTime.Now;
+        //        product.Product_DateEdit = DateTime.Now;
+        //        product.Product_Activate = true;
+        //        product.Product_Img = fileupload.FileName;
+        //        product.User_ID = user.User_ID;
+        //        product.Product_Love = 0;
+        //        product.Product_View = 0;
+        //        product.Product_Bin = false;
+        //        db.SaveChanges();
+        //        ViewBag.Category_ID = new SelectList(db.Categories, "Category_ID", "Category_Name", product.Category_ID);
+        //        ViewBag.SubCategory_ID = new SelectList(db.SubCategories, "SubCategory_ID", "SubCategory_Name", product.SubCategory_ID);
+        //        ViewBag.SubProduct_ID = new SelectList(db.SubProducts, "SubProduct_ID", "SubProduct_Name", product.SubProduct_ID);
+        //        ViewBag.User_ID = new SelectList(db.Users, "User_ID", "User_LastName", product.User_ID);
+        //        return Redirect(Request.UrlReferrer.ToString());
+        //    }
+        //    return View();
+        //}
 
         //Sửa sản phẩm
         public ActionResult EditProductUser(int? id)
@@ -98,7 +128,7 @@ namespace WebSelling.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult EditProductUser([Bind(Include = "Product_ID,Product_Name,Product_Img,Product_DateSubmit,Product_Activate,Product_Price,Product_SalePrice,Product_Ship,Product_View,Product_Love,Product_Amount,Product_Description,Product_Detail,Product_Option,Product_DateCreate,Product_DateEdit,User_ID,SubCategory_ID,Category_ID,SubProduct_ID")] Product product, HttpPostedFileBase fileeditproduct)
+        public ActionResult EditProductUser([Bind(Include = "Product_ID,Product_Name,Product_Img,Product_DateSubmit,Product_Activate,Product_Price,Product_SalePrice,Product_Ship,Product_View,Product_Love,Product_Amount,Product_Description,Product_Detail,Product_Option,Product_DateCreate,Product_DateEdit,User_ID,SubCategory_ID,Category_ID,SubProduct_ID,Product_Bin")] Product product, HttpPostedFileBase fileeditproduct)
         {
             if (ModelState.IsValid)
             {
@@ -120,6 +150,7 @@ namespace WebSelling.Controllers
                 }
                 product.Product_DateEdit = DateTime.Now;
                 product.Product_DateSubmit = DateTime.Now;
+                product.Product_Bin = false;
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return Redirect("/Account/ListProductsUser");

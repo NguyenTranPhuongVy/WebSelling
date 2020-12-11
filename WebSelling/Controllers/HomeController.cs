@@ -26,16 +26,10 @@ namespace WebSelling.Controllers
 
         public ActionResult DetailsCategory(int? categoryid)
         {
-            //Category cate = db.Categories.SingleOrDefault(n => n.Category_ID == categoryid);
-            //Session["category"] = cate;
-            //List<Product> products = db.Products.Where(n => n.Category_ID == categoryid && n.Product_Activate == true).OrderByDescending(n => n.Product_DateCreate).ToList();
-            //return View(products);
-            if(categoryid == null)
-            {
-                return HttpNotFound();
-            }
-            List<SubCategory> subCategories = db.SubCategories.Where(t => t.Category_ID == categoryid).ToList();
-            return View(subCategories);
+            Category cate = db.Categories.SingleOrDefault(n => n.Category_ID == categoryid);
+            Session["category"] = cate;
+            List<Product> products = db.Products.Where(n => n.Category_ID == categoryid && n.Product_Activate == true).OrderByDescending(n => n.Product_DateCreate).ToList();
+            return View(products);
         }
         public ActionResult FilterProductBySubCatId(int? id)
         {

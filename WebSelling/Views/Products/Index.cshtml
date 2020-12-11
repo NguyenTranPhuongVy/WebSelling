@@ -1,0 +1,148 @@
+﻿@model IEnumerable<WebSelling.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Img)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_DateSubmit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Activate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_SalePrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Ship)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_View)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Love)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Detail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Option)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_DateCreate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_DateEdit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Bin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.Category_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubCategory.SubCategory_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubProduct.SubProduct_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User.User_LastName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Img)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_DateSubmit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Activate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_SalePrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Ship)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_View)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Love)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Detail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Option)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_DateCreate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_DateEdit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Bin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.Category_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubCategory.SubCategory_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubProduct.SubProduct_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User.User_LastName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Product_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Product_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Product_ID })
+        </td>
+    </tr>
+}
+
+</table>
