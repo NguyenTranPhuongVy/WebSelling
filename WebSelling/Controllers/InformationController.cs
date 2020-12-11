@@ -40,7 +40,7 @@ namespace WebSelling.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult CreateProductUser([Bind(Include = "Product_ID,Product_Name,Product_Img,Product_DateSubmit,Product_Activate,Product_Price,Product_SalePrice,Product_Ship,Product_View,Product_Love,Product_Amount,Product_Description,Product_Detail,Product_Option,Product_DateCreate,Product_DateEdit,User_ID,SubCategory_ID,Category_ID,SubProduct_ID")] Product product, HttpPostedFileBase fileupload)
+        public ActionResult CreateProductUser([Bind(Include = "Product_ID,Product_Name,Product_Img,Product_DateSubmit,Product_Activate,Product_Price,Product_SalePrice,Product_Ship,Product_View,Product_Love,Product_Amount,Product_Description,Product_Detail,Product_Option,Product_DateCreate,Product_DateEdit,User_ID,SubCategory_ID,Category_ID,SubProduct_ID,Product_Bin")] Product product, HttpPostedFileBase fileupload)
         {
             User user = (User)Session["user"];
             //Tên hình ảnh
@@ -67,6 +67,7 @@ namespace WebSelling.Controllers
                 product.User_ID = user.User_ID;
                 product.Product_Love = 0;
                 product.Product_View = 0;
+                product.Product_Bin = false;
                 db.SaveChanges();
                 ViewBag.Category_ID = new SelectList(db.Categories, "Category_ID", "Category_Name", product.Category_ID);
                 ViewBag.SubCategory_ID = new SelectList(db.SubCategories, "SubCategory_ID", "SubCategory_Name", product.SubCategory_ID);
