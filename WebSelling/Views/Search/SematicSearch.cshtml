@@ -3,7 +3,7 @@
     WebSellingEntities db = new WebSellingEntities();
 }
 @{
-    List<Product> pr = db.Products.Where(n => n.Product_Activate == true).OrderByDescending(n => n.Product_DateCreate).ToList();
+    List<Product> pr = db.Products.Where(n => n.Product_Activate == true & n.Product_Bin == false).OrderByDescending(n => n.Product_DateCreate).ToList();
 }
 var content = [
 @foreach (var item in pr)

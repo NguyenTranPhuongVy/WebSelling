@@ -1240,6 +1240,7 @@
     <Content Include="Views\ForgotPass\Mail.cshtml" />
     <Content Include="Views\Home\FilterProductBySubCatId.cshtml" />
     <Content Include="Views\Information\CreateProductUser.cshtml" />
+    <Content Include="Views\Information\CreateProduct.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

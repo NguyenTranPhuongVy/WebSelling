@@ -31,7 +31,7 @@ namespace WebSelling.Controllers
         }
 
         //Thêm sản phẩm người dùng
-        public ActionResult CreateProductUser()
+        public ActionResult CreateProduct()
         {
             ViewBag.Category_ID = new SelectList(db.Categories, "Category_ID", "Category_Name");
             ViewBag.SubCategory_ID = new SelectList(db.SubCategories, "SubCategory_ID", "SubCategory_Name");
@@ -39,10 +39,10 @@ namespace WebSelling.Controllers
             ViewBag.User_ID = new SelectList(db.Users, "User_ID", "User_LastName");
             return View();
         }
+
         [HttpPost]
         [ValidateInput(false)]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateProductUser([Bind(Include = "Product_ID,Product_Name,Product_Img,Product_DateSubmit,Product_Activate,Product_Price,Product_SalePrice,Product_Ship,Product_View,Product_Love,Product_Amount,Product_Description,Product_Detail,Product_Option,Product_DateCreate,Product_DateEdit,User_ID,SubCategory_ID,Category_ID,SubProduct_ID,Product_Bin")] Product product, HttpPostedFileBase fileupload)
+        public ActionResult CreateProduct([Bind(Include = "Product_ID,Product_Name,Product_Img,Product_DateSubmit,Product_Activate,Product_Price,Product_SalePrice,Product_Ship,Product_View,Product_Love,Product_Amount,Product_Description,Product_Detail,Product_Option,Product_DateCreate,Product_DateEdit,User_ID,SubCategory_ID,Category_ID,SubProduct_ID,Product_Bin")] Product product, HttpPostedFileBase fileupload)
         {
             User user = (User)Session["user"];
             //Tên hình ảnh
@@ -111,6 +111,7 @@ namespace WebSelling.Controllers
                 }
                 product.Product_DateEdit = DateTime.Now;
                 product.Product_DateSubmit = DateTime.Now;
+                product.Product_Bin = false;
                 db.Entry(product).State = EntityState.Modified;
                 db.SaveChanges();
                 return Redirect("/Account/ListProductsUser");
