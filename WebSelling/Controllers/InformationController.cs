@@ -65,7 +65,7 @@ namespace WebSelling.Controllers
             ViewBag.SubCategory_ID = new SelectList(db.SubCategories, "SubCategory_ID", "SubCategory_Name", product.SubCategory_ID);
             ViewBag.SubProduct_ID = new SelectList(db.SubProducts, "SubProduct_ID", "SubProduct_Name", product.SubProduct_ID);
             ViewBag.User_ID = new SelectList(db.Users, "User_ID", "User_LastName", product.User_ID);
-            return Redirect(Request.UrlReferrer.ToString());
+            return Redirect("/Information/MyInforUser");
         }
 
         //Sửa sản phẩm
@@ -117,6 +117,17 @@ namespace WebSelling.Controllers
                 return Redirect("/Account/ListProductsUser");
             }
             return View(product);
+        }
+
+        //Xoá sản phẩm
+        [HttpPost]
+        public ActionResult DeleteProduct(FormCollection f, int ? id)
+        {
+            User user = (User)Session["user"];
+            Product product = db.Products.Find(id);
+            product.Product_Bin = true;
+            db.SaveChanges();
+            return Redirect("/Information/MyInforUser");
         }
 
         //Thêm yêu thích

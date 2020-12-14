@@ -28,7 +28,7 @@ namespace WebSelling.Controllers
         {
             Category cate = db.Categories.SingleOrDefault(n => n.Category_ID == categoryid);
             Session["category"] = cate;
-            List<Product> products = db.Products.Where(n => n.Category_ID == categoryid && n.Product_Activate == true).OrderByDescending(n => n.Product_DateCreate).ToList();
+            List<Product> products = db.Products.Where(n => n.Category_ID == categoryid && n.Product_Activate == true && n.Product_Bin == false).OrderByDescending(n => n.Product_DateCreate).ToList();
             return View(products);
         }
         public ActionResult FilterProductBySubCatId(int? id)
@@ -43,7 +43,7 @@ namespace WebSelling.Controllers
 
         public PartialViewResult NewProduct()
         {
-            return PartialView(db.Products.Where(n => n.Product_Activate == true).OrderByDescending(n => n.Product_DateCreate).Take(12).ToList());
+            return PartialView(db.Products.Where(n => n.Product_Activate == true && n.Product_Bin == false).OrderByDescending(n => n.Product_DateCreate).Take(12).ToList());
         }
 
         public PartialViewResult KeyWork()

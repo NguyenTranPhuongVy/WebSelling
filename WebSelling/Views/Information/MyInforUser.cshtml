@@ -149,7 +149,7 @@
                     WebSellingEntities db = new WebSellingEntities();
                 }
                 @{
-                    List<Product> product = db.Products.Where(n => n.User_ID == user.User_ID && n.Product_Activate == true).OrderByDescending(n => n.Product_DateCreate).ToList();
+                    List<Product> product = db.Products.Where(n => n.User_ID == user.User_ID && n.Product_Activate == true && n.Product_Bin == false).OrderByDescending(n => n.Product_DateCreate).ToList();
                 }
                 @if (user.Products.Count != 0)
                 {
@@ -161,7 +161,7 @@
                                     <img class="ui medium rounded image" src="~/Content/Image/@item.Product_Img" style="width: 100%; height: 180px">
                                 </div>
                                 <div class="content">
-                                    <div class="header"><a href="@Url.Action("DetailsProduct", "Home", new { productid = item.Product_ID })">@item.Product_Name</a></div>
+                                    <div class="header"><a href="@Url.Action("DetailsProduct", "Home", new { id = item.Product_ID })">@item.Product_Name</a></div>
                                     <div class="meta">
                                         <span class="price" style="color: #bd081c"> @{float price = (float)item.Product_Price;} @price.ToString("#,##0") VNĐ</span>
                                         <span class="stay">Ngày Đăng: @item.Product_DateCreate.Value.Day/@item.Product_DateCreate.Value.Month/@item.Product_DateCreate.Value.Year</span>
